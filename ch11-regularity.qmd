@@ -1,0 +1,187 @@
+# Regularity Conditions {#sec-regularity}
+
+The likelihood isomorphism (Theorem 1) and its immediate consequences (Theorem 2, Corollaries 1--2) require only the exactness conditions (E1)--(E3) and (E5). The DER decomposition (Theorem 3) requires additional regularity conditions to ensure that the sandwich variance estimator is consistent and that the DER formulas are well-defined. This chapter states those conditions precisely, provides their meta-analytic interpretations, maps them to the conditions in Lee (2026b), and discusses the critical scope of the scalar DEFF assumption.
+
+
+## Conditions (C1)--(C8) {#sec-conditions}
+
+### (C1) Normal Likelihood {#sec-c1}
+
+The conditional distribution at Level 1 is Gaussian:
+$$
+y_{ij} \mid \theta_j, \boldsymbol{\beta} \sim \textsf{N}\!\left(\mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} + \theta_j,\; v_{ij}\right), \quad v_{ij} > 0.
+$$ {#eq-c1}
+
+**Meta-analytic interpretation.** This condition is essentially automatic for continuous effect-size estimates (standardized mean differences, log-odds ratios, Fisher-$z$ correlations), which are approximately normally distributed by the central limit theorem or delta method. It subsumes exactness condition (E5) and ensures that the log-likelihood is twice continuously differentiable in $\boldsymbol{\phi} = (\boldsymbol{\beta}^{\intercal}, \boldsymbol{\theta}^{\intercal})^{\intercal}$, a prerequisite for both the Hessian (bread) and the score (meat) in the sandwich construction.
+
+**Role.** Required for Theorems 1--3 and all corollaries. Without differentiability, the sandwich estimator is undefined.
+
+
+### (C2) Compound Symmetry {#sec-c2}
+
+The within-study working covariance takes the form
+$$
+\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho) = \bar{s}_j^2\!\left[(1 - \rho)\,\mathbf{I}_{n_j} + \rho\,\mathbf{1}_{n_j}\mathbf{1}_{n_j}^{\intercal}\right]
+$$ {#eq-c2}
+for a fixed working correlation $\rho \in [0, 1)$.
+
+**Meta-analytic interpretation.** Compound symmetry is the standard assumption in the robust variance estimation (RVE) framework for meta-analysis with dependent effect sizes [@HedgesTiptonJohnson2010]. It assumes that all pairs of effect sizes within a study share a common correlation $\rho$. The sensitivity analysis over $\rho$ (typically evaluated at $\rho = 0, 0.2, 0.5, 0.8$) is a core part of the RVE workflow.
+
+**Role.** Corresponds to exactness condition (E1). This is the structural assumption that yields the scalar DEFF formula $\mathrm{DEFF} = 1 + (\bar{n} - 1)\rho_{\mathrm{true}}$. See @sec-r4-scope for the scope of this scalar DEFF under different model configurations.
+
+
+### (C3) Known, Common Within-Study Variances {#sec-c3}
+
+The sampling variances satisfy $s_{ij}^2 = \bar{s}_j^2$ for all $i$ within study $j$, and $\sigma_{e,j}^2$ (in the survey interpretation) is treated as known. The isomorphism map identifies $\sigma_{e,j}^2 \equiv \bar{s}_j^2$.
+
+**Meta-analytic interpretation.** Condition (C3) corresponds to the variance-identification component of exactness condition (E2), specifically the identification $\sigma^2_{e,j} \equiv \bar{s}_j^2$ with known within-study variances. The unit-weight condition (E3) is separately satisfied in meta-analysis (which has no survey design weights) and is not part of C3. In meta-analysis, the sampling variances $s_{ij}^2$ are computed from the primary studies and treated as known constants (not estimated from the meta-analytic data). The averaging $\bar{s}_j^2 = n_j^{-1}\sum_i s_{ij}^2$ is a convenience that absorbs within-study variance heterogeneity; when $s_{ij}^2$ varies substantially within a study, this averaging introduces an approximation (see @sec-interpretation for practical implications).
+
+**Role.** Required for the isomorphism (Theorem 1) to be exact. When $s_{ij}^2$ varies within study $j$, the isomorphism holds approximately (with the approximation quality depending on the coefficient of variation of $\{s_{ij}^2\}_{i=1}^{n_j}$).
+
+
+### (C4) DER Simplification Condition {#sec-c4}
+
+All predictors are cluster-level: $\mathbf{x}_{ij} = \mathbf{x}_j$ for every $i = 1, \ldots, n_j$.
+
+**Meta-analytic interpretation.** This condition requires study-level covariates only. Under the Broad CE definition ($\omega^2 = 0$), this is **not** a definitional property of the CE model --- CE is defined by the absence of within-study heterogeneity ($\omega^2 = 0$), not by the covariate level. Moderators such as publication year, study design, or treatment type happen to be study-level characteristics, but this is a common empirical pattern, not a model requirement. The condition is **not required** for Theorems 1--2 and Corollaries 1--2 (see @sec-e4-unnecessary), but it is needed for the specific form $R_k = B$ in the DER decomposition of Theorem 3(a).
+
+**Role.** Required only for the simple between-direction identity $R_k = B$ in Theorem 3(a); the equality $R_k = B$ is exact under flat $\boldsymbol{\beta}$ prior and asymptotically exact under condition (C6). When observation-level covariates are present (the E4-relaxed CE extension), the exact target remains the Schur-complement quantity $R_k$. Balanced-design summaries such as $\gamma_k B$ are heuristic, and the scalar DEFF scope limitation of @sec-he-scope applies.
+
+
+### (C5) Proper Random-Effect Prior {#sec-c5}
+
+The between-study heterogeneity satisfies $\sigma_\theta^2 > 0$, and the prior $p(\sigma_\theta^2)$ is continuous and supported on $(0, \infty)$.
+
+**Meta-analytic interpretation.** This excludes two degenerate cases: $\sigma_\theta^2 = 0$ (fixed-effects model, no heterogeneity) and $\sigma_\theta^2 = \infty$ (no pooling). Both cause the shrinkage factor $B_j = \sigma_\theta^2/(\sigma_\theta^2 + \bar{s}_j^2/n_j)$ to degenerate ($B_j \to 0$ or $B_j \to 1$), making the DER decomposition for random effects (Theorem 3(b)) either undefined or trivial. In Bayesian meta-analysis practice, standard priors such as half-Cauchy, half-$t$, or inverse-gamma on $\sigma_\theta$ are continuous with full positive support, satisfying (C5) automatically.
+
+**Role.** Required for Theorem 3(b) (random-effect DER) to be well-defined. Ensures $B_j \in (0, 1)$ for all $j$.
+
+
+### (C6) Prior Regularity {#sec-c6}
+
+The prior $p(\boldsymbol{\beta})$ is continuous and positive in a neighborhood of the true value $\boldsymbol{\beta}_0$. Additionally, the prior precision on $\boldsymbol{\beta}$ is negligible relative to the data information:
+$$
+\|\mathbf{H}_{\mathrm{prior}}^{\boldsymbol{\beta}}\| \big/ \|\mathbf{H}\| \to 0 \quad \text{as } J \to \infty.
+$$ {#eq-c6}
+
+**Meta-analytic interpretation.** This "approximately flat prior" condition ensures that the DER formulas, which are derived under frequentist asymptotics applied to the posterior, are not distorted by strongly informative priors on the fixed effects. In meta-analytic practice, the condition is typically satisfied: standard default priors for meta-regression coefficients (e.g., $\textsf{N}(0, 10^2)$ for standardized effect sizes) are weakly informative, and the prior precision becomes negligible once $J$ is moderately large (say, $J \geq 20$).
+
+**Role.** Required for the asymptotic DER formulas in Theorem 3. Ensures that the sandwich estimator targets the correct frequentist variance.
+
+
+### (C7) Identifiability {#sec-c7}
+
+The Schur complement of the **posterior** Hessian with respect to the random effects is positive definite:
+$$
+\mathbf{S}^{\mathrm{post}}_{\boldsymbol{\beta}} = \mathbf{H}^{\mathrm{post}}_{\boldsymbol{\beta}\boldsymbol{\beta}} - \mathbf{H}^{\mathrm{post}}_{\boldsymbol{\beta}\boldsymbol{\theta}}\,(\mathbf{H}^{\mathrm{post}}_{\boldsymbol{\theta}\boldsymbol{\theta}})^{-1}\,\mathbf{H}^{\mathrm{post}}_{\boldsymbol{\theta}\boldsymbol{\beta}} \succ 0,
+$$ {#eq-c7}
+where $\mathbf{H}^{\mathrm{post}} = \mathbf{H} + \mathbf{H}_{\mathrm{prior}}$ is the posterior Hessian.
+
+**Critical clarification.** The use of $\mathbf{H}^{\mathrm{post}}$ rather than the likelihood-only $\mathbf{H}$ is essential. In the balanced intercept-only model, the likelihood Hessian's Schur complement is $\mathbf{S}_{\boldsymbol{\beta}} = \mathbf{H}_{\mu\mu} - \mathbf{H}_{\mu\boldsymbol{\theta}}\mathbf{H}_{\boldsymbol{\theta}\boldsymbol{\theta}}^{-1}\mathbf{H}_{\boldsymbol{\theta}\mu} = Ja - Ja = 0$ (singular), because $\mu$ and $\sum_j \theta_j$ are aliased in the likelihood. The posterior Hessian resolves this aliasing: the prior adds $\lambda = 1/\sigma_\theta^2$ to each $\theta_j$ diagonal, making $\mathbf{H}^{\mathrm{post}}_{\boldsymbol{\theta}\boldsymbol{\theta}}$ invertible with $\mathbf{S}^{\mathrm{post}}_\mu = J\lambda B + h_\mu > 0$, where $h_\mu$ is the prior precision of $\mu$. Under a flat $\beta$ prior ($h_\mu = 0$), this reduces to $J\lambda B > 0$; under a proper weakly informative prior ($h_\mu > 0$), the additional term only strengthens positive definiteness.
+
+**Meta-analytic interpretation.** The Schur complement $\mathbf{S}^{\mathrm{post}}_{\boldsymbol{\beta}}$ represents the effective **posterior** information for $\boldsymbol{\beta}$ after accounting for the study-specific effects $\boldsymbol{\theta}$. Positive definiteness ensures that the meta-regression coefficients are identified --- i.e., there is enough between-study variation in the covariates to estimate all $p$ coefficients. The condition fails only when the design matrix $\mathbf{X} = (\mathbf{X}_1^{\intercal}, \ldots, \mathbf{X}_J^{\intercal})^{\intercal}$ is rank-deficient after projecting out the cluster means, which is excluded by standard model-specification assumptions.
+
+**Role.** Required for the DER decomposition of fixed effects (Theorem 3(a)). Also provides the matrix-based definition of $R_k$: the identifying-variation fraction can be expressed as
+$$
+R_k = 1 - \frac{[(\mathbf{H}^{\mathrm{post}}_{\boldsymbol{\beta}\boldsymbol{\beta}})^{-1}]_{kk}}{[(\mathbf{S}^{\mathrm{post}}_{\boldsymbol{\beta}})^{-1}]_{kk}},
+$$
+where $(\mathbf{S}^{\mathrm{post}}_{\boldsymbol{\beta}})^{-1}$ is the marginal posterior covariance of $\boldsymbol{\beta}$ (the inverse of the posterior Schur complement) and $(\mathbf{H}^{\mathrm{post}}_{\boldsymbol{\beta}\boldsymbol{\beta}})^{-1}$ is the $\boldsymbol{\beta}$-only posterior covariance ignoring random effects. Thus $R_k$ measures the fraction of posterior variance for $\beta_k$ attributable to between-study information. This covariance-based definition is exact regardless of the between/within decomposition of covariate variation. In balanced orthogonal designs it admits the heuristic summary $R_k \approx \gamma_k B$; for the intercept and study-level covariates under (C4), it reduces to the exact between-direction identity $R_k = B$.
+
+
+### (C8) Asymptotic Regularity {#sec-c8}
+
+As $J \to \infty$:
+
+(i) **Information convergence.** The normalized information converges:
+$$
+J^{-1}\mathbf{H} \to \mathcal{I} \succ 0,
+$$ {#eq-c8i}
+where $\mathcal{I}$ is the population information matrix.
+
+(ii) **Score CLT.** A central limit theorem holds for the study-level scores:
+$$
+J^{-1/2}\sum_{j=1}^{J} \mathbf{s}_j(\hat{\boldsymbol{\phi}}) \overset{d}{\longrightarrow} \textsf{N}(\mathbf{0}, \boldsymbol{\Sigma}_{\mathrm{score}}).
+$$ {#eq-c8ii}
+
+**Meta-analytic interpretation.** Condition (C8)(i) requires that each additional study contributes a comparable amount of information --- no single study dominates. This holds when cluster sizes $n_j$ are bounded or grow slowly. Condition (C8)(ii) requires that the study-level scores behave as independent draws with finite variance. Since studies in meta-analysis are independent by assumption, this reduces to a finite-moment condition on the within-study effect sizes, which is mild for normally distributed estimates.
+
+**Role.** These conditions underpin the consistency of $\mathbf{V}_{\mathrm{sand}}$ as an estimator of the asymptotic sampling variance of $\hat{\boldsymbol{\phi}}$. Under (C1)--(C4), the normal likelihood ensures that (C8)(i) holds automatically. Condition (C8)(ii) requires independent studies with bounded fourth moments --- a standard requirement.
+
+
+## Condition Mapping Table {#sec-condition-map}
+
+@tbl-condition-mapping summarizes how the conditions in Lee (2026b) --- the DER paper --- map to the present paper's conditions, and the status of each under the CE meta-analytic model.
+
+| Lee (2026b) Condition | This Paper | Status Under CE Model |
+|:----------------------|:-----------|:----------------------|
+| (A1) Informative sampling | --- | **Disappears**: no survey weights in meta-analysis |
+| (A2) Likelihood regularity | (C1), (C8)(i) | **Satisfied**: normal likelihood is $C^\infty$ |
+| (A3) Prior support | (C6) | **Transfers** directly |
+| (A4) Weight boundedness | --- | **Trivially satisfied**: $\tilde{w}_{ij} = 1$ |
+| (A5) Score CLT | (C8)(ii) | **Transfers**: independent studies ensure the CLT |
+| (R1) Proper RE prior | (C5) | **Transfers** directly |
+| (R2) Nesting | --- | **Trivially satisfied**: each effect size belongs to exactly one study |
+| (R3) Flat $\boldsymbol{\beta}$ prior | (C6) | **Transfers** directly |
+| (R4) Scalar DEFF within clusters | (C2) | **Guaranteed** by compound symmetry for intercept-only models and study-level covariates; approximate for within-cluster covariates (see @sec-r4-scope) |
+| (R5) Schur complement | (C7) | **Transfers** directly |
+
+: Mapping from Lee (2026b) regularity conditions to the present paper's conditions (C1)--(C8). {#tbl-condition-mapping}
+
+**Key observations:**
+
+1. **One condition disappears entirely** --- (A1) --- because meta-analysis has no informative survey sampling. The informative-sampling condition, which is the most technically demanding condition in the DER paper, is vacuous here.
+
+2. **Two conditions are automatically satisfied** --- (A4) and (R2) --- because the exact theory sets $\tilde{w}_{ij} = 1$ under (E3) and each effect size belongs to exactly one study.
+
+3. **The substantive conditions that transfer** are (C5)--(C8), which concern prior regularity, identifiability, and asymptotics. These are standard conditions in Bayesian hierarchical modeling.
+
+
+## Scope of Condition (R4): Scalar DEFF {#sec-r4-scope}
+
+Condition (R4) from Lee (2026b) --- that the within-cluster meat-to-bread ratio is a scalar multiple of the identity --- is the most subtle regularity condition and was the subject of substantive discussion during review. This section provides a precise delineation of when scalar DEFF holds.
+
+### When Scalar DEFF Is Exact {#sec-r4-exact}
+
+Under the compound-symmetric working covariance (C2), the eigenstructure of $[\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho)]^{-1}$ has two eigenspaces: the between-cluster direction (along $\mathbf{1}_{n_j}$) and the within-cluster directions ($\perp \mathbf{1}_{n_j}$), as visualized in @fig-cs-eigenspaces. The "DEFF" --- defined as the ratio of the true score variance to the working Hessian --- is a scalar only when all relevant covariate variation projects onto a single eigenspace, or when both eigenspaces yield the same ratio.
+
+**Case 1: Intercept-only model at any $\rho_{\mathrm{work}}$.** When $p = 1$ and $\beta_1 = \mu$ (the overall mean), the design matrix is $\mathbf{X}_j = \mathbf{1}_{n_j}$. All covariate variation lies in the between-cluster eigenspace. The meat-to-bread ratio in the $\boldsymbol{\beta}$-block is
+$$
+\frac{\mathbf{1}_{n_j}^{\intercal} \boldsymbol{\Sigma}_j^{\mathrm{true}} [\boldsymbol{\Sigma}_j^{\mathrm{work}}]^{-2} \boldsymbol{\Sigma}_j^{\mathrm{true}} \mathbf{1}_{n_j}}{\mathbf{1}_{n_j}^{\intercal} [\boldsymbol{\Sigma}_j^{\mathrm{work}}]^{-1} \mathbf{1}_{n_j}} = \mathrm{DEFF}_j(\rho_{\mathrm{true}}, \rho_{\mathrm{work}}),
+$$
+which is a scalar independent of position. **Scalar DEFF is exact.** $\checkmark$
+
+**Case 2: General meta-regression at $\rho_{\mathrm{work}} = 0$.** When $\rho_{\mathrm{work}} = 0$, the working covariance is $\boldsymbol{\Sigma}_j^{\mathrm{work}} = \bar{s}_j^2\,\mathbf{I}_{n_j}$ (diagonal). Both eigenspaces of the working covariance have the same eigenvalue ($\bar{s}_j^2$), so the inverse is a scalar times the identity. The meat-to-bread ratio in **every direction** is
+$$
+\frac{\text{eigenvalue of } \boldsymbol{\Sigma}_j^{\mathrm{true}}}{\bar{s}_j^2},
+$$
+but this differs between eigenspaces: $[1 + (n_j - 1)\rho_{\mathrm{true}}]$ in the between direction and $(1 - \rho_{\mathrm{true}})$ in the within direction. However, when $\rho_{\mathrm{work}} = 0$, the bread is proportional to the identity, and the scalar DEFF condition (R4) requires only that the **aggregate** meat-to-bread ratio over the design matrix $\mathbf{X}_j$ yields a single scalar. This is satisfied when $\mathbf{X}_j = \mathbf{1}_{n_j}$ (reducing to Case 1) or when the design is balanced and orthogonal. For general $\mathbf{X}_j$ at $\rho_{\mathrm{work}} = 0$, the scalar DEFF is **exact for study-level covariates** (which project onto the between direction) and **approximate for within-cluster covariates** (which project onto the within direction with a different DEFF). $\checkmark / \approx$
+
+**Case 3: General meta-regression at $\rho_{\mathrm{work}} > 0$.** When both $\rho_{\mathrm{work}} > 0$ and the design matrix $\mathbf{X}_j$ has within-cluster variation, the two eigenspaces have different eigenvalue ratios:
+
+- Between direction: $\mathrm{DEFF}_{\mathrm{between}} = \frac{1 + (n_j - 1)\rho_{\mathrm{true}}}{1 + (n_j - 1)\rho_{\mathrm{work}}}$
+- Within direction: $\mathrm{DEFF}_{\mathrm{within}} = \frac{1 - \rho_{\mathrm{true}}}{1 - \rho_{\mathrm{work}}}$
+
+These are generally not equal (they coincide only when $\rho_{\mathrm{true}} = \rho_{\mathrm{work}}$, i.e., the working model is correctly specified). The scalar DEFF is **approximate**, with the approximation quality depending on how much covariate variation falls in each eigenspace (see @fig-e4-directional-ratios for a visualization of this directional dependence). $\approx$
+
+### Summary Table {#sec-r4-summary}
+
+| Model Configuration | $\rho_{\mathrm{work}}$ | Scalar DEFF | Notes |
+|:--------------------|:-----------------------|:------------|:------|
+| Intercept-only | Any $\rho \in [0,1)$ | **Exact** | All variation in $\mathbf{1}_{n_j}$ direction |
+| Meta-regression, study-level covariates | Any $\rho \in [0,1)$ | **Exact** | All covariate variation in between-cluster direction |
+| Meta-regression, within-cluster covariates | $\rho_{\mathrm{work}} = 0$ | **Approximate** | Within-direction DEFF is $1 - \rho_{\mathrm{true}}$, not $\mathrm{DEFF}$ |
+| Meta-regression, within-cluster covariates | $\rho_{\mathrm{work}} > 0$ | **Approximate** | Both directions have distinct ratios |
+
+: Scope of the scalar DEFF assumption under compound symmetry. {#tbl-r4-scope}
+
+::: {.callout-tip}
+#### Quick Reference: When Is Scalar DEFF Exact?
+
+Scalar DEFF is **exact** for the intercept and study-level covariates at any working $\rho$. It is **approximate** for within-study-varying covariates, with the approximation quality depending on the covariate's projection onto the between/within eigenspaces. Most standard CE meta-analyses fall into the exact case.
+:::
+
+**Practical guidance.** Many canonical CE applications use only the intercept or study-level covariates, in which case scalar DEFF is exact. The scope limitation matters whenever coefficients carry substantial within-cluster identifying variation (for example, individual-participant-data meta-analysis or rich effect-size-level moderation). For such models, practitioners should either:
+
+1. Restrict the DER analysis to the intercept and study-level covariates (for which scalar DEFF is exact); or
+2. Use the full Schur complement definition of $R_k$ (condition C7) to obtain exact DER values for within-cluster covariates; or
+3. Report the scalar-DEFF-based DER as an approximation, noting the direction-dependent DEFF issue.

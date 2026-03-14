@@ -1,0 +1,170 @@
+# Revision History {.unnumbered}
+
+This appendix documents the evolution of the theory book across seven major versions and provides a complete ledger of all corrections applied during the final verification and harmonization stages. The revision history is included for scholarly transparency, following the practice that mathematical monographs disclose the nature and scope of post-dissemination corrections.
+
+
+## Version History
+
+**Version 1 (Initial Structure).** The foundational 12-chapter, four-part architecture was established. Part I defined the notation, model specifications, and exactness conditions (E1)--(E5). Part II contained the core equivalence results: the likelihood isomorphism (Theorem 1), sandwich equivalence (Theorem 2), and the posterior and CCC corollaries. Part III introduced the Design Effect Ratio framework, the conservation law, and the boundary analysis. Part IV addressed HE and CHE extensions, regularity conditions, and interpretive issues. All principal theorem statements were formulated in this version.
+
+**Version 2 (Feasibility Review).** An independent mathematical review validated the overall soundness of the equivalence framework. The review confirmed that the CE core results were tractable and that HE and CHE extensions could be handled as scope expansions within the existing four-part structure. No reorganization of the chapter sequence was required.
+
+**Version 3 (Formal Proofs).** Complete formal proofs were supplied for all theorems, corollaries, and supporting lemmas. The DER transfer theorem (Theorem 3) was established as a direct consequence of Theorems 1 and 2. Cross-references linking the proof steps to earlier definitions and conditions were consolidated throughout.
+
+**Version 4 (Full Content).** The complete 12-chapter text was finalized. This version introduced the full DER variant taxonomy (marginal, profile, conditional, blockwise, element-wise), the conservation law derivation with the TSL15 empirical illustration, and the boundary case analysis for all four limiting regimes of Theorem 3(d). The Part IV chapters on HE/CHE extensions and regularity conditions were written in full.
+
+**Version 5 (Quality Control).** A systematic quality-control pass was conducted. Notation was audited for consistency across all 12 chapters, all internal cross-references were verified, and the citation key format was standardized. Naming conventions were harmonized to use field-level terminology throughout.
+
+**Version 6 (Manuscript Harmonization).** The theory book was brought into alignment with the companion manuscript undergoing second revision for JEBS. Five categories of updates were applied: (i) adoption of the broad CE definition, in which CE is characterized by $\omega^2 = 0$ and individual-level covariates $\mathbf{x}_{ij}$ are permitted; (ii) reframing of condition (E4) from "Study-Level Covariates" to "DER Simplification Condition," removing it from the requirements for Theorems 1--2; (iii) migration of the DER tier classification to the asymmetric T0--T4 system (thresholds 0.95, 1.05, 2.0, 4.0) from @LeeDER2026; (iv) expansion of the bibliography from 9 to 27 BibTeX entries, with all inline text citations converted to `@key` format; and (v) updating of the conservation law empirical values to four-decimal precision (LHS = 6.1065, RHS = 5.6200, Gap = +8.7%). These changes are recorded as items 20--28 in the corrections ledger below.
+
+**Version 7 (Mathematical Verification).** A line-by-line mathematical verification was performed across all 12 chapters. The review identified 19 targeted corrections (items 1--19 in the ledger), none of which constituted a critical error. The two highest-severity findings --- the boundary-case proof for Theorem 3(d)(iii)--(iv) in @sec-boundary and the positive-definiteness argument in @sec-blockwise-ccc --- were fully rewritten. The remaining items involved tightening scope qualifiers, adding explicit formulas, or softening overly strong claims. The document compiled without errors and was deemed publication-ready upon completion of this version.
+
+**Version 8 (Publication Readiness).** A comprehensive editorial pass transformed the document from a mathematical reference into a publication-ready monograph. Four categories of changes were applied: (i) **metadata and configuration** --- the author field was set to JoonHo Lee, the subtitle was updated to "Complete Mathematical Theory," and all references to collaborative AI verification were removed from the text; (ii) **preface rewrite** --- the index page was rewritten as a scholarly introduction providing historical context (from classical fixed-effects meta-analysis through Pustejovsky--Tipton 2022), the five-part roadmap, and the intended audience, replacing the earlier change-log format; (iii) **Part V addition** --- a new Discussion and Conclusion chapter (@sec-discussion) was added, summarizing the principal contributions, stating limitations, and outlining five directions for future work; and (iv) **narrative enhancement** --- 22 narrative paragraphs were inserted across 9 chapters (Ch. 2, 4, 5, 6, 7, 8, 9, 10, 12), providing chapter roadmaps, pre-theorem intuition, proof-strategy summaries, cross-chapter connections, and practical interpretations. No mathematical content was altered; all 16 files compiled without errors.
+
+**Version 9 (Pedagogical Visualizations).** Thirteen MATLAB-generated pedagogical figures were integrated across 9 chapters, organized along three thematic spines: Covariance Geometry (fig01--fig04), Calibration and Correction (fig05--fig06, fig10), and DER Budget (fig07--fig09, fig11--fig13). The integration followed a six-phase process: (A) infrastructure setup, copying the V8 book into a new working directory and adding the MATLAB codebase; (B) automated MATLAB build of all 13 figures using headless rendering; (C) three rounds of multi-agent quality review identifying 23 improvements across figure code; (D) competitive implementation of all 23 fixes by two independent agents, with merge synthesis and before/after visual verification; (E) four-step book integration --- Part I and II figures (fig01--04 into Ch. 2, 4, 5, 6), Part III figures (fig05--10 into Ch. 7, 8, 9), Part IV figures (fig11--13 into Ch. 10, 12), and a cross-reference/caption polish pass adding 6 caption rewrites and 6 new cross-chapter references; and (F) full Quarto build verification and visual QA. Each figure was inserted with a Quarto figure block (`{#fig-id}`), a contextual prose paragraph connecting the visualization to the relevant theorem or definition, and cross-references to related figures and equations. The final cross-reference network spans 21 `@fig-*` links across 9 chapters, with backward references creating pedagogical threads (eigenstructure, DEFF, equivalence chain, conservation). Quarto assigns chapter-based numbering: Figure 2.1 through Figure 12.1. No mathematical content was altered; all 16 files compiled without errors. These changes are recorded as items 34--46 in the corrections ledger below.
+
+
+## Key Corrections Ledger
+
+A total of 46 items were recorded across V6, V7, V8, and V9. Items 1--19 originated from the V7 mathematical verification; items 20--28 from the V6 manuscript harmonization; items 29--33 from the V8 publication-readiness editorial pass; and items 34--46 from the V9 pedagogical visualization integration. The items are organized below by category rather than chronologically, beginning with a summary table (@tbl-correction-summary) followed by the detailed ledger.
+
+
+### Summary
+
+| Category | Items | Count | Nature |
+|:---------|:------|:-----:|:-------|
+| Mathematical corrections | 1, 2, 7, 8, 12, 13, 14, 15 | 8 | Proof errors, formula fixes, boundary cases |
+| Notational improvements | 4, 6, 9, 10, 11 | 5 | Subscripts, scope qualifiers, explicit formulas |
+| Cross-reference and exposition fixes | 3, 5, 16, 17, 18, 19 | 6 | Broken refs, table caveats, missing specifications |
+| Framework harmonization | 20, 21, 22, 23, 24, 25, 26, 27, 28 | 9 | Broad CE, (E4) reframing, DER tiers, citations |
+| Editorial and narrative enhancements | 29, 30, 31, 32, 33 | 5 | Preface, Part V, narrative paragraphs, metadata |
+| Pedagogical visualizations | 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46 | 13 | 13 MATLAB figures + captions + cross-references |
+| **Total** | | **46** | |
+
+: Correction and enhancement summary by category. {#tbl-correction-summary tbl-colwidths="[30,25,10,35]"}
+
+The V7 verification classified the 19 mathematical and notational corrections as follows: 0 critical, 2 high-severity, 11 medium-severity, and 6 low-severity. No theorem statement required retraction or substantive revision of its conclusion. The V8 editorial items (29--33) involved no mathematical changes.
+
+
+### A. Mathematical Corrections {.unnumbered}
+
+These corrections addressed errors in proofs, boundary-case derivations, or formula specifications.
+
+| # | Issue | Section | Correction applied |
+|:-:|:------|:--------|:-------------------|
+| 1 | Theorem 3(d)(iii)--(iv) boundary cases | @sec-boundary | Proof rewritten: DEFF = 1 yields DER$_\mu = 1 - B$, not 1 |
+| 2 | CHE marginal covariance factorization | @sec-che-ext | Leading scalar corrected to $\bar{s}_j^2 + \omega^2 + \sigma_\theta^2$ |
+| 7 | Conservation law gap attribution | @sec-conservation | Source of gap corrected from finite-$J$ bias to Jensen's inequality |
+| 8 | Corollary 2 statement | @sec-ccc | Claim softened from exact equality to distributional equality |
+| 12 | Conservation gap language | @sec-empirical-gap | "Fully accounts" softened to "approximately accounts"; conditional/marginal mixing noted |
+| 13 | Within-ratio eigenvalue description | @sec-der-decomposition | Eigenvalue ratio characterization corrected |
+| 14 | $\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\theta}, \boldsymbol{\theta}]$ positive definiteness | @sec-blockwise-ccc | Rigorous null-space proof added establishing positive definiteness |
+| 15 | HE DER exactness scope | @sec-he-der | Downgraded from exact to approximate for $\gamma_k < 1$ |
+
+: Mathematical corrections (V7). {#tbl-math-corrections tbl-colwidths="[5,30,18,47]"}
+
+
+### B. Notational Improvements {.unnumbered}
+
+These corrections improved notational precision by introducing cluster-specific subscripts, explicit scope qualifiers, or missing formula definitions.
+
+| # | Issue | Section | Correction applied |
+|:-:|:------|:--------|:-------------------|
+| 4 | (E2) notation ambiguity | @sec-exactness | Clarified as cluster-specific: $\sigma_{e,j}^2 = \bar{s}_j^2$ |
+| 6 | HE DER formula scope | @sec-he-ext | Direction-dependent DEFF qualification added |
+| 9 | $R_k$ definition incomplete | @sec-der-definitions | Schur complement formula added |
+| 10 | (R4) scope | @sec-regularity | Explicit scope qualifier added for scalar DEFF |
+| 11 | $R_k$ Schur complement matrix | @sec-der-definitions, @sec-c7 | $\mathbf{H}$ replaced with $\mathbf{H}^{\mathrm{post}}$ throughout; singularity explanation added |
+
+: Notational improvements (V7). {#tbl-notation-corrections tbl-colwidths="[5,30,20,45]"}
+
+
+### C. Cross-Reference and Exposition Fixes {.unnumbered}
+
+These corrections repaired broken internal links, added missing model specifications, and supplied scope caveats to summary tables and recommendations.
+
+| # | Issue | Section | Correction applied |
+|:-:|:------|:--------|:-------------------|
+| 3 | DER$_\mu$ interpretation | @sec-interpretation | Conditional-versus-marginal DER discussion added |
+| 5 | Survey model for $\rho > 0$ | @sec-models | Explicit multivariate specification added |
+| 16 | Broken cross-references | @sec-der-definitions, @sec-he-scope | `@sec-der-defs` and `@sec-eigenstructure` repaired |
+| 17 | CHE table $\omega^2$ caveats | @sec-ce-che-summary, @sec-model-comparison | Table entries annotated "(conditional on fixed $\omega^2$)" |
+| 18 | $\kappa_j(J)$ balance caveat | @sec-rec3 | Balanced-only scope note added to Recommendation 3 |
+| 19 | R4 mapping table scope | @sec-condition-map | Scope qualifier added for within-cluster covariates |
+
+: Cross-reference and exposition fixes (V7). {#tbl-xref-corrections tbl-colwidths="[5,30,22,43]"}
+
+
+### D. Framework Harmonization {.unnumbered}
+
+These items are not error corrections but deliberate design changes made in V6 to align the theory book with the companion manuscript. They reflect refined definitions, updated classification systems, and expanded scholarly context.
+
+| # | Change | Scope | Chapters affected |
+|:-:|:-------|:------|:------------------|
+| 20 | **Broad CE definition**: CE defined by $\omega^2 = 0$, not by covariate level; individual-level covariates $\mathbf{x}_{ij}$ permitted | All $\mathbf{x}_j \to \mathbf{x}_{ij}$ instances | ch01--ch04, ch11 |
+| 21 | **(E4) reframing**: renamed from "Study-Level Covariates" to "DER Simplification Condition"; removed from requirements for Theorems 1--2 | Conditions and proofs | ch01, ch03, ch04, ch07, ch10, ch11 |
+| 22 | **Proposition conditions narrowed**: (E1)--(E5) $\to$ (E1)--(E3) and (E5) | All theorem/corollary statements | ch04--ch07 |
+| 23 | **HC = CR as novel contribution**: reframed as structural consequence of Theorems 1--2 rather than a result from prior literature | Framing | ch05 |
+| 24 | **CCC $\neq$ CR2 distinction**: marginal sandwich (CCC) versus profile REML (CR2) explicitly differentiated | New callout added | ch06 |
+| 25 | **DER tier migration**: 4-tier symmetric system replaced by asymmetric T0--T4 system (thresholds 0.95/1.05/2.0/4.0) from @LeeDER2026 | 3 classification tables | ch01, ch07, ch12 |
+| 26 | **Conservation values updated**: LHS = 6.1065, RHS = 5.6200, Gap = +8.7% | Empirical illustration | ch08 |
+| 27 | **Isomorphism map simplified**: 3-component map narrowed to 2 core components; 3rd component (E4) designated as DER-only | Map definition | ch01, ch03, ch04 |
+| 28 | **Bibliography expanded**: 9 $\to$ 27 BibTeX entries; all inline text citations converted to `@key` format | references.bib + all text | All |
+
+: Framework harmonization changes (V6). {#tbl-framework-updates tbl-colwidths="[5,35,22,38]"}
+
+
+### E. Editorial and Narrative Enhancements {.unnumbered}
+
+These items are not error corrections but publication-readiness enhancements made in V8 to improve accessibility and scholarly presentation. No mathematical content was changed.
+
+| # | Change | Scope | Chapters affected |
+|:-:|:-------|:------|:------------------|
+| 29 | **Preface rewrite**: change-log format replaced by scholarly introduction with historical context, roadmap, and audience statement | Complete rewrite | index.qmd |
+| 30 | **Part V added**: Discussion and Conclusion chapter covering principal contributions, limitations, and future directions | New chapter | ch13-discussion.qmd |
+| 31 | **Narrative paragraphs (22)**: chapter roadmaps, pre-theorem intuition, proof summaries, cross-chapter connections, and practical interpretations | Inserted paragraphs | ch02, ch04, ch05, ch06, ch07, ch08, ch09, ch10, ch12 |
+| 32 | **AI collaboration traces removed**: all references to external AI review tools replaced with passive attribution ("internal review," "verification process") | Text edits | index.qmd, ch09 |
+| 33 | **Metadata updated**: single author, subtitle changed to "Complete Mathematical Theory," date updated | Configuration | `_quarto.yml` |
+
+: Editorial and narrative enhancements (V8). {#tbl-editorial-updates tbl-colwidths="[5,35,22,38]"}
+
+
+### F. Pedagogical Visualizations {.unnumbered}
+
+These items document the integration of 13 MATLAB-generated figures in V9. Each figure was inserted with a Quarto cross-reference block, a contextual prose paragraph, and (where applicable) backward cross-references to earlier figures. No mathematical content was altered.
+
+| # | Figure | Chapter | Content |
+|:-:|:-------|:--------|:--------|
+| 34 | fig01 (`@fig-cs-eigenspaces`) | @sec-models | Compound-symmetric eigenstructure: heatmaps across $\rho$ with eigenvalue separation |
+| 35 | fig02 (`@fig-likelihood-isomorphism`) | @sec-isomorphism | Likelihood isomorphism: contour geometry of meta-analytic and survey log-likelihoods |
+| 36 | fig03 (`@fig-sandwich-matrix-equivalence`) | @sec-sandwich | Sandwich equivalence: heatmaps of bread, meat, and sandwich for both frameworks |
+| 37 | fig04 (`@fig-ccc-affine-map`) | @sec-ccc | CCC affine map: whitening and re-coloring of posterior draws in three panels |
+| 38 | fig05 (`@fig-deff-surface`) | @sec-der-definitions | DEFF surface over $(\bar{n}, \rho_{\mathrm{true}})$ with TSL15 reference point |
+| 39 | fig06 (`@fig-shrinkage-retention-map`) | @sec-der-definitions | Retention weight $B$ heatmap over $(I^2, n)$ plane |
+| 40 | fig07 (`@fig-der-budget-conservation`) | @sec-conservation | Conservation law: DER budget trade-off as $B$ varies |
+| 41 | fig08 (`@fig-marginal-coupling`) | @sec-conservation | Marginal coupling: $\kappa(J)$, non-monotonicity peak, and deficit fraction |
+| 42 | fig09 (`@fig-jensen-gap`) | @sec-conservation | Jensen gap: positive covariance mechanism in unbalanced data |
+| 43 | fig10 (`@fig-boundary-phase-portrait`) | @sec-boundary | Boundary phase portrait: corrected DER formulas over $(B, \mathrm{DEFF})$ plane |
+| 44 | fig11 (`@fig-e4-directional-ratios`) | @sec-extensions | E4 directional ratios: eigenspace-dependent DEFF failure and heuristic surface |
+| 45 | fig12 (`@fig-che-reduction`) | @sec-che-ext | CHE reduction mechanism: $\omega^2$ inflates diagonal, lowers ICC/DEFF/$B$ |
+| 46 | fig13 (`@fig-tsl15-variant-comparison`) | @sec-interpretation | TSL15 variant comparison: five DER variants on T0--T4 tier scale |
+
+: Pedagogical visualization integration (V9). {#tbl-visualization-updates tbl-colwidths="[5,25,15,55]"}
+
+
+## Verification Outcome
+
+The V7 verification assessed all 12 chapters and produced the following severity classification for the 19 items (1--19):
+
+| Severity | Count | Items |
+|:---------|:-----:|:------|
+| Critical (incorrect theorem conclusions) | 0 | --- |
+| High (incorrect mathematical claims) | 2 | 1, 14 |
+| Medium (imprecise or ambiguous statements) | 11 | 2, 3, 5, 6, 7, 8, 11, 12, 13, 15, 17 |
+| Low (minor notation or wording) | 6 | 4, 9, 10, 16, 18, 19 |
+
+: Severity classification of V7 corrections. {#tbl-severity tbl-colwidths="[45,10,45]"}
+
+The two high-severity items were the Theorem 3(d) boundary-case proof (@sec-boundary, item 1) and the blockwise sandwich positive-definiteness argument (@sec-blockwise-ccc, item 14). Both were fully rewritten with corrected derivations. All remaining corrections involved scope tightening, notational precision, or language moderation, and none affected the validity of any stated result.
+
+The V9 visualization integration (items 34--46) added 13 pedagogical figures, 13 contextual prose paragraphs, 6 caption refinements, and 6 cross-chapter backward references. No mathematical content was altered. The final book contains 5 Parts, 13 Chapters, 1 Appendix, 13 Figures, 29 BibTeX entries, and compiles without errors (16/16 files, 0 unresolved cross-references).

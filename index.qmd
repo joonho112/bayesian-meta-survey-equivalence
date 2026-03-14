@@ -1,0 +1,111 @@
+# Preface {.unnumbered}
+
+Imagine you are a meta-analyst. You have collected 117 studies on brief alcohol interventions for adolescents, and many of these studies report multiple effect sizes --- different outcome measures, different follow-up times, different subgroups. You fit a Bayesian random-effects model in Stan, specifying a compound-symmetric working covariance with a working correlation of $\rho = 0.8$ to account for the dependence among effect sizes within studies. The sampler converges, the posterior summaries look reasonable, and you report credible intervals for the overall effect and for each study-specific effect.
+
+But then someone asks: *which of those intervals can you trust?*
+
+You chose $\rho = 0.8$ as a sensitivity parameter. The true within-study correlation is unknown. The compound-symmetric structure is a convenient working assumption, not a verified fact. If the working covariance is misspecified, some of your credible intervals may be too narrow and others too wide. The question is not *whether* misspecification matters --- the sandwich variance estimator, long established in the frequentist robust variance estimation (RVE) literature [@HedgesTiptonJohnson2010; @Tipton2015; @PustejovskyTipton2022], was designed precisely for this situation --- but rather *which parameters* are affected, *by how much*, and *what to do about it*. For Bayesian meta-analysts, there has been no systematic answer.
+
+This book provides one.
+
+
+## The parallel universe
+
+The problem I just described --- Bayesian inference under a misspecified working model for clustered data --- is not new. It has been studied intensively in another branch of statistics: survey inference.
+
+When a complex survey samples individuals within primary sampling units (PSUs), the within-cluster dependence inflates the variance of population-level estimates relative to what a naive model would predict. The classical design effect [@Kish1965] quantifies this inflation. In the frequentist tradition, the sandwich variance estimator [@Binder1983; @LiangZeger1986] --- or its survey-specific incarnation, the linearization estimator --- corrects for the misspecification. But what about the Bayesian analyst who fits a hierarchical model to survey data and reports posterior credible intervals? Those intervals are computed from the working-model posterior, which may not account for the complex sampling design.
+
+@WilliamsSavitsky2021 solved this problem by developing the Cholesky Calibration of Credible intervals (CCC), a post-processing method that recalibrates MCMC draws so that the resulting credible intervals achieve frequentist coverage consistent with the sandwich variance. @SavitskyToth2016 and @WilliamsSavitsky2020 laid the groundwork by establishing theoretical properties of the pseudo-posterior under informative sampling. And in my own work [@LeeDER2026], I developed Design Effect Ratios (DERs) --- per-parameter diagnostics that tell the analyst exactly which parameters are sensitive to the survey design and which are already calibrated.
+
+These tools --- the CCC and the DER framework --- are precisely what the meta-analyst needs. But meta-analysts do not read the survey literature, and survey statisticians do not read the meta-analysis literature. The two communities --- one descending from @HedgesOlkin1985, the other from @Kish1965 --- have been solving the same problem independently, using different terminology for the same mathematical objects: "studies" and "PSUs" for the same clustering structure, "effect sizes" and "observations" for the same level-1 units, "heterogeneity variance" and "between-cluster variance" for the same parameter $\sigma^2_\theta$.
+
+
+## The bridge insight
+
+The univariate connection between these two worlds has been understood for decades. @EfronMorris1975 demonstrated that the James--Stein shrinkage estimator --- a cornerstone of empirical Bayes methodology --- is the same mathematical object whether one arrives at it from a random-effects meta-analytic perspective or from a small-area estimation perspective. The Fay--Herriot model [@FayHerriot1979], the workhorse of small-area estimation in survey statistics, is structurally identical to the univariate random-effects meta-analytic model. When every study contributes exactly one effect size ($n_j = 1$ for all $j$), the compound-symmetric working covariance is vacuous, the design effect equals one, and there is nothing left to prove.
+
+But modern meta-analysis rarely lives in the univariate world. A typical research synthesis contains studies that report multiple outcomes, multiple treatment contrasts, or multiple subgroup estimates. The dataset I mentioned earlier --- @TannerSmithLipsey2015 --- has $J = 117$ studies contributing $N = 1{,}198$ effect sizes, with an average of about 10 per study. In this multivariate setting, the within-study dependence is nontrivial, the design effect is no longer one, and the question of which credible intervals to trust becomes urgent.
+
+Extending the univariate bridge to this multivariate case --- proving that the structural equivalence persists when studies contribute dependent observations, and that the survey tools for diagnosing and correcting working-model misspecification transfer exactly to meta-analysis --- is the contribution of this book. The extension is not obvious. It requires identifying the precise conditions under which the two likelihoods coincide, tracking the consequences through the sandwich variance estimator and the posterior distribution, and deriving closed-form expressions for the Design Effect Ratio in terms of meta-analytic quantities. It requires, in short, building a complete mathematical theory.
+
+What emerges from that theory is stronger than an analogy. The mapping preserves not only the likelihood but the posterior, the sandwich variance, and the design-effect diagnostic --- each object in one framework has an exact counterpart in the other. These are exact results: under the five conditions, the two models are a single mathematical object expressed in two notational systems.
+
+
+## What this book proves
+
+The theory rests on five exactness conditions --- compound symmetry (E1), cluster-specific variance identification (E2), unit weights (E3), a DER simplification condition (E4), and normal level-1 errors (E5) --- that specify when the structural equivalence is exact. Four main results follow.
+
+**Theorem 1 (Likelihood Isomorphism).** Under conditions (E1)--(E3) and (E5), the meta-analytic log-likelihood and the survey pseudo-log-likelihood differ by an additive constant that does not depend on the parameter vector $\boldsymbol{\phi} = (\boldsymbol{\beta}^\intercal, \boldsymbol{\theta}^\intercal)^\intercal$. The two fields have been optimizing the same objective function. This isomorphism is realized by a constructive map $\mathcal{T}$ that sends the survey error variance to the meta-analytic sampling variance ($\sigma^2_{e,j} \mapsto \bar{s}_j^2$) and the survey weights to unity ($\tilde{w}_{ij} \mapsto 1$).
+
+**Theorem 2 (Sandwich Equivalence).** The sandwich variance estimators are numerically identical: $\mathbf{V}_{\mathrm{sand}}^{\mathrm{surv}} = \mathbf{V}_{\mathrm{sand}}^{\mathrm{meta}}$. This follows directly from the likelihood isomorphism, because the scores, Hessians, and meat matrices all coincide when the likelihoods differ by a constant. In particular, the survey HC sandwich and the meta-analytic CR sandwich are the same mathematical object.
+
+**Corollary 1 (Posterior Equivalence).** The survey pseudo-posterior and the meta-analytic working-model posterior are identical as probability measures. The constant $e^c$ cancels in Bayes' formula. Any MCMC algorithm applied to one framework generates draws from the other.
+
+**Corollary 2 (CCC Equivalence).** The Cholesky-corrected posterior draws are identical in distribution across the two frameworks. The CCC, developed in the survey context by @WilliamsSavitsky2021, transfers directly to meta-analysis.
+
+Beyond these four equivalence results, the book develops the **DER Transfer Theorem** (Theorem 3), which provides closed-form decompositions of the Design Effect Ratio for both the overall effect ($\mu$) and the study-specific effects ($\theta_j$). For fixed-effect parameters identified by between-study variation, the DER decomposes as $\mathrm{DER}_{\beta_k} = \mathrm{DEFF} \cdot (1 - R_k)$, where $\mathrm{DEFF}$ is the classical design effect and $R_k$ is an information fraction derived from the Schur complement of the posterior Hessian. For the study-specific effects, $\mathrm{DER}_{\theta_j}^{\mathrm{cond}} = B_j \cdot \mathrm{DEFF}_j$, where $B_j$ is the posterior retention weight --- the complement of the shrinkage factor.
+
+
+## The conservation law
+
+The result I find most striking is the conservation law (Theorem 3(c)). In the balanced intercept-only model:
+
+$$
+\mathrm{DER}_\mu + \mathrm{DER}_\theta^{\mathrm{cond}} = \mathrm{DEFF}.
+$$
+
+The total design-effect budget is conserved. Within-study dependence creates a fixed amount of design sensitivity, equal to $\mathrm{DEFF}$, that is redistributed between the overall effect and the study-specific effects by hierarchical pooling but is never created or destroyed. When pooling is strong ($B$ small), most of the budget migrates to $\mu$: the overall effect's credible interval is severely miscalibrated, but the study-level posteriors are approximately correct. When pooling is weak ($B$ large, as is typical in meta-analysis), the budget migrates to $\theta_j$: the study-level credible intervals --- the ones that appear in the forest plot --- carry the burden of the design effect, while the overall effect remains approximately calibrated.
+
+This is not merely an algebraic curiosity. It has direct implications for practice. In the @TannerSmithLipsey2015 data, the empirical DER for $\mu$ is approximately 1.01 (Tier T1: calibrated), while the mean DER for the study-specific effects is approximately 5.09 (Tier T4: severe under-dispersion). A meta-analyst who reports only the overall effect may conclude that the working correlation does not matter. A meta-analyst who reports study-level predictions --- as is increasingly common --- faces a serious calibration problem. The conservation law explains why: the design-effect budget has been redistributed, not eliminated.
+
+
+## Calibrated Bayes
+
+The intellectual framework that unifies these results is what @Little2004 and @Little2012 called "Calibrated Bayes" --- the idea that Bayesian models should be evaluated by whether their posterior credible intervals achieve adequate frequentist coverage. @Rubin1984 articulated the philosophical foundation: Bayesian computation is a powerful engine for inference, but its outputs should be "calibrated" against repeated-sampling properties when those properties are relevant to the scientific question.
+
+The DER makes Calibrated Bayes operational at the individual-parameter level for meta-analysis. Rather than asking "is this model well calibrated?" in the aggregate, the analyst can ask "is this specific parameter well calibrated?" and receive a quantitative answer. The five-tier classification system developed in @LeeDER2026 --- ranging from T0 (over-dispersed) through T1 (calibrated) to T4 (severe under-dispersion) --- provides actionable guidance: parameters in T1 need no correction; parameters in T2 should be reported with their DER values; parameters in T3--T4 should be corrected via the CCC.
+
+
+## The practical workflow
+
+One of the most important implications of the structural equivalence is that the tools developed in the survey literature can be applied to existing meta-analytic models without refitting. Any Bayesian meta-analysis conducted in Stan --- whether using the CE or CHE working model --- already computes the survey pseudo-posterior. The DER can be computed from the MCMC output by extracting scores and Hessians from Stan's generated quantities block and constructing the sandwich variance. The CCC is a pure post-processing step: it transforms the existing MCMC draws by an affine map, requiring only the Cholesky factors of the posterior covariance and the sandwich variance.
+
+The practical workflow is three steps: *compute* the DER for each parameter; *classify* the result using the five-tier system; *correct* those parameters that fall in Tiers T3--T4 using the CCC. No new sampler, no new prior, no refitting. This "compute--classify--correct" pipeline is the applied payoff of the structural equivalence.
+
+
+## Bidirectional transfer
+
+The structural equivalence is not a one-way import. From survey inference to meta-analysis, three tools cross the bridge: the Design Effect Ratio as a per-parameter diagnostic, the Cholesky Calibration Correction as a post-MCMC recalibration, and more broadly, the design-effect way of thinking about working-model misspecification --- viewing variance distortion as a structured, interpretable quantity rather than a nuisance.
+
+From meta-analysis back to survey inference, the conservation law is genuinely new. The decomposition $\mathrm{DER}_\mu + \mathrm{DER}_\theta^{\mathrm{cond}} = \mathrm{DEFF}$ was not known in the survey literature; it reveals that the total design effect is a fixed budget redistributed by hierarchical pooling. The conditional--marginal sandwich distinction that emerges from the DER decomposition clarifies a subtlety that had not been explicitly articulated in survey design-effect research.
+
+The empirical illustration sharpens the point. In the @TannerSmithLipsey2015 data, the DER follows a three-step gradient across the parameter hierarchy: within-study moderators are essentially calibrated (mean DER $\approx 0.97$), between-study moderators show mild sensitivity (mean DER $\approx 1.11$), and control covariates exhibit substantial under-dispersion (mean DER $\approx 2.8$--$3.0$). This gradient, discovered in a meta-analytic application, has direct implications for survey practitioners who face analogous parameter hierarchies --- and the equivalence framework makes the connection precise enough to investigate.
+
+
+## How to read this book
+
+The book is organized in five parts.
+
+**Part I** (Chapters 1--3) establishes the foundations: notation and conventions that unify the terminology of the two fields; complete model definitions for the CE, HE, and CHE models; and the five exactness conditions that govern the structural equivalence, including a detailed analysis of what happens when each condition is violated.
+
+**Part II** (Chapters 4--6) contains the core equivalence results. Chapter 4 proves the likelihood isomorphism (Theorem 1) in two cases --- the independence working model ($\rho = 0$) and the compound-symmetric working model ($\rho > 0$). Chapter 5 proves the sandwich equivalence (Theorem 2) and establishes that the survey HC sandwich and the meta-analytic CR sandwich are the same object. Chapter 6 derives the posterior equivalence (Corollary 1) and the CCC equivalence (Corollary 2).
+
+**Part III** (Chapters 7--9) develops the DER framework. Chapter 7 defines the Design Effect Ratio, proves the DER transfer theorem (Theorem 3), and introduces the five-tier classification system. Chapter 8 presents the conservation law and its economic interpretation. Chapter 9 analyzes boundary behavior --- what happens as $\sigma^2_\theta \to 0$, $\sigma^2_\theta \to \infty$, or $\rho_{\mathrm{true}} \to 0$.
+
+**Part IV** (Chapters 10--12) addresses extensions and subtleties. Chapter 10 extends the results to observation-level covariates (E4-relaxed CE) and to the CHE model. Chapter 11 catalogs the regularity conditions required for the sandwich estimator to be consistent. Chapter 12 treats interpretive issues, including the critical distinction between conditional and marginal DER.
+
+**Part V** (Chapter 13) discusses the broader implications of the structural equivalence for meta-analytic practice, identifies limitations of the current framework, and outlines directions for future research including simulation studies, non-Gaussian extensions, and software implementation.
+
+Different readers may want different paths through the material. A theorist interested in the equivalence proof can read Chapters 1, 3, and 4--6 and stop. An applied meta-analyst who wants to use the DER should read Chapters 1, 7, 8, and 12, with the proofs as optional background. A survey statistician curious about the connection to meta-analysis will find Chapters 2--3 the most illuminating, as they map meta-analytic concepts to survey concepts and vice versa.
+
+
+## Companion papers
+
+This book is the mathematical backbone of a research program with two companion papers. @LeeHBB2026 develops a Bayesian hierarchical hurdle beta-binomial model for survey-weighted bounded counts, applying the CCC and DER framework to a substantive analysis of childcare enrollment in the National Household Education Survey. @LeeDER2026 introduces the DER framework itself, proves its theoretical properties in the general Bayesian survey setting, and provides empirical illustrations with complex survey data. The present book extends the DER framework from survey inference to meta-analysis via the structural equivalence.
+
+The relationship among the three works is as follows. @LeeDER2026 provides the general theory of the DER, with conditions and proofs tailored to the survey context. This book proves that the survey conditions map onto the meta-analytic setting under the five exactness conditions, so that every DER result transfers. @LeeHBB2026 demonstrates the practical implementation in a full applied analysis, providing the computational patterns --- Stan generated quantities for scores, R functions for sandwich computation, the CCC post-processing step --- that meta-analysts can adapt for their own work.
+
+
+\vspace{1em}
+\noindent JoonHo Lee\
+March 2026

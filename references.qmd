@@ -1,0 +1,57 @@
+# References {.unnumbered}
+
+This theory book references the following key works, organized thematically.
+
+## Sandwich / Robust Variance Foundations
+
+- **Binder (1983)**: On the variances of asymptotically normal estimators from complex surveys. *International Statistical Review*, 51(3), 279--292.
+- **Liang & Zeger (1986)**: Longitudinal data analysis using generalized linear models. *Biometrika*, 73(1), 13--22.
+- **MacKinnon & White (1985)**: Some heteroskedasticity-consistent covariance matrix estimators with improved finite sample properties. *Journal of Econometrics*, 29(3), 305--325.
+- **Bell & McCaffrey (2002)**: Bias reduction in standard errors for linear regression with multi-stage samples. *Survey Methodology*, 28(2), 169--181.
+- **Cameron & Miller (2015)**: A practitioner's guide to cluster-robust inference. *Journal of Human Resources*, 50(2), 317--372.
+- **Imbens & Kolesar (2016)**: Robust standard errors in small samples: Some practical advice. *Review of Economics and Statistics*, 98(4), 701--712.
+
+## Survey Methodology
+
+- **Kish (1965)**: *Survey Sampling*. New York: Wiley.
+- **Pfeffermann (1993)**: The role of sampling weights when modeling survey data. *International Statistical Review*, 61(2), 317--337.
+- **Sarndal, Swensson, & Wretman (1992)**: *Model Assisted Survey Sampling*. New York: Springer-Verlag.
+- **Rabe-Hesketh & Skrondal (2006)**: Multilevel modelling of complex survey data. *JRSS-A*, 169(4), 805--827.
+
+## Meta-Analysis Methodology
+
+- **Hedges, Tipton, & Johnson (2010)**: Robust variance estimation in meta-regression with dependent effect size estimates. *Research Synthesis Methods*, 1(1), 39--65.
+- **Tipton (2015)**: Small sample adjustments for robust variance estimation with meta-regression. *Psychological Methods*, 20(3), 375--393.
+- **Pustejovsky & Tipton (2022)**: Meta-analysis with robust variance estimation: Expanding the range of working models. *Prevention Science*, 23, 425--438.
+- **Pustejovsky & Chen (2024)**: Equivalencies between ad hoc strategies and multivariate models for meta-analysis of dependent effect sizes. *JEBS*, 49(6), 1013--1043.
+- **Tanner-Smith & Lipsey (2015)**: Brief alcohol interventions for adolescents and young adults: A systematic review and meta-analysis. *Journal of Substance Abuse Treatment*, 51, 1--18.
+
+## Calibrated Bayes / Design-Based vs. Model-Based
+
+- **Rubin (1984)**: Bayesianly justifiable and relevant frequency calculations for the applied statistician. *The Annals of Statistics*, 12(4), 1151--1172.
+- **Little (2004)**: To model or not to model? Competing modes of inference for finite population sampling. *JASA*, 99(466), 546--556.
+- **Little (2012)**: Calibrated Bayes, an alternative inferential paradigm for official statistics. *Journal of Official Statistics*, 28(3), 309--372.
+
+## Shrinkage / Small-Area Estimation Bridge
+
+- **Efron & Morris (1975)**: Data analysis using Stein's estimator and its generalizations. *JASA*, 70(350), 311--319.
+
+## Bayesian Survey Inference — Savitsky-Williams Stream
+
+- **Savitsky & Toth (2016)**: Bayesian estimation under informative sampling. *Electronic Journal of Statistics*, 10(1), 1677--1708.
+- **Williams & Savitsky (2020)**: Bayesian estimation under informative sampling with unattenuated dependence. *Bayesian Analysis*, 15(1), 57--77.
+- **Williams & Savitsky (2021)**: Uncertainty estimation for pseudo-Bayesian inference under complex sampling. *International Statistical Review*, 89(1), 72--107.
+- **Williams, McGuire, & Savitsky (2025)**: Uncertainty quantification for multi-level models using the survey-weighted pseudo-posterior. arXiv:2510.09401.
+
+## Bayesian Prior Distributions
+
+- **Gelman (2006)**: Prior distributions for variance parameters in hierarchical models. *Bayesian Analysis*, 1(3), 515--534.
+
+## Author Self-Citations
+
+- **Lee (2026a)**: A Bayesian hierarchical hurdle beta-binomial model for survey-weighted bounded counts. arXiv preprint, doi:10.48550/arXiv.2603.02611.
+- **Lee (2026b)**: Design effect ratios for Bayesian survey models: A diagnostic framework. arXiv preprint, doi:10.48550/arXiv.2603.07791.
+
+## Software
+
+- **Carpenter et al. (2017)**: Stan: A probabilistic programming language. *Journal of Statistical Software*, 76(1), 1--32.

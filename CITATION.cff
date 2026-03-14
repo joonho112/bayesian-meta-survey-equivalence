@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+type: book
+title: "Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference: Complete Mathematical Theory"
+authors:
+  - family-names: "Lee"
+    given-names: "JoonHo"
+date-released: "2026-03-14"
+url: "https://joonho112.github.io/bayesian-meta-survey-equivalence/"
+license: "CC-BY-4.0"
+keywords:
+  - Bayesian meta-analysis
+  - survey inference
+  - structural equivalence
+  - design effect ratio
+  - sandwich variance estimator
+  - Cholesky calibration

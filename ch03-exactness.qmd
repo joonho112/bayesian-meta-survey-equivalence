@@ -1,0 +1,462 @@
+
+# Exactness Conditions {#sec-exactness}
+
+The structural equivalence between Bayesian meta-analysis and Bayesian survey inference is **exact** --- not merely approximate --- when five exactness conditions hold simultaneously. This chapter defines each condition, discusses its mathematical role, records when and where it is required, and analyzes what happens when it is violated. We also present the isomorphism map $\mathcal{T}$ that transforms one framework into the other, and discuss important interactions between conditions.
+
+All notation follows the conventions in @sec-notation. The model definitions referenced here are given in @sec-models.
+
+
+## Overview: The Five Conditions {#sec-exactness-overview}
+
+::: {.callout-important}
+#### The Exactness Conditions at a Glance
+
+The isomorphism between the CE meta-analytic model and the survey pseudo-likelihood model holds exactly when the following conditions are satisfied:
+
+| Condition | Name | One-Sentence Summary |
+|:---------:|:-----|:---------------------|
+| **(E1)** | Compound symmetry | Within-cluster working covariance is compound-symmetric |
+| **(E2)** | Known, common within-cluster variances | Cluster-specific variance identification $\sigma^2_{e,j} = \bar{s}_j^2$ |
+| **(E3)** | Unit weights | Normalized survey weights $\tilde{w}_{ij} = 1$ for all $(i,j)$ |
+| **(E4)** | DER simplification condition | Predictors do not vary within clusters: $\mathbf{x}_{ij} = \mathbf{x}_j$ (needed only for $R_k = B$ in Theorem 3) |
+| **(E5)** | Normal Level 1 errors | Both models use the Gaussian distributional family |
+
+**Not all conditions are equally necessary.** The core isomorphism (Theorems 1--2, Corollaries 1--2) requires only (E1), (E2), (E3), and (E5). Condition (E4) is needed only for the specific closed-form DER decomposition in Theorem 3. Condition (E5) is near-redundant when both models are specified with the same distributional family.
+:::
+
+
+## (E1) Compound Symmetry {#sec-e1}
+
+::: {.callout-note}
+#### Condition (E1): Compound Symmetry
+
+The within-cluster working covariance takes the compound-symmetric form in both frameworks:
+$$
+\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho) = \sigma_j^2\!\left[(1-\rho)\,\mathbf{I}_{n_j} + \rho\,\mathbf{1}_{n_j}\mathbf{1}_{n_j}^{\intercal}\right]
+$$ {#eq-e1}
+for a common working correlation $\rho \in [0,1)$ and cluster-specific scale $\sigma_j^2 > 0$, where $\sigma_j^2 = \bar{s}_j^2$ in meta-analysis and $\sigma_j^2 = \sigma^2_{e,j}$ in survey inference.
+:::
+
+### Mathematical Role
+
+Compound symmetry ensures that:
+
+1. **The within-cluster covariance can be parameterized by a single correlation parameter $\rho$.** This is what makes the sensitivity-analysis approach (varying $\rho$) tractable.
+
+2. **The eigenstructure is simple.** The compound-symmetric matrix has two distinct eigenvalues --- $(1-\rho)$ with multiplicity $n_j - 1$ and $1 + (n_j - 1)\rho$ with multiplicity 1 --- which yields clean closed-form expressions for the inverse, determinant, and quadratic forms (see @sec-models, Definition 2, and @fig-cs-eigenspaces for the spectral visualization).
+
+3. **The classical scalar DEFF formula becomes available.** Under compound symmetry, the between-cluster eigendirection yields the familiar expression $\mathrm{DEFF}_j = 1 + (n_j - 1)\rho_{\mathrm{true}}$. This scalar formula is exact for the intercept and study-level covariates. For coefficients identified by within-cluster variation, the relevant meat-to-bread ratio can differ by eigenspace, so the scalar DEFF should be treated as an approximation rather than a universal identity. With more general covariance structures, the within-cluster meat-to-bread ratio becomes a matrix rather than a scalar, and the DER decomposition in Theorem 3 does not reduce to the simple closed form $\mathrm{DER}_{\beta_k} = \mathrm{DEFF} \cdot (1 - R_k)$.
+
+### Strength of the Condition
+
+Condition (E1) is **stronger than needed** for the basic likelihood isomorphism (Theorem 1). The isomorphism holds for any matched known block covariance family, not only compound symmetry. What matters algebraically is that both frameworks use the **same** within-cluster precision matrix at each cluster $j$, so that the quadratic forms in $\boldsymbol{\phi}$ are identical. Any shared covariance structure --- compound symmetry, autoregressive, unstructured --- would suffice for Theorems 1--2.
+
+However, compound symmetry is the **natural** assumption in both literatures:
+
+- In meta-analysis, compound symmetry reflects the assumption that all effect sizes within a study share a common true effect (the CE model), so the pairwise correlations among sampling errors are all equal.
+- In survey inference, compound symmetry corresponds to the standard intra-class correlation structure for clustered data.
+
+Compound symmetry becomes **essential** for Theorem 3 (DER transfer), because the scalar DEFF formula $\mathrm{DEFF}_j = 1 + (n_j - 1)\rho_{\mathrm{true}}$ (see @fig-deff-surface for the resulting DEFF surface) and the closed-form DER decomposition both rely on the eigenstructure of the compound-symmetric matrix.
+
+### Violation Behavior
+
+When (E1) is violated (e.g., the true covariance has an autoregressive or unstructured form), the inverse matrices $[\boldsymbol{\Sigma}_j^{\mathrm{work}}]^{-1}$ differ between the two frameworks, creating a $\boldsymbol{\phi}$-dependent difference in the quadratic forms. A counterexample analysis constructed a concrete $J=3$ numerical example where a non-CS covariance produced $\mathbf{1}^{\intercal}\boldsymbol{\Delta}\mathbf{1} = 1.648 \neq 0$ in the precision-matrix difference, breaking exact isomorphism.
+
+The degradation is **gradual**: for nearly compound-symmetric covariance structures, the isomorphism holds approximately, with the approximation error proportional to the deviation from compound symmetry.
+
+
+## (E2) Known, Common Within-Cluster Variances {#sec-e2}
+
+::: {.callout-note}
+#### Condition (E2): Known, Common Within-Cluster Variances
+
+The meta-analytic sampling variances satisfy $s_{ij}^2 = \bar{s}_j^2$ for all $i$ within study $j$, and the survey within-cluster error variance is identified cluster-by-cluster:
+$$
+\sigma^2_{e,j} = \bar{s}_j^2, \quad j = 1, \ldots, J.
+$$ {#eq-e2}
+Both $\bar{s}_j^2$ and $\sigma^2_{e,j}$ are treated as **known** (conditioned upon), not as parameters to be estimated.
+:::
+
+::: {.callout-important}
+#### Key Correction: Cluster-Specific Identification
+
+The original formulation used a single global $\sigma^2_e$ identified with a common $\bar{s}^2$. Internal review identified this as insufficient. When the within-study average sampling variances $\bar{s}_j^2$ vary across studies (which is the typical case in meta-analysis), exact isomorphism demands **cluster-by-cluster** identification:
+$$
+\sigma^2_{e,j} = \bar{s}_j^2, \quad \text{for each } j = 1, \ldots, J.
+$$
+
+If a common $\sigma^2_e$ is used on the survey side while $\bar{s}_j^2$ varies across $j$ on the meta-analytic side, then **both** the log-determinant **and** the quadratic form differ in a $\boldsymbol{\phi}$-dependent way:
+
+- The log-determinant difference is $\frac{1}{2}\sum_j n_j \log(\sigma^2_e / \bar{s}_j^2)$, which is nonzero but $\boldsymbol{\phi}$-free.
+- The quadratic-form difference is $-\frac{1}{2}\sum_{j}\sum_{i}(\sigma_e^{-2} - \bar{s}_j^{-2})\,r_{ij}^2$, which **does** depend on $\boldsymbol{\phi}$ through the residuals $r_{ij}$.
+
+The second term breaks exact isomorphism. Only when $\sigma^2_e = \bar{s}_j^2$ for each $j$ do both differences vanish (or reduce to a $\boldsymbol{\phi}$-free constant).
+
+When $\bar{s}_j^2 = \bar{s}^2$ is genuinely common across all studies, a single $\sigma^2_e = \bar{s}^2$ suffices.
+:::
+
+### Mathematical Role
+
+Condition (E2) serves three purposes:
+
+1. **Precision matching.** It ensures that the coefficient multiplying $r_{ij}^2$ in the quadratic form is the same in both frameworks for every observation $(i,j)$. This is the precision-matching condition: $1/\sigma^2_{e,j} = 1/\bar{s}_j^2$.
+
+2. **Within-study homogeneity.** The requirement $s_{ij}^2 = \bar{s}_j^2$ for all $i$ within study $j$ ensures that the averaging step in the CE model does not create a working-model approximation. When individual sampling variances are heterogeneous within a study, the compound-symmetric working covariance $\bar{s}_j^2[(1-\rho)\mathbf{I} + \rho\mathbf{1}\mathbf{1}^{\intercal}]$ is an approximation.
+
+3. **Known-variance assumption.** Treating $\bar{s}_j^2$ and $\sigma^2_{e,j}$ as known (conditioned upon) prevents these quantities from entering the parameter vector $\boldsymbol{\phi}$. If $\sigma^2_{e,j}$ were estimated, the constant $c$ in the isomorphism could inherit dependence on the variance parameters.
+
+### Violation Behavior
+
+When (E2) is violated, the cluster-specific precision coefficients $1/\bar{s}_j^2$ and $1/\sigma^2_{e,j}$ differ, creating a $\boldsymbol{\phi}$-dependent discrepancy in the quadratic forms. The magnitude of the violation is proportional to the coefficient of variation of $\{1/\bar{s}_j^2\}$ across studies.
+
+
+## (E3) Unit Weights {#sec-e3}
+
+::: {.callout-note}
+#### Condition (E3): Unit Weights
+
+The normalized survey weights satisfy:
+$$
+\tilde{w}_{ij} = 1, \quad \text{for all } (i, j).
+$$ {#eq-e3}
+In meta-analysis, this condition is satisfied by construction (no design weights appear in the standard meta-analytic likelihood).
+:::
+
+### Mathematical Role
+
+Condition (E3) is the **most consequential** of the five exactness conditions, because its violation changes the **estimand**, not merely the precision of estimation.
+
+When $\tilde{w}_{ij} = 1$, the survey pseudo-log-likelihood reduces to the standard (unweighted) log-likelihood:
+
+$$
+\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) = \sum_{j=1}^{J}\sum_{i=1}^{n_j} 1 \cdot \log f(y_{ij} \mid \ldots) = \sum_{j=1}^{J}\sum_{i=1}^{n_j} \log f(y_{ij} \mid \ldots) = \ell_{\mathrm{surv}}(\boldsymbol{\phi}).
+$$
+
+This eliminates the weight-induced distortion of the likelihood surface. With non-unit weights, the pseudo-likelihood tilts toward observations with larger weights, which correspond to observations that are more "representative" of the finite population. This tilt changes the point at which the posterior concentrates, i.e., it changes the estimand from the sample-conditional regression parameter to the finite-population regression parameter.
+
+### When (E3) Holds
+
+- **Meta-analysis**: Always. Standard meta-analytic likelihoods do not incorporate design weights. Each effect size enters the likelihood with implicit unit weight.
+- **Survey inference**: Under simple random sampling (or self-weighting designs), where all inclusion probabilities are equal: $\pi_{ij} = N/N_{\mathrm{pop}}$ for all $(i,j)$.
+
+### Violation Behavior
+
+In the independence working model ($\rho = 0$), violating (E3) changes the pseudo-log-likelihood from the unweighted sum $\sum_j \sum_i \log f(y_{ij} \mid \ldots)$ to the weighted sum $\sum_j \sum_i \tilde{w}_{ij} \log f(y_{ij} \mid \ldots)$. The survey scores, Hessian, and meat are then weighted versions of the unweighted meta-analytic objects, so exact matching is lost immediately.
+
+When the working model is correlated ($\rho > 0$), Chapter 2 shows that the operative Gaussian likelihood is **clusterwise multivariate normal**. In that setting, the simple observation-level decomposition is no longer the literal likelihood representation; non-unit weights must be interpreted through a weighted clusterwise pseudo-likelihood or an equivalent weighted score construction. Either way, once $\tilde{w}_{ij} \neq 1$, the survey score contributions are no longer the same unweighted cluster scores used by the meta-analytic likelihood.
+
+Thus violating (E3) is not merely a precision issue --- it changes the target estimand and breaks the exact score/Hessian/meat matching needed for Theorems 1--2 and Corollaries 1--2. Counterexample analysis confirmed that non-unit weights create a $\boldsymbol{\phi}$-dependent discrepancy in the downstream inferential objects.
+
+
+## (E4) DER Simplification Condition {#sec-e4}
+
+::: {.callout-note}
+#### Condition (E4): DER Simplification Condition
+
+All predictors are cluster-level: $\mathbf{x}_{ij} = \mathbf{x}_j$ for every $i = 1, \ldots, n_j$ and $j = 1, \ldots, J$. This is **not** a definitional property of the CE model (which is defined by $\omega^2 = 0$). Rather, (E4) is needed only for the closed-form DER decomposition $R_k = B$ in Theorem 3. The design matrix $\mathbf{X}_j$ has all rows equal to $\mathbf{x}_j^{\intercal}$ when (E4) holds.
+:::
+
+::: {.callout-important}
+#### Key Finding: (E4) Is NOT Required for Theorems 1--2
+
+Verification revealed --- and independent review confirmed --- that condition (E4) is **unnecessary** for the basic isomorphism. The likelihood isomorphism (Theorem 1), sandwich equivalence (Theorem 2), posterior equivalence (Corollary 1), and CCC equivalence (Corollary 2) all hold under (E1), (E2), (E3), and (E5) alone, **regardless** of whether covariates vary within clusters.
+
+**Why (E4) is not needed.** Observation-level covariates $\mathbf{x}_{ij}$ enter the likelihood only through the residual vector:
+$$
+\mathbf{r}_j = \mathbf{y}_j - \mathbf{X}_j\boldsymbol{\beta} - \theta_j\mathbf{1}_{n_j}.
+$$
+The log-determinant term $\log|\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho)|$ does not depend on the mean structure (i.e., it does not depend on $\mathbf{X}_j$ or $\boldsymbol{\beta}$). The quadratic form $\mathbf{r}_j^{\intercal}[\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho)]^{-1}\mathbf{r}_j$ uses the same residual vector in both frameworks as long as both use the same $\mathbf{X}_j$ --- whether that matrix has identical rows (CE) or varying rows (HE). There is no hidden likelihood-level obstruction from observation-level covariates.
+
+**Terminological precision.** Under the broad CE definition used in this book, allowing $\mathbf{x}_{ij}$ to vary within clusters does **not** create a new variance model. It is more precise to say that the isomorphism extends exactly from the CE baseline to the **E4-relaxed CE mean-structure extension** under the same conditions minus (E4).
+:::
+
+### When (E4) IS Required
+
+Condition (E4) is needed for the **closed-form DER decomposition** in Theorem 3(a):
+
+$$
+\mathrm{DER}_{\beta_k} = \mathrm{DEFF} \cdot (1 - R_k).
+$$
+
+Under (E4), all covariates are study-level, so $R_k = B$ for every $k$ (exact under flat $\boldsymbol{\beta}$ prior; asymptotically exact under condition C6 with a weakly informative proper prior). Without (E4), the exact target is the Schur-complement quantity $R_k$ from Definition 7. In balanced orthogonal designs one may summarize the result heuristically as
+
+$$
+\mathrm{DER}_{\beta_k}^{\mathrm{thm,cond}} \approx \mathrm{DEFF} \cdot (1 - \gamma_k B),
+$$
+but this should not be treated as a theorem-level identity for general within-cluster covariates.
+
+### Violation Behavior
+
+Violating (E4) while maintaining (E1)--(E3) and (E5) does **not** break the isomorphism --- it only changes the DER decomposition. Counterexample analysis showed that within-cluster covariate variation produces a difference that is quadratic in $\beta_1$: proportional to $\beta_1^2 \cdot \mathrm{Var}_{\mathrm{within}}(x)$. However, this difference arises from comparing a CE model to a survey model with observation-level covariates, not from the isomorphism itself.
+
+### Summary of (E4) Necessity
+
+| Result | (E4) Required? | Why |
+|:-------|:--------------:|:----|
+| Theorem 1 (Likelihood Isomorphism) | No | Log-determinant is mean-structure-free; quadratic form uses same $\mathbf{r}_j$ |
+| Theorem 2 (Sandwich Equivalence) | No | Follows from Theorem 1 |
+| Corollary 1 (Posterior Equivalence) | No | Follows from Theorem 1 |
+| Corollary 2 (CCC Equivalence) | No | Follows from Theorem 2 + Corollary 1 |
+| Theorem 3(a) (DER Decomposition: $R_k \approx B$) | **Yes** | Study-level covariates required for $\gamma_k = 1$; $R_k = B$ exact flat prior |
+| Theorem 3(b--e) (Other DER results) | Partially | Conservation law form depends on covariate structure |
+
+: Necessity of (E4) by result. {#tbl-e4-necessity}
+
+
+## (E5) Normal Level 1 Errors {#sec-e5}
+
+::: {.callout-note}
+#### Condition (E5): Normal Level 1 Errors
+
+The conditional distribution at Level 1 is Gaussian in both frameworks:
+$$
+y_{ij} \mid \theta_j, \boldsymbol{\beta} \sim \textsf{N}(\mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} + \theta_j,\; \sigma_j^2).
+$$ {#eq-e5}
+:::
+
+### Mathematical Role
+
+Condition (E5) ensures that both frameworks use the same kernel in their log-likelihood contributions. When both models use the normal distribution, the log-likelihood takes the specific quadratic-in-$\boldsymbol{\phi}$ form that enables the clean additive-constant separation.
+
+### Near-Redundancy
+
+Verification found that (E5) is **effectively redundant** when both models are stipulated to use the same parametric family. The condition only excludes pathological cross-family comparisons (e.g., a normal meta-analytic model compared to a $t$-distributed survey model). Since both the CE meta-analytic model and the Bayesian survey model are conventionally specified with Gaussian Level 1 errors, (E5) is automatically satisfied in standard applications.
+
+::: {.callout-note}
+#### Recommendation: Downgrade to Convention
+
+Independent review concurred that (E5) is near-redundant and could be downgraded to a "distributional convention" rather than a formal exactness condition. The isomorphism argument applies to any shared exponential family, not only the normal. Under this broader view, the true mathematical core is: both frameworks need the same cluster partition, the same design matrix, and the same clusterwise log-likelihood kernel up to a parameter-free constant.
+
+For transparency and completeness, we retain (E5) as a stated condition but note its limited independent bite.
+:::
+
+
+## The Isomorphism Map $\mathcal{T}$ {#sec-isomorphism-map}
+
+::: {.callout-note}
+#### Definition (Isomorphism Map)
+
+The isomorphism map $\mathcal{T}$ sends each mathematical object in the survey framework to its meta-analytic counterpart. The two core identifications are:
+$$
+\mathcal{T}: \quad \sigma^2_{e,j} \;\mapsto\; \bar{s}_j^2, \qquad \tilde{w}_{ij} \;\mapsto\; 1.
+$$ {#eq-iso-map}
+
+Under $\mathcal{T}$ and conditions (E1)--(E3) (with (E5) as a distributional convention), the survey pseudo-log-likelihood and the meta-analytic log-likelihood differ by a constant:
+$$
+\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) = \ell_{\mathrm{meta}}(\boldsymbol{\phi}) + c,
+$$
+where $c = c(\sigma^2_{e,j}, \{\bar{s}_j^2\}, \{\tilde{w}_{ij}\}, \rho, \{n_j\})$ does not depend on $\boldsymbol{\phi} = (\boldsymbol{\beta}^{\intercal}, \boldsymbol{\theta}^{\intercal})^{\intercal}$.
+:::
+
+The isomorphism map acts on the three sources of difference between the two frameworks:
+
+| Difference | Survey Quantity | Meta-Analytic Counterpart | Exactness Condition |
+|:-----------|:----------------|:--------------------------|:-------------------|
+| Within-cluster error variance | $\sigma^2_{e,j}$ | $\bar{s}_j^2$ | (E2) |
+| Survey weights | $\tilde{w}_{ij}$ | $1$ (implicit) | (E3) |
+| Covariate level | $\mathbf{x}_{ij}$ (observation-level) | $\mathbf{x}_j$ (study-level) | (E4) — DER simplification only; not part of core isomorphism |
+
+: Components of the isomorphism map $\mathcal{T}$. {#tbl-iso-map}
+
+### Extended Isomorphism Map for CHE
+
+For the CHE model, the isomorphism map requires a modified (E2):
+
+::: {.callout-note}
+#### Condition (E2'): Modified Variance Identification for CHE
+
+The CHE total within-cluster variance is identified cluster-by-cluster:
+$$
+\sigma^2_{e,\mathrm{total},j} \equiv \bar{s}_j^2 + \omega^2, \quad j = 1, \ldots, J.
+$$ {#eq-e2-prime}
+
+Under (E2'), the CHE isomorphism map is:
+$$
+\mathcal{T}^{\mathrm{CHE}}: \quad \sigma^2_{e,\mathrm{total},j} \;\mapsto\; \bar{s}_j^2 + \omega^2, \qquad \tilde{w}_{ij} \;\mapsto\; 1.
+$$
+:::
+
+
+## The (E2)+(E3) Trade-Off {#sec-e2-e3-tradeoff}
+
+An important interaction exists between conditions (E2) and (E3). In the **independence working model** ($\rho_{\mathrm{work}}=0$), violating **both** conditions simultaneously can, under specific circumstances, **restore** the isomorphism through an effective-precision reparameterization.
+
+### Algebraic Mechanism
+
+Consider the case where the survey uses cluster-constant weights $\tilde{w}_{ij} = w_j$ (violating E3) and a common error variance $\sigma^2_e$ (potentially violating E2 if $\bar{s}_j^2$ varies), **under the independence working model** $\rho_{\mathrm{work}}=0$. The weighted quadratic term for observation $(i,j)$ is:
+
+$$
+\tilde{w}_{ij}\cdot\frac{(y_{ij} - \mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} - \theta_j)^2}{2\sigma^2_e} = \frac{(y_{ij} - \mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} - \theta_j)^2}{2(\sigma^2_e / w_j)}.
+$$
+
+The **effective precision** at cluster $j$ is $w_j / \sigma^2_e$. If this matches the meta-analytic precision:
+
+$$
+\frac{w_j}{\sigma^2_e} = \frac{1}{\bar{s}_j^2}, \qquad \text{i.e.,} \qquad w_j = \frac{\sigma^2_e}{\bar{s}_j^2},
+$$ {#eq-effective-precision}
+
+then the quadratic forms are identical, and the remaining log-term discrepancy:
+
+$$
+\sum_{j=1}^{J}\sum_{i=1}^{n_j} w_j \cdot \left[-\frac{1}{2}\log(2\pi\sigma^2_e)\right] + \sum_{j=1}^{J}\sum_{i=1}^{n_j}\frac{1}{2}\log(2\pi\bar{s}_j^2)
+$$
+
+depends on $\sigma^2_e$, $\{\bar{s}_j^2\}$, and $\{w_j\}$ but **not** on $\boldsymbol{\phi}$. The isomorphism is restored.
+
+### Interpretation
+
+The effective-precision matching in @eq-effective-precision has a natural interpretation: the survey weights compensate for the variance mismatch. A study with larger $\bar{s}_j^2$ (more noisy) receives a smaller weight $w_j = \sigma^2_e / \bar{s}_j^2$, which replicates the meta-analytic precision weighting.
+
+::: {.callout-important}
+#### Conceptual Caveat: Estimand Change
+
+While the (E2)+(E3) trade-off restores the **algebraic** isomorphism, the conceptual implications are different from the unit-weight case. Non-unit weights change the **estimand**: the survey pseudo-posterior targets the finite-population parameter weighted by the $w_j$, not the sample-conditional parameter. The isomorphism holds at the level of the mathematical objects (likelihoods, scores, Hessians), but the inferential target has shifted.
+
+This trade-off is more likely to be of theoretical interest (illuminating the algebraic structure) than of practical use (analysts rarely choose weights to match meta-analytic precisions).
+:::
+
+### Formal Statement
+
+::: {.callout-note}
+#### Proposition: Effective-Precision Matching under $\rho_{\mathrm{work}}=0$
+
+Let $\tilde{w}_{ij} = w_j$ be cluster-constant normalized weights, and let $\sigma^2_e$ be a common within-cluster error variance. Under the **independence working model** $\rho_{\mathrm{work}}=0$, if $w_j / \sigma^2_e = 1 / \bar{s}_j^2$ for all $j = 1, \ldots, J$, then under (E1) and (E5):
+$$
+\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) = \ell_{\mathrm{meta}}(\boldsymbol{\phi}) + c',
+$$
+where $c'$ does not depend on $\boldsymbol{\phi}$, despite individual violations of (E2) and (E3).
+:::
+
+
+## Condition Necessity: Which Conditions for Which Results? {#sec-condition-necessity}
+
+The following table summarizes the precise requirements for each major result in the theory:
+
+| Result | (E1) | (E2) | (E3) | (E4) | (E5) | Notes |
+|:-------|:----:|:----:|:----:|:----:|:----:|:------|
+| **Theorem 1** (Likelihood Isomorphism) | Required | Required | Required | **Not needed** | Convention | Core result; (E4) unnecessary (see @sec-e4) |
+| **Theorem 2** (Sandwich Equivalence) | Required | Required | Required | **Not needed** | Convention | Follows directly from Theorem 1 |
+| **Corollary 1** (Posterior Equivalence) | Required | Required | Required | **Not needed** | Convention | $e^c$ cancels in Bayes' formula |
+| **Corollary 2** (CCC Equivalence) | Required | Required | Required | **Not needed** | Convention | Follows from Theorem 2 + Corollary 1 |
+| **Theorem 3(a)** (Fixed-Effect DER: $R_k \approx B$) | Required | Required | Required | **Required** | Required | Study-level covariates needed; $R_k = B$ exact flat prior, $\approx$ under C6 |
+| **Theorem 3(a)** (HE generalization: $\gamma_k B$) | Required | Required | Required | **Not needed** | Required | $\gamma_k$ replaces the fixed $R_k = B$ |
+| **Theorem 3(b)** (Random-Effect DER) | Required | Required | Required | Not needed | Required | $B_j \cdot \mathrm{DEFF}_j$ formula |
+| **Theorem 3(c)** (Conservation Law) | Required | Required | Required | Required | Required | Balanced case; exact identity |
+| **Theorem 3(d)** (Boundary Behavior) | Required | Required | Required | Required | Required | Limit statements |
+| **(E2)+(E3) trade-off** | Required | **Relaxed** | **Relaxed** | **Not needed** | Convention | Effective-precision matching restores isomorphism |
+
+: Condition necessity by result. {#tbl-condition-necessity}
+
+::: {.callout-note}
+#### Reading the Table
+
+- **Required**: The condition is mathematically necessary; violating it breaks the result.
+- **Not needed**: The condition is unnecessary; the result holds regardless.
+- **Convention**: The condition is automatically satisfied when both models use the same distributional family.
+- **Relaxed**: The condition can be individually violated if compensated by another condition's relaxation.
+:::
+
+
+## Regularity Conditions (C1)--(C8) {#sec-regularity-preview}
+
+Beyond the exactness conditions that establish the isomorphism, the DER transfer theorem (Theorem 3) requires regularity conditions for the sandwich variance to be well-defined and consistent. These conditions, labeled (C1)--(C8), map to conditions (A1)--(A5) and (R1)--(R5) in Lee (2026b).
+
+| Condition | Statement | Maps To |
+|:---------:|:----------|:--------|
+| **(C1)** | Normal likelihood: $y_{ij} \mid \theta_j, \boldsymbol{\beta} \sim \textsf{N}(\mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} + \theta_j, v_{ij})$, $v_{ij} > 0$ | Lee (2026b): (A2) |
+| **(C2)** | Compound symmetry: $\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho) = \bar{s}_j^2[(1-\rho)\mathbf{I}_{n_j} + \rho\,\mathbf{1}_{n_j}\mathbf{1}_{n_j}^{\intercal}]$ | Lee (2026b): (R4) |
+| **(C3)** | Known, common within-study variances: $s_{ij}^2 = \bar{s}_j^2$ for all $i$ within $j$; $\sigma^2_{e,j}$ known | --- (meta-analytic variance identification; no direct analog) |
+| **(C4)** | DER simplification condition: $\mathbf{x}_{ij} = \mathbf{x}_j$ (needed only for $R_k = B$) | Lee (2026b): --- |
+| **(C5)** | Proper random-effect prior: $\sigma^2_\theta > 0$, $p(\sigma^2_\theta)$ continuous on $(0, \infty)$ | Lee (2026b): (R1) |
+| **(C6)** | Prior regularity: $p(\boldsymbol{\beta})$ continuous and positive near $\boldsymbol{\beta}_0$; $\|\mathbf{H}_{\mathrm{prior}}^{\boldsymbol{\beta}}\| / \|\mathbf{H}\| \to 0$ as $J \to \infty$ | Lee (2026b): (A3), (R3) |
+| **(C7)** | Identifiability: Schur complement $\mathbf{S}_{\boldsymbol{\beta}} = \mathbf{H}_{\boldsymbol{\beta}\boldsymbol{\beta}} - \mathbf{H}_{\boldsymbol{\beta}\boldsymbol{\theta}}\mathbf{H}_{\boldsymbol{\theta}\boldsymbol{\theta}}^{-1}\mathbf{H}_{\boldsymbol{\theta}\boldsymbol{\beta}} \succ 0$ | Lee (2026b): (R5) |
+| **(C8)** | Asymptotic regularity (Bernstein--von Mises type): (i) $J^{-1}\mathbf{H} \to \mathcal{I} \succ 0$; (ii) $J^{-1/2}\sum_j \mathbf{s}_j \overset{d}{\to} \textsf{N}(\mathbf{0}, \boldsymbol{\Sigma}_{\mathrm{score}})$ as $J \to \infty$, ensuring asymptotic normality of the posterior | Lee (2026b): (A5) |
+
+: Regularity conditions and their mapping to Lee (2026b). {#tbl-regularity}
+
+### Conditions That Simplify or Disappear Under the CE Model
+
+Several conditions from the survey-specific DER theory (Lee, 2026b) simplify or become trivially satisfied under the CE meta-analytic model:
+
+| Lee (2026b) Condition | This Paper | Status Under CE |
+|:---------------------|:-----------|:----------------|
+| (A1) Informative sampling | --- | **Disappears**: no survey weights in meta-analysis |
+| (A2) Likelihood regularity | (C1), (C8)(i) | **Satisfied**: normal likelihood is $C^\infty$ |
+| (A3) Prior support | (C6) | **Transfers** directly |
+| (A4) Weight boundedness | --- | **Trivially satisfied**: $\tilde{w}_{ij} = 1$ under (E3) |
+| (A5) Score CLT | (C8)(ii) | **Transfers**: studies are independent |
+| (R1) Proper RE prior | (C5) | **Transfers** directly |
+| (R2) Nesting | --- | **Trivially satisfied**: each effect size belongs to one study |
+| (R3) Flat $\boldsymbol{\beta}$ prior | (C6) | **Transfers** directly |
+| (R4) Scalar DEFF within clusters | (C2) | **Guaranteed** by compound symmetry for the intercept and study-level covariates; approximate for within-cluster covariates |
+| (R5) Schur complement | (C7) | **Transfers** directly |
+
+: Mapping of Lee (2026b) conditions to the CE meta-analytic setting. {#tbl-condition-mapping-preview}
+
+
+## Implicit Assumptions and Edge Cases {#sec-edge-cases-exactness}
+
+Several assumptions are implicit in the theory but not formally stated as exactness conditions. We record them here for completeness.
+
+### Implicit Assumption 1: $\rho$ Is Fixed
+
+The working correlation $\rho$ is treated as a **fixed** sensitivity parameter, not as an element of the parameter vector $\boldsymbol{\phi}$. If $\rho$ were estimated, the constant $c$ in the isomorphism could inherit $\rho$-dependence (since $c$ depends on $\rho$ through the log-determinant and inverse formulas). This would not break the isomorphism per se (since $\rho$ enters both frameworks symmetrically), but it would require enlarging $\boldsymbol{\phi}$ and tracking the additional terms.
+
+### Implicit Assumption 2: Positive Definite Covariances
+
+The CCC requires $\boldsymbol{\Sigma}_{\mathrm{MCMC}} \succ 0$ and $\mathbf{V}_{\mathrm{sand}} \succ 0$ for the Cholesky factorization to exist. This can fail when:
+
+- $\mathbf{V}_{\mathrm{sand}}$ rank-deficient: Since $\mathrm{rank}(\mathbf{M}) \leq J$ and $d = p + J > J$ for $p \geq 1$, the full-joint sandwich matrix is always rank-deficient. This is a structural property, not a boundary case. The principled solution is blockwise CCC (applying Cholesky correction to the $\boldsymbol{\beta}$-block and $\boldsymbol{\theta}$-block separately; see @sec-ccc-equiv).
+- The sandwich is rank-deficient due to extreme collinearity
+- $\sigma^2_\theta \to 0$, causing degenerate posterior directions
+
+### Implicit Assumption 3: $J > 1$
+
+When $J = 1$, the intercept $\mu$ and the sole random effect $\theta_1$ are not separately identifiable. The coupling factor $\kappa_1(1) = 0$, and both the sandwich and CCC constructions can become singular. The theory assumes $J \geq 2$ (and, for practical reliability of the sandwich, $J \gg p$).
+
+### Edge Case: $n_j = 1$ for All $j$
+
+When every cluster is a singleton, compound symmetry is vacuous ($\boldsymbol{\Sigma}_j^{\mathrm{work}} = \bar{s}_j^2$, a scalar), $\mathrm{DEFF}_j = 1$, and the model reduces to the univariate random-effects meta-analytic model (equivalent to the Fay--Herriot model in survey inference). Conditions (E1) and (E4) are automatically satisfied. The isomorphism holds trivially.
+
+### Edge Case: Mixed Singleton and Non-Singleton Studies
+
+When some studies have $n_j = 1$ and others have $n_j > 1$, the cluster-specific formulas ($B_j$, $\mathrm{DEFF}_j$, $\mathrm{DER}_j$) handle this heterogeneity naturally. What fails is only the balanced closed-form conservation law and the aggregate average identities. This is not a counterexample to the framework; it is a counterexample to overextending the balanced identities to unbalanced settings.
+
+### Edge Case: Boundary Values of $\sigma^2_\theta$
+
+- **$\sigma^2_\theta = 0$**: The random effects $\theta_j$ become degenerate (all zero), the shrinkage factor $B_j = 0$, and the DER for random effects is not well-defined as a ratio of two positive variances.
+- **$\sigma^2_\theta \to \infty$**: $B_j \to 1$ in the limit. This is a proper limit of the prior family, but the prior becomes improper.
+
+These are limit statements, not literal parameter values. The theory requires $\sigma^2_\theta \in (0, \infty)$ (regularity condition C5).
+
+
+## Summary: The Architecture of Exactness {#sec-exactness-summary}
+
+The five exactness conditions form a layered architecture:
+
+1. **(E1) Compound symmetry** provides the algebraic structure (eigenvalues, inverse, determinant) that enables closed-form results. It is stronger than needed for basic isomorphism but essential for the DEFF/DER formulas.
+
+2. **(E2) Known, common within-cluster variances** is the precision-matching condition that makes the quadratic forms identical. It uses cluster-specific identification $\sigma^2_{e,j} = \bar{s}_j^2$.
+
+3. **(E3) Unit weights** is the estimand-preserving condition. Its violation is the most consequential because it changes what the posterior estimates.
+
+4. **(E4) DER simplification condition** is a structural condition needed only for the specific closed-form $R_k = B$ in the DER decomposition, not for the isomorphism itself.
+
+5. **(E5) Normal errors** is a distributional convention, effectively redundant when both models use the same family.
+
+The conditions are **sufficient** but not **minimal** for the isomorphism. The true mathematical core is simpler: both frameworks need (i) the same cluster partition, (ii) matched clusterwise precision matrices, and (iii) the same log-likelihood kernel up to a parameter-free constant. Compound symmetry, known variances, and unit weights are the standard assumptions under which these abstract requirements become the concrete conditions (E1)--(E3).
+
+When any condition is violated, the isomorphism degrades **gracefully** rather than catastrophically. The sandwich variance retains its consistency properties regardless of whether (E1)--(E3) and (E5) hold --- it is precisely because both literatures rely on the sandwich for robustness that the structural parallel extends beyond the narrow confines of the exactness conditions.
+
+
+<!-- ============================================================
+     END OF CHAPTER 3: EXACTNESS CONDITIONS
+     Contains: (E1)--(E3) and (E5) with full discussion, isomorphism map T,
+     (E2)+(E3) trade-off, condition necessity table,
+     regularity conditions (C1)--(C8), implicit assumptions,
+     edge cases, and summary
+     Key corrections incorporated:
+     - Cluster-specific sigma_{e,j}^2 in (E2)
+     - (E4) not needed for Theorems 1-2
+     - (E5) near-redundancy
+     ============================================================ -->

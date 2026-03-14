@@ -1,0 +1,374 @@
+
+# Notation and Conventions {#sec-notation}
+
+This chapter provides a comprehensive reference for every symbol, index, parameter, matrix, and derived quantity used in the theory of structural equivalence between Bayesian meta-analysis and Bayesian survey inference. All notation is defined once here and used consistently throughout subsequent chapters. Where the meta-analytic and survey literatures use different names for the same mathematical object, the unified symbol is given alongside both field-specific terms.
+
+## Index System {#sec-notation-indices}
+
+The theory operates over a two-level clustered data structure. Four index variables appear throughout.
+
+::: {.callout-note}
+#### Terminological Convention
+Throughout this book, the terms "study" (meta-analysis), "PSU" or "cluster" (survey), and "group" (general) are used interchangeably to denote the level-2 unit indexed by $j$. Similarly, "effect size" (meta-analysis) and "observation" (survey) both refer to the level-1 unit indexed by $i$ within $j$.
+:::
+
+| Symbol | Range | Meta-Analytic Meaning | Survey Meaning | Notes |
+|:-------|:------|:----------------------|:---------------|:------|
+| $j$ | $1, \ldots, J$ | Studies | Primary sampling units (PSUs) / clusters | Top-level independent units |
+| $i$ | $1, \ldots, n_j$ | Effect sizes within study $j$ | Observations within cluster $j$ | Cluster size $n_j$ may vary across $j$ |
+| $k$ | $1, \ldots, p$ | Meta-regression coefficient index | Survey regression coefficient index | Indexes the fixed-effect parameters $\beta_k$ |
+| $s$ | $1, \ldots, S$ | MCMC draw index | MCMC draw index | Post-estimation; $S$ is the total number of posterior draws |
+
+: Index system. {#tbl-indices}
+
+### Derived Index Quantities
+
+The following aggregate quantities are derived from the index system:
+
+| Symbol | Definition | Meaning |
+|:-------|:-----------|:--------|
+| $N$ | $\displaystyle\sum_{j=1}^{J} n_j$ | Total number of observations across all clusters |
+| $\bar{n}$ | $N / J$ | Average cluster size |
+| $d$ | $p + J$ | Total dimension of the combined parameter vector $\boldsymbol{\phi}$ |
+
+: Derived index quantities. {#tbl-derived-indices}
+
+::: {.callout-note}
+#### Convention on Cluster Size
+
+Throughout the theory, we distinguish three regimes:
+
+1. **Balanced designs**: $n_j = n$ for all $j$, so $N = nJ$ and $\bar{n} = n$. Closed-form results (e.g., the conservation law) are stated in this regime.
+2. **Unbalanced designs**: $n_j$ varies across $j$. Formulas involving averages (e.g., $\overline{\mathrm{DER}_\theta}$) require careful treatment due to Jensen's inequality effects.
+3. **Singleton clusters**: $n_j = 1$ for all $j$. This reduces to the univariate random-effects meta-analytic model (Fay--Herriot model in the survey context). Compound symmetry becomes vacuous, and $\mathrm{DEFF}_j = 1$.
+:::
+
+
+## Parameter Vectors {#sec-notation-parameters}
+
+### Primary Parameters
+
+| Symbol | Space | Meta-Analytic Meaning | Survey Meaning |
+|:-------|:------|:----------------------|:---------------|
+| $\boldsymbol{\beta}$ | $\mathbb{R}^p$ | Meta-regression moderator coefficients | Survey regression coefficients |
+| $\beta_k$ | $\mathbb{R}$ | $k$th component of $\boldsymbol{\beta}$ | $k$th component of $\boldsymbol{\beta}$ |
+| $\mu$ | $\mathbb{R}$ | Overall average effect ($= \beta_1$ in intercept-only model) | Grand mean / intercept |
+| $\theta_j$ | $\mathbb{R}$ | Study-specific true effect for study $j$ | Cluster random effect for PSU $j$ |
+| $\boldsymbol{\theta}$ | $\mathbb{R}^J$ | $(\theta_1, \ldots, \theta_J)^{\intercal}$; vector of all random effects | Same |
+| $\boldsymbol{\phi}$ | $\mathbb{R}^d$ | $(\boldsymbol{\beta}^{\intercal}, \boldsymbol{\theta}^{\intercal})^{\intercal}$; combined parameter vector | Same |
+
+: Primary parameters. {#tbl-primary-params}
+
+### Variance Components
+
+| Symbol | Constraint | Meta-Analytic Meaning | Survey Meaning |
+|:-------|:-----------|:----------------------|:---------------|
+| $\sigma^2_\theta$ | $> 0$ | Between-study heterogeneity variance (often written $\tau^2$ in meta-analysis) | Between-cluster variance |
+| $\omega^2$ | $\geq 0$ | Within-study heterogeneity variance (CHE model only) | Within-cluster heterogeneity (CHE extension) |
+
+: Variance components. {#tbl-variance-components}
+
+::: {.callout-important}
+#### Notation Convention: $\sigma^2_\theta$ vs. $\tau^2$
+
+The meta-analytic literature almost universally uses $\tau^2$ for between-study heterogeneity. We use $\sigma^2_\theta$ throughout to (i) maintain notational consistency with the survey literature, (ii) avoid collision with the DER classification threshold notation, and (iii) make the parametric role transparent: $\sigma^2_\theta$ is the variance of the random effects $\theta_j$. The correspondence is $\sigma^2_\theta \equiv \tau^2$.
+:::
+
+
+## Data Quantities {#sec-notation-data}
+
+### Observations
+
+| Symbol | Meaning | Notes |
+|:-------|:--------|:------|
+| $y_{ij}$ | Observation $i$ in cluster $j$ | Effect-size estimate (meta) / survey response (survey) |
+| $\mathbf{y}_j$ | $(y_{1j}, \ldots, y_{n_j j})^{\intercal} \in \mathbb{R}^{n_j}$ | Cluster-level observation vector |
+| $\mathbf{y}$ | $(\mathbf{y}_1^{\intercal}, \ldots, \mathbf{y}_J^{\intercal})^{\intercal} \in \mathbb{R}^N$ | Full observation vector |
+
+: Observation notation. {#tbl-observations}
+
+### Sampling Variances and Error Variances
+
+| Symbol | Definition | Meta-Analytic Meaning | Survey Meaning |
+|:-------|:-----------|:----------------------|:---------------|
+| $s_{ij}^2$ | Known | Sampling variance for effect size $(i,j)$ | --- |
+| $\bar{s}_j^2$ | $n_j^{-1}\sum_{i=1}^{n_j} s_{ij}^2$ | Average within-study sampling variance for study $j$ | --- |
+| $\sigma^2_e$ | Known (conditioned upon) | --- | Within-cluster error variance (common across clusters) |
+| $\sigma^2_{e,j}$ | $= \bar{s}_j^2$ under (E2) | --- | Cluster-specific within-cluster error variance |
+
+: Sampling and error variance notation. {#tbl-variances}
+
+::: {.callout-important}
+#### Key Correction: Cluster-Specific Variance Identification
+
+The exactness condition (E2) requires **cluster-specific** identification $\sigma^2_{e,j} = \bar{s}_j^2$, not a single global $\sigma^2_e$ matched to all studies simultaneously. When the within-study average sampling variances $\bar{s}_j^2$ vary across studies (which is the typical case in meta-analysis), exact isomorphism demands that the survey error variance be matched study-by-study. If a common $\sigma^2_e$ is used on the survey side while $\bar{s}_j^2$ varies across $j$ on the meta-analytic side, the quadratic forms in the two likelihoods differ by a $\boldsymbol{\phi}$-dependent term, breaking exact isomorphism. See @sec-exactness for full details.
+:::
+
+### Predictor Variables
+
+| Symbol | Dimension | Meaning | Model Context |
+|:-------|:----------|:--------|:--------------|
+| $\mathbf{x}_{ij}$ | $\mathbb{R}^p$ | Observation-level predictor vector for observation $(i,j)$ | All models (CE, HE, CHE) |
+| $\mathbf{x}_j$ | $\mathbb{R}^p$ | Study-level predictor vector (special case: $\mathbf{x}_{ij} = \mathbf{x}_j$ for all $i$) | Arises when covariates do not vary within cluster; used in (E4) |
+| $\mathbf{X}_j$ | $n_j \times p$ | Design matrix for cluster $j$; row $i = \mathbf{x}_{ij}^{\intercal}$ | All models |
+
+: Predictor notation. {#tbl-predictors}
+
+### Survey Design Quantities
+
+| Symbol | Definition | Meaning |
+|:-------|:-----------|:--------|
+| $w_{ij}$ | $1/\pi_{ij}$ | Base survey weight (inverse inclusion probability) |
+| $\tilde{w}_{ij}$ | $N \cdot w_{ij} \big/ \sum_{j'}\sum_{i'} w_{i'j'}$ | Normalized survey weight; $\sum_{j}\sum_{i} \tilde{w}_{ij} = N$ |
+| $\pi_{ij}$ | --- | Inclusion probability for observation $(i,j)$ |
+
+: Survey design notation. {#tbl-survey-weights}
+
+::: {.callout-note}
+#### Convention: Weights in Meta-Analysis
+
+In standard meta-analysis, no design weights appear: each effect size enters the likelihood with implicit unit weight. Under exactness condition (E3), $\tilde{w}_{ij} = 1$ for all $(i,j)$, aligning the survey pseudo-likelihood with the standard meta-analytic likelihood. When (E3) is violated, the two frameworks target different estimands.
+:::
+
+### Correlation Parameters
+
+| Symbol | Range | Meaning | Role |
+|:-------|:------|:--------|:-----|
+| $\rho$ | $[0, 1)$ | Analyst-chosen working within-study/within-cluster correlation | Sensitivity parameter in the CE working model; working ICC in the survey formulation |
+| $\rho_{\mathrm{true}}$ | $[0, 1)$ | True within-study correlation | Enters the DEFF formula; generally unknown |
+| $\rho_j^{\mathrm{CE}}$ | $[0, 1)$ | CE-implied marginal ICC: $\sigma^2_\theta / (\bar{s}_j^2 + \sigma^2_\theta)$ | Derived from the hierarchical CE model after integrating out $\theta_j$; not the same as working $\rho$ |
+| $\rho_j^{\mathrm{CHE}}$ | $[0, 1)$ | CHE-implied marginal ICC: $\sigma^2_\theta / (\bar{s}_j^2 + \omega^2 + \sigma^2_\theta)$ | Strictly less than $\rho_j^{\mathrm{CE}}$ when $\omega^2 > 0$ |
+
+: Correlation parameters. {#tbl-correlations}
+
+::: {.callout-note}
+#### Convention: Study-Specific Correlation and DEFF
+
+These quantities should not be conflated: $\rho$ is the analyst-chosen **working** correlation inside $\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho)$, whereas $\rho_j^{\mathrm{CE}}$ and $\rho_j^{\mathrm{CHE}}$ are **model-implied marginal ICCs** obtained after integrating over the random effects.
+
+The quantities $\rho_j^{\mathrm{CE}} = \sigma^2_\theta / (\bar{s}_j^2 + \sigma^2_\theta)$ and $\rho_j^{\mathrm{CHE}} = \sigma^2_\theta / (\bar{s}_j^2 + \omega^2 + \sigma^2_\theta)$ are study-specific because $\bar{s}_j^2$ varies across studies. Similarly, the study-specific DEFF is $\mathrm{DEFF}_j = 1 + (n_j - 1)\rho_j$. When the context is clear or when discussing average/typical values, we sometimes drop the $j$ subscript and write $\rho^{\mathrm{CE}}$, $\rho^{\mathrm{CHE}}$, and $\mathrm{DEFF}$ without ambiguity.
+:::
+
+
+## Matrices and Operators {#sec-notation-matrices}
+
+### Structural Matrices
+
+| Symbol | Dimension | Definition |
+|:-------|:----------|:-----------|
+| $\mathbf{I}_{n_j}$ | $n_j \times n_j$ | Identity matrix |
+| $\mathbf{1}_{n_j}$ | $n_j \times 1$ | Vector of ones: $(1, \ldots, 1)^{\intercal}$ |
+| $\mathbf{1}_{n_j}\mathbf{1}_{n_j}^{\intercal}$ | $n_j \times n_j$ | Matrix of ones (all entries equal to 1) |
+
+: Structural matrices. {#tbl-structural-matrices}
+
+### Covariance Matrices
+
+| Symbol | Dimension | Definition | Context |
+|:-------|:----------|:-----------|:--------|
+| $\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho)$ | $n_j \times n_j$ | $\bar{s}_j^2\left[(1-\rho)\,\mathbf{I}_{n_j} + \rho\,\mathbf{1}_{n_j}\mathbf{1}_{n_j}^{\intercal}\right]$ | CE working covariance (compound-symmetric) |
+| $\boldsymbol{\Sigma}_j^{\mathrm{CHE}}$ | $n_j \times n_j$ | $(\bar{s}_j^2 + \omega^2)\,\mathbf{I}_{n_j} + \sigma^2_\theta\,\mathbf{1}_{n_j}\mathbf{1}_{n_j}^{\intercal}$ | CHE marginal covariance (after integrating out $\theta_j$) |
+| $\mathrm{Cov}(\mathbf{y}_j)$ | $n_j \times n_j$ | $\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho) + \sigma^2_\theta\,\mathbf{1}_{n_j}\mathbf{1}_{n_j}^{\intercal}$ | CE marginal covariance (after integrating out $\theta_j$) |
+| $\boldsymbol{\Sigma}_{\mathrm{MCMC}}$ | $d \times d$ | $\mathrm{Cov}_\pi(\boldsymbol{\phi})$; posterior covariance of MCMC draws | Empirical covariance from $S$ posterior draws |
+
+: Covariance matrices. {#tbl-covariance-matrices}
+
+### Sandwich Components
+
+| Symbol | Dimension | Definition | Name |
+|:-------|:----------|:-----------|:-----|
+| $\mathbf{s}_j(\boldsymbol{\phi})$ | $d \times 1$ | $\nabla_{\boldsymbol{\phi}} \ell_j(\boldsymbol{\phi})$ | Cluster-level score vector |
+| $\mathbf{H}$ | $d \times d$ | $-\nabla^2_{\boldsymbol{\phi}} \ell(\boldsymbol{\phi})\big|_{\hat{\boldsymbol{\phi}}}$ | Negative Hessian (observed information; "bread") |
+| $\mathbf{H}^{\mathrm{post}}$ | $d \times d$ | $\mathbf{H} + \mathbf{H}_{\mathrm{prior}}$ | Posterior Hessian (includes prior curvature) |
+| $\mathbf{H}_{\mathrm{prior}}$ | $d \times d$ | $\mathrm{diag}(\mathbf{H}_{\mathrm{prior}}^{\boldsymbol{\beta}},\, \sigma_\theta^{-2}\mathbf{I}_J)$ | Prior contribution to the Hessian |
+| $\mathbf{M}$ | $d \times d$ | $\sum_{j=1}^{J} \mathbf{s}_j(\hat{\boldsymbol{\phi}})\,\mathbf{s}_j(\hat{\boldsymbol{\phi}})^{\intercal}$ | Cluster-level score outer-product sum ("meat") |
+| $\mathbf{V}_{\mathrm{sand}}$ | $d \times d$ | $\mathbf{H}^{-1}\,\mathbf{M}\,\mathbf{H}^{-1}$ | Sandwich variance estimator |
+| $\mathbf{r}_j$ | $n_j \times 1$ | $\mathbf{y}_j - \mathbf{X}_j\boldsymbol{\beta} - \theta_j\mathbf{1}_{n_j}$ | Cluster-level residual vector |
+
+: Sandwich variance components. {#tbl-sandwich-components}
+
+::: {.callout-important}
+#### Convention: Likelihood-Only Scores in the Meat
+
+The meat matrix $\mathbf{M}$ always uses **likelihood-only** cluster scores $\mathbf{s}_j(\boldsymbol{\phi}) = \nabla_{\boldsymbol{\phi}} \ell_j(\boldsymbol{\phi})$, **not** posterior scores that include prior contributions. The bread may optionally use the posterior Hessian $\mathbf{H}^{\mathrm{post}} = \mathbf{H} + \mathbf{H}_{\mathrm{prior}}$, following @WilliamsSavitsky2021. This distinction is critical for correct implementation of both the sandwich variance and the Cholesky correction.
+:::
+
+### Cholesky Factors
+
+| Symbol | Definition | Role |
+|:-------|:-----------|:-----|
+| $\mathbf{L}_1$ | $\mathrm{chol}(\boldsymbol{\Sigma}_{\mathrm{MCMC}})$ | Lower Cholesky factor of the posterior covariance |
+| $\mathbf{L}_2$ | $\mathrm{chol}(\mathbf{V}_{\mathrm{sand}})$ | Lower Cholesky factor of the sandwich variance |
+
+: Cholesky factors for the CCC transformation. {#tbl-cholesky}
+
+### Hessian Block Structure
+
+For the combined parameter $\boldsymbol{\phi} = (\boldsymbol{\beta}^{\intercal}, \boldsymbol{\theta}^{\intercal})^{\intercal}$, the Hessian has a $2 \times 2$ block partition:
+
+$$
+\mathbf{H} = \begin{pmatrix}
+\mathbf{H}_{\boldsymbol{\beta}\boldsymbol{\beta}} & \mathbf{H}_{\boldsymbol{\beta}\boldsymbol{\theta}} \\
+\mathbf{H}_{\boldsymbol{\theta}\boldsymbol{\beta}} & \mathbf{H}_{\boldsymbol{\theta}\boldsymbol{\theta}}
+\end{pmatrix},
+$$
+
+where $\mathbf{H}_{\boldsymbol{\beta}\boldsymbol{\beta}}$ is $p \times p$, $\mathbf{H}_{\boldsymbol{\theta}\boldsymbol{\theta}}$ is $J \times J$, and $\mathbf{H}_{\boldsymbol{\beta}\boldsymbol{\theta}}$ is $p \times J$. The Schur complement with respect to the random effects is:
+
+$$
+\mathbf{S}_{\boldsymbol{\beta}} = \mathbf{H}_{\boldsymbol{\beta}\boldsymbol{\beta}} - \mathbf{H}_{\boldsymbol{\beta}\boldsymbol{\theta}}\,\mathbf{H}_{\boldsymbol{\theta}\boldsymbol{\theta}}^{-1}\,\mathbf{H}_{\boldsymbol{\theta}\boldsymbol{\beta}}.
+$$
+
+This Schur complement governs identifiability (regularity condition C7) and the fixed-effect DER decomposition.
+
+
+## Derived Quantities: DER Framework {#sec-notation-der}
+
+### Design Effect and Design Effect Ratio
+
+| Symbol | Definition | Interpretation |
+|:-------|:-----------|:---------------|
+| $\mathrm{DEFF}$ | $1 + (\bar{n} - 1)\rho_{\mathrm{true}}$ | Classical design effect (average across clusters) |
+| $\mathrm{DEFF}_j$ | $1 + (n_j - 1)\rho_{\mathrm{true}}$ | Study-specific design effect for cluster $j$ |
+| $\mathrm{DER}_k$ | $[\mathbf{V}_{\mathrm{sand}}]_{kk} \big/ [\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{kk}$ | Design Effect Ratio for parameter $\phi_k$ |
+
+: Design effect quantities. {#tbl-design-effect}
+
+::: {.callout-note}
+#### Three-Regime Interpretation of DER
+
+- $\mathrm{DER}_k = 1$: The working-model posterior is **calibrated**; no correction needed.
+- $\mathrm{DER}_k > 1$: The posterior is **under-dispersed** (credible intervals too narrow); the working model understates uncertainty.
+- $\mathrm{DER}_k < 1$: The posterior is **over-dispersed** (credible intervals too wide); the working model overstates uncertainty.
+:::
+
+### Shrinkage and Information Quantities
+
+| Symbol | Definition | Range | Meaning |
+|:-------|:-----------|:------|:--------|
+| $B_j$ | $\displaystyle\frac{\sigma^2_\theta}{\sigma^2_\theta + \bar{s}_j^2 / n_j}$ | $(0, 1)$ | Posterior retention weight on the study-specific estimate for study $j$ |
+| $B$ | $\displaystyle\frac{\sigma^2_\theta}{\sigma^2_\theta + \bar{s}^2 / n}$ | $(0, 1)$ | Common retention weight in the balanced case |
+| $\kappa_j(J)$ | $\displaystyle 1 - \frac{1}{J(1-B_j) + B_j}$ | $(0, 1)$ | Finite-cluster coupling factor for study $j$ |
+| $R_k$ | $1 - [ (\mathbf{H}^{\mathrm{post}}_{\boldsymbol{\beta}\boldsymbol{\beta}})^{-1}]_{kk} / [ (\mathbf{S}^{\mathrm{post}}_{\boldsymbol{\beta}})^{-1}]_{kk}$ | $[0, 1]$ | Canonical Schur-complement identifying-variation fraction for coefficient $\beta_k$. Under (E4) and balanced designs, $R_k = B$; in general unbalanced designs, $R_k$ may differ from $B$ (see Definition 7) |
+| $\gamma_k$ | $\displaystyle\frac{\mathrm{Var}_{\mathrm{between}}(\mathbf{x}_{jk})}{\mathrm{Var}_{\mathrm{total}}(\mathbf{x}_{ijk})}$ | $[0, 1]$ | Heuristic between-study fraction of covariate variation (E4-relaxed CE summary) |
+| $\alpha$ | $n / \bar{s}^2$ | $(0, \infty)$ | Within-study precision (balanced case); used in Schur complement calculations |
+
+: Shrinkage and information quantities. {#tbl-shrinkage}
+
+::: {.callout-note}
+#### Convention on $R_k$ and $\gamma_k$
+
+For theorem-level statements, $R_k$ and $\gamma_k$ should be understood as information-fraction quantities derived from the Schur complement of the **posterior** Hessian, not merely raw variance ratios. The variance-ratio formulas given above are exact under balanced designs with orthogonal covariates. In general unbalanced meta-regression, the information-based definition is:
+
+$$
+R_k = \frac{[\mathbf{S}_{\boldsymbol{\beta}}^{\mathrm{post}\,-1}]_{kk} - [\mathbf{H}_{\boldsymbol{\beta}\boldsymbol{\beta}}^{\mathrm{post}\,-1}]_{kk}}{[\mathbf{S}_{\boldsymbol{\beta}}^{\mathrm{post}\,-1}]_{kk}},
+$$
+
+where $\mathbf{S}_{\boldsymbol{\beta}}^{\mathrm{post}}$ is the Schur complement of the **posterior** Hessian $\mathbf{H}^{\mathrm{post}}$ with respect to the random effects. Under a flat $\boldsymbol{\beta}$ prior ($h_\mu = 0$), $R_\mu = B$ exactly for the intercept in balanced designs. Under a proper $\boldsymbol{\beta}$ prior ($h_\mu > 0$), $R_\mu = J\alpha B / (J\alpha + h_\mu)$, which is asymptotically exact ($R_\mu \to B$) under condition (C6) ($J\alpha \gg h_\mu$). The relationship $R_k \approx \gamma_k B$ is a balanced-design heuristic; the Schur-complement definition above is the canonical one in general.
+
+This covariance-based definition is the **canonical** definition used throughout the theory. It is the only version that is sign-correct (yielding $R_k \in [0, B]$) and generalizes properly to unbalanced multivariate settings. Other formulations (e.g., using raw information blocks $[\mathbf{S}_{\boldsymbol{\beta}}^{\mathrm{post}}]_{kk}/[\mathbf{H}_{\boldsymbol{\beta}\boldsymbol{\beta}}^{\mathrm{post}}]_{kk}$, or products of inverse and non-inverse blocks) may fail to preserve the correct sign or reduce to $B$ in the balanced scalar case. See Definition 7 in @sec-der-framework for the formal definition.
+:::
+
+
+## CHE-Specific Derived Quantities {#sec-notation-che}
+
+All CE quantities have CHE counterparts obtained via the substitution $\bar{s}_j^2 \mapsto \bar{s}_j^2 + \omega^2$:
+
+| CE Quantity | CHE Counterpart | Substitution |
+|:------------|:----------------|:-------------|
+| $B_j^{\mathrm{CE}} = \sigma^2_\theta / (\sigma^2_\theta + \bar{s}_j^2/n_j)$ | $B_j^{\mathrm{CHE}} = \sigma^2_\theta / (\sigma^2_\theta + (\bar{s}_j^2 + \omega^2)/n_j)$ | $\bar{s}_j^2 \to \bar{s}_j^2 + \omega^2$ |
+| $\rho_j^{\mathrm{CE}} = \sigma^2_\theta / (\bar{s}_j^2 + \sigma^2_\theta)$ | $\rho_j^{\mathrm{CHE}} = \sigma^2_\theta / (\bar{s}_j^2 + \omega^2 + \sigma^2_\theta)$ | Same |
+| $\mathrm{DEFF}_j^{\mathrm{CE}} = 1 + (n_j - 1)\rho_j^{\mathrm{CE}}$ | $\mathrm{DEFF}_j^{\mathrm{CHE}} = 1 + (n_j - 1)\rho_j^{\mathrm{CHE}}$ | Same |
+
+: CHE parameter substitution. {#tbl-che-substitution}
+
+Since $\omega^2 > 0$ strictly increases the denominator in the ICC, the ordering $\rho_j^{\mathrm{CHE}} < \rho_j^{\mathrm{CE}}$, $B_j^{\mathrm{CHE}} < B_j^{\mathrm{CE}}$, and $\mathrm{DEFF}_j^{\mathrm{CHE}} < \mathrm{DEFF}_j^{\mathrm{CE}}$ holds **ceteris paribus** (i.e., holding $\sigma^2_\theta$, $\bar{s}_j^2$, and $n_j$ fixed).
+
+
+## Likelihood and Posterior Notation {#sec-notation-likelihood}
+
+| Symbol | Definition | Context |
+|:-------|:-----------|:--------|
+| $\ell_{\mathrm{meta}}(\boldsymbol{\phi})$ | Meta-analytic CE log-likelihood; see @sec-models Def. 2 | Meta-analysis |
+| $\ell_j^{\mathrm{meta}}(\boldsymbol{\phi})$ | Cluster-$j$ contribution to the meta-analytic log-likelihood | Meta-analysis |
+| $\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi})$ | Survey pseudo-log-likelihood (weight-exponentiated) | Survey inference |
+| $\ell_j^{(w)}(\boldsymbol{\phi})$ | Cluster-$j$ contribution to the survey pseudo-log-likelihood | Survey inference |
+| $f(y \mid \mu, \sigma^2)$ | Normal density: $(2\pi\sigma^2)^{-1/2}\exp[-(y-\mu)^2/(2\sigma^2)]$ | Both |
+| $p(\boldsymbol{\beta})$ | Prior on fixed effects | Both |
+| $p(\sigma^2_\theta)$ | Prior on between-cluster variance | Both |
+| $\pi_{\mathrm{meta}}(\boldsymbol{\phi}, \sigma^2_\theta \mid \mathbf{y})$ | Meta-analytic working-model posterior | Meta-analysis |
+| $\pi^*_{\mathrm{surv}}(\boldsymbol{\phi}, \sigma^2_\theta \mid \mathbf{y})$ | Survey pseudo-posterior | Survey inference |
+
+: Likelihood and posterior notation. {#tbl-likelihood-notation}
+
+
+## Isomorphism Map {#sec-notation-isomorphism}
+
+The isomorphism map $\mathcal{T}$ sends each mathematical object in the survey framework to its meta-analytic counterpart (the full proof is given in @sec-isomorphism, Theorem 1). The two core identifications are:
+
+$$
+\mathcal{T}: \quad \sigma^2_{e,j} \;\mapsto\; \bar{s}_j^2, \qquad \tilde{w}_{ij} \;\mapsto\; 1.
+$$
+
+Under $\mathcal{T}$, the survey pseudo-log-likelihood and the meta-analytic log-likelihood differ by a constant $c$ that does not depend on $\boldsymbol{\phi}$:
+
+$$
+\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) = \ell_{\mathrm{meta}}(\boldsymbol{\phi}) + c.
+$$
+
+The constant $c$ depends on $\{\sigma^2_{e,j}\}$, $\{\bar{s}_j^2\}$, $\{\tilde{w}_{ij}\}$, $\rho$, and $\{n_j\}$, but not on $\boldsymbol{\phi} = (\boldsymbol{\beta}^{\intercal}, \boldsymbol{\theta}^{\intercal})^{\intercal}$.
+
+::: {.callout-note}
+#### Note on $\mathcal{T}$ and Condition (E4)
+
+The isomorphism map $\mathcal{T}$ has two core identifications, corresponding to conditions (E2) and (E3). Condition (E4) — that all predictors are study-level ($\mathbf{x}_{ij} = \mathbf{x}_j$) — is **not** part of the isomorphism. It is a DER simplification condition needed only for the closed-form between-direction result $R_k = B$ in Theorem 3. When (E4) is relaxed, the isomorphism still holds under (E1), (E2), (E3), and (E5) alone. Outside the between direction, summaries such as $\mathrm{DEFF}(1-\gamma_k B)$ should be treated as heuristic rather than theorem-level identities.
+:::
+
+
+## CCC Transformation Notation {#sec-notation-ccc}
+
+The Cholesky Calibration of Credible intervals (CCC) transforms uncorrected MCMC draws $\boldsymbol{\phi}^{(s)}$ into corrected draws $\boldsymbol{\phi}^{*(s)}$:
+
+| Symbol | Definition | Meaning |
+|:-------|:-----------|:--------|
+| $\hat{\boldsymbol{\phi}}$ | Posterior mean or mode | Center of the affine transformation |
+| $\boldsymbol{\phi}^{(s)}$ | $s$th uncorrected MCMC draw | Input to CCC |
+| $\boldsymbol{\phi}^{*(s)}$ | $\hat{\boldsymbol{\phi}} + \mathbf{L}_2\,\mathbf{L}_1^{-1}\,(\boldsymbol{\phi}^{(s)} - \hat{\boldsymbol{\phi}})$ | Corrected draw |
+
+: CCC transformation notation. {#tbl-ccc}
+
+The corrected draws satisfy $\mathrm{Cov}(\boldsymbol{\phi}^{*(s)}) = \mathbf{V}_{\mathrm{sand}}$, recalibrating the posterior dispersion to match the sandwich variance.
+
+
+## DER Classification System {#sec-notation-classification}
+
+The five-tier classification system (T0--T4) provides actionable interpretation of DER values [@LeeDER2026]:
+
+| Tier | $\mathrm{DER}_k$ Range | Label | Interpretation | Recommended Action |
+|:----:|:----------------------:|:------|:---------------|:-------------------|
+| T0 | $< 0.95$ | Over-dispersed | Working model overstates uncertainty | Report; may indicate model issues |
+| T1 | $[0.95,\; 1.05]$ | Calibrated | Working model adequate | No correction needed |
+| T2 | $(1.05,\; 2.0]$ | Mild under-dispersion | Moderate design sensitivity | Report DER; CCC optional |
+| T3 | $(2.0,\; 4.0]$ | Moderate under-dispersion | Substantial design sensitivity | Apply CCC correction |
+| T4 | $> 4.0$ | Severe under-dispersion | Extreme design sensitivity | Apply CCC; reconsider working model |
+
+: Five-tier DER classification [T0--T4, @LeeDER2026]. {#tbl-der-classification}
+
+
+## Typographic and Mathematical Conventions {#sec-notation-conventions}
+
+1. **Boldface**: Vectors ($\boldsymbol{\beta}$, $\boldsymbol{\theta}$, $\boldsymbol{\phi}$, $\mathbf{y}_j$, $\mathbf{r}_j$, $\mathbf{s}_j$) and matrices ($\mathbf{H}$, $\mathbf{M}$, $\mathbf{V}_{\mathrm{sand}}$, $\boldsymbol{\Sigma}$, $\mathbf{X}_j$) are set in boldface.
+2. **Scalars**: Scalar quantities ($y_{ij}$, $\theta_j$, $\sigma^2_\theta$, $\rho$, $B_j$) are set in italic.
+3. **Subscripts**: The subscript convention $j$ (cluster), $i$ (within-cluster observation), $k$ (coefficient), $s$ (MCMC draw) is used consistently.
+4. **Superscripts**: Framework labels appear as superscripts: $\ell^{(w)}_{\mathrm{surv}}$, $\ell_{\mathrm{meta}}$, $\mathbf{V}_{\mathrm{sand}}^{\mathrm{surv}}$, $\mathbf{V}_{\mathrm{sand}}^{\mathrm{meta}}$.
+5. **Transpose**: The transpose of a vector or matrix is denoted $(\cdot)^{\intercal}$.
+6. **Cholesky**: $\mathrm{chol}(\mathbf{A})$ denotes the lower-triangular Cholesky factor of a positive-definite matrix $\mathbf{A}$.
+7. **Gradient and Hessian**: $\nabla_{\boldsymbol{\phi}}$ denotes the gradient operator; $\nabla^2_{\boldsymbol{\phi}}$ denotes the Hessian operator.
+8. **Positive definiteness**: $\mathbf{A} \succ 0$ means $\mathbf{A}$ is positive definite.
+9. **Convergence in distribution**: $\overset{d}{\longrightarrow}$ denotes convergence in distribution as $J \to \infty$.
+10. **End of proof**: $\blacksquare$ marks the end of a proof.
+
+<!-- ============================================================
+     END OF CHAPTER 1: NOTATION AND CONVENTIONS
+     Comprehensive reference for all symbols used in the theory
+     ============================================================ -->

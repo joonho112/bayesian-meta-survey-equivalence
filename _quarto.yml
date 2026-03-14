@@ -1,0 +1,51 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference"
+  subtitle: "Complete Mathematical Theory"
+  author: "JoonHo Lee"
+  date: "March 2026"
+  repo-url: https://github.com/joonho112/bayesian-meta-survey-equivalence
+  repo-actions: [issue]
+  chapters:
+    - index.qmd
+    - part: "Part I: Foundations"
+      chapters:
+        - ch01-notation.qmd
+        - ch02-models.qmd
+        - ch03-exactness.qmd
+    - part: "Part II: Core Equivalence Results"
+      chapters:
+        - ch04-isomorphism.qmd
+        - ch05-sandwich.qmd
+        - ch06-posterior-ccc.qmd
+    - part: "Part III: Design Effect Ratios"
+      chapters:
+        - ch07-der-framework.qmd
+        - ch08-conservation.qmd
+        - ch09-boundary.qmd
+    - part: "Part IV: Extensions and Interpretation"
+      chapters:
+        - ch10-extensions.qmd
+        - ch11-regularity.qmd
+        - ch12-interpretation.qmd
+    - part: "Part V: Discussion and Conclusions"
+      chapters:
+        - ch13-discussion.qmd
+  appendices:
+    - appendix-revision-history.qmd
+  references: references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    number-depth: 3
+    self-contained: false
+    html-math-method: mathjax
