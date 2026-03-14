@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; DER Framework and Transfer Theorem – Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ch08-conservation.html" rel="next">
+<link href="./ch06-posterior-ccc.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ch07-der-framework.html">Part III: Design Effect Ratios</a></li><li class="breadcrumb-item"><a href="./ch07-der-framework.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DER Framework and Transfer Theorem</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/joonho112/bayesian-meta-survey-equivalence" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part I: Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch01-notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Notation and Conventions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch02-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Model Definitions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch03-exactness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exactness Conditions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Core Equivalence Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch04-isomorphism.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Theorem 1: Likelihood Isomorphism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch05-sandwich.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Theorem 2: Sandwich Equivalence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch06-posterior-ccc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Corollaries 1–2: Posterior and CCC Equivalence</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Design Effect Ratios</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch07-der-framework.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DER Framework and Transfer Theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch08-conservation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conservation Law</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch09-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Boundary Cases and Edge Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Extensions and Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch10-extensions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">E4-Relaxed CE and CHE Extensions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch11-regularity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Regularity Conditions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch12-interpretation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Interpretive Issues and Practical Implications</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part V: Discussion and Conclusions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch13-discussion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Discussion and Conclusions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-revision-history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Revision History</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-der-definitions" id="toc-sec-der-definitions" class="nav-link active" data-scroll-target="#sec-der-definitions"><span class="header-section-number">7.1</span> DER Definitions</a>
+  <ul class="collapse">
+  <li><a href="#def-deff" id="toc-def-deff" class="nav-link" data-scroll-target="#def-deff"><span class="header-section-number">7.1.1</span> Definition 4 (Design Effect)</a></li>
+  <li><a href="#def-der" id="toc-def-der" class="nav-link" data-scroll-target="#def-der"><span class="header-section-number">7.1.2</span> Definition 5 (Design Effect Ratio)</a></li>
+  <li><a href="#def-shrinkage" id="toc-def-shrinkage" class="nav-link" data-scroll-target="#def-shrinkage"><span class="header-section-number">7.1.3</span> Definition 6 (Shrinkage Factor)</a></li>
+  <li><a href="#def-identifying-variation" id="toc-def-identifying-variation" class="nav-link" data-scroll-target="#def-identifying-variation"><span class="header-section-number">7.1.4</span> Definition 7 (Identifying-Variation Fraction)</a></li>
+  <li><a href="#def-kappa" id="toc-def-kappa" class="nav-link" data-scroll-target="#def-kappa"><span class="header-section-number">7.1.5</span> Definition 8 (Finite-Cluster Coupling Factor)</a></li>
+  </ul></li>
+  <li><a href="#sec-der-classification" id="toc-sec-der-classification" class="nav-link" data-scroll-target="#sec-der-classification"><span class="header-section-number">7.2</span> DER Classification</a></li>
+  <li><a href="#sec-thm3-statement" id="toc-sec-thm3-statement" class="nav-link" data-scroll-target="#sec-thm3-statement"><span class="header-section-number">7.3</span> Theorem 3: DER Transfer to Meta-Analysis</a></li>
+  <li><a href="#sec-thm3-proof" id="toc-sec-thm3-proof" class="nav-link" data-scroll-target="#sec-thm3-proof"><span class="header-section-number">7.4</span> Proof of Theorem 3</a>
+  <ul class="collapse">
+  <li><a href="#sec-der-invariance" id="toc-sec-der-invariance" class="nav-link" data-scroll-target="#sec-der-invariance"><span class="header-section-number">7.4.1</span> Stage 1: DER Invariance Under the Isomorphism</a></li>
+  <li><a href="#sec-der-decomposition" id="toc-sec-der-decomposition" class="nav-link" data-scroll-target="#sec-der-decomposition"><span class="header-section-number">7.4.2</span> Stage 2: DER Decomposition Under the CE Model</a></li>
+  <li><a href="#sec-der-conditional-remark" id="toc-sec-der-conditional-remark" class="nav-link" data-scroll-target="#sec-der-conditional-remark"><span class="header-section-number">7.4.3</span> Remark (DER Variant Selection and Implications for CCC)</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/joonho112/bayesian-meta-survey-equivalence/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ch07-der-framework.html">Part III: Design Effect Ratios</a></li><li class="breadcrumb-item"><a href="./ch07-der-framework.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DER Framework and Transfer Theorem</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-der-framework" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DER Framework and Transfer Theorem</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The sandwich equivalence (Theorem 2) and posterior equivalence (Corollary 1) together imply that the Design Effect Ratio — a per-parameter diagnostic for working-model misspecification developed in the survey inference context <span class="citation" data-cites="LeeDER2026">(<a href="#ref-LeeDER2026" role="doc-biblioref">Lee 2026</a>)</span> — transfers to Bayesian meta-analysis without modification. The DER compares the sandwich-based variance of each parameter to its working-model posterior variance: a DER near one signals calibration; departures identify parameters whose credible intervals require correction.</p>
+<p>This chapter defines the DER and its constituent quantities (<a href="#sec-der-definitions" class="quarto-xref"><span>Section 7.1</span></a>), states the transfer theorem with full proof (<a href="#sec-thm3-statement" class="quarto-xref"><span>Section 7.3</span></a> and <a href="#sec-thm3-proof" class="quarto-xref"><span>Section 7.4</span></a>), and introduces the five-tier classification system (<a href="#sec-der-classification" class="quarto-xref"><span>Section 7.2</span></a>).</p>
+<p>The need for such a diagnostic arises from a practical asymmetry: the equivalence results of Part II guarantee that the sandwich-corrected posterior is available, but they say nothing about <em>which parameters</em> need correction and <em>how much</em> correction is needed. In some datasets, the working model is nearly correct for the overall mean but severely misspecified for individual study effects; in others, the pattern reverses. The DER provides the parameter-level resolution that the equivalence results alone cannot supply.</p>
+<section id="sec-der-definitions" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="sec-der-definitions"><span class="header-section-number">7.1</span> DER Definitions</h2>
+<p>The DER framework rests on five quantities that we define in meta-analytic language. Throughout, <span class="math inline">\(\bar{n} = N/J\)</span> denotes the average number of effect sizes per study, and <span class="math inline">\(\rho_{\mathrm{true}}\)</span> denotes the true (as opposed to working) within-study correlation among effect sizes within a study.</p>
+<section id="def-deff" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="def-deff"><span class="header-section-number">7.1.1</span> Definition 4 (Design Effect)</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Definition 4 (Design Effect).</strong> The <strong>classical design effect</strong> due to within-study dependence is <span id="eq-deff"><span class="math display">\[
+\mathrm{DEFF} = 1 + (\bar{n} - 1)\rho_{\mathrm{true}}.
+\tag{7.1}\]</span></span> For study <span class="math inline">\(j\)</span> with <span class="math inline">\(n_j\)</span> effect sizes, the <strong>study-specific design effect</strong> is <span id="eq-deff-j"><span class="math display">\[
+\mathrm{DEFF}_j = 1 + (n_j - 1)\rho_{\mathrm{true}}.
+\tag{7.2}\]</span></span></p>
+</div>
+</div>
+</div>
+<p>The design effect <span class="citation" data-cites="Kish1965">(<a href="#ref-Kish1965" role="doc-biblioref">Kish 1965</a>)</span> quantifies the variance inflation induced by within-cluster dependence relative to a hypothetical design with independent observations. In the meta-analytic setting, <span class="math inline">\(\mathrm{DEFF}\)</span> captures the cost of ignoring the correlation among effect sizes arising from the same study. When <span class="math inline">\(\rho_{\mathrm{true}} = 0\)</span> or <span class="math inline">\(n_j = 1\)</span> for all <span class="math inline">\(j\)</span>, the design effect equals one and no correction is needed.</p>
+<p>To build geometric intuition for how the two drivers — average cluster size <span class="math inline">\(\bar{n}\)</span> and true within-study correlation <span class="math inline">\(\rho_{\mathrm{true}}\)</span> — jointly determine the design effect, <a href="#fig-deff-surface" class="quarto-xref">Figure&nbsp;<span>7.1</span></a> visualizes the DEFF surface over these two inputs.</p>
+<div id="fig-deff-surface" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-deff-surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/matlab/fig05_deff_surface.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-deff-surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.1: The classical design effect <span class="math inline">\(\mathrm{DEFF}=1+(\bar{n}-1)\rho_{\mathrm{true}}\)</span> as a surface over the average cluster size <span class="math inline">\(\bar{n}\)</span> and the true within-study correlation <span class="math inline">\(\rho_{\mathrm{true}}\)</span>. The surface grows steeply with both inputs, showing that large studies with even moderate correlation face substantial variance inflation. The TSL15 data point (<span class="math inline">\(\bar{n} \approx 10.2\)</span>, <span class="math inline">\(\hat{\rho}_{\mathrm{true}} \approx 0.5\)</span>) is marked for empirical reference.
+</figcaption>
+</figure>
+</div>
+<p><strong>Scope note.</strong> The scalar DEFF formula <span class="math inline">\(\mathrm{DEFF}_j = 1 + (n_j - 1)\rho_{\mathrm{true}}\)</span> is exact for the intercept and, more generally, for study-level covariates whose within-study design vectors are proportional to <span class="math inline">\(\mathbf{1}_{n_j}\)</span>. These directions live entirely in the between-cluster eigenspace, so a single scalar ratio suffices at any <span class="math inline">\(\rho_{\mathrm{work}}\)</span>.</p>
+<p>For within-study-varying covariates, the situation is different. Even when <span class="math inline">\(\rho_{\mathrm{work}} = 0\)</span>, the relevant within-direction ratio is <span class="math inline">\(1 - \rho_{\mathrm{true}}\)</span>, not the classical scalar DEFF. When <span class="math inline">\(\rho_{\mathrm{work}} &gt; 0\)</span>, the compound-symmetric eigenstructure produces distinct ratios in the two eigenspaces: the between-cluster ratio is <span class="math inline">\([1 + (n_j - 1)\rho_{\mathrm{true}}]/[1 + (n_j - 1)\rho_{\mathrm{work}}]\)</span>, while the within-cluster ratio is <span class="math inline">\((1 - \rho_{\mathrm{true}})/(1 - \rho_{\mathrm{work}})\)</span>.</p>
+<p>Accordingly, for coefficients identified by substantial within-cluster variation, the classical scalar DEFF should be treated as an approximation rather than a theorem-level identity. In those settings, the rigorous target is the Schur-complement quantity <span class="math inline">\(R_k\)</span> together with the appropriate conditional/marginal sandwich variant, as detailed in Chapters 10–11. This scope limitation was identified during internal review.</p>
+</section>
+<section id="def-der" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="def-der"><span class="header-section-number">7.1.2</span> Definition 5 (Design Effect Ratio)</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Definition 5 (Design Effect Ratio).</strong> The <strong>Design Effect Ratio</strong> for parameter <span class="math inline">\(\phi_k\)</span> is <span id="eq-der-def"><span class="math display">\[
+\mathrm{DER}_k = \frac{[\mathbf{V}_{\mathrm{sand}}]_{kk}}{[\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{kk}},
+\tag{7.3}\]</span></span> where <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span> is the sandwich variance estimator (Definition 3, <a href="ch02-models.html#sec-sandwich-def" class="quarto-xref"><span>Section 2.7</span></a>) and <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span> is the empirical covariance of MCMC draws from the working-model posterior.</p>
+</div>
+</div>
+</div>
+<p>The DER admits a three-regime interpretation:</p>
+<ul>
+<li><strong><span class="math inline">\(\mathrm{DER}_k = 1\)</span></strong>: The working-model posterior variance already equals the sandwich variance. The posterior for <span class="math inline">\(\phi_k\)</span> is calibrated without correction.</li>
+<li><strong><span class="math inline">\(\mathrm{DER}_k &gt; 1\)</span></strong>: The posterior is <em>under-dispersed</em>. The working model underestimates uncertainty, and the CCC (<a href="ch06-posterior-ccc.html" class="quarto-xref"><span>Chapter 6</span></a>) widens the credible interval.</li>
+<li><strong><span class="math inline">\(\mathrm{DER}_k &lt; 1\)</span></strong>: The posterior is <em>over-dispersed</em>. The working model overestimates uncertainty, and the CCC narrows the interval.</li>
+</ul>
+<section id="sec-def-der-taxonomy" class="level4">
+<h4 class="anchored" data-anchor-id="sec-def-der-taxonomy">Definition 5b (DER Variant Taxonomy)</h4>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Because the sandwich <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span> in Definition 5 can be any of the four variants defined in the sandwich taxonomy (Definition 3b, <a href="ch05-sandwich.html#sec-sandwich-taxonomy" class="quarto-xref"><span>Section 5.4.3</span></a>), the DER inherits a corresponding taxonomy. For fixed-effect parameter <span class="math inline">\(\beta_k\)</span>, we distinguish:</p>
+<p><strong>(i) Conditional DER</strong> (<span class="math inline">\(\mathrm{DER}_k^{\mathrm{cond}}\)</span>). Uses the full-joint conditional sandwich (variant (i)): <span id="eq-der-cond-def"><span class="math display">\[
+\mathrm{DER}_k^{\mathrm{cond}} = \frac{[\mathbf{V}_{\mathrm{sand}}^{\mathrm{cond}}]_{kk}}{[\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{kk}}.
+\tag{7.4}\]</span></span> This is the quantity decomposed in Theorem 3(a): <span class="math inline">\(\mathrm{DER}_{\beta_k}^{\mathrm{thm,cond}} = \mathrm{DEFF}\cdot(1-R_k)\)</span> in the between-direction cases covered by the theorem. <strong>Note</strong>: the empirical plug-in value of the conditional ratio can be much smaller (e.g., <span class="math inline">\(\approx 0.096\)</span> for TSL15) because the conditional residuals at the MAP are near zero. The theorem-level design decomposition and the empirical plug-in ratio should therefore be kept distinct; see <a href="ch12-interpretation.html#sec-conditional-marginal" class="quarto-xref"><span>Section 12.1</span></a> for the reconciliation of these quantities.</p>
+<p><strong>(ii) Profile DER</strong> (<span class="math inline">\(\mathrm{DER}_k^{\mathrm{profile}}\)</span>). Uses the profile sandwich (variant (ii)): <span id="eq-der-profile-def"><span class="math display">\[
+\mathrm{DER}_k^{\mathrm{profile}} = \frac{[\mathbf{V}_{\mathrm{sand}}^{\mathrm{profile}}]_{kk}}{[\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{kk}}.
+\tag{7.5}\]</span></span> This conditions on <span class="math inline">\(\tau^2\)</span> but marginalizes over <span class="math inline">\(\boldsymbol{\theta}\)</span>. It closely approximates the CR2-based DER.</p>
+<p><strong>(iii) Marginal DER</strong> (<span class="math inline">\(\mathrm{DER}_k^{\mathrm{marg}}\)</span>). Uses the Bayesian marginal sandwich (variant (iii)): <span id="eq-der-marg-def"><span class="math display">\[
+\mathrm{DER}_k^{\mathrm{marg}} = \frac{[\mathbf{V}_{\mathrm{sand}}^{\mathrm{marg}}]_{kk}}{[\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{kk}}.
+\tag{7.6}\]</span></span> This is the <strong>recommended CCC decision criterion</strong> for <span class="math inline">\(\boldsymbol{\beta}\)</span> in the intercept / study-level-covariate setting covered by Definition 3a. For coefficients driven by within-study-varying covariates, the exact target is the full multivariate marginal sandwich; until that is written out explicitly, the profile or CR2 variants should be treated as the operational benchmark.</p>
+<p><strong>(iv) CR2-based DER</strong> (<span class="math inline">\(\mathrm{DER}_k^{\mathrm{CR2}}\)</span>). Uses the frequentist CR2 sandwich (variant (iv)): <span id="eq-der-cr2-def"><span class="math display">\[
+\mathrm{DER}_k^{\mathrm{CR2}} = \frac{\mathrm{SE}_{\mathrm{CR2}}^2(\beta_k)}{[\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{kk}}.
+\tag{7.7}\]</span></span> This serves as an <strong>external validation</strong> benchmark.</p>
+<p><strong>For random effects <span class="math inline">\(\theta_j\)</span></strong>, the DER is always computed from the full-joint conditional sandwich (variant (i)), since the other variants marginalize out <span class="math inline">\(\boldsymbol{\theta}\)</span> (see <a href="ch06-posterior-ccc.html#tbl-block-variant-map" class="quarto-xref">Table&nbsp;<span>6.1</span></a>).</p>
+</div>
+</div>
+</div>
+<p><strong>Notational convention.</strong> To avoid overloading the term DER, this book distinguishes four objects: theorem-level conditional DER (<span class="math inline">\(\mathrm{DER}_k^{\mathrm{thm,cond}}\)</span>), empirical conditional plug-in DER, marginal DER (<span class="math inline">\(\mathrm{DER}_k^{\mathrm{marg}}\)</span>), and CR2-based DER (<span class="math inline">\(\mathrm{DER}_k^{\mathrm{CR2}}\)</span>). Theorem 3 concerns the <strong>theorem-level conditional</strong> quantity. CCC implementation decisions for <span class="math inline">\(\boldsymbol{\beta}\)</span> use the <strong>marginal</strong> DER in the scope covered by Definition 3a; see Recommendation 5 (<a href="ch12-interpretation.html#sec-rec5" class="quarto-xref"><span>Section 12.5.5</span></a>).</p>
+<p>The multiplicity of DER variants reflects a fundamental tension: the sandwich that is <em>theoretically decomposable</em> (the conditional sandwich, which yields the clean <span class="math inline">\(\mathrm{DEFF} \cdot (1 - R_k)\)</span> factorization) is not the sandwich that is <em>operationally appropriate</em> for fixed-effect CCC (the marginal sandwich, which captures the full between-study variation). Conflating these two quantities was the source of interpretive difficulties in V1. The taxonomy below makes the distinction explicit and maps each variant to its intended use.</p>
+<p><strong>Consolidated DER variant cross-reference.</strong> <a href="#tbl-der-variant-xref" class="quarto-xref">Table&nbsp;<span>7.1</span></a> maps each DER variant to its definition, primary chapter, and recommended use case.</p>
+<div id="tbl-der-variant-xref" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-der-variant-xref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;7.1: Consolidated DER variant cross-reference.
+</figcaption>
+<div aria-describedby="tbl-der-variant-xref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 13%">
+<col style="width: 27%">
+<col style="width: 27%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variant</th>
+<th style="text-align: left;">Symbol</th>
+<th style="text-align: left;">Sandwich Source</th>
+<th style="text-align: left;">Primary Chapter</th>
+<th style="text-align: left;">Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(i-a) Conditional (theorem)</td>
+<td style="text-align: left;"><span class="math inline">\(\mathrm{DER}_k^{\mathrm{thm,cond}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathrm{DEFF} \cdot (1 - R_k)\)</span></td>
+<td style="text-align: left;"><a href="#sec-der-framework" class="quarto-xref"><span>Chapter 7</span></a> (Theorem 3)</td>
+<td style="text-align: left;">Theoretical analysis; interpretation of design sensitivity</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(i-b) Conditional (plug-in)</td>
+<td style="text-align: left;"><span class="math inline">\([\mathbf{V}_{\mathrm{sand}}^{\mathrm{cond}}]_{kk} / [\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{kk}\)</span></td>
+<td style="text-align: left;">Full-joint conditional</td>
+<td style="text-align: left;"><a href="#sec-der-framework" class="quarto-xref"><span>Chapter 7</span></a>, <a href="ch12-interpretation.html#sec-conditional-marginal" class="quarto-xref"><span>Section 12.1</span></a></td>
+<td style="text-align: left;">Diagnostic; often <span class="math inline">\(\ll 1\)</span> due to conditional residuals</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(ii) Profile</td>
+<td style="text-align: left;"><span class="math inline">\(\mathrm{DER}_k^{\mathrm{profile}}\)</span></td>
+<td style="text-align: left;">Profile sandwich</td>
+<td style="text-align: left;"><a href="#sec-marginal-der-decomposition" class="quarto-xref"><span>Section 7.1.2.2</span></a></td>
+<td style="text-align: left;">Intermediate; approximates CR2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(iii) Marginal</td>
+<td style="text-align: left;"><span class="math inline">\(\mathrm{DER}_k^{\mathrm{marg}}\)</span></td>
+<td style="text-align: left;">Bayesian marginal</td>
+<td style="text-align: left;"><a href="#sec-marginal-der-decomposition" class="quarto-xref"><span>Section 7.1.2.2</span></a>, <a href="ch12-interpretation.html#sec-rec5" class="quarto-xref"><span>Section 12.5.5</span></a></td>
+<td style="text-align: left;"><strong>CCC decision criterion</strong> for <span class="math inline">\(\boldsymbol{\beta}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(iv) CR2-based</td>
+<td style="text-align: left;"><span class="math inline">\(\mathrm{DER}_k^{\mathrm{CR2}}\)</span></td>
+<td style="text-align: left;">Frequentist CR2</td>
+<td style="text-align: left;"><a href="#sec-def-der-taxonomy" class="quarto-xref"><span>Section 7.1.2.1</span></a>, <a href="ch12-interpretation.html#sec-rec5" class="quarto-xref"><span>Section 12.5.5</span></a></td>
+<td style="text-align: left;">External validation benchmark</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="sec-marginal-der-decomposition" class="level4">
+<h4 class="anchored" data-anchor-id="sec-marginal-der-decomposition">Proposition (Marginal DER Decomposition for <span class="math inline">\(\mu\)</span>)</h4>
+<p>In the balanced intercept-only CE model (<span class="math inline">\(K = 1\)</span>, <span class="math inline">\(n_j = n\)</span>, <span class="math inline">\(\bar{s}_j^2 = \bar{s}^2\)</span>), the marginal DER for <span class="math inline">\(\mu\)</span> decomposes as: <span id="eq-der-marg-decomposition"><span class="math display">\[
+\mathrm{DER}_\mu^{\mathrm{marg}} = \frac{V_{\mathrm{sand},\mu\mu}^{\mathrm{marg}}}{\Sigma_{\mathrm{MCMC},\mu\mu}}.
+\tag{7.8}\]</span></span></p>
+<p><em>Derivation.</em> The marginal sandwich for <span class="math inline">\(\mu\)</span> (from Definition 3a, <a href="ch05-sandwich.html#sec-remark-marginal-sandwich" class="quarto-xref"><span>Section 5.4.2</span></a>) with <span class="math inline">\(v = \bar{s}^2/n + \hat{\tau}^2\)</span> constant across studies gives:</p>
+<ol type="1">
+<li><p><strong>Marginal bread</strong> (<span class="math inline">\(\mu\mu\)</span>-block): <span class="math inline">\(H_{\mu\mu}^{\mathrm{marg}} = J/v + h_{\mathrm{prior},\mu}\)</span>, where <span class="math inline">\(h_{\mathrm{prior},\mu}\)</span> is the prior precision for <span class="math inline">\(\mu\)</span>. Under a weakly informative prior, <span class="math inline">\(h_{\mathrm{prior},\mu} \approx 0\)</span>, so <span class="math inline">\(H_{\mu\mu}^{\mathrm{marg}} \approx J/v\)</span>.</p></li>
+<li><p><strong>Marginal meat</strong> (<span class="math inline">\(\mu\mu\)</span>-block): <span class="math inline">\(M_{\mu\mu}^{\mathrm{marg}} = \sum_j r_j^2/v^2 = \hat{Q}/v^2\)</span>, where <span class="math inline">\(\hat{Q} = \sum_j r_j^2\)</span> is the Cochran <span class="math inline">\(Q\)</span>-statistic residual sum of squares at the marginal level.</p></li>
+<li><p><strong>Profile sandwich</strong>: Applying <span class="math inline">\(\mathbf{V}_{\mathrm{sand}} = \mathbf{H}^{-1}\mathbf{M}\mathbf{H}^{-1}\)</span> to the scalar <span class="math inline">\(\mu\mu\)</span>-block: <span class="math inline">\((H_{\mu\mu}^{\mathrm{marg}})^{-1}\,M_{\mu\mu}^{\mathrm{marg}}\,(H_{\mu\mu}^{\mathrm{marg}})^{-1} = (v/J) \cdot (\hat{Q}/v^2) \cdot (v/J) = v^2/J^2 \cdot \hat{Q}/v^2 = \hat{Q}/J^2\)</span>.</p></li>
+<li><p><strong>MCMC posterior variance</strong>: <span class="math inline">\(\Sigma_{\mathrm{MCMC},\mu\mu} = v/J = (\bar{s}^2/n + \hat{\tau}^2)/J\)</span>.</p></li>
+<li><p><strong>Profile DER</strong>: <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{profile}} = (\hat{Q}/J^2) / (v/J) = \hat{Q}/(Jv)\)</span>.</p></li>
+</ol>
+<p>Under the correctly specified model, <span class="math inline">\(\mathbb{E}[r_j^2] = v = \bar{s}^2/n + \tau^2\)</span>, so <span class="math inline">\(\mathbb{E}[\hat{Q}] = Jv\)</span> and <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{profile}} \to 1\)</span> in expectation. Departures from <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{profile}} = 1\)</span> signal misspecification of the marginal model (e.g., non-normal random effects, misspecified <span class="math inline">\(v_j\)</span>, or within-study correlation).</p>
+<p>The full marginal DER <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{marg}}\)</span> additionally includes the <span class="math inline">\(\tau^2\)</span> estimation uncertainty through the <span class="math inline">\((K+1)\)</span>-dimensional inverse bread. This adds a positive correction, so <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{marg}} \geq \mathrm{DER}_\mu^{\mathrm{profile}}\)</span> (with equality when <span class="math inline">\(\tau^2\)</span> is known). For the TSL15 data, <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{marg}} = 1.21\)</span> versus <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{profile}} = 0.95\)</span>, confirming that the <span class="math inline">\(\tau^2\)</span> uncertainty contributes a 27% increase in the DER.</p>
+<p><strong>Relationship between conditional and marginal DER.</strong> Using <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{cond}} = \mathrm{DEFF}(1-B)\)</span> from Theorem 3(a) and the marginal sandwich derivation above, the ratio is: <span id="eq-der-marg-cond-ratio"><span class="math display">\[
+\frac{\mathrm{DER}_\mu^{\mathrm{marg}}}{\mathrm{DER}_\mu^{\mathrm{cond}}} = \frac{V_{\mathrm{sand},\mu\mu}^{\mathrm{marg}}}{V_{\mathrm{sand},\mu\mu}^{\mathrm{cond}}}.
+\tag{7.9}\]</span></span> In the balanced model, <span class="math inline">\(V_{\mathrm{sand},\mu\mu}^{\mathrm{cond}} = \mathrm{DEFF} \cdot \bar{s}^2/(nJ)\)</span> (from <a href="ch12-interpretation.html#eq-v-sand-mu" class="quarto-xref">Equation&nbsp;<span>12.3</span></a>) and <span class="math inline">\(V_{\mathrm{sand},\mu\mu}^{\mathrm{marg}} \approx v/J \cdot (\hat{Q}/Jv) = \hat{Q}/J^2\)</span> (profile approximation). For the TSL15 data, this ratio is <span class="math inline">\(1.21/0.096 \approx 12.6\)</span>, reflecting the factor-of-<span class="math inline">\(1/(1-B)^2 \approx 1/0.036 \approx 28\)</span> amplification from removing the shrinkage attenuation of the residuals, partially offset by the different bread structure.</p>
+</section>
+</section>
+<section id="def-shrinkage" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="def-shrinkage"><span class="header-section-number">7.1.3</span> Definition 6 (Shrinkage Factor)</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Definition 6 (Shrinkage Factor).</strong> The <strong>hierarchical shrinkage factor</strong> for study <span class="math inline">\(j\)</span> is <span id="eq-shrinkage"><span class="math display">\[
+B_j = \frac{\sigma^2_\theta}{\sigma^2_\theta + \bar{s}_j^2 / n_j},
+\tag{7.10}\]</span></span> where <span class="math inline">\(\sigma^2_\theta\)</span> is the between-study heterogeneity variance and <span class="math inline">\(\bar{s}_j^2\)</span> is the average within-study sampling variance. Under balanced designs (<span class="math inline">\(n_j = n\)</span>, <span class="math inline">\(\bar{s}_j^2 = \bar{s}^2\)</span>), write <span class="math inline">\(B = \sigma^2_\theta / (\sigma^2_\theta + \bar{s}^2 / n)\)</span>.</p>
+</div>
+</div>
+</div>
+<p>The historically named shrinkage factor <span class="math inline">\(B_j \in (0, 1)\)</span> <span class="citation" data-cites="EfronMorris1975">(<a href="#ref-EfronMorris1975" role="doc-biblioref">Efron and Morris 1975</a>)</span> is more usefully interpreted as the <strong>retention weight on the study-specific estimate</strong>: the posterior mean of a study effect takes the form <span class="math inline">\((1-B_j)\mu + B_j\bar{y}_j\)</span>. Thus <span class="math inline">\(B_j \approx 0\)</span> corresponds to <strong>strong pooling toward the overall mean</strong>, while <span class="math inline">\(B_j \approx 1\)</span> corresponds to <strong>weak pooling / little shrinkage</strong>. Under regularity condition (C5), <span class="math inline">\(\sigma^2_\theta &gt; 0\)</span> ensures <span class="math inline">\(B_j\)</span> is strictly between 0 and 1 for all <span class="math inline">\(j\)</span>.</p>
+<p><strong>Connection to <span class="math inline">\(I^2\)</span>.</strong> In meta-analytic practice, <span class="math inline">\(B\)</span> is closely related to the well-known <span class="math inline">\(I^2\)</span> statistic. In the balanced case, defining <span class="math inline">\(I^2 = \sigma^2_\theta / (\sigma^2_\theta + \bar{s}^2)\)</span> yields: <span class="math display">\[
+B = \frac{I^2}{I^2 + (1 - I^2)/n}.
+\]</span> When <span class="math inline">\(n\)</span> is large, <span class="math inline">\(B \approx 1\)</span> for any <span class="math inline">\(I^2 &gt; 0\)</span>; when <span class="math inline">\(n = 1\)</span>, <span class="math inline">\(B = I^2\)</span>. Thus <span class="math inline">\(B\)</span> generalizes <span class="math inline">\(I^2\)</span> by incorporating the within-study sample size: even modest heterogeneity (<span class="math inline">\(I^2 \approx 0.3\)</span>) can produce a <strong>large retention weight</strong> (<span class="math inline">\(B \approx 0.8\)</span>) when studies are large, meaning relatively weak pooling toward the grand mean.</p>
+<p><a href="#fig-shrinkage-retention-map" class="quarto-xref">Figure&nbsp;<span>7.2</span></a> displays this relationship as a heatmap over the <span class="math inline">\((I^2, n)\)</span> plane, together with marginal slice plots that clarify how quickly <span class="math inline">\(B\)</span> saturates as either heterogeneity or within-study sample size increases.</p>
+<div id="fig-shrinkage-retention-map" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-shrinkage-retention-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/matlab/fig06_shrinkage_retention_map.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-shrinkage-retention-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.2: The retention weight <span class="math inline">\(B = I^2 / [I^2 + (1-I^2)/n]\)</span> in the balanced case. The heatmap over the <span class="math inline">\((I^2, n)\)</span> plane and marginal slice plots show that even moderate heterogeneity (the proportion of total variance due to between-study differences) can imply weak pooling when each study contributes many effect sizes.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="def-identifying-variation" class="level3" data-number="7.1.4">
+<h3 data-number="7.1.4" class="anchored" data-anchor-id="def-identifying-variation"><span class="header-section-number">7.1.4</span> Definition 7 (Identifying-Variation Fraction)</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Definition 7 (Identifying-Variation Fraction).</strong> For fixed-effect coefficient <span class="math inline">\(\beta_k\)</span>, the <strong>between-study identifying-variation fraction</strong> <span class="math inline">\(R_k\)</span> admits two related characterizations: an intuitive formula valid for balanced designs, and a rigorous canonical definition valid generally.</p>
+<p><strong>(a) Intuitive formula.</strong> When all covariates are study-level (CE model) or the design is balanced and orthogonal: <span id="eq-Rk-intuitive"><span class="math display">\[
+R_k = \frac{\mathrm{Var}_{\mathrm{between}}(\mathbf{x}_{jk})}{\mathrm{Var}_{\mathrm{total}}(\mathbf{x}_{ijk})} \cdot B \;\in\; [0, B].
+\tag{7.11}\]</span></span></p>
+<p><strong>(b) Rigorous covariance-based definition (corrected).</strong> In general: <span id="eq-Rk-schur"><span class="math display">\[
+R_k = 1 - \frac{[(\mathbf{H}^{\mathrm{post}}_{\boldsymbol{\beta}\boldsymbol{\beta}})^{-1}]_{kk}}{[(\mathbf{S}^{\mathrm{post}}_{\boldsymbol{\beta}})^{-1}]_{kk}},
+\tag{7.12}\]</span></span> where <span class="math inline">\(\mathbf{S}^{\mathrm{post}}_{\boldsymbol{\beta}} = \mathbf{H}^{\mathrm{post}}_{\boldsymbol{\beta}\boldsymbol{\beta}} - \mathbf{H}^{\mathrm{post}}_{\boldsymbol{\beta}\boldsymbol{\theta}}\,(\mathbf{H}^{\mathrm{post}}_{\boldsymbol{\theta}\boldsymbol{\theta}})^{-1}\,\mathbf{H}^{\mathrm{post}}_{\boldsymbol{\theta}\boldsymbol{\beta}}\)</span> is the Schur complement of the <strong>posterior</strong> Hessian <span class="math inline">\(\mathbf{H}^{\mathrm{post}} = \mathbf{H} + \mathbf{H}_{\mathrm{prior}}\)</span> with respect to <span class="math inline">\(\boldsymbol{\theta}\)</span>. The use of <span class="math inline">\(\mathbf{H}^{\mathrm{post}}\)</span> (rather than the likelihood-only <span class="math inline">\(\mathbf{H}\)</span>) is essential: in the balanced intercept-only model, the likelihood Hessian’s Schur complement <span class="math inline">\(\mathbf{S}_{\boldsymbol{\beta}} = \mathbf{H}_{\boldsymbol{\beta}\boldsymbol{\beta}} - \mathbf{H}_{\boldsymbol{\beta}\boldsymbol{\theta}}\,\mathbf{H}_{\boldsymbol{\theta}\boldsymbol{\theta}}^{-1}\,\mathbf{H}_{\boldsymbol{\theta}\boldsymbol{\beta}} = Ja - Ja = 0\)</span> (singular), because the intercept <span class="math inline">\(\mu\)</span> and the sum <span class="math inline">\(\sum_j \theta_j\)</span> are aliased in the likelihood. The posterior Hessian resolves this aliasing through the prior precision <span class="math inline">\(\lambda = 1/\sigma^2_\theta\)</span> on each <span class="math inline">\(\theta_j\)</span>, yielding <span class="math inline">\(\mathbf{S}^{\mathrm{post}}_{\mu} = J\lambda B + h_\mu &gt; 0\)</span>, where <span class="math inline">\(h_\mu\)</span> is the prior precision of <span class="math inline">\(\mu\)</span>. Under a flat <span class="math inline">\(\beta\)</span> prior (<span class="math inline">\(h_\mu = 0\)</span>), this reduces to <span class="math inline">\(J\lambda B\)</span>; under a proper weakly informative prior, <span class="math inline">\(h_\mu &gt; 0\)</span> is negligible relative to <span class="math inline">\(J\lambda B\)</span> when condition (C6) holds.</p>
+<p>Note that <span class="math inline">\([(\mathbf{S}^{\mathrm{post}}_{\boldsymbol{\beta}})^{-1}]_{kk}\)</span> is the marginal posterior variance of <span class="math inline">\(\beta_k\)</span> (from the full joint posterior), while <span class="math inline">\([(\mathbf{H}^{\mathrm{post}}_{\boldsymbol{\beta}\boldsymbol{\beta}})^{-1}]_{kk}\)</span> is the posterior variance of <span class="math inline">\(\beta_k\)</span> ignoring the random effects. The difference <span class="math inline">\(([(\mathbf{S}^{\mathrm{post}}_{\boldsymbol{\beta}})^{-1}]_{kk} - [(\mathbf{H}^{\mathrm{post}}_{\boldsymbol{\beta}\boldsymbol{\beta}})^{-1}]_{kk}) / [(\mathbf{S}^{\mathrm{post}}_{\boldsymbol{\beta}})^{-1}]_{kk}\)</span> gives the fraction of the total posterior variance of <span class="math inline">\(\beta_k\)</span> attributable to between-study variation.</p>
+</div>
+</div>
+</div>
+<p><strong>Interpretation.</strong> The identifying-variation fraction measures the proportion of the posterior variance of <span class="math inline">\(\beta_k\)</span> attributable to between-study variation (via the random effects). When <span class="math inline">\(R_k = 0\)</span>, the random effects contribute no additional variance to <span class="math inline">\(\beta_k\)</span>. When <span class="math inline">\(R_k = B\)</span> (as in the balanced intercept-only case under a flat fixed-effect prior), the between-study channel accounts for a fraction <span class="math inline">\(B\)</span> of the total posterior variance. For study-level covariates in balanced orthogonal designs, the intuitive formula gives <span class="math inline">\(R_k \approx \gamma_k B\)</span>; in general within-cluster-covariate settings, the Schur-complement definition is the rigorous one and no simple product formula should be treated as exact.</p>
+<p><strong>Relationship between (a) and (b).</strong> The two characterizations coincide for balanced orthogonal designs under a flat <span class="math inline">\(\boldsymbol{\beta}\)</span> prior (<span class="math inline">\(h_\mu = 0\)</span>), where the cross-information <span class="math inline">\(\mathbf{H}^{\mathrm{post}}_{\boldsymbol{\beta}\boldsymbol{\theta}}\)</span> has a simple structure. In the balanced intercept-only CE model with flat <span class="math inline">\(\beta\)</span> prior, definition (b) yields <span class="math inline">\(R_\mu = 1 - [(\mathbf{H}^{\mathrm{post}}_{\mu\mu})^{-1}] / [(\mathbf{S}^{\mathrm{post}}_\mu)^{-1}] = B\)</span>, recovering definition (a) exactly. Under a proper weakly informative prior (<span class="math inline">\(h_\mu &gt; 0\)</span>), the exact expression is <span class="math inline">\(R_\mu = J\alpha B / (J\alpha + h_\mu)\)</span>, which differs from <span class="math inline">\(B\)</span> by a factor <span class="math inline">\(h_\mu/(J\alpha + h_\mu)\)</span>. Under condition (C6) (<span class="math inline">\(\|\mathbf{H}_{\mathrm{prior}}\|/\|\mathbf{H}\| \to 0\)</span>), this correction is <span class="math inline">\(O(h_\mu/(J\alpha))\)</span> and is negligible for weakly informative priors (e.g., <span class="math inline">\(\sigma_\beta = 1\)</span> with <span class="math inline">\(J = 117\)</span> gives <span class="math inline">\(|R_\mu - B|/B &lt; 10^{-4}\)</span>). Thus <span class="math inline">\(R_\mu = B\)</span> is <em>exact</em> under flat priors and <em>asymptotically exact</em> under condition (C6). In unbalanced or non-orthogonal designs, definition (b) is the rigorous one; definition (a) serves as an intuitive approximation.</p>
+</section>
+<section id="def-kappa" class="level3" data-number="7.1.5">
+<h3 data-number="7.1.5" class="anchored" data-anchor-id="def-kappa"><span class="header-section-number">7.1.5</span> Definition 8 (Finite-Cluster Coupling Factor)</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Definition 8 (Finite-Cluster Coupling Factor).</strong> The <strong>finite-cluster coupling factor</strong> for study <span class="math inline">\(j\)</span> is <span id="eq-kappa"><span class="math display">\[
+\kappa_j(J) = 1 - \frac{1}{J(1 - B_j) + B_j}.
+\tag{7.13}\]</span></span></p>
+</div>
+</div>
+</div>
+<p><strong>Scope.</strong> The formula for <span class="math inline">\(\kappa_j(J)\)</span> is exact in <strong>balanced</strong> designs (<span class="math inline">\(n_j = n\)</span>, <span class="math inline">\(\bar{s}_j^2 = \bar{s}^2\)</span> for all <span class="math inline">\(j\)</span>). In unbalanced designs, the marginal posterior variance of <span class="math inline">\(\theta_j\)</span> depends on the full precision schedule <span class="math inline">\(\{a_h\}_{h=1}^J\)</span> where <span class="math inline">\(a_h = n_h/\bar{s}_h^2\)</span>, and <span class="math inline">\(\kappa_j(J)\)</span> is an approximation. The conditional DER formula (Theorem 3(b)) is exact regardless of balance.</p>
+<p>As the number of studies grows, <span class="math inline">\(\kappa_j(J) \to 1\)</span>. For finite <span class="math inline">\(J\)</span>, the coupling factor captures the dependence between <span class="math inline">\(\hat{\mu}\)</span> and <span class="math inline">\(\hat{\theta}_j\)</span> induced by the shared estimation of the overall mean. When <span class="math inline">\(B_j \approx 1\)</span> (weak pooling / high retention of the study-specific estimate), <span class="math inline">\(\kappa_j(J) \approx 1 - 1/[J \cdot 0 + 1] = 0\)</span>: the marginal DER collapses because <span class="math inline">\(\theta_j\)</span> and <span class="math inline">\(\mu\)</span> become nearly confounded. When <span class="math inline">\(B_j \approx 0\)</span> (strong pooling toward the grand mean), <span class="math inline">\(\kappa_j(J) \approx 1 - 1/J\)</span>: the coupling factor is close to one even for moderate <span class="math inline">\(J\)</span>, because <span class="math inline">\(\theta_j\)</span> and <span class="math inline">\(\mu\)</span> are nearly independent.</p>
+</section>
+</section>
+<section id="sec-der-classification" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="sec-der-classification"><span class="header-section-number">7.2</span> DER Classification</h2>
+<p>For practical diagnostic use, we adopt the following five-tier classification scheme (T0–T4), with thresholds harmonized with the calibration benchmarks developed in <span class="citation" data-cites="LeeDER2026">Lee (<a href="#ref-LeeDER2026" role="doc-biblioref">2026</a>)</span>:</p>
+<div id="tbl-der-tiers" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-der-tiers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;7.2: <strong>DER classification tiers</strong> <span class="citation" data-cites="LeeDER2026">(harmonized with <a href="#ref-LeeDER2026" role="doc-biblioref">Lee 2026</a>)</span>. The same thresholds are restated with <span class="math inline">\(\mu\)</span>-specific action items in <a href="ch12-interpretation.html#tbl-der-tiers-mu" class="quarto-xref">Table&nbsp;<span>12.5</span></a>.
+</figcaption>
+<div aria-describedby="tbl-der-tiers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 32%">
+<col style="width: 21%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Tier</th>
+<th style="text-align: left;">Label</th>
+<th style="text-align: center;"><span class="math inline">\(\mathrm{DER}_k\)</span> Range</th>
+<th style="text-align: left;">Interpretation</th>
+<th style="text-align: left;">Recommended Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">T0</td>
+<td style="text-align: left;">Over-dispersed</td>
+<td style="text-align: center;"><span class="math inline">\(&lt; 0.95\)</span></td>
+<td style="text-align: left;">Working model overstates uncertainty</td>
+<td style="text-align: left;">Investigate model/estimation; do not narrow automatically</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T1</td>
+<td style="text-align: left;">Calibrated</td>
+<td style="text-align: center;"><span class="math inline">\([0.95,\; 1.05]\)</span></td>
+<td style="text-align: left;">Working model adequate</td>
+<td style="text-align: left;">No correction needed</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T2</td>
+<td style="text-align: left;">Mild</td>
+<td style="text-align: center;"><span class="math inline">\((1.05,\; 2.0]\)</span></td>
+<td style="text-align: left;">Mild misspecification</td>
+<td style="text-align: left;">Report DER; CCC recommended</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T3</td>
+<td style="text-align: left;">Moderate</td>
+<td style="text-align: center;"><span class="math inline">\((2.0,\; 4.0]\)</span></td>
+<td style="text-align: left;">Moderate misspecification</td>
+<td style="text-align: left;">Apply CCC; examine sources</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T4</td>
+<td style="text-align: left;">Severe</td>
+<td style="text-align: center;"><span class="math inline">\(&gt; 4.0\)</span></td>
+<td style="text-align: left;">Severe misspecification</td>
+<td style="text-align: left;">Apply CCC; consider model revision</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>With the definitions and classification in place, we are ready for the central result of Part III: the transfer of the entire DER decomposition framework from survey inference to meta-analysis. The theorem has five parts — fixed-effect DER, random-effect DER, conservation law, boundary behavior, and design-effective sample size — each established through the structural equivalence of Part II.</p>
+</section>
+<section id="sec-thm3-statement" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="sec-thm3-statement"><span class="header-section-number">7.3</span> Theorem 3: DER Transfer to Meta-Analysis</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Theorem 3 (DER Transfer to Meta-Analysis).</strong> Consider a Bayesian CE meta-analytic model (Definition 2) satisfying exactness conditions (E1)–(E3) and (E5), together with regularity conditions (C1)–(C8) stated in <a href="ch11-regularity.html" class="quarto-xref"><span>Chapter 11</span></a>, and evaluated at the standard independence working model (<span class="math inline">\(\rho_{\mathrm{work}} = 0\)</span>). Then:</p>
+<p><strong>(a) Fixed-effect DER decomposition in the between-direction case.</strong> For each coefficient <span class="math inline">\(\beta_k\)</span> whose identifying direction lies entirely in the <strong>between-cluster eigenspace</strong> (in particular, the intercept and any study-level covariate under (E4)): <span id="eq-der-fixed"><span class="math display">\[
+\mathrm{DER}_{\beta_k}^{\mathrm{thm,cond}} = \mathrm{DEFF} \cdot (1 - R_k).
+\tag{7.14}\]</span></span> [<strong>Scope</strong>: theorem-level exact for the intercept and study-level covariates under <span class="math inline">\(\rho_{\mathrm{work}}=0\)</span>; for within-cluster covariates the scalar DEFF formula need not hold, and the Schur-complement <span class="math inline">\(R_k\)</span> must be paired with the appropriate direction-specific ratio rather than the classical DEFF.]</p>
+<p>In the intercept-only model (<span class="math inline">\(p = 1\)</span>, <span class="math inline">\(\beta_1 = \mu\)</span>), the identifying-variation fraction equals the retention weight (<span class="math inline">\(R_\mu = B\)</span> under a flat fixed-effect prior; asymptotically <span class="math inline">\(R_\mu \to B\)</span> under condition C6), giving <span id="eq-der-mu"><span class="math display">\[
+\mathrm{DER}_\mu^{\mathrm{thm,cond}} = \mathrm{DEFF} \cdot (1 - B).
+\tag{7.15}\]</span></span> [<strong>Scope</strong>: algebraically exact for balanced designs (<span class="math inline">\(n_j = n\)</span>, <span class="math inline">\(\bar{s}_j^2 = \bar{s}^2\)</span>); for unbalanced designs, <span class="math inline">\(B\)</span> and <span class="math inline">\(\mathrm{DEFF}\)</span> are replaced by appropriate study-specific or weighted-average quantities.]</p>
+<p><strong>(b) Random-effect DER.</strong> For the study-specific effect <span class="math inline">\(\theta_j\)</span>:</p>
+<ul>
+<li><p><em>Conditional</em> on <span class="math inline">\(\boldsymbol{\beta}\)</span>: <span id="eq-der-cond"><span class="math display">\[
+\mathrm{DER}_j^{\mathrm{thm,cond}} = B_j \cdot \mathrm{DEFF}_j.
+\tag{7.16}\]</span></span> [<strong>Scope</strong>: algebraically exact for any design (balanced or unbalanced), since each <span class="math inline">\(\theta_j\)</span> is identified by its own cluster.]</p></li>
+<li><p><em>Marginal</em> (integrating over <span class="math inline">\(\boldsymbol{\beta}\)</span>): <span id="eq-der-marg"><span class="math display">\[
+\mathrm{DER}_j^{\mathrm{thm,marg}} = B_j \cdot \mathrm{DEFF}_j \cdot \kappa_j(J).
+\tag{7.17}\]</span></span> [<strong>Scope</strong>: algebraically exact for balanced designs; approximate for unbalanced designs (see Definition 8 scope note).]</p></li>
+</ul>
+<p><strong>(c) Conservation law.</strong> In the intercept-only balanced model (<span class="math inline">\(n_j = n\)</span>, <span class="math inline">\(\bar{s}_j^2 = \bar{s}^2\)</span>): <span id="eq-conservation"><span class="math display">\[
+\mathrm{DER}_\mu^{\mathrm{thm,cond}} + \mathrm{DER}_\theta^{\mathrm{cond}} = \mathrm{DEFF}.
+\tag{7.18}\]</span></span> [<strong>Scope</strong>: algebraically exact for balanced designs; holds approximately for unbalanced designs with a Jensen’s inequality gap proportional to unbalancedness (see <a href="ch08-conservation.html" class="quarto-xref"><span>Chapter 8</span></a>).]</p>
+<p><strong>(d) Boundary behavior.</strong></p>
+<ul>
+<li><ol type="i">
+<li><span class="math inline">\(\sigma^2_\theta \to 0\)</span> (<span class="math inline">\(B \to 0\)</span>): <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{thm,cond}} \to \mathrm{DEFF}\)</span>, <span class="math inline">\(\;\mathrm{DER}_\theta^{\mathrm{cond}} \to 0\)</span>.</li>
+</ol></li>
+<li><ol start="2" type="i">
+<li><span class="math inline">\(\sigma^2_\theta \to \infty\)</span> (<span class="math inline">\(B \to 1\)</span>): <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{thm,cond}} \to 0\)</span>, <span class="math inline">\(\;\mathrm{DER}_\theta^{\mathrm{cond}} \to \mathrm{DEFF}\)</span>.</li>
+</ol></li>
+<li><ol start="3" type="i">
+<li><span class="math inline">\(\rho_{\mathrm{true}} = 0\)</span> (<span class="math inline">\(\mathrm{DEFF} = 1\)</span>): <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{thm,cond}} = 1 - B\)</span>, <span class="math inline">\(\;\mathrm{DER}_\theta^{\mathrm{cond}} = B\)</span>. <strong>(Corrected.)</strong></li>
+</ol></li>
+<li><ol start="4" type="i">
+<li><span class="math inline">\(n_j = 1\)</span> for all <span class="math inline">\(j\)</span> (<span class="math inline">\(\mathrm{DEFF}_j = 1\)</span>): <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{thm,cond}} = 1 - B\)</span>, <span class="math inline">\(\;\mathrm{DER}_\theta^{\mathrm{cond}} = B\)</span>. <strong>(Corrected.)</strong></li>
+</ol></li>
+</ul>
+<p>(Extended treatment in <a href="ch09-boundary.html" class="quarto-xref"><span>Chapter 9</span></a>.)</p>
+<p><strong>(e) Design-effective sample size.</strong> For coefficient <span class="math inline">\(\beta_k\)</span>: <span id="eq-neff"><span class="math display">\[
+N_{\mathrm{eff}}^{\mathrm{design}}(\beta_k) = \frac{N}{\mathrm{DER}_{\beta_k}} = \frac{N}{\mathrm{DEFF} \cdot (1 - R_k)}.
+\tag{7.19}\]</span></span></p>
+</div>
+</div>
+<p><strong>Note on (E4).</strong> Condition (E4) — the DER simplification condition — is needed only to recover the especially simple between-direction result <span class="math inline">\(R_k = B\)</span> for the intercept and study-level covariates. Under the broad CE definition (<span class="math inline">\(\omega^2 = 0\)</span>, which allows observation-level covariates <span class="math inline">\(\mathbf{x}_{ij}\)</span>), the exact target is always the general Schur-complement quantity <span class="math inline">\(R_k\)</span> from Definition 7(b); what fails without (E4) is the further replacement of the relevant design ratio by the classical scalar DEFF.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Remark (Scope of Theorem 3).</strong> The closed-form formulas in part (a) are exact only in the between-direction cases stated above. For <span class="math inline">\(\rho_{\mathrm{work}} &gt; 0\)</span>, or for coefficients with substantial within-cluster identifying variation, the relevant ratios become direction-specific: <span class="math inline">\(\mathrm{DEFF}_{\mathrm{between},j}^{(w)} = [1 + (n_j - 1)\rho_{\mathrm{true}}]/[1 + (n_j - 1)\rho_{\mathrm{work}}]\)</span> and <span class="math inline">\(\mathrm{DEFF}_{\mathrm{within},j}^{(w)} = (1-\rho_{\mathrm{true}})/(1-\rho_{\mathrm{work}})\)</span>. See <a href="ch10-extensions.html#sec-he-scope" class="quarto-xref"><span>Section 10.1.2.3</span></a> for the eigenstructure discussion. Parts (b)–(e) remain as stated in their own scope notes.</p>
+</div>
+</div>
+</section>
+<section id="sec-thm3-proof" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="sec-thm3-proof"><span class="header-section-number">7.4</span> Proof of Theorem 3</h2>
+<p>The proof proceeds in two stages. Stage 1 invokes the structural equivalence results of <a href="ch04-isomorphism.html" class="quarto-xref"><span>Chapter 4</span></a> and <a href="ch05-sandwich.html" class="quarto-xref"><span>Chapter 5</span></a> to establish that the DER is invariant under the isomorphism. Stage 2 applies the DER decomposition theorems from <span class="citation" data-cites="LeeDER2026">Lee (<a href="#ref-LeeDER2026" role="doc-biblioref">2026</a>)</span> and verifies the regularity conditions.</p>
+<section id="sec-der-invariance" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="sec-der-invariance"><span class="header-section-number">7.4.1</span> Stage 1: DER Invariance Under the Isomorphism</h3>
+<p>The DER for parameter <span class="math inline">\(\phi_k\)</span> is <span class="math display">\[
+\mathrm{DER}_k = \frac{[\mathbf{V}_{\mathrm{sand}}]_{kk}}{[\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{kk}}.
+\]</span></p>
+<p>By Theorem 2(d), under conditions (E1)–(E3) and (E5): <span class="math display">\[
+\mathbf{V}_{\mathrm{sand}}^{\mathrm{meta}} = \mathbf{V}_{\mathrm{sand}}^{\mathrm{surv}}.
+\]</span></p>
+<p>By Corollary 1(d), under the same conditions: <span class="math display">\[
+\boldsymbol{\Sigma}_{\mathrm{MCMC}}^{\mathrm{meta}} = \boldsymbol{\Sigma}_{\mathrm{MCMC}}^{\mathrm{surv}}.
+\]</span></p>
+<p>Therefore, for every <span class="math inline">\(k = 1, \ldots, d\)</span>: <span id="eq-der-invariance"><span class="math display">\[
+\mathrm{DER}_k^{\mathrm{meta}} = \frac{[\mathbf{V}_{\mathrm{sand}}^{\mathrm{meta}}]_{kk}}{[\boldsymbol{\Sigma}_{\mathrm{MCMC}}^{\mathrm{meta}}]_{kk}} = \frac{[\mathbf{V}_{\mathrm{sand}}^{\mathrm{surv}}]_{kk}}{[\boldsymbol{\Sigma}_{\mathrm{MCMC}}^{\mathrm{surv}}]_{kk}} = \mathrm{DER}_k^{\mathrm{surv}}.
+\tag{7.20}\]</span></span></p>
+<p>The DER is the same whether computed in the meta-analytic or the survey framework. This completes Stage 1.</p>
+</section>
+<section id="sec-der-decomposition" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="sec-der-decomposition"><span class="header-section-number">7.4.2</span> Stage 2: DER Decomposition Under the CE Model</h3>
+<p>We now verify that the DER decomposition theorems from <span class="citation" data-cites="LeeDER2026">Lee (<a href="#ref-LeeDER2026" role="doc-biblioref">2026</a>)</span> apply to the identified meta-analytic/survey model.</p>
+<section id="part-a-fixed-effect-der" class="level4">
+<h4 class="anchored" data-anchor-id="part-a-fixed-effect-der">Part (a): Fixed-effect DER</h4>
+<p><span class="citation" data-cites="LeeDER2026">Lee (<a href="#ref-LeeDER2026" role="doc-biblioref">2026</a>, Theorem 1)</span> establishes that under conditions corresponding to (C1)–(C4) and (C5)–(C8), the fixed-effect DER decomposes as <span class="math display">\[
+\mathrm{DER}_{\beta_k} = \mathrm{DEFF} \cdot (1 - R_k).
+\]</span></p>
+<p>The key condition to verify is (R4) from <span class="citation" data-cites="LeeDER2026">Lee (<a href="#ref-LeeDER2026" role="doc-biblioref">2026</a>)</span> — <strong>scalar DEFF within clusters</strong> — which requires that the within-cluster meat-to-bread ratio satisfies <span class="math display">\[
+[\mathbf{M}]_{\mathrm{within}\;j} = \mathrm{DEFF}_j \cdot [\mathbf{H}]_{\mathrm{within}\;j}.
+\]</span></p>
+<p><strong>Verification of (R4) under compound symmetry.</strong> Under condition (C2), both the true and working covariances are compound symmetric (with possibly different correlations <span class="math inline">\(\rho_{\mathrm{true}}\)</span> and <span class="math inline">\(\rho_{\mathrm{work}}\)</span>). The compound-symmetric matrix <span class="math inline">\(\mathbf{A} = a[(1-\rho)\mathbf{I} + \rho\,\mathbf{1}\mathbf{1}^{\intercal}]\)</span> has eigenvalues:</p>
+<ul>
+<li><strong>Between-cluster direction</strong> (<span class="math inline">\(\mathbf{1}_{n_j}\)</span>): <span class="math inline">\(a[1 + (n_j - 1)\rho]\)</span>, with multiplicity 1.</li>
+<li><strong>Within-cluster directions</strong> (<span class="math inline">\(\perp \mathbf{1}_{n_j}\)</span>): <span class="math inline">\(a(1 - \rho)\)</span>, with multiplicity <span class="math inline">\(n_j - 1\)</span>.</li>
+</ul>
+<p>The meat-to-bread ratio in each eigenspace is:</p>
+<ul>
+<li><p>Between: <span class="math inline">\(\frac{1 + (n_j - 1)\rho_{\mathrm{true}}}{1 + (n_j - 1)\rho_{\mathrm{work}}} \cdot \frac{[1 + (n_j - 1)\rho_{\mathrm{work}}]^2}{[1 + (n_j - 1)\rho_{\mathrm{work}}]^2}\)</span>. After simplification through the sandwich structure, the effective ratio is <span class="math inline">\(\mathrm{DEFF}_j = 1 + (n_j - 1)\rho_{\mathrm{true}}\)</span> when either (a) the model is intercept-only (all variation is in the <span class="math inline">\(\mathbf{1}_{n_j}\)</span> direction) or (b) <span class="math inline">\(\rho_{\mathrm{work}} = 0\)</span> (the bread is proportional to identity).</p></li>
+<li><p>Within: <span class="math inline">\((1 - \rho_{\mathrm{true}})/(1 - \rho_{\mathrm{work}})\)</span>. When <span class="math inline">\(\rho_{\mathrm{work}} = 0\)</span>, this ratio equals <span class="math inline">\((1 - \rho_{\mathrm{true}})\)</span>, which is strictly less than <span class="math inline">\(\mathrm{DEFF}_j = 1 + (n_j - 1)\rho_{\mathrm{true}}\)</span> for <span class="math inline">\(\rho_{\mathrm{true}} &gt; 0\)</span>. The within-direction ratio equals <span class="math inline">\(\mathrm{DEFF}_j\)</span> only in the trivial case <span class="math inline">\(\rho_{\mathrm{true}} = \rho_{\mathrm{work}}\)</span> (correct working model). Thus the scalar DEFF assumption is exact only for variation that lies entirely in the between-cluster eigenspace.</p></li>
+</ul>
+<p>Therefore, (R4) is guaranteed by (C2) only when the relevant score direction lies in the between-cluster eigenspace: most importantly, the intercept and study-level covariates. For within-cluster covariates — even when <span class="math inline">\(\rho_{\mathrm{work}} = 0\)</span> — the scalar DEFF may fail, and the within-direction ratio must be tracked separately. For <span class="math inline">\(\rho_{\mathrm{work}} &gt; 0\)</span> with meta-regression, the scalar DEFF is generally only an approximation.</p>
+<p>For the CE model with study-level covariates, Definition 7 gives <span class="math inline">\(R_k = B\)</span> (exact under flat <span class="math inline">\(\boldsymbol{\beta}\)</span> prior; asymptotically exact under C6) when <span class="math inline">\(\beta_k\)</span> is a study-level covariate coefficient (which is always the case under (C4)). In the intercept-only model, <span class="math inline">\(R_\mu = B\)</span>, and <a href="#eq-der-mu" class="quarto-xref">Equation&nbsp;<span>7.15</span></a> follows from <a href="#eq-der-fixed" class="quarto-xref">Equation&nbsp;<span>7.14</span></a>.</p>
+<p>The remaining conditions are verified as follows: (C1) ensures likelihood regularity (twice-continuous differentiability). (C5) ensures <span class="math inline">\(B_j \in (0, 1)\)</span>. (C6) ensures that the prior does not dominate the data information. (C7) ensures that <span class="math inline">\(\boldsymbol{\beta}\)</span> is identified after profiling out <span class="math inline">\(\boldsymbol{\theta}\)</span>. (C8) ensures consistency of <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span>.</p>
+</section>
+<section id="part-b-random-effect-der" class="level4">
+<h4 class="anchored" data-anchor-id="part-b-random-effect-der">Part (b): Random-effect DER</h4>
+<p><span class="citation" data-cites="LeeDER2026">Lee (<a href="#ref-LeeDER2026" role="doc-biblioref">2026</a>, Theorem 2)</span> establishes the random-effect DER under the same regularity conditions.</p>
+<p><strong>Conditional DER.</strong> The conditional DER for study <span class="math inline">\(j\)</span> is <span class="math display">\[
+\mathrm{DER}_j^{\mathrm{thm,cond}} = B_j \cdot \mathrm{DEFF}_j.
+\]</span></p>
+<p>This arises from the posterior variance decomposition of <span class="math inline">\(\theta_j\)</span> conditional on <span class="math inline">\(\boldsymbol{\beta}\)</span>. Under the hierarchical normal model, the conditional posterior precision of <span class="math inline">\(\theta_j\)</span> is <span class="math display">\[
+[\boldsymbol{\Sigma}_{\mathrm{MCMC}}^{-1}]_{\theta_j \theta_j \mid \boldsymbol{\beta}} = \frac{n_j}{\bar{s}_j^2[1 + (n_j - 1)\rho_{\mathrm{work}}]} + \frac{1}{\sigma^2_\theta},
+\]</span> so the conditional posterior variance is <span class="math inline">\(\sigma^2_\theta(1 - B_j)\)</span> (up to terms involving <span class="math inline">\(\rho_{\mathrm{work}}\)</span>).</p>
+<p>The sandwich corrects for the true within-study dependence: the score-based variance of <span class="math inline">\(\hat{\theta}_j\)</span> conditional on <span class="math inline">\(\boldsymbol{\beta}\)</span> scales by <span class="math inline">\(\mathrm{DEFF}_j\)</span> relative to the working-model variance. The ratio of sandwich to posterior conditional variances yields <span class="math inline">\(B_j \cdot \mathrm{DEFF}_j\)</span>.</p>
+<p><strong>Marginal DER.</strong> The marginal DER incorporates the additional uncertainty from estimating <span class="math inline">\(\boldsymbol{\beta}\)</span>: <span class="math display">\[
+\mathrm{DER}_j^{\mathrm{thm,marg}} = B_j \cdot \mathrm{DEFF}_j \cdot \kappa_j(J).
+\]</span></p>
+<p>The factor <span class="math inline">\(\kappa_j(J) &lt; 1\)</span> arises because the marginal posterior of <span class="math inline">\(\theta_j\)</span> accounts for the covariance between <span class="math inline">\(\hat{\theta}_j\)</span> and <span class="math inline">\(\hat{\mu}\)</span> through the <span class="math inline">\((j, 1)\)</span> off-diagonal block of <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span>. The sandwich also captures this covariance, but its contribution is down-weighted by the finite number of clusters available to estimate <span class="math inline">\(\mu\)</span>. As <span class="math inline">\(J \to \infty\)</span>, the uncertainty in <span class="math inline">\(\hat{\mu}\)</span> vanishes, <span class="math inline">\(\kappa_j(J) \to 1\)</span>, and the marginal DER converges to the conditional DER.</p>
+</section>
+<section id="part-c-conservation-law" class="level4">
+<h4 class="anchored" data-anchor-id="part-c-conservation-law">Part (c): Conservation law</h4>
+<p>The conservation law is proved in full in <a href="ch08-conservation.html" class="quarto-xref"><span>Chapter 8</span></a>. The algebraic identity is: <span class="math display">\[
+\mathrm{DER}_\mu^{\mathrm{thm,cond}} + \mathrm{DER}_\theta^{\mathrm{cond}} = \mathrm{DEFF}(1 - B) + B \cdot \mathrm{DEFF} = \mathrm{DEFF}[(1 - B) + B] = \mathrm{DEFF}.
+\]</span></p>
+</section>
+<section id="part-d-boundary-behavior" class="level4">
+<h4 class="anchored" data-anchor-id="part-d-boundary-behavior">Part (d): Boundary behavior</h4>
+<p>The boundary properties follow by direct substitution into parts (a) and (b). The detailed analysis — including the critical correction of cases (iii) and (iv) from V1 — is deferred to <a href="ch09-boundary.html" class="quarto-xref"><span>Chapter 9</span></a>.</p>
+<p><strong>Summary of boundary values (balanced case):</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 25%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Boundary</th>
+<th style="text-align: center;"><span class="math inline">\(B\)</span></th>
+<th style="text-align: center;">DEFF</th>
+<th style="text-align: center;"><span class="math inline">\(\mathrm{DER}_\mu\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\mathrm{DER}_\theta^{\mathrm{cond}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(i) <span class="math inline">\(\sigma^2_\theta \to 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\to 0\)</span></td>
+<td style="text-align: center;">DEFF</td>
+<td style="text-align: center;">DEFF</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(ii) <span class="math inline">\(\sigma^2_\theta \to \infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\to 1\)</span></td>
+<td style="text-align: center;">DEFF</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">DEFF</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(iii) <span class="math inline">\(\rho_{\mathrm{true}} = 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(B\)</span></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(1 - B\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(B\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(iv) <span class="math inline">\(n_j = 1\;\forall j\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(B\)</span></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(1 - B\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(B\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="part-e-design-effective-sample-size" class="level4">
+<h4 class="anchored" data-anchor-id="part-e-design-effective-sample-size">Part (e): Design-effective sample size</h4>
+<p>The formula follows from the standard definition of effective sample size as the ratio of the total count to the variance inflation factor: <span class="math display">\[
+N_{\mathrm{eff}}^{\mathrm{design}}(\beta_k) = \frac{N}{\mathrm{DER}_{\beta_k}} = \frac{N}{\mathrm{DEFF} \cdot (1 - R_k)}.
+\]</span></p>
+<p>For the intercept-only model, <span class="math inline">\(N_{\mathrm{eff}}^{\mathrm{design}}(\mu) = N / [\mathrm{DEFF}(1 - B)]\)</span>. When <span class="math inline">\(B\)</span> is large (weak pooling / high retention of study-specific information), <span class="math inline">\(1 - B\)</span> is small, and <span class="math inline">\(N_{\mathrm{eff}}\)</span> can exceed <span class="math inline">\(N\)</span>. This does not mean that dependent data provide <em>more</em> information than independent data; it means that hierarchical borrowing reallocates information across the parameters so that the overall mean can be estimated with a smaller conditional design penalty than an individual study effect. The design-effective sample size should therefore be interpreted relative to the theorem-level DER, not as a literal count of independent observations.</p>
+<p>This completes the proof of all five parts of Theorem 3. <span class="math inline">\(\quad\blacksquare\)</span></p>
+<p>The five parts provide a complete diagnostic vocabulary. Part (a) identifies the design sensitivity of each fixed effect through the <span class="math inline">\(\mathrm{DEFF} \cdot (1-R_k)\)</span> decomposition. Part (b) does the same for study-specific effects through <span class="math inline">\(B_j \cdot \mathrm{DEFF}_j\)</span>. Part (c) constrains the total budget. Parts (d) and (e) characterize boundary behavior and translate the DER into an effective sample size. The conservation law and boundary analysis are developed in full in the following two chapters.</p>
+</section>
+</section>
+<section id="sec-der-conditional-remark" class="level3" data-number="7.4.3">
+<h3 data-number="7.4.3" class="anchored" data-anchor-id="sec-der-conditional-remark"><span class="header-section-number">7.4.3</span> Remark (DER Variant Selection and Implications for CCC)</h3>
+<p>The DER taxonomy (Definition 5b, <a href="#sec-def-der-taxonomy" class="quarto-xref"><span>Section 7.1.2.1</span></a>) makes explicit that the value of the DER for a fixed effect depends critically on which sandwich variant is used. For the Theorem 3 decomposition, the <strong>theorem-level conditional DER</strong> (<span class="math inline">\(\mathrm{DER}_k^{\mathrm{thm,cond}}\)</span>) is the relevant quantity. For CCC implementation, the <strong>marginal DER</strong> (<span class="math inline">\(\mathrm{DER}_k^{\mathrm{marg}}\)</span>) is the decision criterion. The key implications are:</p>
+<ol type="1">
+<li><p><strong>Theorem 3 decomposes <span class="math inline">\(\mathrm{DER}_k^{\mathrm{thm,cond}}\)</span>.</strong> The decomposition <span class="math inline">\(\mathrm{DER}_{\beta_k}^{\mathrm{thm,cond}} = \mathrm{DEFF} \cdot (1 - R_k)\)</span> (Theorem 3(a)) is the theorem-level design decomposition for the between-direction cases. This is a diagnostic for the magnitude of working-model misspecification at Level 1, not a CCC decision quantity. The formal analysis of the conditional-vs-marginal distinction is presented in <a href="ch12-interpretation.html#sec-conditional-marginal" class="quarto-xref"><span>Section 12.1</span></a>.</p></li>
+<li><p><strong>CCC uses <span class="math inline">\(\mathrm{DER}_k^{\mathrm{marg}}\)</span> for <span class="math inline">\(\boldsymbol{\beta}\)</span>.</strong> For the <span class="math inline">\(\boldsymbol{\beta}\)</span>-block CCC (<a href="ch06-posterior-ccc.html#sec-blockwise-ccc" class="quarto-xref"><span>Section 6.2.2</span></a>), the sandwich target <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\beta}, \boldsymbol{\beta}]\)</span> is obtained from the <strong>Bayesian marginal sandwich</strong> <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{marg}}\)</span> (Definition 3a, variant (iii)), which analytically integrates out <span class="math inline">\(\boldsymbol{\theta}\)</span> and operates on the <span class="math inline">\((K+1)\)</span>-dimensional parameter <span class="math inline">\((\boldsymbol{\beta}, \tau^2)\)</span>. This yields a marginal <span class="math inline">\(\boldsymbol{\beta}\)</span>-block that captures the full between-study variation, unlike the near-zero conditional <span class="math inline">\(\boldsymbol{\beta}\)</span>-block.</p></li>
+<li><p><strong>CCC uses <span class="math inline">\(\mathrm{DER}_j^{\mathrm{cond}}\)</span> for <span class="math inline">\(\boldsymbol{\theta}\)</span>.</strong> For the <span class="math inline">\(\boldsymbol{\theta}\)</span>-block, the conditional DER formula <span class="math inline">\(\mathrm{DER}_j^{\mathrm{cond}} = B_j \cdot \mathrm{DEFF}_j\)</span> (variant (i)) remains the only available and appropriate target. Variants (ii)–(iv) marginalize out <span class="math inline">\(\boldsymbol{\theta}\)</span>.</p></li>
+<li><p><strong>CR2 validates the marginal sandwich.</strong> The frequentist CR2 estimator (variant (iv)) serves as an independent cross-check. For the TSL15 data, the Bayesian marginal sandwich gives <span class="math inline">\(\mathrm{SD}_{\mathrm{sand}}^{\mathrm{marg}}(\mu) = 0.0244\)</span> while <span class="math inline">\(\mathrm{SE}_{\mathrm{CR2}}(\mu) = 0.0206\)</span>, with the 18.5% gap attributable to the 2-level vs.&nbsp;3-level model difference (see <a href="ch05-sandwich.html#tbl-sandwich-comparison" class="quarto-xref">Table&nbsp;<span>5.1</span></a>).</p></li>
+</ol>
+<p><strong>Why <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{marg}} &gt; \mathrm{DER}_\mu^{\mathrm{CR2}}\)</span> in the TSL15 example.</strong> The marginal DER (1.21) exceeds the CR2-based DER (0.86) for a structural reason that can be derived mathematically. Let <span class="math inline">\(\hat{\tau}^2_{(2)}\)</span> and <span class="math inline">\((\hat{\tau}^2_{(3)}, \hat{\omega}^2_{(3)})\)</span> denote the variance component estimates from the 2-level and 3-level models respectively, where <span class="math inline">\(\hat{\tau}^2_{(2)} = \hat{\tau}^2_{(3)} + \hat{\omega}^2_{(3)}\)</span> (approximately). The marginal variances are: <span class="math display">\[
+v_j^{(2)} = \frac{\bar{s}_j^2}{n_j} + \hat{\tau}^2_{(2)}, \qquad v_{ij}^{(3)} = s_{ij}^2 + \hat{\omega}^2_{(3)} + \hat{\tau}^2_{(3)}.
+\]</span></p>
+<p>The 2-level marginal sandwich uses weights <span class="math inline">\(w_j^{(2)} = 1/v_j^{(2)}\)</span>, while the 3-level CR2 uses observation-level weights <span class="math inline">\(w_{ij}^{(3)} = 1/v_{ij}^{(3)}\)</span>, aggregated with leverage correction. Two effects contribute to <span class="math inline">\(\mathrm{SD}_{\mathrm{sand}}^{\mathrm{marg}} &gt; \mathrm{SE}_{\mathrm{CR2}}\)</span>:</p>
+<ol type="i">
+<li><p><strong><span class="math inline">\(\tau^2\)</span> estimation uncertainty</strong>: The full <span class="math inline">\((K+1)\)</span>-dimensional marginal sandwich propagates the posterior uncertainty in <span class="math inline">\(\tau^2\)</span> into the <span class="math inline">\(\boldsymbol{\beta}\)</span>-block through the off-diagonal Hessian entries (see <a href="ch05-sandwich.html#eq-profile-marginal-relation" class="quarto-xref">Equation&nbsp;<span>5.22</span></a>). The CR2 treats variance components as fixed. This accounts for approximately <span class="math inline">\(0.0244 - 0.0216 = 0.0028\)</span> of the gap.</p></li>
+<li><p><strong>Variance absorption</strong>: Since <span class="math inline">\(\hat{\tau}^2_{(2)} &gt; \hat{\tau}^2_{(3)}\)</span>, the 2-level model has larger marginal variances <span class="math inline">\(v_j^{(2)}\)</span> and therefore <strong>smaller</strong> inverse-variance weights. The smaller weights produce a larger sandwich variance. This accounts for the remaining gap <span class="math inline">\(0.0216 - 0.0206 = 0.0010\)</span>.</p></li>
+</ol>
+<p>The decomposition confirms that the profile sandwich (which removes effect (i)) closes most of the gap, leaving only the model-structural effect (ii).</p>
+<p>The complete decision logic for applying CCC based on <span class="math inline">\(\mathrm{DER}_k^{\mathrm{marg}}\)</span> is stated in Recommendation 5 (<a href="ch12-interpretation.html#sec-rec5" class="quarto-xref"><span>Section 12.5.5</span></a>).</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-EfronMorris1975" class="csl-entry" role="listitem">
+Efron, Bradley, and Carl Morris. 1975. <span>“Data Analysis Using <span>S</span>tein’s Estimator and Its Generalizations.”</span> <em>Journal of the American Statistical Association</em> 70 (350): 311–19. <a href="https://doi.org/10.1080/01621459.1975.10479864">https://doi.org/10.1080/01621459.1975.10479864</a>.
+</div>
+<div id="ref-Kish1965" class="csl-entry" role="listitem">
+Kish, Leslie. 1965. <em>Survey Sampling</em>. New York: John Wiley &amp; Sons.
+</div>
+<div id="ref-LeeDER2026" class="csl-entry" role="listitem">
+Lee, J. 2026. <span>“Design Effect Ratios for <span>Bayesian</span> Survey Models: A Diagnostic Framework for Identifying Survey-Sensitive Parameters.”</span> <a href="https://doi.org/10.48550/arXiv.2603.07791">https://doi.org/10.48550/arXiv.2603.07791</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ch06-posterior-ccc.html" class="pagination-link" aria-label="Corollaries 1--2: Posterior and CCC Equivalence">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Corollaries 1–2: Posterior and CCC Equivalence</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ch08-conservation.html" class="pagination-link" aria-label="Conservation Law">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conservation Law</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/joonho112/bayesian-meta-survey-equivalence/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

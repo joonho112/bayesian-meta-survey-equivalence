@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>13&nbsp; Discussion and Conclusions – Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./ch12-interpretation.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ch13-discussion.html">Part V: Discussion and Conclusions</a></li><li class="breadcrumb-item"><a href="./ch13-discussion.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Discussion and Conclusions</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/joonho112/bayesian-meta-survey-equivalence" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part I: Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch01-notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Notation and Conventions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch02-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Model Definitions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch03-exactness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exactness Conditions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Core Equivalence Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch04-isomorphism.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Theorem 1: Likelihood Isomorphism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch05-sandwich.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Theorem 2: Sandwich Equivalence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch06-posterior-ccc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Corollaries 1–2: Posterior and CCC Equivalence</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Design Effect Ratios</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch07-der-framework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DER Framework and Transfer Theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch08-conservation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conservation Law</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch09-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Boundary Cases and Edge Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Extensions and Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch10-extensions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">E4-Relaxed CE and CHE Extensions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch11-regularity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Regularity Conditions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch12-interpretation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Interpretive Issues and Practical Implications</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part V: Discussion and Conclusions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch13-discussion.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Discussion and Conclusions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-revision-history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Revision History</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-discussion-meaning" id="toc-sec-discussion-meaning" class="nav-link active" data-scroll-target="#sec-discussion-meaning"><span class="header-section-number">13.1</span> Discussion: What the Equivalence Means</a></li>
+  <li><a href="#sec-implications" id="toc-sec-implications" class="nav-link" data-scroll-target="#sec-implications"><span class="header-section-number">13.2</span> Implications for Practice</a></li>
+  <li><a href="#sec-limitations" id="toc-sec-limitations" class="nav-link" data-scroll-target="#sec-limitations"><span class="header-section-number">13.3</span> Limitations</a></li>
+  <li><a href="#sec-future" id="toc-sec-future" class="nav-link" data-scroll-target="#sec-future"><span class="header-section-number">13.4</span> Future Directions</a></li>
+  <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion"><span class="header-section-number">13.5</span> Conclusion</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/joonho112/bayesian-meta-survey-equivalence/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ch13-discussion.html">Part V: Discussion and Conclusions</a></li><li class="breadcrumb-item"><a href="./ch13-discussion.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Discussion and Conclusions</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-discussion" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Discussion and Conclusions</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The preceding chapters have established a precise mathematical relationship between two inferential traditions that developed largely in isolation. Bayesian meta-analysis and Bayesian survey inference, when formulated under five exactness conditions, produce identical posterior distributions, identical sandwich variance estimators, and identical corrected credible intervals. This final chapter reflects on what that equivalence means, what it enables in practice, where it breaks down, and where the program might go next.</p>
+<section id="sec-discussion-meaning" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="sec-discussion-meaning"><span class="header-section-number">13.1</span> Discussion: What the Equivalence Means</h2>
+<p>The central result of this book is not an approximation, an analogy, or a heuristic correspondence. Under conditions (E1)–(E3) and (E5), the meta-analytic log-likelihood and the survey pseudo-log-likelihood differ by a constant that depends on no model parameters (Theorem 1, <a href="ch04-isomorphism.html" class="quarto-xref"><span>Chapter 4</span></a>). The constructive map <span class="math inline">\(\mathcal{T}\)</span> that sends cluster-specific sampling variances <span class="math inline">\(\sigma^2_{e,j}\)</span> to their within-cluster means <span class="math inline">\(\bar{s}^2_j\)</span> and survey weights <span class="math inline">\(\tilde{w}_{ij}\)</span> to unity is not a convenient simplification — it is an exact algebraic identification. The two frameworks are the same mathematical object written in different notation.</p>
+<p>This recognition carries an immediate and somewhat startling implication: any researcher who fits a compound-exchangeable or correlated-hierarchical-effects meta-analysis in Stan is already computing the survey pseudo-posterior. The inferential machinery of design-based survey statistics — sandwich variance estimation, design effects, the Cholesky Calibration Correction — applies to those posterior draws whether or not the analyst invokes it. The equivalence exists in the mathematics; the theorems in this book merely make it visible.</p>
+<p>Several conceptual clarifications follow. First, the distinction between conditional and marginal design effect ratios, developed in <a href="ch12-interpretation.html#sec-conditional-marginal" class="quarto-xref"><span>Section 12.1</span></a> and formalized in Theorem 3, had no precedent in the meta-analytic literature. The decomposition <span class="math inline">\(\mathrm{DER}^{\mathrm{cond}}_{\theta_j} = B_j \cdot \mathrm{DEFF}_j\)</span>, which separates the Bayesian shrinkage factor <span class="math inline">\(B_j\)</span> from the classical design effect, reveals that random-effects shrinkage and survey weighting interact at the level of individual cluster parameters — a phenomenon that neither tradition had reason to articulate on its own. Second, the conservation law <span class="math inline">\(\mathrm{DER}_\mu + \overline{\mathrm{DER}}^{\,\mathrm{cond}}_\theta = \mathrm{DEFF}\)</span> (<a href="ch08-conservation.html#sec-conservation-statement" class="quarto-xref"><span>Section 8.1</span></a>; see <a href="ch08-conservation.html#fig-der-budget-conservation" class="quarto-xref">Figure&nbsp;<span>8.1</span></a> for the geometric trade-off) shows that the total design effect is partitioned, not dissipated, across the parameter hierarchy. A near-unity <span class="math inline">\(\mathrm{DER}_\mu\)</span> does not mean the design effect has vanished; it means the effect has been absorbed into the cluster-level parameters.</p>
+<p>The practical consequence is direct. A meta-analyst who computes DER values for each parameter in the model can now determine exactly which credible intervals are trustworthy and which require sandwich-based correction. The <span class="citation" data-cites="TannerSmithLipsey2015">Tanner-Smith and Lipsey (<a href="#ref-TannerSmithLipsey2015" role="doc-biblioref">2015</a>)</span> empirical application illustrates this vividly: the overall mean <span class="math inline">\(\mu\)</span> sits comfortably in the calibrated tier (<span class="math inline">\(\mathrm{DER}_\mu \approx 1.01\)</span>, T1), while the average cluster-level DER falls in the severe tier (<span class="math inline">\(\overline{\mathrm{DER}}_\theta \approx 5.09\)</span>, T4). Without the equivalence framework, the analyst has no principled basis for knowing which parameters to trust and which to correct. With it, the answer is arithmetic.</p>
+</section>
+<section id="sec-implications" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="sec-implications"><span class="header-section-number">13.2</span> Implications for Practice</h2>
+<p>The equivalence results speak to three overlapping audiences, each of which gains something distinct.</p>
+<p><strong>For meta-analysts</strong>, the most immediate payoff is diagnostic. The DER, computed from posterior draws and the sandwich variance estimator as described in <a href="ch07-der-framework.html#sec-der-definitions" class="quarto-xref"><span>Section 7.1</span></a>, provides a scalar summary of model–design discrepancy for every parameter in the model. The tier classification from <span class="citation" data-cites="LeeDER2026">Lee (<a href="#ref-LeeDER2026" role="doc-biblioref">2026b</a>)</span> — T0 through T4, with boundaries at 0.95, 1.05, 2.0, and 4.0 — gives the analyst a standardized severity scale for each parameter. The CCC (<a href="ch06-posterior-ccc.html#sec-ccc-equiv" class="quarto-xref"><span>Section 6.2</span></a>) provides a post-MCMC correction that recalibrates posterior draws via a Cholesky transformation, requiring only matrix algebra on quantities already available from the Stan fit. No refitting is needed. The workflow is: fit once, diagnose with DER, correct where needed. In the <span class="citation" data-cites="TannerSmithLipsey2015">Tanner-Smith and Lipsey (<a href="#ref-TannerSmithLipsey2015" role="doc-biblioref">2015</a>)</span> data, the mean <span class="math inline">\(\mathrm{DER}_\theta = 5.09\)</span> (tier T4) implies that standard forest plot intervals should be widened by a factor of approximately <span class="math inline">\(\sqrt{5.09} \approx 2.3\)</span> — a correction that is invisible to conventional meta-analytic output.</p>
+<p><strong>For survey statisticians</strong>, the equivalence provides a mirror image. The conservation law, <span class="math inline">\(\mathrm{DER}_\mu + \overline{\mathrm{DER}}^{\,\mathrm{cond}}_\theta = \mathrm{DEFF}\)</span>, offers a decomposition of the classical design effect into components associated with different levels of the parameter hierarchy — a partition that has no natural expression within the purely design-based tradition. The three-step gradient observed in the <span class="citation" data-cites="TannerSmithLipsey2015">Tanner-Smith and Lipsey (<a href="#ref-TannerSmithLipsey2015" role="doc-biblioref">2015</a>)</span> application (within-study moderators at <span class="math inline">\(\sim 0.97\)</span>, between-study moderators at <span class="math inline">\(\sim 1.11\)</span>, control covariates at <span class="math inline">\(\sim 2.8\)</span>–<span class="math inline">\(3.0\)</span>) demonstrates that design effects are not uniform across parameters but vary systematically with the covariate’s position relative to the clustering structure. Survey practitioners working with hierarchical Bayesian models can use these results to anticipate which parameters will be most sensitive to design misspecification.</p>
+<p><strong>For methodologists</strong>, the deeper contribution is the demonstration that Calibrated Bayes <span class="citation" data-cites="Little2004 Little2012">(<a href="#ref-Little2004" role="doc-biblioref">Little 2004</a>, <a href="#ref-Little2012" role="doc-biblioref">2012</a>)</span> — the principle that Bayesian credible intervals should be evaluated against their design-based frequentist coverage — can be operationalized at the individual parameter level through the compute–classify–correct workflow. The DER is, in effect, a parameter-specific calibration diagnostic. When <span class="math inline">\(\mathrm{DER}_{\beta_k} \approx 1\)</span>, the model-based and design-based intervals agree; the posterior is already calibrated. When <span class="math inline">\(\mathrm{DER}_{\beta_k} \gg 1\)</span>, the model-based interval is too narrow; calibration requires the sandwich correction. The connection to <span class="citation" data-cites="Rubin1984">Rubin (<a href="#ref-Rubin1984" role="doc-biblioref">1984</a>)</span> is direct: the routine frequentist evaluation of Bayesian procedures that Rubin advocated is now embedded in the inferential pipeline at the individual-parameter level, at negligible computational cost relative to the MCMC sampling itself.</p>
+</section>
+<section id="sec-limitations" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="sec-limitations"><span class="header-section-number">13.3</span> Limitations</h2>
+<p>Six limitations of the present work deserve explicit acknowledgment.</p>
+<p>First, the equivalence between meta-analytic and survey frameworks is exact only under compound exchangeability. The extension to correlated hierarchical effects (CHE), discussed in <a href="ch10-extensions.html#sec-che-ext" class="quarto-xref"><span>Section 10.2</span></a>, is conditional on the within-study heterogeneity variance <span class="math inline">\(\omega^2\)</span>: the log-likelihoods coincide at each fixed <span class="math inline">\(\omega^2\)</span>, but the marginal likelihood over <span class="math inline">\(\omega^2\)</span> introduces a term that depends on the framework-specific parameterization. Practical implications are minor when <span class="math inline">\(\omega^2\)</span> is well identified, but the analyst should be aware that the CHE equivalence is not fully unconditional.</p>
+<p>Second, exactness condition (E2) requires that the sampling variances <span class="math inline">\(\bar{s}_j^2\)</span> be known. In practice, these are estimated from primary-study data and carry estimation uncertainty. When the estimated variances are substituted for the true values, the isomorphism holds approximately, with the approximation quality depending on the primary-study sample sizes. For meta-analyses with small primary studies, the (E2) violation may be consequential.</p>
+<p>Third, condition (E5) restricts the framework to Gaussian Level 1 errors. This covers continuous effect sizes (standardized mean differences, Fisher-<span class="math inline">\(z\)</span> correlations, log-odds ratios) under the usual normal approximation, but excludes bounded, count, and binary outcomes. The extension to non-Gaussian likelihoods requires an estimating-equation approach, as demonstrated for the hurdle beta-binomial model in <span class="citation" data-cites="LeeHBB2026">Lee (<a href="#ref-LeeHBB2026" role="doc-biblioref">2026a</a>)</span>, but the isomorphism theory of this book does not apply directly.</p>
+<p>Fourth, the empirical illustration relies on a single dataset <span class="citation" data-cites="TannerSmithLipsey2015">(<a href="#ref-TannerSmithLipsey2015" role="doc-biblioref">Tanner-Smith and Lipsey 2015</a>)</span> with <span class="math inline">\(J = 117\)</span> studies and <span class="math inline">\(N = 1{,}198\)</span> effect sizes. While the theoretical results are exact under the stated conditions and do not require empirical validation, the practical performance of the DER/CCC pipeline — including the conservation gap (8.7%) and the DER gradient across covariate types — has been documented in only one dataset. Generalizability to other meta-analytic settings requires systematic simulation.</p>
+<p>Fifth, the sandwich variance estimator is known to be liberal when the number of clusters <span class="math inline">\(J\)</span> is small, precisely the regime where Bayesian hierarchical models are most attractive. The regularity conditions of <a href="ch11-regularity.html" class="quarto-xref"><span>Chapter 11</span></a> ensure asymptotic validity as <span class="math inline">\(J \to \infty\)</span>, but for meta-analyses with <span class="math inline">\(J &lt; 30\)</span>, the DER may be poorly estimated and the CCC correction may not achieve its nominal coverage targets. Small-sample corrections analogous to CR2 <span class="citation" data-cites="BellMcCaffrey2002 Tipton2015">(<a href="#ref-BellMcCaffrey2002" role="doc-biblioref">Bell and McCaffrey 2002</a>; <a href="#ref-Tipton2015" role="doc-biblioref">Tipton 2015</a>)</span> for the Bayesian DER pipeline remain undeveloped.</p>
+<p>Sixth, the DER is computed conditional on a chosen working correlation <span class="math inline">\(\rho_{\mathrm{work}}\)</span>. The DER values change — sometimes substantially — as <span class="math inline">\(\rho_{\mathrm{work}}\)</span> varies. Sensitivity analysis over a grid of <span class="math inline">\(\rho\)</span> values is recommended to assess the stability of the diagnostic conclusions, as discussed in the boundary analysis of <a href="ch09-boundary.html" class="quarto-xref"><span>Chapter 9</span></a>.</p>
+</section>
+<section id="sec-future" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="sec-future"><span class="header-section-number">13.4</span> Future Directions</h2>
+<p>The limitations above suggest a natural research agenda, which I organize into six directions.</p>
+<p><strong>Simulation studies.</strong> A systematic Monte Carlo investigation varying <span class="math inline">\(J\)</span> (number of studies), <span class="math inline">\(\bar{n}\)</span> (average cluster size), <span class="math inline">\(K\)</span> (number of covariates), within-study covariate structures (<span class="math inline">\(\gamma_k\)</span> from 0 to 1), and degree of (E2) violation would establish the operating characteristics of the DER/CCC pipeline under realistic conditions. Of particular interest is the minimum <span class="math inline">\(J\)</span> required for adequate CCC performance and the behavior of the conservation gap as design imbalance increases.</p>
+<p><strong>Non-Gaussian outcomes.</strong> Extending the isomorphism to exponential-family likelihoods would cover binary, count, and bounded outcomes. The key question is whether the parameter-free constant <span class="math inline">\(c\)</span> in Theorem 1 survives when the log-likelihood involves a non-quadratic sufficient statistic. The estimating-equation approach of <span class="citation" data-cites="LeeHBB2026">Lee (<a href="#ref-LeeHBB2026" role="doc-biblioref">2026a</a>)</span> provides a practical template, but a formal isomorphism result for generalized linear mixed models remains open.</p>
+<p><strong>Multi-way clustering.</strong> Network meta-analysis introduces multiple clustering dimensions — study and treatment-contrast — that the two-level theory does not address. Extending the DER decomposition and conservation law to <span class="math inline">\(L\)</span>-level hierarchies (<span class="math inline">\(L \geq 3\)</span>) would require a system of conservation equations, one for each pair of adjacent levels, with level-specific shrinkage factors governing the redistribution dynamics.</p>
+<p><strong>Adaptive DER thresholds.</strong> The current five-tier classification uses fixed thresholds (0.95, 1.05, 2.0, 4.0). Treating the DER as a random variable with a posterior distribution — induced by the posterior uncertainty in the sandwich components — would allow probabilistic classification and data-adaptive threshold selection, potentially improving the sensitivity of the diagnostic in small-<span class="math inline">\(J\)</span> settings.</p>
+<p><strong>Software implementation.</strong> An integrated R package that wraps the compute–classify–correct workflow around Stan-based meta-analytic models would lower the barrier to adoption. The package would extract MCMC draws, compute the marginal and conditional sandwiches, evaluate the DER tier for each parameter, apply CCC where warranted, and produce diagnostic plots — all as a post-processing step on a fitted Stan object.</p>
+<p><strong>Bayesian model averaging.</strong> The equivalence is established for a given working-covariance specification. Averaging over multiple working-covariance structures — CE, HE, CHE with different <span class="math inline">\(\omega^2\)</span> — using Bayesian model averaging weights could produce DER-calibrated posteriors that are robust to working-model uncertainty at a level the current framework does not address.</p>
+</section>
+<section id="sec-conclusion" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="sec-conclusion"><span class="header-section-number">13.5</span> Conclusion</h2>
+<p>This book has established that Bayesian meta-analysis with dependent effect sizes and Bayesian survey inference under clustered sampling are, under five explicit conditions, not two methods but one, viewed from different disciplinary vantage points. The isomorphism map <span class="math inline">\(\mathcal{T}\)</span> identifies the likelihoods (Theorem 1), the sandwich variances (Theorem 2), the posteriors (Corollary 1), and the calibrated posteriors (Corollary 2) — a chain visualized in <a href="ch04-isomorphism.html#fig-likelihood-isomorphism" class="quarto-xref">Figure&nbsp;<span>4.1</span></a> through <a href="ch06-posterior-ccc.html#fig-ccc-affine-map" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>. The DER framework (Theorem 3) transfers the survey design-effect diagnostic tradition to meta-analysis, revealing a conservation law that constrains how the design-effect budget is allocated across parameters.</p>
+<p>The Calibrated Bayes program of <span class="citation" data-cites="Little2004">Little (<a href="#ref-Little2004" role="doc-biblioref">2004</a>)</span> and <span class="citation" data-cites="Little2012">Little (<a href="#ref-Little2012" role="doc-biblioref">2012</a>)</span> — Bayesian computation validated by frequentist coverage criteria — is now available to meta-analysis at the individual-parameter level. The DER provides the diagnostic; the CCC provides the correction; the conservation law provides the structural constraint. The entire apparatus operates as a post-processing step on existing MCMC output, at negligible computational cost.</p>
+<p>The practical message is concise. For any Bayesian correlated-effects meta-analysis fitted in Stan: extract the MCMC draws; compute the cluster-level sandwich variance; form the DER for each parameter; where the DER exceeds the T1 threshold, apply the Cholesky Calibration Correction. The result is a set of Bayesian credible intervals that honor both the hierarchical structure of the model and the design-based reality of within-study dependence — the operational realization, for this class of models, of the Calibrated Bayes vision articulated by <span class="citation" data-cites="Little2004">Little (<a href="#ref-Little2004" role="doc-biblioref">2004</a>)</span> and <span class="citation" data-cites="Rubin1984">Rubin (<a href="#ref-Rubin1984" role="doc-biblioref">1984</a>)</span>.</p>
+<p>The open questions — general working covariance structures, non-normal likelihoods, multi-level hierarchies, finite-sample corrections — define a research program that bridges two communities with much to learn from each other. The foundation is in place. The dictionary has been written. The translation can begin.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-BellMcCaffrey2002" class="csl-entry" role="listitem">
+Bell, Robert M., and Daniel F. McCaffrey. 2002. <span>“Bias Reduction in Standard Errors for Linear Regression with Multi-Stage Samples.”</span> <em>Survey Methodology</em> 28 (2): 169–81.
+</div>
+<div id="ref-LeeHBB2026" class="csl-entry" role="listitem">
+Lee, J. 2026a. <span>“A <span>Bayesian</span> Hierarchical Hurdle Beta-Binomial Model for Survey-Weighted Bounded Counts and Its Application to Childcare Enrollment.”</span> <a href="https://doi.org/10.48550/arXiv.2603.02611">https://doi.org/10.48550/arXiv.2603.02611</a>.
+</div>
+<div id="ref-LeeDER2026" class="csl-entry" role="listitem">
+———. 2026b. <span>“Design Effect Ratios for <span>Bayesian</span> Survey Models: A Diagnostic Framework for Identifying Survey-Sensitive Parameters.”</span> <a href="https://doi.org/10.48550/arXiv.2603.07791">https://doi.org/10.48550/arXiv.2603.07791</a>.
+</div>
+<div id="ref-Little2004" class="csl-entry" role="listitem">
+Little, Roderick J. 2004. <span>“To Model or Not to Model? <span>C</span>ompeting Modes of Inference for Finite Population Sampling.”</span> <em>Journal of the American Statistical Association</em> 99 (466): 546–56. <a href="https://doi.org/10.1198/016214504000000467">https://doi.org/10.1198/016214504000000467</a>.
+</div>
+<div id="ref-Little2012" class="csl-entry" role="listitem">
+———. 2012. <span>“Calibrated <span>B</span>ayes, an Alternative Inferential Paradigm for Official Statistics.”</span> <em>Journal of Official Statistics</em> 28 (3): 309–72.
+</div>
+<div id="ref-Rubin1984" class="csl-entry" role="listitem">
+Rubin, Donald B. 1984. <span>“Bayesianly Justifiable and Relevant Frequency Calculations for the Applied Statistician.”</span> <em>The Annals of Statistics</em> 12 (4): 1151–72. <a href="https://doi.org/10.1214/aos/1176346785">https://doi.org/10.1214/aos/1176346785</a>.
+</div>
+<div id="ref-TannerSmithLipsey2015" class="csl-entry" role="listitem">
+Tanner-Smith, Emily E., and Mark W. Lipsey. 2015. <span>“Brief Alcohol Interventions for Adolescents and Young Adults: A Systematic Review and Meta-Analysis.”</span> <em>Journal of Substance Abuse Treatment</em> 51: 1–18. <a href="https://doi.org/10.1016/j.jsat.2014.09.001">https://doi.org/10.1016/j.jsat.2014.09.001</a>.
+</div>
+<div id="ref-Tipton2015" class="csl-entry" role="listitem">
+Tipton, Elizabeth. 2015. <span>“Small Sample Adjustments for Robust Variance Estimation with Meta-Regression.”</span> <em>Psychological Methods</em> 20 (3): 375–93. <a href="https://doi.org/10.1037/met0000011">https://doi.org/10.1037/met0000011</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ch12-interpretation.html" class="pagination-link" aria-label="Interpretive Issues and Practical Implications">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Interpretive Issues and Practical Implications</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/joonho112/bayesian-meta-survey-equivalence/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

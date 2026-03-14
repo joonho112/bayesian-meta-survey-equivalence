@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Corollaries 1–2: Posterior and CCC Equivalence – Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ch07-der-framework.html" rel="next">
+<link href="./ch05-sandwich.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ch04-isomorphism.html">Part II: Core Equivalence Results</a></li><li class="breadcrumb-item"><a href="./ch06-posterior-ccc.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Corollaries 1–2: Posterior and CCC Equivalence</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/joonho112/bayesian-meta-survey-equivalence" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part I: Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch01-notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Notation and Conventions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch02-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Model Definitions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch03-exactness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exactness Conditions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Core Equivalence Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch04-isomorphism.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Theorem 1: Likelihood Isomorphism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch05-sandwich.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Theorem 2: Sandwich Equivalence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch06-posterior-ccc.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Corollaries 1–2: Posterior and CCC Equivalence</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Design Effect Ratios</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch07-der-framework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DER Framework and Transfer Theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch08-conservation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conservation Law</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch09-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Boundary Cases and Edge Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Extensions and Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch10-extensions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">E4-Relaxed CE and CHE Extensions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch11-regularity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Regularity Conditions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch12-interpretation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Interpretive Issues and Practical Implications</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part V: Discussion and Conclusions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch13-discussion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Discussion and Conclusions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-revision-history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Revision History</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-posterior-equiv" id="toc-sec-posterior-equiv" class="nav-link active" data-scroll-target="#sec-posterior-equiv"><span class="header-section-number">6.1</span> Corollary 1: Posterior Equivalence</a>
+  <ul class="collapse">
+  <li><a href="#statement" id="toc-statement" class="nav-link" data-scroll-target="#statement"><span class="header-section-number">6.1.1</span> Statement</a></li>
+  <li><a href="#full-proof" id="toc-full-proof" class="nav-link" data-scroll-target="#full-proof"><span class="header-section-number">6.1.2</span> Full Proof</a></li>
+  <li><a href="#sec-remark-sigma-mcmc" id="toc-sec-remark-sigma-mcmc" class="nav-link" data-scroll-target="#sec-remark-sigma-mcmc"><span class="header-section-number">6.1.3</span> Remark 6 (On <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span>: Population vs.&nbsp;Finite-Sample)</a></li>
+  </ul></li>
+  <li><a href="#sec-ccc-equiv" id="toc-sec-ccc-equiv" class="nav-link" data-scroll-target="#sec-ccc-equiv"><span class="header-section-number">6.2</span> Corollary 2: Blockwise CCC Equivalence</a>
+  <ul class="collapse">
+  <li><a href="#the-ccc-algorithm" id="toc-the-ccc-algorithm" class="nav-link" data-scroll-target="#the-ccc-algorithm"><span class="header-section-number">6.2.1</span> The CCC Algorithm</a></li>
+  <li><a href="#sec-blockwise-ccc" id="toc-sec-blockwise-ccc" class="nav-link" data-scroll-target="#sec-blockwise-ccc"><span class="header-section-number">6.2.2</span> Blockwise CCC</a></li>
+  <li><a href="#statement-1" id="toc-statement-1" class="nav-link" data-scroll-target="#statement-1"><span class="header-section-number">6.2.3</span> Statement</a></li>
+  <li><a href="#full-proof-1" id="toc-full-proof-1" class="nav-link" data-scroll-target="#full-proof-1"><span class="header-section-number">6.2.4</span> Full Proof</a></li>
+  </ul></li>
+  <li><a href="#summary-of-the-equivalence-chain" id="toc-summary-of-the-equivalence-chain" class="nav-link" data-scroll-target="#summary-of-the-equivalence-chain"><span class="header-section-number">6.3</span> Summary of the Equivalence Chain</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/joonho112/bayesian-meta-survey-equivalence/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ch04-isomorphism.html">Part II: Core Equivalence Results</a></li><li class="breadcrumb-item"><a href="./ch06-posterior-ccc.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Corollaries 1–2: Posterior and CCC Equivalence</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-ccc" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Corollaries 1–2: Posterior and CCC Equivalence</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The likelihood isomorphism (Theorem 1) and the sandwich equivalence (Theorem 2) are properties of the objective function and its derivatives. This chapter draws two Bayesian consequences: the posteriors are identical (Corollary 1), and the Cholesky-corrected posterior draws are identical in distribution (Corollary 2). Together, these results complete the chain of equivalences that connects every inferential quantity across the two frameworks.</p>
+<p>The key mechanism is simple. The constant <span class="math inline">\(e^c\)</span> from Theorem 1 enters as a multiplicative factor in the likelihood. In Bayes’ formula, it appears identically in the numerator and denominator and cancels exactly — regardless of the prior, the parameter dimension, or the specific form of the posterior. Because <span class="math inline">\(c\)</span> depends on neither <span class="math inline">\(\boldsymbol{\phi}\)</span> nor <span class="math inline">\(\sigma^2_\theta\)</span>, the cancellation is complete over the full joint posterior, not merely over a conditional slice. The CCC equivalence then follows by combining the identical posteriors with the identical sandwich matrices.</p>
+<section id="sec-posterior-equiv" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="sec-posterior-equiv"><span class="header-section-number">6.1</span> Corollary 1: Posterior Equivalence</h2>
+<section id="statement" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="statement"><span class="header-section-number">6.1.1</span> Statement</h3>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Corollary 1 (Posterior Equivalence)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Under conditions (E1)–(E3) and (E5), suppose both models are endowed with the same priors: <span class="math display">\[
+p(\boldsymbol{\beta}) = p_0(\boldsymbol{\beta}), \qquad p(\sigma^2_\theta) = p_1(\sigma^2_\theta), \qquad \theta_j \mid \sigma^2_\theta \sim \textsf{N}(0, \sigma^2_\theta) \;\;\text{for both models.}
+\]</span> Then the survey pseudo-posterior and the meta-analytic working-model posterior are identical as probability measures on <span class="math inline">\((\boldsymbol{\beta}, \boldsymbol{\theta}, \sigma^2_\theta)\)</span>: <span id="eq-posterior-equiv"><span class="math display">\[
+\pi^*_{\mathrm{surv}}(\boldsymbol{\phi}, \sigma^2_\theta \mid \mathbf{y}) \;=\; \pi_{\mathrm{meta}}(\boldsymbol{\phi}, \sigma^2_\theta \mid \mathbf{y}).
+\tag{6.1}\]</span></span></p>
+<p>In particular:</p>
+<ol type="a">
+<li><p><strong>Point summaries.</strong> All posterior means, modes, medians, and quantiles of every component of <span class="math inline">\((\boldsymbol{\phi}, \sigma^2_\theta)\)</span> coincide.</p></li>
+<li><p><strong>Posterior predictive distributions.</strong> For any future observation <span class="math inline">\(\tilde{y}\)</span>, the predictive densities are identical: <span class="math inline">\(p(\tilde{y} \mid \mathbf{y})_{\mathrm{surv}} = p(\tilde{y} \mid \mathbf{y})_{\mathrm{meta}}\)</span>.</p></li>
+<li><p><strong>MCMC draws.</strong> Any MCMC algorithm applied to the survey pseudo-posterior generates draws from the meta-analytic posterior distribution, and vice versa.</p></li>
+<li><p><strong>Population posterior covariance.</strong> The posterior covariance matrices are identical: <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}^{\mathrm{surv}} = \boldsymbol{\Sigma}_{\mathrm{MCMC}}^{\mathrm{meta}}\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="full-proof" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="full-proof"><span class="header-section-number">6.1.2</span> Full Proof</h3>
+<p>By Bayes’ theorem, the survey pseudo-posterior density is <span id="eq-pseudo-posterior-bayes"><span class="math display">\[
+\pi^*_{\mathrm{surv}}(\boldsymbol{\phi}, \sigma^2_\theta \mid \mathbf{y}) = \frac{\exp\!\left[\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi})\right] \cdot \prod_{j=1}^{J}\textsf{N}(\theta_j \mid 0, \sigma^2_\theta) \cdot p_0(\boldsymbol{\beta}) \cdot p_1(\sigma^2_\theta)}{\displaystyle\int \exp\!\left[\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}')\right] \cdot \prod_{j}\textsf{N}(\theta_j' \mid 0, \sigma^2_\theta) \cdot p_0(\boldsymbol{\beta}') \cdot p_1(\sigma^2_\theta)\, d\boldsymbol{\phi}'\, d\sigma^2_\theta}.
+\tag{6.2}\]</span></span></p>
+<p>By Theorem 1, <span class="math inline">\(\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) = \ell_{\mathrm{meta}}(\boldsymbol{\phi}) + c\)</span>, so <span class="math display">\[
+\exp\!\left[\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi})\right] = e^c \cdot \exp\!\left[\ell_{\mathrm{meta}}(\boldsymbol{\phi})\right].
+\]</span></p>
+<p><strong>Verification that <span class="math inline">\(c\)</span> does not depend on <span class="math inline">\(\sigma^2_\theta\)</span>.</strong> This step is essential for the cancellation to hold in the joint posterior over <span class="math inline">\((\boldsymbol{\phi}, \sigma^2_\theta)\)</span>. As established in <a href="ch04-isomorphism.html#sec-remark-constant-c" class="quarto-xref"><span>Section 4.3.3</span></a>, the constant <span class="math inline">\(c = \sum_{j=1}^{J} c_j\)</span> with <span class="math inline">\(c_j = -\frac{n_j}{2}\log(\sigma^2_{e,j}/\bar{s}_j^2)\)</span> depends only on the Level 1 quantities <span class="math inline">\(\{\sigma^2_{e,j}\}\)</span>, <span class="math inline">\(\{\bar{s}_j^2\}\)</span>, <span class="math inline">\(\rho\)</span>, and <span class="math inline">\(\{n_j\}\)</span>. The between-cluster variance <span class="math inline">\(\sigma^2_\theta\)</span> enters the model exclusively through the Level 2 prior <span class="math inline">\(\theta_j \mid \sigma^2_\theta \sim \textsf{N}(0, \sigma^2_\theta)\)</span>, not through the Level 1 likelihood. Therefore <span class="math inline">\(e^c\)</span> is constant with respect to both <span class="math inline">\(\boldsymbol{\phi}\)</span> and <span class="math inline">\(\sigma^2_\theta\)</span>.</p>
+<p>Substituting into <a href="#eq-pseudo-posterior-bayes" class="quarto-xref">Equation&nbsp;<span>6.2</span></a>:</p>
+<ul>
+<li><strong>Numerator</strong>: <span class="math inline">\(e^c \cdot \exp[\ell_{\mathrm{meta}}(\boldsymbol{\phi})] \cdot \prod_j \textsf{N}(\theta_j \mid 0, \sigma^2_\theta) \cdot p_0(\boldsymbol{\beta}) \cdot p_1(\sigma^2_\theta)\)</span>.</li>
+<li><strong>Denominator</strong>: <span class="math inline">\(e^c \cdot \int \exp[\ell_{\mathrm{meta}}(\boldsymbol{\phi}')] \cdot \prod_j \textsf{N}(\theta_j' \mid 0, \sigma^2_\theta) \cdot p_0(\boldsymbol{\beta}') \cdot p_1(\sigma^2_\theta)\, d\boldsymbol{\phi}'\, d\sigma^2_\theta\)</span>.</li>
+</ul>
+<p>The factor <span class="math inline">\(e^c\)</span> appears in both numerator and denominator and cancels: <span id="eq-posterior-identity"><span class="math display">\[
+\pi^*_{\mathrm{surv}}(\boldsymbol{\phi}, \sigma^2_\theta \mid \mathbf{y}) = \frac{\exp[\ell_{\mathrm{meta}}(\boldsymbol{\phi})] \cdot \prod_j \textsf{N}(\theta_j \mid 0, \sigma^2_\theta) \cdot p_0(\boldsymbol{\beta}) \cdot p_1(\sigma^2_\theta)}{\int \exp[\ell_{\mathrm{meta}}(\boldsymbol{\phi}')] \cdot \prod_j \textsf{N}(\theta_j' \mid 0, \sigma^2_\theta) \cdot p_0(\boldsymbol{\beta}') \cdot p_1(\sigma^2_\theta)\, d\boldsymbol{\phi}'\, d\sigma^2_\theta} = \pi_{\mathrm{meta}}(\boldsymbol{\phi}, \sigma^2_\theta \mid \mathbf{y}).
+\tag{6.3}\]</span></span></p>
+<p>The two posteriors are identical as probability densities on <span class="math inline">\((\boldsymbol{\phi}, \sigma^2_\theta)\)</span>, hence identical as probability measures.</p>
+<p><strong>Parts (a)–(d)</strong> follow from the identity of the two probability measures:</p>
+<ul>
+<li><p><strong>(a)</strong> Point summaries are functionals of the posterior distribution. Since the distributions are identical, all means <span class="math inline">\(\mathbb{E}_\pi[\phi_k]\)</span>, modes <span class="math inline">\(\arg\max_{\boldsymbol{\phi}} \pi(\boldsymbol{\phi} \mid \mathbf{y})\)</span>, medians, and quantiles coincide.</p></li>
+<li><p><strong>(b)</strong> The posterior predictive density is <span class="math inline">\(p(\tilde{y} \mid \mathbf{y}) = \int p(\tilde{y} \mid \boldsymbol{\phi}, \sigma^2_\theta)\,\pi(\boldsymbol{\phi}, \sigma^2_\theta \mid \mathbf{y})\,d\boldsymbol{\phi}\,d\sigma^2_\theta\)</span>. Since the integrand includes the same likelihood model <span class="math inline">\(p(\tilde{y} \mid \cdot)\)</span> and the same posterior <span class="math inline">\(\pi\)</span>, the predictive distributions are identical.</p></li>
+<li><p><strong>(c)</strong> Any valid MCMC algorithm targets its invariant distribution. Since the two posteriors are the same measure, the draws <span class="math inline">\(\boldsymbol{\phi}^{(s)} \sim \pi^*_{\mathrm{surv}} = \pi_{\mathrm{meta}}\)</span> are from the same distribution.</p></li>
+<li><p><strong>(d)</strong> The posterior covariance <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}} = \mathrm{Cov}_\pi(\boldsymbol{\phi})\)</span> is a functional of the posterior measure. Since the measures are identical, <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}^{\mathrm{surv}} = \boldsymbol{\Sigma}_{\mathrm{MCMC}}^{\mathrm{meta}}\)</span>. <span class="math inline">\(\quad\blacksquare\)</span></p></li>
+</ul>
+</section>
+<section id="sec-remark-sigma-mcmc" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="sec-remark-sigma-mcmc"><span class="header-section-number">6.1.3</span> Remark 6 (On <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span>: Population vs.&nbsp;Finite-Sample)</h3>
+<p>In Corollary 1(d), <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span> refers to the <strong>population posterior covariance</strong>: <span class="math display">\[
+\boldsymbol{\Sigma}_{\mathrm{MCMC}} = \mathrm{Cov}_\pi(\boldsymbol{\phi}) = \mathbb{E}_\pi\!\left[(\boldsymbol{\phi} - \mathbb{E}_\pi[\boldsymbol{\phi}])(\boldsymbol{\phi} - \mathbb{E}_\pi[\boldsymbol{\phi}])^{\intercal}\right],
+\]</span> which is a deterministic functional of the posterior distribution <span class="math inline">\(\pi\)</span>. This is not the finite-sample Monte Carlo estimate <span class="math display">\[
+\hat{\boldsymbol{\Sigma}}_{\mathrm{MCMC}} = \frac{1}{S-1}\sum_{s=1}^{S}(\boldsymbol{\phi}^{(s)} - \bar{\boldsymbol{\phi}})(\boldsymbol{\phi}^{(s)} - \bar{\boldsymbol{\phi}})^{\intercal},
+\]</span> which is a random variable that depends on the specific MCMC sample <span class="math inline">\(\{\boldsymbol{\phi}^{(1)}, \ldots, \boldsymbol{\phi}^{(S)}\}\)</span>.</p>
+<p>The distinction matters for Corollary 2 below. The population quantity <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span> is identical across frameworks by the identity of the posterior measures. The finite-sample estimate <span class="math inline">\(\hat{\boldsymbol{\Sigma}}_{\mathrm{MCMC}}\)</span> will differ across independent MCMC runs (even within the same framework) due to Monte Carlo variability, but <span class="math inline">\(\hat{\boldsymbol{\Sigma}}_{\mathrm{MCMC}} \to \boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span> as <span class="math inline">\(S \to \infty\)</span>.</p>
+<p>In practice, the CCC algorithm uses <span class="math inline">\(\hat{\boldsymbol{\Sigma}}_{\mathrm{MCMC}}\)</span> computed from the available MCMC draws. When the same draws are used in both frameworks (which Corollary 1(c) guarantees they are drawn from the same distribution), the finite-sample estimates will also be identical.</p>
+</section>
+</section>
+<section id="sec-ccc-equiv" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="sec-ccc-equiv"><span class="header-section-number">6.2</span> Corollary 2: Blockwise CCC Equivalence</h2>
+<section id="the-ccc-algorithm" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="the-ccc-algorithm"><span class="header-section-number">6.2.1</span> The CCC Algorithm</h3>
+<p>The Cholesky Calibration of Credible intervals (CCC), introduced by <span class="citation" data-cites="WilliamsSavitsky2021">Williams and Savitsky (<a href="#ref-WilliamsSavitsky2021" role="doc-biblioref">2021</a>)</span>, is a post-processing algorithm that recalibrates MCMC draws to account for working-model misspecification. Given:</p>
+<ul>
+<li><span class="math inline">\(\hat{\boldsymbol{\phi}}\)</span>: the posterior mode (MAP estimate),</li>
+<li><span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span>: the posterior covariance of the MCMC draws,</li>
+<li><span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span>: the sandwich variance estimator,</li>
+<li><span class="math inline">\(\mathbf{L}_1 = \mathrm{chol}(\boldsymbol{\Sigma}_{\mathrm{MCMC}})\)</span>: the lower Cholesky factor of the posterior covariance,</li>
+<li><span class="math inline">\(\mathbf{L}_2 = \mathrm{chol}(\mathbf{V}_{\mathrm{sand}})\)</span>: the lower Cholesky factor of the sandwich variance,</li>
+</ul>
+<p>the CCC algorithm transforms each uncorrected MCMC draw <span class="math inline">\(\boldsymbol{\phi}^{(s)}\)</span> into a corrected draw: <span id="eq-ccc-algorithm"><span class="math display">\[
+\boldsymbol{\phi}^{*(s)} = \hat{\boldsymbol{\phi}} + \mathbf{L}_2\,\mathbf{L}_1^{-1}\,(\boldsymbol{\phi}^{(s)} - \hat{\boldsymbol{\phi}}), \quad s = 1, \ldots, S.
+\tag{6.4}\]</span></span></p>
+<p><a href="#fig-ccc-affine-map" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> provides a geometric view of this transformation. The left panel shows uncorrected posterior draws whose covariance is <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span>; the middle panel shows the whitening step <span class="math inline">\(\mathbf{L}_1^{-1}(\boldsymbol{\phi}^{(s)} - \hat{\boldsymbol{\phi}})\)</span> that standardizes the draws to an identity covariance; and the right panel shows the re-coloring step that imposes the sandwich covariance <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span>, all while preserving the center <span class="math inline">\(\hat{\boldsymbol{\phi}}\)</span>.</p>
+<div id="fig-ccc-affine-map" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ccc-affine-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/matlab/fig04_ccc_affine_map.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ccc-affine-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: The Cholesky Calibration of Credible intervals (CCC) as an affine map. The left panel shows uncorrected posterior draws with covariance <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span>; the center panel shows whitening by <span class="math inline">\(\mathbf{L}_1^{-1}\)</span>; the right panel shows re-coloring by <span class="math inline">\(\mathbf{L}_2\)</span> that imposes <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span> while preserving the center <span class="math inline">\(\hat{\boldsymbol{\phi}}\)</span>.
+</figcaption>
+</figure>
+</div>
+<p>The transformation <a href="#eq-ccc-algorithm" class="quarto-xref">Equation&nbsp;<span>6.4</span></a> is an affine map that (i) centers the draws at the MAP, (ii) standardizes by <span class="math inline">\(\mathbf{L}_1^{-1}\)</span> (removing the working-model covariance structure), and (iii) re-scales by <span class="math inline">\(\mathbf{L}_2\)</span> (imposing the sandwich covariance structure). The net effect is to preserve the location <span class="math inline">\(\hat{\boldsymbol{\phi}}\)</span> while replacing the dispersion <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span> with <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span>.</p>
+<p>In practical terms, the CCC answers a concrete question: when the working model’s assumed covariance differs from the true data-generating covariance, how should the MCMC draws be adjusted to reflect the true sampling variability? The sandwich variance quantifies the actual variability; the Cholesky factors implement the rotation and rescaling from the working-model dispersion to the sandwich-corrected dispersion. The transformation is exact when <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span> is positive definite — a condition that does not always hold for the full joint parameter vector.</p>
+<p><strong>Positive definiteness requirement and rank analysis.</strong> The Cholesky factorization <span class="math inline">\(\mathrm{chol}(\cdot)\)</span> requires its argument to be symmetric positive definite. For the posterior covariance <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span>, positive definiteness holds when the posterior is non-degenerate, which is guaranteed by regularity condition (C5) (proper random-effect prior with <span class="math inline">\(\sigma^2_\theta &gt; 0\)</span>) and (C7) (identifiability via the Schur complement condition).</p>
+<p>For <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span>, however, a structural rank constraint arises. The full parameter vector <span class="math inline">\(\boldsymbol{\phi} = (\boldsymbol{\beta}^{\intercal}, \boldsymbol{\theta}^{\intercal})^{\intercal}\)</span> has dimension <span class="math inline">\(d = p + J\)</span>. The meat matrix <span class="math inline">\(\mathbf{M} = \sum_{j=1}^{J} \mathbf{s}_j \mathbf{s}_j^{\intercal}\)</span> is a sum of <span class="math inline">\(J\)</span> rank-1 outer products, so <span class="math inline">\(\mathrm{rank}(\mathbf{M}) \leq J &lt; p + J = d\)</span>. Since <span class="math inline">\(\mathbf{V}_{\mathrm{sand}} = \mathbf{H}^{-1}\mathbf{M}\mathbf{H}^{-1}\)</span> and the bread <span class="math inline">\(\mathbf{H}^{-1}\)</span> is full rank, we have <span class="math inline">\(\mathrm{rank}(\mathbf{V}_{\mathrm{sand}}) = \mathrm{rank}(\mathbf{M}) \leq J &lt; d\)</span>. Therefore, the full-joint sandwich <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span> is structurally rank-deficient and <strong>cannot be positive definite</strong>. Full-joint Cholesky CCC is thus impossible.</p>
+<p>However, under a proper <span class="math inline">\(\boldsymbol{\beta}\)</span> prior, the relevant <strong>diagonal blocks</strong> of <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span> are individually positive definite (rigorously proved for <span class="math inline">\(p = 1\)</span> below; the result extends to general <span class="math inline">\(p\)</span> when <span class="math inline">\(\mathbf{H}^{\mathrm{post}}_{\boldsymbol{\beta}\boldsymbol{\beta}}\)</span> is full rank):</p>
+<ul>
+<li><strong><span class="math inline">\(\beta\)</span>-block</strong>: <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\beta}, \boldsymbol{\beta}]\)</span> is <span class="math inline">\(p \times p\)</span>. Each cluster score <span class="math inline">\(\mathbf{s}_j\)</span> has a nonzero <span class="math inline">\(\boldsymbol{\beta}\)</span>-component (the weighted sum of residuals over cluster <span class="math inline">\(j\)</span>), and when <span class="math inline">\(J \geq p\)</span> with the cluster-level <span class="math inline">\(\boldsymbol{\beta}\)</span>-scores spanning <span class="math inline">\(\mathbb{R}^p\)</span>, the <span class="math inline">\(\boldsymbol{\beta}\)</span>-block of <span class="math inline">\(\mathbf{M}\)</span> is positive definite, making <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\beta}, \boldsymbol{\beta}] \succ 0\)</span>.</li>
+<li><strong><span class="math inline">\(\theta\)</span>-block</strong>: <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\theta}, \boldsymbol{\theta}]\)</span> is <span class="math inline">\(J \times J\)</span>. The <span class="math inline">\(\theta_j\)</span>-component of <span class="math inline">\(\mathbf{s}_j\)</span> is nonzero for each <span class="math inline">\(j\)</span>, and because each <span class="math inline">\(\theta_j\)</span> appears in only cluster <span class="math inline">\(j\)</span>’s score, the <span class="math inline">\(\boldsymbol{\theta}\)</span>-block of <span class="math inline">\(\mathbf{M}\)</span> has <span class="math inline">\(J\)</span> linearly independent contributions, making <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\theta}, \boldsymbol{\theta}] \succ 0\)</span>.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Rigorous Proof: <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\theta}, \boldsymbol{\theta}]\)</span> is Positive Definite Under Proper <span class="math inline">\(\boldsymbol{\beta}\)</span> Priors
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The positive definiteness of the <span class="math inline">\(\boldsymbol{\theta}\)</span>-block requires careful analysis of the null space of <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span>, accounting for the role of the bread <span class="math inline">\((\mathbf{H}^{\mathrm{post}})^{-1}\)</span>.</p>
+<p><strong>Setup.</strong> The full-joint sandwich <span class="math inline">\(\mathbf{V}_{\mathrm{sand}} = (\mathbf{H}^{\mathrm{post}})^{-1}\mathbf{M}(\mathbf{H}^{\mathrm{post}})^{-1}\)</span> has the same rank as <span class="math inline">\(\mathbf{M}\)</span>, since <span class="math inline">\((\mathbf{H}^{\mathrm{post}})^{-1}\)</span> is full rank. Since <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span> is symmetric PSD, its null space satisfies: <span class="math display">\[
+\ker(\mathbf{V}_{\mathrm{sand}}) = \ker\bigl(\mathbf{M}\,(\mathbf{H}^{\mathrm{post}})^{-1}\bigr) = \{\mathbf{v} : (\mathbf{H}^{\mathrm{post}})^{-1}\mathbf{v} \in \ker(\mathbf{M})\}.
+\]</span> Equivalently, <span class="math inline">\(\ker(\mathbf{V}_{\mathrm{sand}}) = \mathbf{H}^{\mathrm{post}} \cdot \ker(\mathbf{M})\)</span>: the bread maps the null space of the meat into the null space of the sandwich.</p>
+<p><strong>Meat null space (intercept-only, <span class="math inline">\(p=1\)</span>).</strong> The cluster-level score vector takes the form <span class="math inline">\(\mathbf{s}_j = u_j(\mathbf{e}_0 + \mathbf{e}_{1+j})\)</span> where <span class="math inline">\(u_j = s_j^{\theta_j} \neq 0\)</span> (generically). The <span class="math inline">\(J\)</span> vectors are linearly independent, so <span class="math inline">\(\mathrm{rank}(\mathbf{M}) = J\)</span> and <span class="math inline">\(\ker(\mathbf{M})\)</span> is 1-dimensional: <span class="math display">\[
+\ker(\mathbf{M}) = \mathrm{span}\{\mathbf{n}\}, \quad \mathbf{n} = (1, -1, -1, \ldots, -1)^{\intercal}.
+\]</span></p>
+<p><strong>Null space of <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span>.</strong> By the relation above, <span class="math inline">\(\ker(\mathbf{V}_{\mathrm{sand}}) = \mathrm{span}\{\mathbf{H}^{\mathrm{post}} \mathbf{n}\}\)</span>. We compute <span class="math inline">\(\mathbf{H}^{\mathrm{post}} \mathbf{n}\)</span> explicitly. With <span class="math inline">\(\alpha = n/\bar{s}^2\)</span>, <span class="math inline">\(\lambda = 1/\sigma^2_\theta\)</span>, and <span class="math inline">\(h_\mu\)</span> = prior precision for <span class="math inline">\(\mu\)</span>:</p>
+<p><span class="math display">\[
+\mathbf{H}^{\mathrm{post}} = \begin{pmatrix} J\alpha + h_\mu &amp; \alpha \cdots \alpha \\ \alpha &amp; \alpha + \lambda \\ \vdots &amp; &amp; \ddots \\ \alpha &amp; &amp; &amp; \alpha + \lambda \end{pmatrix}.
+\]</span></p>
+<p>Then <span class="math inline">\([\mathbf{H}^{\mathrm{post}}\mathbf{n}]_0 = (J\alpha + h_\mu) - J\alpha = h_\mu\)</span> and <span class="math inline">\([\mathbf{H}^{\mathrm{post}}\mathbf{n}]_{j+1} = \alpha - (\alpha + \lambda) = -\lambda\)</span> for each <span class="math inline">\(j\)</span>.</p>
+<p>So <span class="math inline">\(\mathbf{H}^{\mathrm{post}}\mathbf{n} = (h_\mu, -\lambda, -\lambda, \ldots, -\lambda)^{\intercal}\)</span>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Proposition (PD of <span class="math inline">\(\boldsymbol{\theta}\)</span>-block depends on <span class="math inline">\(\boldsymbol{\beta}\)</span> prior)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\theta}, \boldsymbol{\theta}] \succ 0\)</span> if and only if <span class="math inline">\(h_\mu &gt; 0\)</span> (proper <span class="math inline">\(\boldsymbol{\beta}\)</span> prior).</p>
+<p><strong>Case 1: Proper prior (<span class="math inline">\(h_\mu &gt; 0\)</span>).</strong> The null vector <span class="math inline">\(\mathbf{v}^* = \mathbf{H}^{\mathrm{post}}\mathbf{n} = (h_\mu, -\lambda, \ldots, -\lambda)^{\intercal}\)</span> has <strong>both</strong> nonzero <span class="math inline">\(\mu\)</span>-component (<span class="math inline">\(h_\mu \neq 0\)</span>) and nonzero <span class="math inline">\(\boldsymbol{\theta}\)</span>-components (<span class="math inline">\(-\lambda \neq 0\)</span>). For <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\theta}, \boldsymbol{\theta}]\mathbf{w} = \mathbf{0}\)</span> to hold, we would need <span class="math inline">\((\mathbf{0}, \mathbf{w})^{\intercal} \in \ker(\mathbf{V}_{\mathrm{sand}}) = \mathrm{span}\{(h_\mu, -\lambda\mathbf{1}_J^{\intercal})^{\intercal}\}\)</span>, which is impossible since <span class="math inline">\(h_\mu \neq 0\)</span>. Therefore <span class="math inline">\(\ker(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\theta}, \boldsymbol{\theta}]) = \{\mathbf{0}\}\)</span>, i.e., <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\theta}, \boldsymbol{\theta}] \succ 0\)</span>.</p>
+<p><strong>Case 2: Flat prior (<span class="math inline">\(h_\mu = 0\)</span>).</strong> The null vector becomes <span class="math inline">\(\mathbf{v}^* = (0, -\lambda, \ldots, -\lambda)^{\intercal}\)</span>, which is a pure-<span class="math inline">\(\boldsymbol{\theta}\)</span> vector <span class="math inline">\((\mathbf{0}, -\lambda\mathbf{1}_J)^{\intercal}\)</span>. This means <span class="math inline">\(\mathbf{1}_J \in \ker(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\theta}, \boldsymbol{\theta}])\)</span>, so the <span class="math inline">\(\boldsymbol{\theta}\)</span>-block is <strong>singular</strong> (rank <span class="math inline">\(J-1\)</span>). <span class="math inline">\(\square\)</span></p>
+</div>
+</div>
+<p><strong>Practical implications.</strong></p>
+<ol type="1">
+<li><p><strong>Proper priors (standard practice).</strong> When <span class="math inline">\(\mu \sim \textsf{N}(0, \sigma^2_\beta)\)</span> with <span class="math inline">\(\sigma_\beta &lt; \infty\)</span> (even weakly informative, e.g., <span class="math inline">\(\sigma_\beta = 10\)</span>), the prior precision <span class="math inline">\(h_\mu = 1/\sigma^2_\beta &gt; 0\)</span> guarantees <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\theta}, \boldsymbol{\theta}] \succ 0\)</span>. The <span class="math inline">\(\boldsymbol{\theta}\)</span>-block Cholesky CCC is well-defined.</p></li>
+<li><p><strong>Flat priors.</strong> Under improper or flat <span class="math inline">\(\mu\)</span> priors (<span class="math inline">\(h_\mu = 0\)</span>), the <span class="math inline">\(\boldsymbol{\theta}\)</span>-block is singular with <span class="math inline">\(\mathrm{rank}(J-1)\)</span>. The full-matrix <span class="math inline">\(\boldsymbol{\theta}\)</span>-block Cholesky CCC fails. The alternative is <strong>studywise DER correction</strong>: applying the scalar formula <span class="math inline">\(\mathrm{DER}_j^{\mathrm{cond}} = B_j \cdot \mathrm{DEFF}_j\)</span> element-wise to each <span class="math inline">\(\theta_j\)</span> independently, bypassing the matrix Cholesky entirely. This studywise approach is always valid because each diagonal entry <span class="math inline">\([\mathbf{V}_{\mathrm{sand}}]_{\theta_j\theta_j} &gt; 0\)</span> (each <span class="math inline">\(\theta_j\)</span> score is nonzero), even when the full <span class="math inline">\(\boldsymbol{\theta}\)</span>-block is singular.</p></li>
+<li><p><strong>Physical interpretation of the singularity.</strong> The singular direction <span class="math inline">\(\mathbf{1}_J\)</span> corresponds to a uniform shift of all <span class="math inline">\(\theta_j\)</span> by the same amount — which is aliased with <span class="math inline">\(\mu\)</span> in the likelihood. Under flat <span class="math inline">\(\mu\)</span> priors, the posterior identifies <span class="math inline">\(\mu + \bar{\theta}\)</span> but not <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\bar{\theta}\)</span> separately (up to the <span class="math inline">\(\theta_j\)</span> prior), and the sandwich inherits this identification failure in its <span class="math inline">\(\boldsymbol{\theta}\)</span>-block.</p></li>
+</ol>
+<p><strong>Note.</strong> The earlier proof (which this replaces) incorrectly equated <span class="math inline">\(\ker(\mathbf{V}_{\mathrm{sand}}) = \ker(\mathbf{M})\)</span>. The correct relation is <span class="math inline">\(\ker(\mathbf{V}_{\mathrm{sand}}) = \mathbf{H}^{\mathrm{post}} \cdot \ker(\mathbf{M})\)</span>, because <span class="math inline">\(\mathbf{V}_{\mathrm{sand}} = (\mathbf{H}^{\mathrm{post}})^{-1}\mathbf{M}(\mathbf{H}^{\mathrm{post}})^{-1}\)</span> and the bread is invertible. The bread maps the meat’s null vector <span class="math inline">\((1, -\mathbf{1}_J^{\intercal})^{\intercal}\)</span> (which has a nonzero <span class="math inline">\(\mu\)</span>-component) to <span class="math inline">\((h_\mu, -\lambda\mathbf{1}_J^{\intercal})^{\intercal}\)</span> (which has zero <span class="math inline">\(\mu\)</span>-component only when <span class="math inline">\(h_\mu = 0\)</span>). This distinction is crucial: the earlier conclusion that PD holds unconditionally was correct only when <span class="math inline">\(h_\mu &gt; 0\)</span>.</p>
+</div>
+</div>
+</div>
+<p>This rank analysis motivates the blockwise CCC approach developed in the next subsection.</p>
+</section>
+<section id="sec-blockwise-ccc" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="sec-blockwise-ccc"><span class="header-section-number">6.2.2</span> Blockwise CCC</h3>
+<p>Since the full-joint <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span> is rank-deficient, CCC must be applied <strong>block-by-block</strong> to reported subvectors. Let <span class="math inline">\(\boldsymbol{\psi}\)</span> denote a reported subvector, either <span class="math inline">\(\boldsymbol{\beta}\)</span> or <span class="math inline">\(\boldsymbol{\theta}\)</span>. The blockwise CCC algorithm proceeds as follows.</p>
+<p><strong><span class="math inline">\(\beta\)</span>-block CCC.</strong> For the fixed-effect subvector <span class="math inline">\(\boldsymbol{\beta}\)</span>: <span class="math display">\[
+\mathbf{L}_1^{\boldsymbol{\beta}} = \mathrm{chol}\!\left(\boldsymbol{\Sigma}_{\mathrm{MCMC}}[\boldsymbol{\beta}, \boldsymbol{\beta}]\right), \quad
+\mathbf{L}_2^{\boldsymbol{\beta}} = \mathrm{chol}\!\left(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\beta}, \boldsymbol{\beta}]\right),
+\]</span> <span id="eq-ccc-beta-block"><span class="math display">\[
+\boldsymbol{\beta}^{*(s)} = \hat{\boldsymbol{\beta}} + \mathbf{L}_2^{\boldsymbol{\beta}}\,(\mathbf{L}_1^{\boldsymbol{\beta}})^{-1}\,(\boldsymbol{\beta}^{(s)} - \hat{\boldsymbol{\beta}}), \quad s = 1, \ldots, S.
+\tag{6.5}\]</span></span></p>
+<p><strong><span class="math inline">\(\theta\)</span>-block CCC.</strong> For the random-effect subvector <span class="math inline">\(\boldsymbol{\theta}\)</span>: <span class="math display">\[
+\mathbf{L}_1^{\boldsymbol{\theta}} = \mathrm{chol}\!\left(\boldsymbol{\Sigma}_{\mathrm{MCMC}}[\boldsymbol{\theta}, \boldsymbol{\theta}]\right), \quad
+\mathbf{L}_2^{\boldsymbol{\theta}} = \mathrm{chol}\!\left(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\theta}, \boldsymbol{\theta}]\right),
+\]</span> <span id="eq-ccc-theta-block"><span class="math display">\[
+\boldsymbol{\theta}^{*(s)} = \hat{\boldsymbol{\theta}} + \mathbf{L}_2^{\boldsymbol{\theta}}\,(\mathbf{L}_1^{\boldsymbol{\theta}})^{-1}\,(\boldsymbol{\theta}^{(s)} - \hat{\boldsymbol{\theta}}), \quad s = 1, \ldots, S.
+\tag{6.6}\]</span></span></p>
+<p><strong>Advantages of the blockwise approach.</strong> (i) Both Cholesky factorizations are available whenever the relevant target blocks are positive definite. For the <span class="math inline">\(\boldsymbol{\beta}\)</span>-block this follows from the standard identifiability condition C7; for the <span class="math inline">\(\boldsymbol{\theta}\)</span>-block, positive definiteness is rigorously proved below in the intercept-only case with a proper <span class="math inline">\(\boldsymbol{\beta}\)</span> prior, and otherwise must be treated as an explicit assumption (with studywise DER correction used when it fails). This eliminates the need for ad hoc <code>nearPD()</code> fallbacks when the assumptions hold. (ii) The blockwise approach is the principled strategy: researchers typically report inferences on either <span class="math inline">\(\boldsymbol{\beta}\)</span> (overall effects) or individual <span class="math inline">\(\theta_j\)</span> (study-specific effects), not on the full joint vector <span class="math inline">\(\boldsymbol{\phi}\)</span>. (iii) Cross-block covariances between <span class="math inline">\(\boldsymbol{\beta}\)</span> and <span class="math inline">\(\boldsymbol{\theta}\)</span> are rarely the object of inference, so neglecting them incurs no practical loss.</p>
+<p><strong>Obtaining the sandwich blocks for CCC.</strong> A key subtlety arises in obtaining the diagonal blocks <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\beta}, \boldsymbol{\beta}]\)</span> and <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\theta}, \boldsymbol{\theta}]\)</span>. As discussed in <a href="ch05-sandwich.html#sec-remark-posterior-bread" class="quarto-xref"><span>Section 5.4.1</span></a>, the full-joint conditional sandwich <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{cond}}\)</span> (variant (i) in the taxonomy, Definition 3b) produces a <span class="math inline">\(\boldsymbol{\beta}\)</span>-block that reflects the <strong>conditional</strong> variance of <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> given <span class="math inline">\(\hat{\boldsymbol{\theta}}\)</span>, which is much smaller than the <strong>marginal</strong> variance. For CCC of the fixed effects, the marginal sandwich is the correct target.</p>
+<p>The recommended approach draws on the sandwich variant taxonomy (<a href="ch05-sandwich.html#sec-sandwich-taxonomy" class="quarto-xref"><span>Section 5.4.3</span></a>) to construct each block from the appropriate variant. Note that the CCC correction extracts each block from <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span> (the joint MCMC posterior covariance) and calibrates it toward the corresponding block of the appropriate sandwich target — the marginal sandwich <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{marg}}\)</span> for <span class="math inline">\(\boldsymbol{\beta}\)</span> and the conditional sandwich <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{cond}}\)</span> for <span class="math inline">\(\boldsymbol{\theta}\)</span>. The ratio DER = <span class="math inline">\([\mathbf{V}_{\mathrm{sand}}]_{kk} / [\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{kk}\)</span> compares these two quantities block by block:</p>
+<ul>
+<li><p><strong><span class="math inline">\(\boldsymbol{\beta}\)</span>-block (primary special case: Bayesian marginal sandwich, variant (iii)).</strong> In the <strong>intercept-only / study-level-covariate case</strong>, the Bayesian marginal sandwich <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{marg}}[\boldsymbol{\beta}, \boldsymbol{\beta}]\)</span> (Definition 3a, <a href="ch05-sandwich.html#sec-remark-marginal-sandwich" class="quarto-xref"><span>Section 5.4.2</span></a>) is obtained by analytically integrating out <span class="math inline">\(\boldsymbol{\theta}\)</span> before constructing the sandwich (<span class="math inline">\(\bar{y}_j \mid \boldsymbol{\beta}, \tau^2 \sim \textsf{N}(\mathbf{x}_j^{\intercal}\boldsymbol{\beta}, v_j)\)</span> with <span class="math inline">\(v_j = \bar{s}_j^2/n_j + \tau^2\)</span>). The marginal <span class="math inline">\(\boldsymbol{\beta}\)</span>-scores use the <strong>full</strong> study-level residual <span class="math inline">\(r_j = \bar{y}_j - \mathbf{x}_j^{\intercal}\hat{\boldsymbol{\beta}}\)</span>, so the marginal meat captures the <strong>full between-study variation</strong>. For general within-study-varying covariates, the exact target is the full multivariate marginal sandwich; until that matrix form is written out explicitly, the CR2/profile variants should be treated as the operational check for those coefficients.</p>
+<p><strong>Positive definiteness of <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{marg}}[\boldsymbol{\beta}, \boldsymbol{\beta}]\)</span>.</strong> For <span class="math inline">\(\boldsymbol{\beta}\)</span>-block CCC, it suffices that the target block <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{marg}}[\boldsymbol{\beta}, \boldsymbol{\beta}]\)</span> be PD. The marginal <span class="math inline">\(\boldsymbol{\beta}\)</span>-meat is <span class="math inline">\([\mathbf{M}_{\mathrm{marg}}]_{\boldsymbol{\beta}\boldsymbol{\beta}} = \sum_{j=1}^{J} (r_j^2/v_j^2)\,\mathbf{\bar{x}}_j\,\mathbf{\bar{x}}_j^{\intercal}\)</span>. This is PD whenever the <span class="math inline">\(\boldsymbol{\beta}\)</span>-components of the marginal scores span <span class="math inline">\(\mathbb{R}^K\)</span>, which requires <span class="math inline">\(J \geq K\)</span> with the <span class="math inline">\(\{\mathbf{\bar{x}}_j\}\)</span> not confined to a proper subspace of <span class="math inline">\(\mathbb{R}^K\)</span> — the standard identifiability condition (C7). Since the marginal bread’s <span class="math inline">\(\boldsymbol{\beta}\)</span>-block <span class="math inline">\([\mathbf{H}_{\mathrm{marg}}^{\mathrm{post}}]_{\boldsymbol{\beta}\boldsymbol{\beta}}\)</span> is PD and <span class="math inline">\([\mathbf{M}_{\mathrm{marg}}]_{\boldsymbol{\beta}\boldsymbol{\beta}} \succ 0\)</span>, the <span class="math inline">\(\boldsymbol{\beta}\)</span>-block of the sandwich inherits PD. (Note: the full <span class="math inline">\((K+1)\)</span>-dimensional marginal sandwich <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{marg}}\)</span> is also PD when <span class="math inline">\(J &gt; K+1\)</span> and the marginal score vectors span <span class="math inline">\(\mathbb{R}^{K+1}\)</span>, but this stronger condition is not needed for <span class="math inline">\(\boldsymbol{\beta}\)</span>-block CCC.) This guarantees that the Cholesky factorization in <a href="#eq-ccc-beta-block" class="quarto-xref">Equation&nbsp;<span>6.5</span></a> succeeds without regularization.</p></li>
+<li><p><strong><span class="math inline">\(\boldsymbol{\beta}\)</span>-block (verification: frequentist CR2, variant (iv)).</strong> The CR2 estimator from <code>clubSandwich::coef_test()</code> applied to a marginal <code>rma.mv()</code> fit provides an <strong>independent external check</strong> on the Bayesian marginal sandwich. For the TSL15 data, <span class="math inline">\(\mathrm{SD}_{\mathrm{sand}}^{\mathrm{marg}}(\mu) = 0.0244\)</span> vs.&nbsp;<span class="math inline">\(\mathrm{SE}_{\mathrm{CR2}}(\mu) = 0.0206\)</span>; the 18.5% gap is attributable to the 2-level (Bayesian) vs.&nbsp;3-level (metafor) model specification difference (see <a href="ch05-sandwich.html#tbl-sandwich-comparison" class="quarto-xref">Table&nbsp;<span>5.1</span></a>). The profile sandwich (variant (ii)) gives <span class="math inline">\(\mathrm{SD}_{\mathrm{sand}}^{\mathrm{profile}}(\mu) = 0.0216\)</span>, within 5.1% of CR2, confirming close agreement when <span class="math inline">\(\tau^2\)</span> uncertainty is conditioned away.</p></li>
+<li><p><strong><span class="math inline">\(\boldsymbol{\theta}\)</span>-block (from conditional sandwich, variant (i)).</strong> The <span class="math inline">\(\boldsymbol{\theta}\)</span>-block <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\theta}, \boldsymbol{\theta}]\)</span> is obtained directly from the full-joint conditional sandwich matrix (variant (i)), extracting the <span class="math inline">\(J \times J\)</span> diagonal block. This is the only option: variants (ii)–(iv) marginalize or integrate out <span class="math inline">\(\boldsymbol{\theta}\)</span> and therefore provide no sandwich for the random effects directly. The uncertainty quantification framework for random effects in survey-weighted models is developed in <span class="citation" data-cites="WilliamsMcGuireSavitsky2025">Williams, McGuire, and Savitsky (<a href="#ref-WilliamsMcGuireSavitsky2025" role="doc-biblioref">2025</a>)</span>. For <strong>diagnostic</strong> purposes, the conditional DER formula <span class="math inline">\(\mathrm{DER}_j^{\mathrm{cond}} = B_j \cdot \mathrm{DEFF}_j\)</span> (Theorem 3(b)) provides an interpretable decomposition. However, the CCC implementation uses the <strong>actual matrix blocks</strong> <span class="math inline">\([\mathbf{V}_{\mathrm{sand}}]_{\theta_j\theta_j}\)</span> from the full-joint sandwich, not the reconstructed formula; the DER decomposition serves as a diagnostic to interpret the magnitude of correction, not as a computational input.</p>
+<p><strong>Proper-prior requirement.</strong> The <span class="math inline">\(\boldsymbol{\theta}\)</span>-block Cholesky CCC requires <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\theta}, \boldsymbol{\theta}] \succ 0\)</span>, which holds when the <span class="math inline">\(\boldsymbol{\beta}\)</span> prior is proper (<span class="math inline">\(h_\mu &gt; 0\)</span>). Under flat <span class="math inline">\(\boldsymbol{\beta}\)</span> priors, <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\theta}, \boldsymbol{\theta}]\)</span> is singular (rank <span class="math inline">\(J-1\)</span>), and the studywise DER approach should be used instead: each <span class="math inline">\(\theta_j\)</span> is corrected independently via <span class="math inline">\(\theta_j^{*(s)} = \hat{\theta}_j + \sqrt{\mathrm{DER}_j^{\mathrm{cond}}} \cdot (\theta_j^{(s)} - \hat{\theta}_j)\)</span>. See the updated PD proof above for the full analysis.</p></li>
+</ul>
+<p><strong>Summary of the block-to-variant mapping:</strong></p>
+<div id="tbl-block-variant-map" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-block-variant-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.1: Mapping from CCC blocks to sandwich variants.
+</figcaption>
+<div aria-describedby="tbl-block-variant-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 58%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">CCC Block</th>
+<th style="text-align: left;">Sandwich Variant (Def. 3b)</th>
+<th style="text-align: left;">Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\boldsymbol{\beta}\)</span>-block</td>
+<td style="text-align: left;"><strong>(iii)</strong> Bayesian marginal</td>
+<td style="text-align: left;">Captures full between-study variation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\boldsymbol{\beta}\)</span>-block (check)</td>
+<td style="text-align: left;"><strong>(iv)</strong> Frequentist CR2</td>
+<td style="text-align: left;">Independent external validation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\boldsymbol{\theta}\)</span>-block</td>
+<td style="text-align: left;"><strong>(i)</strong> Full-joint conditional</td>
+<td style="text-align: left;">Only variant that retains <span class="math inline">\(\boldsymbol{\theta}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>CCC <span class="math inline">\(\neq\)</span> CR2: Distinct Inferential Targets
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Bayesian CCC and the frequentist CR2 are <strong>not the same correction</strong>, despite both addressing working-model misspecification. They differ in three dimensions:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 23%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dimension</th>
+<th style="text-align: left;">CCC</th>
+<th style="text-align: left;">CR2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sandwich target</td>
+<td style="text-align: left;">Bayesian marginal <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{marg}}\)</span></td>
+<td style="text-align: left;">Profile at REML <span class="math inline">\(\hat{\sigma}^2_\theta\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Uncertainty scope</td>
+<td style="text-align: left;">Full Bayesian (includes <span class="math inline">\(\tau^2\)</span>)</td>
+<td style="text-align: left;">Plug-in (conditions on <span class="math inline">\(\hat{\tau}^2\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Calibrated posterior draws</td>
+<td style="text-align: left;">Adjusted standard errors</td>
+</tr>
+</tbody>
+</table>
+<p>The CR2 serves as an external validation benchmark within the CCC pipeline (variant (iv) in Definition 3b, <a href="ch05-sandwich.html#sec-sandwich-taxonomy" class="quarto-xref"><span>Section 5.4.3</span></a>), not as a substitute for the Bayesian marginal sandwich (variant (iii)).</p>
+</div>
+</div>
+<p><strong>Mathematical justification for block independence.</strong> The CCC algorithm (<a href="#eq-ccc-beta-block" class="quarto-xref">Equation&nbsp;<span>6.5</span></a> and <a href="#eq-ccc-theta-block" class="quarto-xref">Equation&nbsp;<span>6.6</span></a>) applies a block-diagonal affine transformation. Formally, let <span class="math inline">\(\boldsymbol{\phi}^{(s)} = (\boldsymbol{\beta}^{(s)\intercal}, \boldsymbol{\theta}^{(s)\intercal})^{\intercal}\)</span> be an MCMC draw. The blockwise CCC produces <span id="eq-blockwise-ccc-combined"><span class="math display">\[
+\boldsymbol{\phi}^{*(s)} = \begin{pmatrix} \hat{\boldsymbol{\beta}} + \mathbf{L}_2^{\boldsymbol{\beta}}(\mathbf{L}_1^{\boldsymbol{\beta}})^{-1}(\boldsymbol{\beta}^{(s)} - \hat{\boldsymbol{\beta}}) \\ \hat{\boldsymbol{\theta}} + \mathbf{L}_2^{\boldsymbol{\theta}}(\mathbf{L}_1^{\boldsymbol{\theta}})^{-1}(\boldsymbol{\theta}^{(s)} - \hat{\boldsymbol{\theta}}) \end{pmatrix},
+\tag{6.7}\]</span></span> which is a block-diagonal affine map <span class="math inline">\(\mathcal{C} = \mathrm{diag}(\mathcal{C}_{\boldsymbol{\beta}}, \mathcal{C}_{\boldsymbol{\theta}})\)</span>. The corrected covariance is: <span class="math display">\[
+\mathrm{Cov}(\boldsymbol{\phi}^{*}) = \begin{pmatrix} \mathbf{V}_{\mathrm{sand}}^{\mathrm{marg}}[\boldsymbol{\beta}] &amp; \mathbf{A}_{\boldsymbol{\beta}}\,\boldsymbol{\Sigma}_{\mathrm{MCMC}}[\boldsymbol{\beta},\boldsymbol{\theta}]\,\mathbf{A}_{\boldsymbol{\theta}}^{\intercal} \\ \mathbf{A}_{\boldsymbol{\theta}}\,\boldsymbol{\Sigma}_{\mathrm{MCMC}}[\boldsymbol{\theta},\boldsymbol{\beta}]\,\mathbf{A}_{\boldsymbol{\beta}}^{\intercal} &amp; \mathbf{V}_{\mathrm{sand}}^{\mathrm{cond}}[\boldsymbol{\theta}] \end{pmatrix},
+\]</span> where <span class="math inline">\(\mathbf{A}_{\boldsymbol{\psi}} = \mathbf{L}_2^{\boldsymbol{\psi}}(\mathbf{L}_1^{\boldsymbol{\psi}})^{-1}\)</span>. The diagonal blocks are recalibrated to the correct sandwich targets, while the off-diagonal cross-covariance is a transformed version of the original <span class="math inline">\(\boldsymbol{\beta}\)</span>-<span class="math inline">\(\boldsymbol{\theta}\)</span> posterior covariance. Since researchers report inferences on <span class="math inline">\(\boldsymbol{\beta}\)</span> or <span class="math inline">\(\boldsymbol{\theta}\)</span> separately (not jointly), only the diagonal blocks matter for credible interval construction.</p>
+<p>This construction ensures that each block uses the <strong>operationally correct</strong> sandwich target: marginal for <span class="math inline">\(\boldsymbol{\beta}\)</span> (matching the inferential goal of reporting marginal uncertainty) and conditional for <span class="math inline">\(\boldsymbol{\theta}\)</span> (which is the only well-defined sandwich quantity for random effects). The key advantage of the Bayesian marginal sandwich over the previous hybrid CR2 approach is that the entire CCC pipeline is now <strong>self-contained within the Bayesian framework</strong> — no external frequentist packages are required, although CR2 remains available for cross-validation (see <a href="ch05-sandwich.html#tbl-sandwich-comparison" class="quarto-xref">Table&nbsp;<span>5.1</span></a> for the numerical comparison). The source of <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\psi}, \boldsymbol{\psi}]\)</span> need not come from a single joint computation because the blockwise CCC decomposes into independent block-level transformations.</p>
+</section>
+<section id="statement-1" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="statement-1"><span class="header-section-number">6.2.3</span> Statement</h3>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Corollary 2 (Blockwise CCC Equivalence)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Under conditions (E1)–(E3) and (E5), let <span class="math inline">\(\boldsymbol{\psi}\)</span> denote a reported subvector of <span class="math inline">\(\boldsymbol{\phi}\)</span>, either the <span class="math inline">\(\boldsymbol{\beta}\)</span>-block or the <span class="math inline">\(\boldsymbol{\theta}\)</span>-block. Suppose <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}[\boldsymbol{\psi}, \boldsymbol{\psi}]\)</span> and <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\psi}, \boldsymbol{\psi}]\)</span> are positive definite (for <span class="math inline">\(\boldsymbol{\theta}\)</span> this is proved rigorously in the intercept-only case with a proper fixed-effect prior; otherwise it is taken as an explicit assumption). Then:</p>
+<ol type="a">
+<li><p>The blockwise correction map <span class="math inline">\(\mathcal{C}_{\boldsymbol{\psi}}: \boldsymbol{\psi} \mapsto \hat{\boldsymbol{\psi}} + \mathbf{L}_2^{\boldsymbol{\psi}}\,(\mathbf{L}_1^{\boldsymbol{\psi}})^{-1}(\boldsymbol{\psi} - \hat{\boldsymbol{\psi}})\)</span> is identical across frameworks.</p></li>
+<li><p>The target distribution of the CCC-corrected draws is the same: <span class="math inline">\(\boldsymbol{\psi}^{*}_{\mathrm{surv}} \overset{d}{=} \boldsymbol{\psi}^{*}_{\mathrm{meta}}\)</span>.</p></li>
+<li><p>The corrected posterior covariance of the reported subvector is identical: <span id="eq-ccc-cov"><span class="math display">\[
+\mathrm{Cov}(\boldsymbol{\psi}^{*}_{\mathrm{surv}}) = \mathrm{Cov}(\boldsymbol{\psi}^{*}_{\mathrm{meta}}) = \mathbf{V}_{\mathrm{sand}}[\boldsymbol{\psi}, \boldsymbol{\psi}].
+\tag{6.8}\]</span></span></p></li>
+</ol>
+<p><strong>Remark.</strong> The full-joint sandwich <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span> for the <span class="math inline">\((p+J)\)</span>-dimensional vector <span class="math inline">\(\boldsymbol{\phi}\)</span> has <span class="math inline">\(\mathrm{rank}(\mathbf{V}_{\mathrm{sand}}) \leq J &lt; p + J\)</span>, so full-joint CCC is not available. The blockwise formulation is the principled resolution: it applies CCC only to inferentially relevant subvectors for which positive definiteness has been proved or is explicitly assumed.</p>
+</div>
+</div>
+<p><strong>Key clarifications (corrected from V1).</strong> Two corrections from V1 are incorporated here:</p>
+<ol type="1">
+<li><p><strong>Blockwise, not full-joint.</strong> The V1 formulation applied CCC to the full joint vector <span class="math inline">\(\boldsymbol{\phi}\)</span>. As shown above, <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span> for the full <span class="math inline">\((p+J)\)</span>-dimensional vector is rank-deficient, making full-joint CCC structurally impossible. The corrected formulation applies CCC block-by-block to reported subvectors <span class="math inline">\(\boldsymbol{\psi} \in \{\boldsymbol{\beta}, \boldsymbol{\theta}\}\)</span>, where positive definiteness has been proved or is explicitly assumed.</p></li>
+<li><p><strong>Distributional, not pointwise.</strong> The V1 formulation stated that CCC-corrected draws are “draw-by-draw identical”: <span class="math inline">\(\boldsymbol{\psi}^{*(s)}_{\mathrm{surv}} = \boldsymbol{\psi}^{*(s)}_{\mathrm{meta}}\)</span> for each <span class="math inline">\(s\)</span>. This holds only with <strong>coupled samplers</strong> — both MCMC chains initialized at the same state, using the same random number seed, and processing the same likelihood (which Theorem 1 guarantees). In general, two independent MCMC runs from the same posterior produce different draws, and the corrected draws also differ pointwise. The correct statement is that the blockwise correction map <span class="math inline">\(\mathcal{C}_{\boldsymbol{\psi}}\)</span>, the target distribution, and the corrected covariance are all identical across frameworks. Pointwise equality holds conditional on coupled samplers; distributional equality holds unconditionally.</p></li>
+</ol>
+</section>
+<section id="full-proof-1" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="full-proof-1"><span class="header-section-number">6.2.4</span> Full Proof</h3>
+<p>The blockwise CCC algorithm has four ingredients for each reported subvector <span class="math inline">\(\boldsymbol{\psi} \in \{\boldsymbol{\beta}, \boldsymbol{\theta}\}\)</span>: the MAP subvector <span class="math inline">\(\hat{\boldsymbol{\psi}}\)</span>, the Cholesky factor <span class="math inline">\(\mathbf{L}_1^{\boldsymbol{\psi}}\)</span> of the posterior covariance block, the Cholesky factor <span class="math inline">\(\mathbf{L}_2^{\boldsymbol{\psi}}\)</span> of the sandwich block, and the input draws <span class="math inline">\(\boldsymbol{\psi}^{(s)}\)</span>. We show that each ingredient is identical across frameworks. The proof is stated generically for a subvector <span class="math inline">\(\boldsymbol{\psi}\)</span>; it applies to both the <span class="math inline">\(\boldsymbol{\beta}\)</span>-block and the <span class="math inline">\(\boldsymbol{\theta}\)</span>-block.</p>
+<p><strong>Ingredient 1: MAP subvector <span class="math inline">\(\hat{\boldsymbol{\psi}}\)</span>.</strong> By Theorem 1(c), <span class="math inline">\(\hat{\boldsymbol{\phi}}_{\mathrm{surv}} = \hat{\boldsymbol{\phi}}_{\mathrm{meta}}\)</span>. Extracting the <span class="math inline">\(\boldsymbol{\psi}\)</span>-subvector: <span class="math inline">\(\hat{\boldsymbol{\psi}}_{\mathrm{surv}} = \hat{\boldsymbol{\psi}}_{\mathrm{meta}}\)</span>.</p>
+<p><strong>Ingredient 2: Cholesky factor <span class="math inline">\(\mathbf{L}_1^{\boldsymbol{\psi}}\)</span>.</strong> By Corollary 1(d), <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}^{\mathrm{surv}} = \boldsymbol{\Sigma}_{\mathrm{MCMC}}^{\mathrm{meta}}\)</span>. Extracting the <span class="math inline">\(\boldsymbol{\psi}\)</span>-diagonal block: <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}^{\mathrm{surv}}[\boldsymbol{\psi}, \boldsymbol{\psi}] = \boldsymbol{\Sigma}_{\mathrm{MCMC}}^{\mathrm{meta}}[\boldsymbol{\psi}, \boldsymbol{\psi}]\)</span>. The Cholesky decomposition of a positive definite matrix is unique (given the convention that diagonal entries are positive). Therefore: <span class="math display">\[
+(\mathbf{L}_1^{\boldsymbol{\psi}})^{\mathrm{surv}} = \mathrm{chol}\!\left(\boldsymbol{\Sigma}_{\mathrm{MCMC}}^{\mathrm{surv}}[\boldsymbol{\psi}, \boldsymbol{\psi}]\right) = \mathrm{chol}\!\left(\boldsymbol{\Sigma}_{\mathrm{MCMC}}^{\mathrm{meta}}[\boldsymbol{\psi}, \boldsymbol{\psi}]\right) = (\mathbf{L}_1^{\boldsymbol{\psi}})^{\mathrm{meta}}.
+\]</span></p>
+<p><strong>Ingredient 3: Cholesky factor <span class="math inline">\(\mathbf{L}_2^{\boldsymbol{\psi}}\)</span>.</strong> The sandwich block <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\psi}, \boldsymbol{\psi}]\)</span> used in CCC differs by block, so we establish equivalence separately for each:</p>
+<ul>
+<li><p><strong><span class="math inline">\(\boldsymbol{\theta}\)</span>-block</strong>: The CCC target is <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{cond}}[\boldsymbol{\theta}, \boldsymbol{\theta}]\)</span>, extracted from the full-joint conditional sandwich (variant (i)). By Theorem 2(d), <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{cond},\,\mathrm{surv}} = \mathbf{V}_{\mathrm{sand}}^{\mathrm{cond},\,\mathrm{meta}}\)</span>, so the <span class="math inline">\(\boldsymbol{\theta}\)</span>-blocks are identical.</p></li>
+<li><p><strong><span class="math inline">\(\boldsymbol{\beta}\)</span>-block</strong>: The CCC target is <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{marg}}[\boldsymbol{\beta}, \boldsymbol{\beta}]\)</span>, extracted from the Bayesian marginal sandwich (variant (iii)). By the Marginal Sandwich Equivalence Proposition (<a href="ch05-sandwich.html#sec-marginal-sandwich-equiv" class="quarto-xref"><span>Section 5.4.4</span></a>), <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{marg},\,\mathrm{surv}} = \mathbf{V}_{\mathrm{sand}}^{\mathrm{marg},\,\mathrm{meta}}\)</span>, so the <span class="math inline">\(\boldsymbol{\beta}\)</span>-blocks are identical.</p></li>
+</ul>
+<p>In both cases, by uniqueness of the Cholesky decomposition: <span class="math display">\[
+(\mathbf{L}_2^{\boldsymbol{\psi}})^{\mathrm{surv}} = \mathrm{chol}\!\left(\mathbf{V}_{\mathrm{sand}}^{\mathrm{surv}}[\boldsymbol{\psi}, \boldsymbol{\psi}]\right) = \mathrm{chol}\!\left(\mathbf{V}_{\mathrm{sand}}^{\mathrm{meta}}[\boldsymbol{\psi}, \boldsymbol{\psi}]\right) = (\mathbf{L}_2^{\boldsymbol{\psi}})^{\mathrm{meta}}.
+\]</span></p>
+<p><strong>Ingredient 4: Input draws <span class="math inline">\(\boldsymbol{\psi}^{(s)}\)</span>.</strong> By Corollary 1(c), the MCMC draws are from the same posterior distribution: <span class="math inline">\(\boldsymbol{\phi}^{(s)} \sim \pi^*_{\mathrm{surv}} = \pi_{\mathrm{meta}}\)</span>. Extracting the <span class="math inline">\(\boldsymbol{\psi}\)</span>-subvector: <span class="math inline">\(\boldsymbol{\psi}^{(s)} \sim \pi[\boldsymbol{\psi}]\)</span> identically in both frameworks.</p>
+<p><strong>Part (a): Blockwise correction map identity.</strong> Since <span class="math inline">\(\hat{\boldsymbol{\psi}}\)</span>, <span class="math inline">\(\mathbf{L}_1^{\boldsymbol{\psi}}\)</span>, and <span class="math inline">\(\mathbf{L}_2^{\boldsymbol{\psi}}\)</span> are identical, the affine map <span class="math display">\[
+\mathcal{C}_{\boldsymbol{\psi}}(\boldsymbol{\psi}) = \hat{\boldsymbol{\psi}} + \mathbf{L}_2^{\boldsymbol{\psi}}\,(\mathbf{L}_1^{\boldsymbol{\psi}})^{-1}(\boldsymbol{\psi} - \hat{\boldsymbol{\psi}})
+\]</span> is the same function in both frameworks. <span class="math inline">\(\square\)</span></p>
+<p><strong>Part (b): Distributional equality.</strong> The corrected draws are obtained by applying <span class="math inline">\(\mathcal{C}_{\boldsymbol{\psi}}\)</span> to draws from the marginal posterior. Since <span class="math inline">\(\mathcal{C}_{\boldsymbol{\psi}}\)</span> is identical (part (a)) and the input distribution is identical (Corollary 1(c)), the output distribution is identical: <span class="math display">\[
+\boldsymbol{\psi}^{*}_{\mathrm{surv}} = \mathcal{C}_{\boldsymbol{\psi}}(\boldsymbol{\psi}_{\mathrm{surv}}) \overset{d}{=} \mathcal{C}_{\boldsymbol{\psi}}(\boldsymbol{\psi}_{\mathrm{meta}}) = \boldsymbol{\psi}^{*}_{\mathrm{meta}}.
+\]</span> If coupled samplers are used (same seed, same algorithm), then <span class="math inline">\(\boldsymbol{\psi}^{(s)}_{\mathrm{surv}} = \boldsymbol{\psi}^{(s)}_{\mathrm{meta}}\)</span> pointwise, and the corrected draws are also pointwise identical: <span class="math display">\[
+\boldsymbol{\psi}^{*(s)}_{\mathrm{surv}} = \mathcal{C}_{\boldsymbol{\psi}}(\boldsymbol{\psi}^{(s)}_{\mathrm{surv}}) = \mathcal{C}_{\boldsymbol{\psi}}(\boldsymbol{\psi}^{(s)}_{\mathrm{meta}}) = \boldsymbol{\psi}^{*(s)}_{\mathrm{meta}}, \quad s = 1, \ldots, S.
+\]</span> <span class="math inline">\(\square\)</span></p>
+<p><strong>Part (c): Corrected covariance identity.</strong> Let <span class="math inline">\(\mathbf{A}_{\boldsymbol{\psi}} = \mathbf{L}_2^{\boldsymbol{\psi}}\,(\mathbf{L}_1^{\boldsymbol{\psi}})^{-1}\)</span> be the linear part of the blockwise correction map. Then: <span id="eq-ccc-cov-derivation"><span class="math display">\[
+\begin{aligned}
+\mathrm{Cov}(\boldsymbol{\psi}^{*}) &amp;= \mathrm{Cov}\!\left(\hat{\boldsymbol{\psi}} + \mathbf{A}_{\boldsymbol{\psi}}(\boldsymbol{\psi} - \hat{\boldsymbol{\psi}})\right) \\
+&amp;= \mathbf{A}_{\boldsymbol{\psi}}\,\mathrm{Cov}(\boldsymbol{\psi})\,\mathbf{A}_{\boldsymbol{\psi}}^{\intercal} \\
+&amp;= \mathbf{L}_2^{\boldsymbol{\psi}}\,(\mathbf{L}_1^{\boldsymbol{\psi}})^{-1}\,\boldsymbol{\Sigma}_{\mathrm{MCMC}}[\boldsymbol{\psi}, \boldsymbol{\psi}]\,\bigl((\mathbf{L}_1^{\boldsymbol{\psi}})^{-1}\bigr)^{\intercal}\,(\mathbf{L}_2^{\boldsymbol{\psi}})^{\intercal}.
+\end{aligned}
+\tag{6.9}\]</span></span></p>
+<p>Since <span class="math inline">\(\mathbf{L}_1^{\boldsymbol{\psi}} = \mathrm{chol}(\boldsymbol{\Sigma}_{\mathrm{MCMC}}[\boldsymbol{\psi}, \boldsymbol{\psi}])\)</span>, we have <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}[\boldsymbol{\psi}, \boldsymbol{\psi}] = \mathbf{L}_1^{\boldsymbol{\psi}}\,(\mathbf{L}_1^{\boldsymbol{\psi}})^{\intercal}\)</span>. Substituting: <span id="eq-ccc-cov-result"><span class="math display">\[
+\begin{aligned}
+\mathrm{Cov}(\boldsymbol{\psi}^{*}) &amp;= \mathbf{L}_2^{\boldsymbol{\psi}}\,(\mathbf{L}_1^{\boldsymbol{\psi}})^{-1}\,\mathbf{L}_1^{\boldsymbol{\psi}}\,(\mathbf{L}_1^{\boldsymbol{\psi}})^{\intercal}\,\bigl((\mathbf{L}_1^{\boldsymbol{\psi}})^{-1}\bigr)^{\intercal}\,(\mathbf{L}_2^{\boldsymbol{\psi}})^{\intercal} \\
+&amp;= \mathbf{L}_2^{\boldsymbol{\psi}}\,\underbrace{(\mathbf{L}_1^{\boldsymbol{\psi}})^{-1}\,\mathbf{L}_1^{\boldsymbol{\psi}}}_{= \,\mathbf{I}}\,\underbrace{(\mathbf{L}_1^{\boldsymbol{\psi}})^{\intercal}\,\bigl((\mathbf{L}_1^{\boldsymbol{\psi}})^{\intercal}\bigr)^{-1}}_{= \,\mathbf{I}}\,(\mathbf{L}_2^{\boldsymbol{\psi}})^{\intercal} \\
+&amp;= \mathbf{L}_2^{\boldsymbol{\psi}}\,(\mathbf{L}_2^{\boldsymbol{\psi}})^{\intercal} \\
+&amp;= \mathbf{V}_{\mathrm{sand}}[\boldsymbol{\psi}, \boldsymbol{\psi}].
+\end{aligned}
+\tag{6.10}\]</span></span></p>
+<p>By Ingredient 3, the <strong>relevant sandwich block</strong> is identical across frameworks: for <span class="math inline">\(\boldsymbol{\psi} = \boldsymbol{\theta}\)</span> this is the conditional block by Theorem 2(d), while for <span class="math inline">\(\boldsymbol{\psi} = \boldsymbol{\beta}\)</span> this is the marginal block by the Marginal Sandwich Equivalence Proposition (<a href="ch05-sandwich.html#sec-marginal-sandwich-equiv" class="quarto-xref"><span>Section 5.4.4</span></a>). Therefore, <span class="math display">\[
+\mathrm{Cov}(\boldsymbol{\psi}^{*}_{\mathrm{surv}}) = \mathbf{V}_{\mathrm{target}}^{\mathrm{surv}}[\boldsymbol{\psi}, \boldsymbol{\psi}] = \mathbf{V}_{\mathrm{target}}^{\mathrm{meta}}[\boldsymbol{\psi}, \boldsymbol{\psi}] = \mathrm{Cov}(\boldsymbol{\psi}^{*}_{\mathrm{meta}}),
+\]</span> where <span class="math inline">\(\mathbf{V}_{\mathrm{target}}\)</span> denotes the block-appropriate sandwich target used by CCC.</p>
+<p>The blockwise CCC algorithm recalibrates the posterior dispersion of each reported subvector from <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}[\boldsymbol{\psi}, \boldsymbol{\psi}]\)</span> to <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\psi}, \boldsymbol{\psi}]\)</span>, and this recalibration is identical regardless of which framework generated the original posterior. <span class="math inline">\(\quad\blacksquare\)</span></p>
+</section>
+</section>
+<section id="summary-of-the-equivalence-chain" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="summary-of-the-equivalence-chain"><span class="header-section-number">6.3</span> Summary of the Equivalence Chain</h2>
+<p>The results of Chapters 4–6 form a logical chain:</p>
+<p><span class="math display">\[
+\begin{array}{cccl}
+\text{Theorem 1} &amp; \Longrightarrow &amp; \text{Theorem 2} &amp; \quad (\text{scores} \to \text{meat};\; \text{Hessian} \to \text{bread};\; \text{sandwich}) \\
+\text{Theorem 1} &amp; \Longrightarrow &amp; \text{Corollary 1} &amp; \quad (e^c \text{ cancels in Bayes' formula}) \\
+\text{Theorem 2} + \text{Corollary 1} &amp; \Longrightarrow &amp; \text{Corollary 2} &amp; \quad (\text{all four CCC ingredients matched})
+\end{array}
+\]</span></p>
+<p>Every inferential quantity that depends on the likelihood, the posterior, or the sandwich is identical across the meta-analytic and survey frameworks under (E1)–(E3) and (E5). The following table summarizes the complete set of matched quantities:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 27%">
+<col style="width: 15%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Quantity</th>
+<th style="text-align: left;">Meta-Analysis</th>
+<th style="text-align: left;">Survey</th>
+<th style="text-align: left;">Equivalence Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Log-likelihood (up to <span class="math inline">\(c\)</span>)</td>
+<td style="text-align: left;"><span class="math inline">\(\ell_{\mathrm{meta}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\ell^{(w)}_{\mathrm{surv}}\)</span></td>
+<td style="text-align: left;">Theorem 1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Score function</td>
+<td style="text-align: left;"><span class="math inline">\(\nabla_{\boldsymbol{\phi}} \ell_{\mathrm{meta}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\nabla_{\boldsymbol{\phi}} \ell^{(w)}_{\mathrm{surv}}\)</span></td>
+<td style="text-align: left;">Theorem 1(a)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hessian matrix</td>
+<td style="text-align: left;"><span class="math inline">\(\nabla^2_{\boldsymbol{\phi}} \ell_{\mathrm{meta}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\nabla^2_{\boldsymbol{\phi}} \ell^{(w)}_{\mathrm{surv}}\)</span></td>
+<td style="text-align: left;">Theorem 1(b)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MAP estimate</td>
+<td style="text-align: left;"><span class="math inline">\(\hat{\boldsymbol{\phi}}_{\mathrm{meta}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\hat{\boldsymbol{\phi}}_{\mathrm{surv}}\)</span></td>
+<td style="text-align: left;">Theorem 1(c)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bread <span class="math inline">\(\mathbf{H}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{H}_{\mathrm{meta}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{H}_{\mathrm{surv}}\)</span></td>
+<td style="text-align: left;">Theorem 2(a)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cluster scores <span class="math inline">\(\mathbf{s}_j\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{s}_j^{\mathrm{meta}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{s}_j^{\mathrm{surv}}\)</span></td>
+<td style="text-align: left;">Theorem 2(b)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Meat <span class="math inline">\(\mathbf{M}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{M}_{\mathrm{meta}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{M}_{\mathrm{surv}}\)</span></td>
+<td style="text-align: left;">Theorem 2(c)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sandwich <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{meta}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{surv}}\)</span></td>
+<td style="text-align: left;">Theorem 2(d)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Posterior <span class="math inline">\(\pi\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\pi_{\mathrm{meta}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\pi^*_{\mathrm{surv}}\)</span></td>
+<td style="text-align: left;">Corollary 1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Posterior covariance <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}^{\mathrm{meta}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}^{\mathrm{surv}}\)</span></td>
+<td style="text-align: left;">Corollary 1(d)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Blockwise CCC map <span class="math inline">\(\mathcal{C}_{\boldsymbol{\psi}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\((\mathcal{C}_{\boldsymbol{\psi}})_{\mathrm{meta}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\((\mathcal{C}_{\boldsymbol{\psi}})_{\mathrm{surv}}\)</span></td>
+<td style="text-align: left;">Corollary 2(a)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Blockwise CCC corrected covariance</td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{meta}}[\boldsymbol{\psi}, \boldsymbol{\psi}]\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{surv}}[\boldsymbol{\psi}, \boldsymbol{\psi}]\)</span></td>
+<td style="text-align: left;">Corollary 2(c)</td>
+</tr>
+</tbody>
+</table>
+<p>With the core equivalence results established, we turn in Part III to the Design Effect Ratio framework, which provides per-parameter diagnostics for the magnitude and direction of working-model misspecification.</p>
+<p>Part III converts the abstract equivalence into a practical diagnostic pipeline. Where Theorems 1–2 and Corollaries 1–2 established that the two frameworks compute the same quantities, the DER framework (<a href="ch07-der-framework.html" class="quarto-xref"><span>Chapter 7</span></a>) quantifies <em>how far</em> each parameter’s working-model posterior deviates from its sandwich-corrected target. The conservation law (<a href="ch08-conservation.html" class="quarto-xref"><span>Chapter 8</span></a>) constrains the total deviation budget, and the boundary analysis (<a href="ch09-boundary.html" class="quarto-xref"><span>Chapter 9</span></a>) maps the DER landscape across the parameter space.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-WilliamsMcGuireSavitsky2025" class="csl-entry" role="listitem">
+Williams, Matthew R., F. Hunter McGuire, and Terrance D. Savitsky. 2025. <span>“Uncertainty Quantification for Multi-Level Models Using the Survey-Weighted Pseudo-Posterior.”</span> <a href="https://doi.org/10.48550/arXiv.2510.09401">https://doi.org/10.48550/arXiv.2510.09401</a>.
+</div>
+<div id="ref-WilliamsSavitsky2021" class="csl-entry" role="listitem">
+Williams, Matthew R., and Terrance D. Savitsky. 2021. <span>“Uncertainty Estimation for Pseudo-<span>B</span>ayesian Inference Under Complex Sampling.”</span> <em>International Statistical Review</em> 89 (1): 72–107. <a href="https://doi.org/10.1111/insr.12376">https://doi.org/10.1111/insr.12376</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ch05-sandwich.html" class="pagination-link" aria-label="Theorem 2: Sandwich Equivalence">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Theorem 2: Sandwich Equivalence</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ch07-der-framework.html" class="pagination-link" aria-label="DER Framework and Transfer Theorem">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DER Framework and Transfer Theorem</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/joonho112/bayesian-meta-survey-equivalence/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Theorem 1: Likelihood Isomorphism – Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ch05-sandwich.html" rel="next">
+<link href="./ch03-exactness.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ch04-isomorphism.html">Part II: Core Equivalence Results</a></li><li class="breadcrumb-item"><a href="./ch04-isomorphism.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Theorem 1: Likelihood Isomorphism</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/joonho112/bayesian-meta-survey-equivalence" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part I: Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch01-notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Notation and Conventions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch02-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Model Definitions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch03-exactness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exactness Conditions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Core Equivalence Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch04-isomorphism.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Theorem 1: Likelihood Isomorphism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch05-sandwich.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Theorem 2: Sandwich Equivalence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch06-posterior-ccc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Corollaries 1–2: Posterior and CCC Equivalence</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Design Effect Ratios</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch07-der-framework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DER Framework and Transfer Theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch08-conservation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conservation Law</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch09-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Boundary Cases and Edge Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Extensions and Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch10-extensions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">E4-Relaxed CE and CHE Extensions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch11-regularity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Regularity Conditions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch12-interpretation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Interpretive Issues and Practical Implications</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part V: Discussion and Conclusions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch13-discussion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Discussion and Conclusions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-revision-history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Revision History</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#statement" id="toc-statement" class="nav-link active" data-scroll-target="#statement"><span class="header-section-number">4.1</span> Statement</a></li>
+  <li><a href="#full-proof" id="toc-full-proof" class="nav-link" data-scroll-target="#full-proof"><span class="header-section-number">4.2</span> Full Proof</a>
+  <ul class="collapse">
+  <li><a href="#sec-proof-case1" id="toc-sec-proof-case1" class="nav-link" data-scroll-target="#sec-proof-case1"><span class="header-section-number">4.2.1</span> Case 1: Independence working model (<span class="math inline">\(\rho = 0\)</span>)</a></li>
+  <li><a href="#sec-proof-case2" id="toc-sec-proof-case2" class="nav-link" data-scroll-target="#sec-proof-case2"><span class="header-section-number">4.2.2</span> Case 2: Compound-symmetric working model (<span class="math inline">\(\rho &gt; 0\)</span>)</a></li>
+  <li><a href="#proof-of-consequences-ac" id="toc-proof-of-consequences-ac" class="nav-link" data-scroll-target="#proof-of-consequences-ac"><span class="header-section-number">4.2.3</span> Proof of Consequences (a)–(c)</a></li>
+  </ul></li>
+  <li><a href="#remarks" id="toc-remarks" class="nav-link" data-scroll-target="#remarks"><span class="header-section-number">4.3</span> Remarks</a>
+  <ul class="collapse">
+  <li><a href="#sec-remark-e2" id="toc-sec-remark-e2" class="nav-link" data-scroll-target="#sec-remark-e2"><span class="header-section-number">4.3.1</span> Remark 1 (On (E2) with heterogeneous <span class="math inline">\(\bar{s}_j^2\)</span>)</a></li>
+  <li><a href="#sec-remark-case-structure" id="toc-sec-remark-case-structure" class="nav-link" data-scroll-target="#sec-remark-case-structure"><span class="header-section-number">4.3.2</span> Remark 2 (On the Case structure)</a></li>
+  <li><a href="#sec-remark-constant-c" id="toc-sec-remark-constant-c" class="nav-link" data-scroll-target="#sec-remark-constant-c"><span class="header-section-number">4.3.3</span> Remark 3 (On the scope of the constant <span class="math inline">\(c\)</span>)</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/joonho112/bayesian-meta-survey-equivalence/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ch04-isomorphism.html">Part II: Core Equivalence Results</a></li><li class="breadcrumb-item"><a href="./ch04-isomorphism.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Theorem 1: Likelihood Isomorphism</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-isomorphism" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Theorem 1: Likelihood Isomorphism</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This chapter establishes the foundational result of the paper: under exactness conditions (E1)–(E3) and (E5), the CE meta-analytic log-likelihood and the survey pseudo-log-likelihood differ by an additive constant that does not depend on the parameter vector <span class="math inline">\(\boldsymbol{\phi}\)</span>. Every subsequent equivalence result—sandwich, posterior, CCC—flows directly from this theorem.</p>
+<p>The core insight can be previewed informally. Imagine two researchers analyzing the same dataset of clustered outcomes: a meta-analyst who treats each study’s sampling variance as a known quantity, and a survey statistician who specifies a pseudo-likelihood with unit weights and cluster-specific error variances. Under the exactness conditions, these two researchers are maximizing the same objective function. The additive constant <span class="math inline">\(c\)</span> that separates their log-likelihoods plays no role in parameter estimation, inference, or model comparison — it is a notational artifact of two traditions that formalized the same data structure using different conventions.</p>
+<section id="statement" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="statement"><span class="header-section-number">4.1</span> Statement</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Theorem 1 (Likelihood Isomorphism)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(\ell_{\mathrm{meta}}(\boldsymbol{\phi})\)</span> denote the log-likelihood of the CE meta-analytic model (Definition 1) and let <span class="math inline">\(\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi})\)</span> denote the pseudo-log-likelihood of the normal hierarchical survey model. Under conditions (E1)–(E3) and (E5), the isomorphism map <span class="math inline">\(\mathcal{T}: \sigma^2_{e,j} \mapsto \bar{s}_j^2,\; \tilde{w}_{ij} \mapsto 1\)</span> yields: <span id="eq-lik-iso"><span class="math display">\[
+\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) \;=\; \ell_{\mathrm{meta}}(\boldsymbol{\phi}) \;+\; c,
+\tag{4.1}\]</span></span> where <span class="math inline">\(c = c(\{\sigma^2_{e,j}\}, \{s_{ij}^2\}, \{\tilde{w}_{ij}\}, \rho, \{n_j\})\)</span> is a constant that does not depend on the parameter vector <span class="math inline">\(\boldsymbol{\phi} = (\boldsymbol{\beta}^{\intercal}, \boldsymbol{\theta}^{\intercal})^{\intercal}\)</span>.</p>
+<p><strong>Consequences:</strong></p>
+<ol type="a">
+<li><p><strong>Score equivalence.</strong> <span class="math inline">\(\nabla_{\boldsymbol{\phi}}\,\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) = \nabla_{\boldsymbol{\phi}}\,\ell_{\mathrm{meta}}(\boldsymbol{\phi})\)</span>.</p></li>
+<li><p><strong>Hessian equivalence.</strong> <span class="math inline">\(\nabla^2_{\boldsymbol{\phi}}\,\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) = \nabla^2_{\boldsymbol{\phi}}\,\ell_{\mathrm{meta}}(\boldsymbol{\phi})\)</span>.</p></li>
+<li><p><strong>MAP equivalence.</strong> Given the same prior <span class="math inline">\(p(\boldsymbol{\beta})\,p(\sigma^2_\theta)\)</span> and <span class="math inline">\(\theta_j \mid \sigma^2_\theta \sim \textsf{N}(0, \sigma^2_\theta)\)</span>, the MAP estimates coincide: <span class="math inline">\(\hat{\boldsymbol{\phi}}_{\mathrm{surv}} = \hat{\boldsymbol{\phi}}_{\mathrm{meta}}\)</span>.</p></li>
+</ol>
+</div>
+</div>
+<p>To make this concrete, <a href="#fig-likelihood-isomorphism" class="quarto-xref">Figure&nbsp;<span>4.1</span></a> displays the contour geometry of the meta-analytic log-likelihood and the survey pseudo-log-likelihood for a toy intercept-only example under the isomorphism map <span class="math inline">\(\mathcal{T}\)</span>. The difference panel is flat (up to numerical precision), confirming that the two objective functions differ only by a <span class="math inline">\(\boldsymbol{\phi}\)</span>-free constant — exactly as Theorem 1 asserts.</p>
+<div id="fig-likelihood-isomorphism" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-likelihood-isomorphism-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/matlab/fig02_likelihood_isomorphism.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-likelihood-isomorphism-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Toy intercept-only matched example in which the meta-analytic log-likelihood and the survey pseudo-log-likelihood have identical contour geometry under the isomorphism map <span class="math inline">\(\mathcal{T}\)</span>. The difference panel is flat (up to numerical precision), illustrating that the two objective functions differ only by a <span class="math inline">\(\boldsymbol{\phi}\)</span>-free constant.
+</figcaption>
+</figure>
+</div>
+<p>The content of Theorem 1 can be stated informally: the two fields have been optimizing the same objective function. The meta-analytic log-likelihood and the survey pseudo-log-likelihood encode identical information about <span class="math inline">\(\boldsymbol{\phi}\)</span>; they differ only in their normalizing constants, which play no role in parameter estimation or inference.</p>
+<p><strong>Direction of the isomorphism.</strong> The map <span class="math inline">\(\mathcal{T}\)</span> is constructive: given a survey pseudo-likelihood parameterized by <span class="math inline">\((\sigma^2_{e,j}, \tilde{w}_{ij})\)</span>, the identifications <span class="math inline">\(\sigma^2_{e,j} \mapsto \bar{s}_j^2\)</span> and <span class="math inline">\(\tilde{w}_{ij} \mapsto 1\)</span> produce the meta-analytic likelihood. Conversely, every CE meta-analytic likelihood can be embedded in the survey pseudo-likelihood framework by choosing <span class="math inline">\(\sigma^2_{e,j} = \bar{s}_j^2\)</span> and <span class="math inline">\(\tilde{w}_{ij} = 1\)</span>. The correspondence is therefore bi-directional <strong>within the matched CE / compound-symmetric working-model class studied in Theorem 1</strong>. In that class, (E2), (E3), and (E5) are the essential identification requirements, while (E1) supplies the shared within-cluster covariance family used in Case 2 and in the downstream scalar-DEFF theory. For the special independence case <span class="math inline">\(\rho = 0\)</span>, the basic likelihood comparison does not need a separate covariance-shape assumption beyond the common design matrix and residual vector.</p>
+<p><strong>Proof roadmap.</strong> The proof exploits a simple but powerful structural feature: in both frameworks, the parameter vector <span class="math inline">\(\boldsymbol{\phi}\)</span> enters the log-likelihood only through the residual vector <span class="math inline">\(\mathbf{r}_j = \mathbf{y}_j - \mathbf{X}_j\boldsymbol{\beta} - \theta_j\mathbf{1}_{n_j}\)</span>. The two likelihoods can therefore differ only in how they scale these residuals (through the variance parameters) and in their normalizing constants (through the log-determinants). The exactness conditions ensure that both scaling and normalization match up to a <span class="math inline">\(\boldsymbol{\phi}\)</span>-free additive term. The argument is developed in two cases: <span class="math inline">\(\rho = 0\)</span> (diagonal within-study covariance) and <span class="math inline">\(\rho &gt; 0\)</span> (compound-symmetric covariance), with the independence case presented first for pedagogical clarity.</p>
+</section>
+<section id="full-proof" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="full-proof"><span class="header-section-number">4.2</span> Full Proof</h2>
+<p><strong>Notation.</strong> Throughout the proof, <span class="math inline">\(\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho) = \sigma^2_j[(1-\rho)\,\mathbf{I}_{n_j} + \rho\,\mathbf{1}_{n_j}\mathbf{1}_{n_j}^{\intercal}]\)</span> denotes the compound-symmetric within-study working covariance for study <span class="math inline">\(j\)</span>, where <span class="math inline">\(\sigma^2_j = \bar{s}_j^2\)</span> in the meta-analytic framework and <span class="math inline">\(\sigma^2_j = \sigma^2_{e,j}\)</span> in the survey framework.</p>
+<p>We prove in two stages: first for the conditional-independence working model (<span class="math inline">\(\rho = 0\)</span>), then for the compound-symmetric working model (<span class="math inline">\(\rho &gt; 0\)</span>). In both cases, the strategy is direct: write out the two log-likelihoods explicitly, apply (E1)–(E3) and (E5), and verify that they differ by a term not depending on <span class="math inline">\(\boldsymbol{\phi}\)</span>. Case 1 is a special case of Case 2 (set <span class="math inline">\(\rho = 0\)</span> in the compound-symmetric formulas and the CS structure reduces to <span class="math inline">\(\sigma^2 \mathbf{I}_{n_j}\)</span>), but we present both cases separately for pedagogical clarity: the independence case isolates the role of (E2) and (E3) without the algebraic overhead of the matrix inverse and log-determinant formulas.</p>
+<section id="sec-proof-case1" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="sec-proof-case1"><span class="header-section-number">4.2.1</span> Case 1: Independence working model (<span class="math inline">\(\rho = 0\)</span>)</h3>
+<p>Under condition (E5), the survey pseudo-log-likelihood with normal Level 1 errors is <span id="eq-surv-loglik-case1"><span class="math display">\[
+\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) = \sum_{j=1}^{J}\sum_{i=1}^{n_j} \tilde{w}_{ij}\!\left[-\frac{1}{2}\log(2\pi\sigma^2_{e,j}) - \frac{(y_{ij} - \mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} - \theta_j)^2}{2\sigma^2_{e,j}}\right].
+\tag{4.2}\]</span></span></p>
+<p><strong>Step 1 (Apply (E3): eliminate weights).</strong> [← <strong>Condition (E3) applied here</strong>: this is the critical step where the survey pseudo-log-likelihood reduces to the standard unweighted log-likelihood.] Under (E3), <span class="math inline">\(\tilde{w}_{ij} = 1\)</span> for all <span class="math inline">\((i,j)\)</span>. The weights multiply through as unity: <span class="math display">\[
+\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) = \sum_{j=1}^{J}\sum_{i=1}^{n_j}\!\left[-\frac{1}{2}\log(2\pi\sigma^2_{e,j}) - \frac{(y_{ij} - \mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} - \theta_j)^2}{2\sigma^2_{e,j}}\right].
+\]</span></p>
+<p><strong>Step 2 (Design matrices match).</strong> Both frameworks use the same design matrix <span class="math inline">\(\mathbf{X}_j\)</span> with rows <span class="math inline">\(\mathbf{x}_{ij}^{\intercal}\)</span>, so the residuals <span class="math inline">\(r_{ij} = y_{ij} - \mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} - \theta_j\)</span> are identical in both frameworks: <span id="eq-surv-simplified-case1"><span class="math display">\[
+\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) = -\sum_{j=1}^{J}\frac{n_j}{2}\log(2\pi\sigma^2_{e,j}) - \sum_{j=1}^{J}\sum_{i=1}^{n_j} \frac{(y_{ij} - \mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} - \theta_j)^2}{2\sigma^2_{e,j}}.
+\tag{4.3}\]</span></span></p>
+<p>The meta-analytic log-likelihood under the independence working model (<span class="math inline">\(\rho = 0\)</span>, so <span class="math inline">\(\boldsymbol{\Sigma}_j^{\mathrm{work}} = \bar{s}_j^2\,\mathbf{I}_{n_j}\)</span>) is <span id="eq-meta-loglik-case1"><span class="math display">\[
+\ell_{\mathrm{meta}}(\boldsymbol{\phi}) = \sum_{j=1}^{J}\!\left[-\frac{n_j}{2}\log(2\pi\bar{s}_j^2) - \sum_{i=1}^{n_j}\frac{(y_{ij} - \mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} - \theta_j)^2}{2\bar{s}_j^2}\right].
+\tag{4.4}\]</span></span></p>
+<p><strong>Step 3 (Apply (E2): identify variances).</strong> Under the corrected formulation of (E2), the identification is cluster-specific: <span class="math inline">\(\sigma^2_{e,j} = \bar{s}_j^2\)</span> for each <span class="math inline">\(j = 1, \ldots, J\)</span>. The quadratic terms in <a href="#eq-surv-simplified-case1" class="quarto-xref">Equation&nbsp;<span>4.3</span></a> and <a href="#eq-meta-loglik-case1" class="quarto-xref">Equation&nbsp;<span>4.4</span></a> become identical term by term: <span class="math display">\[
+\frac{(y_{ij} - \mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} - \theta_j)^2}{2\sigma^2_{e,j}} = \frac{(y_{ij} - \mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} - \theta_j)^2}{2\bar{s}_j^2}.
+\]</span></p>
+<p>The log-determinant terms also match cluster by cluster: <span class="math display">\[
+-\frac{n_j}{2}\log(2\pi\sigma^2_{e,j}) = -\frac{n_j}{2}\log(2\pi\bar{s}_j^2).
+\]</span></p>
+<p><strong>Step 4 (Collect the constant).</strong> Subtracting the meta-analytic log-likelihood from the survey pseudo-log-likelihood: <span class="math display">\[
+\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) - \ell_{\mathrm{meta}}(\boldsymbol{\phi}) = \sum_{j=1}^{J}\!\left[-\frac{n_j}{2}\log(2\pi\sigma^2_{e,j}) + \frac{n_j}{2}\log(2\pi\bar{s}_j^2)\right] = \frac{1}{2}\sum_{j=1}^{J} n_j \log\!\left(\frac{\bar{s}_j^2}{\sigma^2_{e,j}}\right).
+\]</span></p>
+<p>Under the strict form of (E2), <span class="math inline">\(\sigma^2_{e,j} = \bar{s}_j^2\)</span> for every <span class="math inline">\(j\)</span>, so each term <span class="math inline">\(\log(\bar{s}_j^2 / \sigma^2_{e,j}) = 0\)</span>, and the entire sum vanishes. Define <span class="math display">\[
+c_1 \;=\; \frac{1}{2}\sum_{j=1}^{J} n_j \log\!\left(\frac{\bar{s}_j^2}{\sigma^2_{e,j}}\right),
+\]</span> which depends only on <span class="math inline">\(\{\sigma^2_{e,j}\}\)</span>, <span class="math inline">\(\{\bar{s}_j^2\}\)</span>, and <span class="math inline">\(\{n_j\}\)</span> — not on <span class="math inline">\(\boldsymbol{\phi}\)</span>. We conclude: <span id="eq-case1-result"><span class="math display">\[
+\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) = \ell_{\mathrm{meta}}(\boldsymbol{\phi}) + c_1.
+\tag{4.5}\]</span></span></p>
+<p>This completes the proof for Case 1. <span class="math inline">\(\square\)</span></p>
+<p>The independence case isolates the essential mechanism: condition (E2) aligns the variance denominators study by study, condition (E3) removes the survey weights, and the resulting constant <span class="math inline">\(c_1\)</span> is simply the log-ratio of the two variance parameterizations summed over clusters. Case 2 extends this argument to the compound-symmetric setting, where the matrix structure introduces the CS inverse and log-determinant formulas, but the same alignment principle applies: all <span class="math inline">\(\boldsymbol{\phi}\)</span>-dependent terms cancel, and the residual difference is absorbed into a cluster-additive constant.</p>
+</section>
+<section id="sec-proof-case2" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="sec-proof-case2"><span class="header-section-number">4.2.2</span> Case 2: Compound-symmetric working model (<span class="math inline">\(\rho &gt; 0\)</span>)</h3>
+<p>We now handle the general case where the within-cluster working covariance exhibits compound symmetry with correlation <span class="math inline">\(\rho \in (0, 1)\)</span>.</p>
+<p><strong>Step 1 (Write the clusterwise multivariate normal for both frameworks).</strong></p>
+<p>Under (E1), the within-cluster working covariance is <span class="math display">\[
+\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho) = \sigma^2_j\!\left[(1-\rho)\,\mathbf{I}_{n_j} + \rho\,\mathbf{1}_{n_j}\mathbf{1}_{n_j}^{\intercal}\right],
+\]</span> where <span class="math inline">\(\sigma^2_j = \bar{s}_j^2\)</span> in the meta-analytic framework and <span class="math inline">\(\sigma^2_j = \sigma^2_{e,j}\)</span> in the survey framework. Both frameworks model <span class="math inline">\(\mathbf{y}_j \mid \boldsymbol{\beta}, \theta_j\)</span> as multivariate normal with mean <span class="math inline">\(\mathbf{X}_j \boldsymbol{\beta} + \theta_j \mathbf{1}_{n_j}\)</span> and covariance <span class="math inline">\(\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho)\)</span>. The cluster-<span class="math inline">\(j\)</span> log-likelihood contribution in either framework is: <span id="eq-cluster-loglik"><span class="math display">\[
+\ell_j(\boldsymbol{\phi}) = -\frac{n_j}{2}\log(2\pi) - \frac{1}{2}\log\!\left|\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho)\right| - \frac{1}{2}\mathbf{r}_j^{\intercal}\!\left[\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho)\right]^{-1}\!\mathbf{r}_j,
+\tag{4.6}\]</span></span> where <span class="math inline">\(\mathbf{r}_j = \mathbf{y}_j - \mathbf{X}_j\boldsymbol{\beta} - \theta_j\mathbf{1}_{n_j}\)</span> is the cluster-level residual vector.</p>
+<p><strong>Step 2 (CS inverse and log-determinant formulas).</strong> The compound-symmetric matrix <span class="math inline">\(\mathbf{A} = a[(1-\rho)\mathbf{I}_n + \rho\,\mathbf{1}_n\mathbf{1}_n^{\intercal}]\)</span> with <span class="math inline">\(a &gt; 0\)</span> and <span class="math inline">\(\rho \in [0,1)\)</span> has the well-known inverse: <span id="eq-cs-inverse-proof"><span class="math display">\[
+\mathbf{A}^{-1} = \frac{1}{a(1-\rho)}\!\left[\mathbf{I}_n - \frac{\rho}{1 + (n - 1)\rho}\,\mathbf{1}_n\mathbf{1}_n^{\intercal}\right],
+\tag{4.7}\]</span></span> and log-determinant: <span id="eq-cs-logdet-proof"><span class="math display">\[
+\log|\mathbf{A}| = (n - 1)\log[a(1-\rho)] + \log[a(1 + (n-1)\rho)].
+\tag{4.8}\]</span></span></p>
+<p>These follow from the eigenstructure of the compound-symmetric matrix: <span class="math inline">\(\mathbf{A}\)</span> has eigenvalue <span class="math inline">\(a(1-\rho)\)</span> with multiplicity <span class="math inline">\((n-1)\)</span> (eigenvectors orthogonal to <span class="math inline">\(\mathbf{1}_n\)</span>) and eigenvalue <span class="math inline">\(a[1 + (n-1)\rho]\)</span> with multiplicity <span class="math inline">\(1\)</span> (eigenvector <span class="math inline">\(\mathbf{1}_n / \sqrt{n}\)</span>).</p>
+<p><strong>Step 3 (Decompose the log-determinant difference).</strong> Applying <a href="#eq-cs-logdet-proof" class="quarto-xref">Equation&nbsp;<span>4.8</span></a> to each framework:</p>
+<p><em>Meta-analytic log-determinant:</em> <span class="math display">\[
+\log\!\left|\boldsymbol{\Sigma}_j^{\mathrm{meta}}(\rho)\right| = (n_j - 1)\log[\bar{s}_j^2(1-\rho)] + \log[\bar{s}_j^2(1 + (n_j-1)\rho)].
+\]</span></p>
+<p><em>Survey log-determinant:</em> <span class="math display">\[
+\log\!\left|\boldsymbol{\Sigma}_j^{\mathrm{surv}}(\rho)\right| = (n_j - 1)\log[\sigma^2_{e,j}(1-\rho)] + \log[\sigma^2_{e,j}(1 + (n_j-1)\rho)].
+\]</span></p>
+<p>The difference is: <span id="eq-logdet-diff"><span class="math display">\[
+\begin{aligned}
+\log\!\left|\boldsymbol{\Sigma}_j^{\mathrm{surv}}(\rho)\right| - \log\!\left|\boldsymbol{\Sigma}_j^{\mathrm{meta}}(\rho)\right|
+&amp;= (n_j - 1)\log\!\left(\frac{\sigma^2_{e,j}}{\bar{s}_j^2}\right) + \log\!\left(\frac{\sigma^2_{e,j}}{\bar{s}_j^2}\right) \\
+&amp;= n_j \log\!\left(\frac{\sigma^2_{e,j}}{\bar{s}_j^2}\right).
+\end{aligned}
+\tag{4.9}\]</span></span></p>
+<p>This quantity depends only on <span class="math inline">\(\sigma^2_{e,j}\)</span>, <span class="math inline">\(\bar{s}_j^2\)</span>, and <span class="math inline">\(n_j\)</span> — <strong>not on <span class="math inline">\(\boldsymbol{\phi}\)</span></strong>. Under the strict form of (E2), where <span class="math inline">\(\sigma^2_{e,j} = \bar{s}_j^2\)</span> for every <span class="math inline">\(j\)</span>, the difference is zero.</p>
+<p><strong>Step 4 (Show the quadratic form difference is <span class="math inline">\(\boldsymbol{\phi}\)</span>-free under (E2)).</strong> From <a href="#eq-cs-inverse-proof" class="quarto-xref">Equation&nbsp;<span>4.7</span></a>, the quadratic form in the cluster-<span class="math inline">\(j\)</span> contribution is: <span id="eq-quadratic-form"><span class="math display">\[
+\mathbf{r}_j^{\intercal}\!\left[\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho)\right]^{-1}\!\mathbf{r}_j = \frac{1}{\sigma^2_j(1-\rho)}\!\left[\mathbf{r}_j^{\intercal}\mathbf{r}_j - \frac{\rho}{1 + (n_j - 1)\rho}\,(\mathbf{1}_{n_j}^{\intercal}\mathbf{r}_j)^2\right].
+\tag{4.10}\]</span></span></p>
+<p>Both <span class="math inline">\(\mathbf{r}_j^{\intercal}\mathbf{r}_j = \sum_{i=1}^{n_j}(y_{ij} - \mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} - \theta_j)^2\)</span> and <span class="math inline">\(\mathbf{1}_{n_j}^{\intercal}\mathbf{r}_j = \sum_{i=1}^{n_j}(y_{ij} - \mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} - \theta_j)\)</span> are functions of <span class="math inline">\(\boldsymbol{\phi}\)</span>, the data, and the design. The residual vector <span class="math inline">\(\mathbf{r}_j\)</span> is the same in both frameworks (given that both use the same design matrix <span class="math inline">\(\mathbf{X}_j\)</span> and the same linear predictor). The only difference in the quadratic form <a href="#eq-quadratic-form" class="quarto-xref">Equation&nbsp;<span>4.10</span></a> between the two frameworks is the leading coefficient <span class="math inline">\(1/[\sigma^2_j(1-\rho)]\)</span>:</p>
+<ul>
+<li><strong>Meta-analysis</strong>: coefficient is <span class="math inline">\(1/[\bar{s}_j^2(1-\rho)]\)</span></li>
+<li><strong>Survey</strong>: coefficient is <span class="math inline">\(1/[\sigma^2_{e,j}(1-\rho)]\)</span></li>
+</ul>
+<p>Under (E2), <span class="math inline">\(\sigma^2_{e,j} = \bar{s}_j^2\)</span>, so the coefficients are identical and the quadratic forms match exactly. The difference is: <span class="math display">\[
+\mathbf{r}_j^{\intercal}\!\left[\boldsymbol{\Sigma}_j^{\mathrm{surv}}(\rho)\right]^{-1}\!\mathbf{r}_j - \mathbf{r}_j^{\intercal}\!\left[\boldsymbol{\Sigma}_j^{\mathrm{meta}}(\rho)\right]^{-1}\!\mathbf{r}_j = 0.
+\]</span></p>
+<p><strong>Step 5 (Combine and conclude).</strong> The cluster-<span class="math inline">\(j\)</span> log-likelihood difference is: <span class="math display">\[
+\begin{aligned}
+\ell_j^{(w)}(\boldsymbol{\phi}) - \ell_j^{\mathrm{meta}}(\boldsymbol{\phi}) &amp;= -\frac{1}{2}\!\left[\log\!\left|\boldsymbol{\Sigma}_j^{\mathrm{surv}}(\rho)\right| - \log\!\left|\boldsymbol{\Sigma}_j^{\mathrm{meta}}(\rho)\right|\right] \\
+&amp;\quad - \frac{1}{2}\!\left[\mathbf{r}_j^{\intercal}\!\left(\boldsymbol{\Sigma}_j^{\mathrm{surv}}\right)^{-1}\!\mathbf{r}_j - \mathbf{r}_j^{\intercal}\!\left(\boldsymbol{\Sigma}_j^{\mathrm{meta}}\right)^{-1}\!\mathbf{r}_j\right] \\
+&amp;= -\frac{n_j}{2}\log\!\left(\frac{\sigma^2_{e,j}}{\bar{s}_j^2}\right) + 0 \\
+&amp;\equiv c_j,
+\end{aligned}
+\]</span> where <span class="math inline">\(c_j = -\frac{n_j}{2}\log(\sigma^2_{e,j}/\bar{s}_j^2)\)</span> depends only on <span class="math inline">\(\sigma^2_{e,j}\)</span>, <span class="math inline">\(\bar{s}_j^2\)</span>, and <span class="math inline">\(n_j\)</span> — not on <span class="math inline">\(\boldsymbol{\phi}\)</span>. Under strict (E2), <span class="math inline">\(c_j = 0\)</span> for every <span class="math inline">\(j\)</span>.</p>
+<p>Summing over <span class="math inline">\(j = 1, \ldots, J\)</span>: <span id="eq-case2-result"><span class="math display">\[
+\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) = \ell_{\mathrm{meta}}(\boldsymbol{\phi}) + c,
+\tag{4.11}\]</span></span> with <span class="math display">\[
+c = \sum_{j=1}^{J} c_j = -\frac{1}{2}\sum_{j=1}^{J} n_j \log\!\left(\frac{\sigma^2_{e,j}}{\bar{s}_j^2}\right),
+\]</span> which does not depend on <span class="math inline">\(\boldsymbol{\phi}\)</span>. <span class="math inline">\(\square\)</span></p>
+</section>
+<section id="proof-of-consequences-ac" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="proof-of-consequences-ac"><span class="header-section-number">4.2.3</span> Proof of Consequences (a)–(c)</h3>
+<p>Since <span class="math inline">\(c\)</span> does not depend on <span class="math inline">\(\boldsymbol{\phi}\)</span>, the three consequences follow by elementary calculus.</p>
+<p><strong>(a) Score equivalence.</strong> Differentiating <a href="#eq-lik-iso" class="quarto-xref">Equation&nbsp;<span>4.1</span></a> with respect to <span class="math inline">\(\boldsymbol{\phi}\)</span>: <span class="math display">\[
+\nabla_{\boldsymbol{\phi}}\,\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) = \nabla_{\boldsymbol{\phi}}\,\ell_{\mathrm{meta}}(\boldsymbol{\phi}) + \underbrace{\nabla_{\boldsymbol{\phi}}\, c}_{= \,\mathbf{0}} = \nabla_{\boldsymbol{\phi}}\,\ell_{\mathrm{meta}}(\boldsymbol{\phi}).
+\]</span></p>
+<p>The gradient of a constant is the zero vector. Since the score function is <span class="math inline">\(\nabla_{\boldsymbol{\phi}}\,\ell(\boldsymbol{\phi})\)</span>, the scores are identical at every <span class="math inline">\(\boldsymbol{\phi} \in \mathbb{R}^d\)</span>.</p>
+<p><strong>(b) Hessian equivalence.</strong> Differentiating a second time: <span class="math display">\[
+\nabla^2_{\boldsymbol{\phi}}\,\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) = \nabla^2_{\boldsymbol{\phi}}\,\ell_{\mathrm{meta}}(\boldsymbol{\phi}) + \underbrace{\nabla^2_{\boldsymbol{\phi}}\, c}_{= \,\mathbf{0}_{d \times d}} = \nabla^2_{\boldsymbol{\phi}}\,\ell_{\mathrm{meta}}(\boldsymbol{\phi}).
+\]</span></p>
+<p>The Hessian of a constant is the zero matrix. The <span class="math inline">\(d \times d\)</span> Hessian matrices are identical at every <span class="math inline">\(\boldsymbol{\phi}\)</span>.</p>
+<p><strong>(c) MAP equivalence.</strong> Given a common prior <span class="math inline">\(p(\boldsymbol{\beta})\,p(\sigma^2_\theta)\)</span> with <span class="math inline">\(\theta_j \mid \sigma^2_\theta \sim \textsf{N}(0, \sigma^2_\theta)\)</span>, the posterior log-densities (up to the normalizing constant) are: <span class="math display">\[
+\begin{aligned}
+\log \pi^*_{\mathrm{surv}}(\boldsymbol{\phi}) &amp;= \ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) + \log p_{\mathrm{prior}}(\boldsymbol{\phi}) + \text{const}, \\
+\log \pi_{\mathrm{meta}}(\boldsymbol{\phi}) &amp;= \ell_{\mathrm{meta}}(\boldsymbol{\phi}) + \log p_{\mathrm{prior}}(\boldsymbol{\phi}) + \text{const}.
+\end{aligned}
+\]</span></p>
+<p>By <a href="#eq-lik-iso" class="quarto-xref">Equation&nbsp;<span>4.1</span></a>: <span class="math display">\[
+\log \pi^*_{\mathrm{surv}}(\boldsymbol{\phi}) = \log \pi_{\mathrm{meta}}(\boldsymbol{\phi}) + c + \text{const}.
+\]</span></p>
+<p>Since <span class="math inline">\(c\)</span> is a constant with respect to <span class="math inline">\(\boldsymbol{\phi}\)</span>, the two posterior log-densities have the same gradient in <span class="math inline">\(\boldsymbol{\phi}\)</span>, hence the same critical points. The MAP estimates coincide: <span class="math inline">\(\hat{\boldsymbol{\phi}}_{\mathrm{surv}} = \hat{\boldsymbol{\phi}}_{\mathrm{meta}}\)</span>. <span class="math inline">\(\quad\blacksquare\)</span></p>
+<p>Theorem 1 and its consequences complete the first link in the equivalence chain. The likelihood isomorphism guarantees that the two frameworks share identical scores, Hessians, and MAP estimates. The next two chapters extend this chain: <a href="ch05-sandwich.html" class="quarto-xref"><span>Chapter 5</span></a> shows that the sandwich variance estimators — built from the same scores and Hessians — are also identical (Theorem 2), and Chapter 6 establishes that the posterior distributions and CCC-corrected posteriors coincide (Corollaries 1 and 2). Together, these results form the foundation for the DER framework developed in Part III.</p>
+</section>
+</section>
+<section id="remarks" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="remarks"><span class="header-section-number">4.3</span> Remarks</h2>
+<section id="sec-remark-e2" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="sec-remark-e2"><span class="header-section-number">4.3.1</span> Remark 1 (On (E2) with heterogeneous <span class="math inline">\(\bar{s}_j^2\)</span>)</h3>
+<p>Condition (E2) in its corrected formulation requires cluster-by-cluster identification: <span class="math inline">\(\sigma^2_{e,j} = \bar{s}_j^2\)</span> for each <span class="math inline">\(j\)</span>. This is stronger than requiring a single global parameter <span class="math inline">\(\sigma^2_e\)</span> to match some summary of the <span class="math inline">\(\bar{s}_j^2\)</span> values. The distinction is substantive.</p>
+<p>If the survey model uses a single global parameter <span class="math inline">\(\sigma^2_e\)</span> while the meta-analytic sampling variances <span class="math inline">\(\bar{s}_j^2\)</span> vary across studies (the empirically typical case), the isomorphism breaks down in a specific and instructive way. The log-determinant difference <a href="#eq-logdet-diff" class="quarto-xref">Equation&nbsp;<span>4.9</span></a> becomes <span class="math display">\[
+\sum_{j=1}^{J}\frac{n_j}{2}\log\!\left(\frac{\sigma^2_e}{\bar{s}_j^2}\right),
+\]</span> which is nonzero but still <span class="math inline">\(\boldsymbol{\phi}\)</span>-free — so it contributes only to the additive constant <span class="math inline">\(c\)</span>. However, the quadratic form difference is more consequential. From <a href="#eq-quadratic-form" class="quarto-xref">Equation&nbsp;<span>4.10</span></a>, the survey quadratic form uses coefficient <span class="math inline">\(1/[\sigma^2_e(1-\rho)]\)</span> for every cluster, while the meta-analytic quadratic form uses <span class="math inline">\(1/[\bar{s}_j^2(1-\rho)]\)</span>, which varies by cluster. The difference is: <span class="math display">\[
+\sum_{j=1}^{J}\left(\frac{1}{\sigma^2_e} - \frac{1}{\bar{s}_j^2}\right)\frac{1}{1-\rho}\!\left[\mathbf{r}_j^{\intercal}\mathbf{r}_j - \frac{\rho}{1 + (n_j - 1)\rho}\,(\mathbf{1}_{n_j}^{\intercal}\mathbf{r}_j)^2\right].
+\]</span></p>
+<p>This expression <strong>depends on <span class="math inline">\(\boldsymbol{\phi}\)</span></strong> through the residuals <span class="math inline">\(\mathbf{r}_j\)</span>, so it cannot be absorbed into <span class="math inline">\(c\)</span>. The two likelihoods no longer differ by a parameter-free constant, and Theorem 1 fails. Strict (E2) — cluster-by-cluster identification <span class="math inline">\(\sigma^2_{e,j} = \bar{s}_j^2\)</span> — is therefore necessary for exact isomorphism.</p>
+<p>In practice, this means the survey model must be parameterized with cluster-specific Level 1 variances (each treated as known and set equal to <span class="math inline">\(\bar{s}_j^2\)</span>) rather than a single pooled variance <span class="math inline">\(\sigma^2_e\)</span>. This is a modeling choice, not an inherent limitation: it corresponds to treating each study’s average sampling variance as a known design quantity, which is standard in the meta-analytic framework.</p>
+</section>
+<section id="sec-remark-case-structure" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="sec-remark-case-structure"><span class="header-section-number">4.3.2</span> Remark 2 (On the Case structure)</h3>
+<p>Case 1 (<span class="math inline">\(\rho = 0\)</span>) is a special case of Case 2 (<span class="math inline">\(\rho &gt; 0\)</span>). Setting <span class="math inline">\(\rho = 0\)</span> in the compound-symmetric covariance yields <span class="math inline">\(\boldsymbol{\Sigma}_j^{\mathrm{work}}(0) = \sigma^2_j \mathbf{I}_{n_j}\)</span>, and the CS inverse <a href="#eq-cs-inverse-proof" class="quarto-xref">Equation&nbsp;<span>4.7</span></a> reduces to <span class="math inline">\((\sigma^2_j)^{-1}\mathbf{I}_{n_j}\)</span>. The log-determinant <a href="#eq-cs-logdet-proof" class="quarto-xref">Equation&nbsp;<span>4.8</span></a> simplifies to <span class="math inline">\(n_j \log(\sigma^2_j)\)</span>. All formulas in Case 2 specialize to those in Case 1.</p>
+<p>We present both cases for two reasons. First, Case 1 isolates the essential mechanism of the isomorphism — the alignment of the quadratic forms under (E2) — without the algebraic machinery of the CS inverse and log-determinant. Second, the independence case (<span class="math inline">\(\rho = 0\)</span>) is of substantive interest in meta-analysis: many applications set <span class="math inline">\(\rho = 0\)</span> as the default working assumption <span class="citation" data-cites="PustejovskyTipton2022">(<a href="#ref-PustejovskyTipton2022" role="doc-biblioref">Pustejovsky and Tipton 2022</a>)</span>, making Case 1 directly applicable to common practice.</p>
+</section>
+<section id="sec-remark-constant-c" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="sec-remark-constant-c"><span class="header-section-number">4.3.3</span> Remark 3 (On the scope of the constant <span class="math inline">\(c\)</span>)</h3>
+<p>The constant <span class="math inline">\(c\)</span> in <a href="#eq-lik-iso" class="quarto-xref">Equation&nbsp;<span>4.1</span></a> depends on <span class="math inline">\(\{\sigma^2_{e,j}\}\)</span>, <span class="math inline">\(\{\bar{s}_j^2\}\)</span>, <span class="math inline">\(\rho\)</span>, and <span class="math inline">\(\{n_j\}\)</span>. Two observations are important for the downstream results:</p>
+<ol type="1">
+<li><p><strong><span class="math inline">\(c\)</span> does not depend on <span class="math inline">\(\sigma^2_\theta\)</span>.</strong> The between-cluster variance <span class="math inline">\(\sigma^2_\theta\)</span> enters the model through the Level 2 prior <span class="math inline">\(\theta_j \mid \sigma^2_\theta \sim \textsf{N}(0, \sigma^2_\theta)\)</span>, not through the Level 1 likelihood. Since <span class="math inline">\(c\)</span> is defined as the difference between two Level 1 log-likelihoods, <span class="math inline">\(\sigma^2_\theta\)</span> does not appear. This is essential for Corollary 1: when <span class="math inline">\(e^c\)</span> cancels in Bayes’ formula, the cancellation holds for the joint posterior over <span class="math inline">\((\boldsymbol{\phi}, \sigma^2_\theta)\)</span>, not merely for the conditional posterior given <span class="math inline">\(\sigma^2_\theta\)</span>.</p></li>
+<li><p><strong><span class="math inline">\(c\)</span> decomposes additively over clusters.</strong> We have <span class="math inline">\(c = \sum_{j=1}^{J} c_j\)</span> with each <span class="math inline">\(c_j\)</span> depending only on quantities specific to cluster <span class="math inline">\(j\)</span>. This additive decomposition is exploited in Theorem 2, where we need the cluster-level score vectors (not just the total score) to be identical.</p></li>
+</ol>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-PustejovskyTipton2022" class="csl-entry" role="listitem">
+Pustejovsky, James E., and Elizabeth Tipton. 2022. <span>“Meta-Analysis with Robust Variance Estimation: Expanding the Range of Working Models.”</span> <em>Prevention Science</em> 23 (3): 425–38. <a href="https://doi.org/10.1007/s11121-021-01246-3">https://doi.org/10.1007/s11121-021-01246-3</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ch03-exactness.html" class="pagination-link" aria-label="Exactness Conditions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exactness Conditions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ch05-sandwich.html" class="pagination-link" aria-label="Theorem 2: Sandwich Equivalence">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Theorem 2: Sandwich Equivalence</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/joonho112/bayesian-meta-survey-equivalence/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

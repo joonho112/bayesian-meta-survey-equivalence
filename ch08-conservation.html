@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8&nbsp; Conservation Law – Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ch09-boundary.html" rel="next">
+<link href="./ch07-der-framework.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ch07-der-framework.html">Part III: Design Effect Ratios</a></li><li class="breadcrumb-item"><a href="./ch08-conservation.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conservation Law</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/joonho112/bayesian-meta-survey-equivalence" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part I: Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch01-notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Notation and Conventions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch02-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Model Definitions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch03-exactness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exactness Conditions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Core Equivalence Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch04-isomorphism.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Theorem 1: Likelihood Isomorphism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch05-sandwich.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Theorem 2: Sandwich Equivalence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch06-posterior-ccc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Corollaries 1–2: Posterior and CCC Equivalence</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Design Effect Ratios</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch07-der-framework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DER Framework and Transfer Theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch08-conservation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conservation Law</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch09-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Boundary Cases and Edge Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Extensions and Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch10-extensions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">E4-Relaxed CE and CHE Extensions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch11-regularity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Regularity Conditions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch12-interpretation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Interpretive Issues and Practical Implications</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part V: Discussion and Conclusions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch13-discussion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Discussion and Conclusions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-revision-history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Revision History</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-conservation-statement" id="toc-sec-conservation-statement" class="nav-link active" data-scroll-target="#sec-conservation-statement"><span class="header-section-number">8.1</span> Theorem 3(c): The Conservation Law</a>
+  <ul class="collapse">
+  <li><a href="#full-algebraic-proof" id="toc-full-algebraic-proof" class="nav-link" data-scroll-target="#full-algebraic-proof"><span class="header-section-number">8.1.1</span> Full Algebraic Proof</a></li>
+  <li><a href="#economic-interpretation" id="toc-economic-interpretation" class="nav-link" data-scroll-target="#economic-interpretation"><span class="header-section-number">8.1.2</span> Economic Interpretation</a></li>
+  </ul></li>
+  <li><a href="#sec-marginal-deficit" id="toc-sec-marginal-deficit" class="nav-link" data-scroll-target="#sec-marginal-deficit"><span class="header-section-number">8.2</span> Marginal Deficit Formula</a>
+  <ul class="collapse">
+  <li><a href="#proof" id="toc-proof" class="nav-link" data-scroll-target="#proof"><span class="header-section-number">8.2.1</span> Proof</a></li>
+  </ul></li>
+  <li><a href="#sec-non-monotonicity" id="toc-sec-non-monotonicity" class="nav-link" data-scroll-target="#sec-non-monotonicity"><span class="header-section-number">8.3</span> Non-Monotonicity of Marginal DER in <span class="math inline">\(B\)</span></a>
+  <ul class="collapse">
+  <li><a href="#derivation" id="toc-derivation" class="nav-link" data-scroll-target="#derivation"><span class="header-section-number">8.3.1</span> Derivation</a></li>
+  </ul></li>
+  <li><a href="#sec-empirical-gap" id="toc-sec-empirical-gap" class="nav-link" data-scroll-target="#sec-empirical-gap"><span class="header-section-number">8.4</span> Empirical Conservation Gap</a>
+  <ul class="collapse">
+  <li><a href="#v1-reference-values" id="toc-v1-reference-values" class="nav-link" data-scroll-target="#v1-reference-values"><span class="header-section-number">8.4.1</span> V1 Reference Values</a></li>
+  <li><a href="#critical-correction-jensens-inequality-not-finite-cluster-effects" id="toc-critical-correction-jensens-inequality-not-finite-cluster-effects" class="nav-link" data-scroll-target="#critical-correction-jensens-inequality-not-finite-cluster-effects"><span class="header-section-number">8.4.2</span> Critical Correction: Jensen’s Inequality, Not Finite-Cluster Effects</a></li>
+  <li><a href="#why-the-covariance-is-positive" id="toc-why-the-covariance-is-positive" class="nav-link" data-scroll-target="#why-the-covariance-is-positive"><span class="header-section-number">8.4.3</span> Why the Covariance Is Positive</a></li>
+  <li><a href="#numerical-verification" id="toc-numerical-verification" class="nav-link" data-scroll-target="#numerical-verification"><span class="header-section-number">8.4.4</span> Numerical Verification</a></li>
+  </ul></li>
+  <li><a href="#sec-conservation-practice" id="toc-sec-conservation-practice" class="nav-link" data-scroll-target="#sec-conservation-practice"><span class="header-section-number">8.5</span> Implications for Meta-Analytic Practice</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/joonho112/bayesian-meta-survey-equivalence/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ch07-der-framework.html">Part III: Design Effect Ratios</a></li><li class="breadcrumb-item"><a href="./ch08-conservation.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conservation Law</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-conservation" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conservation Law</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Part (c) of Theorem 3 is the most striking result of the DER transfer: the design sensitivity budget is conserved. This chapter provides the full algebraic proof, develops the economic interpretation, derives the marginal deficit formula (new for V2), analyzes the non-monotonicity of the marginal DER, and reconciles the empirical conservation gap observed in V1.</p>
+<section id="sec-conservation-statement" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="sec-conservation-statement"><span class="header-section-number">8.1</span> Theorem 3(c): The Conservation Law</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Theorem 3(c) (Conservation Law).</strong> In the intercept-only balanced model (<span class="math inline">\(n_j = n\)</span>, <span class="math inline">\(\bar{s}_j^2 = \bar{s}^2\)</span> for all <span class="math inline">\(j\)</span>): <span id="eq-conservation-law"><span class="math display">\[
+\mathrm{DER}_\mu + \mathrm{DER}_\theta^{\mathrm{cond}} = \mathrm{DEFF}.
+\tag{8.1}\]</span></span></p>
+</div>
+</div>
+<section id="full-algebraic-proof" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="full-algebraic-proof"><span class="header-section-number">8.1.1</span> Full Algebraic Proof</h3>
+<p>Under the balanced intercept-only model, all study-specific quantities collapse to common values: <span class="math inline">\(B_j = B\)</span>, <span class="math inline">\(\mathrm{DEFF}_j = \mathrm{DEFF}\)</span>, <span class="math inline">\(\bar{s}_j^2 = \bar{s}^2\)</span>. From Theorem 3(a) and 3(b): <span class="math display">\[\begin{align}
+\mathrm{DER}_\mu &amp;= \mathrm{DEFF} \cdot (1 - B), \\
+\mathrm{DER}_\theta^{\mathrm{cond}} &amp;= B \cdot \mathrm{DEFF}.
+\end{align}\]</span></p>
+<p>Adding: <span class="math display">\[
+\mathrm{DER}_\mu + \mathrm{DER}_\theta^{\mathrm{cond}} = \mathrm{DEFF}(1 - B) + B \cdot \mathrm{DEFF} = \mathrm{DEFF}\bigl[(1 - B) + B\bigr] = \mathrm{DEFF} \cdot 1 = \mathrm{DEFF}.
+\]</span></p>
+<p>The conservation law is a trivial algebraic identity once the DER decomposition formulas are established. Its mathematical content lies not in the proof but in the decomposition theorems (Theorem 3(a)–(b)) that produce the complementary factors <span class="math inline">\((1-B)\)</span> and <span class="math inline">\(B\)</span>. <span class="math inline">\(\quad\blacksquare\)</span></p>
+<p>Before developing the interpretation, it is worth noting what the conservation law does <em>not</em> require. It holds regardless of the prior on <span class="math inline">\(\sigma^2_\theta\)</span>, the number of covariates, or the magnitude of the within-study sampling variances. The only inputs are the shrinkage factor <span class="math inline">\(B\)</span> and the design effect <span class="math inline">\(\mathrm{DEFF}\)</span> — both scalar quantities computable from posterior output and study-level design features. This parsimony is what makes the conservation law a practical diagnostic, not merely a theoretical curiosity.</p>
+</section>
+<section id="economic-interpretation" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="economic-interpretation"><span class="header-section-number">8.1.2</span> Economic Interpretation</h3>
+<p><a href="#fig-der-budget-conservation" class="quarto-xref">Figure&nbsp;<span>8.1</span></a> provides a geometric view of the conservation law: for a given DEFF, the design-sensitivity budget is a fixed total that the shrinkage factor <span class="math inline">\(B\)</span> redistributes between <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\theta_j\)</span> along a linear trade-off.</p>
+<div id="fig-der-budget-conservation" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-der-budget-conservation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/matlab/fig07_der_budget_conservation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-der-budget-conservation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1: For fixed DEFF, the conservation law <span class="math inline">\(\mathrm{DER}_\mu + \mathrm{DER}^{\mathrm{cond}}_\theta = \mathrm{DEFF}\)</span> redistributes a fixed design-sensitivity budget between the overall mean and the study-specific effects. As <span class="math inline">\(B\)</span> grows, the budget migrates from <span class="math inline">\(\mu\)</span> to <span class="math inline">\(\theta_j\)</span>.
+</figcaption>
+</figure>
+</div>
+<p>The conservation law reveals that within-study dependence creates a fixed “budget” of design sensitivity — equal to <span class="math inline">\(\mathrm{DEFF}\)</span> — that is redistributed between the overall effect and the study-specific effects by hierarchical borrowing, but never created or destroyed. The total cost of ignoring within-study correlation is conserved; only its allocation across parameters changes.</p>
+<p>The redistribution is governed by the shrinkage factor <span class="math inline">\(B\)</span>:</p>
+<ul>
+<li><p><strong>Large <span class="math inline">\(B\)</span> / weak pooling (<span class="math inline">\(B \to 1\)</span>; large <span class="math inline">\(\sigma^2_\theta\)</span>).</strong> The posterior retains most weight on the study-specific estimates rather than pulling them strongly toward the overall mean. Most of the design-effect budget migrates to the study-specific effects: <span class="math inline">\(\mathrm{DER}_\theta^{\mathrm{cond}} \to \mathrm{DEFF}\)</span>, while <span class="math inline">\(\mathrm{DER}_\mu \to 0\)</span>. The overall effect is well calibrated, but the study-level posteriors are severely under-dispersed. This is the typical meta-analytic regime: with <span class="math inline">\(B \approx 0.8\)</span> and <span class="math inline">\(\mathrm{DEFF} \approx 3\)</span>, the conditional random-effect DER reaches <span class="math inline">\(B \cdot \mathrm{DEFF} \approx 2.4\)</span> — well into the moderate-to-severe misspecification tiers of <a href="ch07-der-framework.html#tbl-der-tiers" class="quarto-xref">Table&nbsp;<span>7.2</span></a>. The forest plot intervals produced by standard Bayesian meta-analysis are systematically too narrow.</p></li>
+<li><p><strong>Strong shrinkage / strong pooling (<span class="math inline">\(B \to 0\)</span>; small <span class="math inline">\(\sigma^2_\theta\)</span>).</strong> The hierarchical model treats studies as near-identical. Design sensitivity migrates to the overall mean: <span class="math inline">\(\mathrm{DER}_\mu \to \mathrm{DEFF}\)</span>, while <span class="math inline">\(\mathrm{DER}_\theta^{\mathrm{cond}} \to 0\)</span>. The study-level posteriors are well calibrated, but the overall effect carries the full burden of the design effect. The credible interval for <span class="math inline">\(\mu\)</span> may be substantially too narrow.</p></li>
+<li><p><strong>Intermediate shrinkage (<span class="math inline">\(B \approx 0.5\)</span>).</strong> The budget is shared approximately equally: <span class="math inline">\(\mathrm{DER}_\mu \approx \mathrm{DER}_\theta^{\mathrm{cond}} \approx \mathrm{DEFF}/2\)</span>. Neither parameter type is well calibrated, but neither suffers the full design effect.</p></li>
+</ul>
+</section>
+</section>
+<section id="sec-marginal-deficit" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="sec-marginal-deficit"><span class="header-section-number">8.2</span> Marginal Deficit Formula</h2>
+<p>The conservation law holds for the <em>conditional</em> DER. The marginal DER <span class="math inline">\(\mathrm{DER}_\theta^{\mathrm{marg}} = B \cdot \mathrm{DEFF} \cdot \kappa(J)\)</span> is strictly smaller because <span class="math inline">\(\kappa(J) &lt; 1\)</span> for finite <span class="math inline">\(J\)</span>. This creates a “deficit” — the marginal DERs do not sum to DEFF.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Marginal Deficit Formula.</strong> In the balanced intercept-only model: <span id="eq-marginal-deficit"><span class="math display">\[
+\mathrm{DEFF} - \bigl(\mathrm{DER}_\mu + \mathrm{DER}_\theta^{\mathrm{marg}}\bigr) = \frac{\mathrm{DEFF} \cdot B}{J(1-B) + B}.
+\tag{8.2}\]</span></span></p>
+<p>This deficit is exact in the balanced case.</p>
+</div>
+</div>
+</div>
+<section id="proof" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="proof"><span class="header-section-number">8.2.1</span> Proof</h3>
+<p>Substituting the formulas: <span class="math display">\[\begin{align}
+\mathrm{DER}_\mu + \mathrm{DER}_\theta^{\mathrm{marg}} &amp;= \mathrm{DEFF}(1 - B) + B \cdot \mathrm{DEFF} \cdot \kappa(J) \\
+&amp;= \mathrm{DEFF}\bigl[(1 - B) + B\,\kappa(J)\bigr].
+\end{align}\]</span></p>
+<p>Recalling <span class="math inline">\(\kappa(J) = 1 - [J(1-B) + B]^{-1}\)</span>: <span class="math display">\[\begin{align}
+(1 - B) + B\,\kappa(J) &amp;= (1 - B) + B\!\left[1 - \frac{1}{J(1-B) + B}\right] \\
+&amp;= 1 - \frac{B}{J(1-B) + B}.
+\end{align}\]</span></p>
+<p>Therefore: <span class="math display">\[
+\mathrm{DEFF} - \bigl(\mathrm{DER}_\mu + \mathrm{DER}_\theta^{\mathrm{marg}}\bigr) = \mathrm{DEFF} \cdot \frac{B}{J(1-B) + B}. \quad\blacksquare
+\]</span></p>
+<p><strong>Interpretation.</strong> The deficit is <span class="math inline">\(O(1/J)\)</span> for fixed <span class="math inline">\(B\)</span>: as <span class="math inline">\(J \to \infty\)</span>, the denominator grows linearly and the deficit vanishes. For finite <span class="math inline">\(J\)</span>, the deficit is largest when <span class="math inline">\(B\)</span> is large (weak pooling / high retention of study-specific estimates), because the coupling between <span class="math inline">\(\hat{\mu}\)</span> and <span class="math inline">\(\hat{\theta}_j\)</span> is strongest. For the TSL15 data (<span class="math inline">\(J = 117\)</span>, <span class="math inline">\(B \approx 0.81\)</span>), the deficit fraction is: <span class="math display">\[
+\frac{B}{J(1-B) + B} = \frac{0.81}{117 \times 0.19 + 0.81} = \frac{0.81}{23.04} \approx 0.035,
+\]</span> or approximately 3.5% of DEFF.</p>
+<p>The interplay among the coupling factor <span class="math inline">\(\kappa(J)\)</span>, the normalized marginal random-effect DER <span class="math inline">\(B\kappa(J)\)</span>, and the marginal deficit fraction is visualized in <a href="#fig-marginal-coupling" class="quarto-xref">Figure&nbsp;<span>8.2</span></a>, which also locates the non-monotonicity peak derived in the next section.</p>
+<div id="fig-marginal-coupling" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-marginal-coupling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/matlab/fig08_marginal_coupling_nonmonotonicity.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-marginal-coupling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.2: Finite-cluster coupling under the balanced intercept-only model. The left panel shows <span class="math inline">\(\kappa(J)\)</span>, the center panel shows the normalized marginal random-effect DER <span class="math inline">\(B\kappa(J)\)</span> and its maximum at <span class="math inline">\(B^*=\sqrt{J}/(\sqrt{J}+1)\)</span>, and the right panel shows the marginal deficit fraction.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="sec-non-monotonicity" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="sec-non-monotonicity"><span class="header-section-number">8.3</span> Non-Monotonicity of Marginal DER in <span class="math inline">\(B\)</span></h2>
+<p>The marginal random-effect DER <span class="math inline">\(\mathrm{DER}_\theta^{\mathrm{marg}} = B \cdot \mathrm{DEFF} \cdot \kappa(J)\)</span> is not monotone in <span class="math inline">\(B\)</span>, because <span class="math inline">\(\kappa(J)\)</span> decreases as <span class="math inline">\(B\)</span> increases.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Non-Monotonicity Result.</strong> The marginal DER <span class="math inline">\(\mathrm{DER}_\theta^{\mathrm{marg}}\)</span> as a function of <span class="math inline">\(B\)</span> (holding DEFF fixed) achieves its maximum at <span id="eq-B-star"><span class="math display">\[
+B^* = \frac{\sqrt{J}}{\sqrt{J} + 1}.
+\tag{8.3}\]</span></span></p>
+</div>
+</div>
+</div>
+<section id="derivation" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="derivation"><span class="header-section-number">8.3.1</span> Derivation</h3>
+<p>Write <span class="math inline">\(f(B) = B \cdot \kappa(J) = B\left[1 - \frac{1}{J(1-B) + B}\right] = B - \frac{B}{J(1-B) + B}\)</span>.</p>
+<p>Let <span class="math inline">\(D(B) = J(1-B) + B = J - (J-1)B\)</span>. Then: <span class="math display">\[
+f(B) = B - \frac{B}{D(B)}.
+\]</span></p>
+<p>Differentiating: <span class="math display">\[\begin{align}
+f'(B) &amp;= 1 - \frac{D(B) - B \cdot D'(B)}{[D(B)]^2} \\
+&amp;= 1 - \frac{D(B) + B(J-1)}{[D(B)]^2} \\
+&amp;= 1 - \frac{J - (J-1)B + (J-1)B}{[D(B)]^2} \\
+&amp;= 1 - \frac{J}{[D(B)]^2}.
+\end{align}\]</span></p>
+<p>Setting <span class="math inline">\(f'(B) = 0\)</span>: <span class="math inline">\([D(B)]^2 = J\)</span>, so <span class="math inline">\(D(B) = \sqrt{J}\)</span> (taking the positive root). Substituting <span class="math inline">\(D(B) = J - (J-1)B\)</span>: <span class="math display">\[
+J - (J-1)B^* = \sqrt{J} \implies B^* = \frac{J - \sqrt{J}}{J - 1} = \frac{\sqrt{J}(\sqrt{J} - 1)}{(\sqrt{J} - 1)(\sqrt{J} + 1)} = \frac{\sqrt{J}}{\sqrt{J} + 1}.
+\]</span></p>
+<p><strong>Practical interpretation.</strong> For <span class="math inline">\(J = 117\)</span>: <span class="math inline">\(B^* = \sqrt{117}/(\sqrt{117} + 1) \approx 10.82/11.82 \approx 0.915\)</span>. For <span class="math inline">\(J = 25\)</span>: <span class="math inline">\(B^* = 5/6 \approx 0.833\)</span>. For <span class="math inline">\(J = 4\)</span>: <span class="math inline">\(B^* = 2/3 \approx 0.667\)</span>.</p>
+<p><strong>Economic interpretation of <span class="math inline">\(B^*\)</span>.</strong> At <span class="math inline">\(B = B^*\)</span>, the marginal “cost” of allocating more of the DEFF budget to the study-specific effects exactly equals the marginal “saving” from coupling attenuation (<span class="math inline">\(\kappa\)</span>). Below <span class="math inline">\(B^*\)</span>, the linear growth of <span class="math inline">\(B\)</span> dominates the sublinear decay of <span class="math inline">\(\kappa(J)\)</span>, so the marginal DER increases. Above <span class="math inline">\(B^*\)</span>, the coupling penalty accelerates: the posterior estimate <span class="math inline">\(\hat{\theta}_j\)</span> becomes increasingly confounded with <span class="math inline">\(\hat{\mu}\)</span>, and the resulting attenuation <span class="math inline">\(\kappa(J) \to 0\)</span> overwhelms the linear <span class="math inline">\(B\)</span> gain. The <span class="math inline">\(B^*\)</span> threshold thus marks the transition from the “heterogeneity-dominated” regime (where more heterogeneity worsens the marginal DER) to the “coupling-dominated” regime (where further heterogeneity actually reduces the marginal DER through the coupling effect).</p>
+<p>The peak occurs at intermediate-to-high heterogeneity. Below <span class="math inline">\(B^*\)</span>, increasing heterogeneity increases the marginal DER because <span class="math inline">\(B\)</span> is growing faster than <span class="math inline">\(\kappa(J)\)</span> is shrinking. Above <span class="math inline">\(B^*\)</span>, the coupling effect dominates: <span class="math inline">\(\kappa(J)\)</span> decreases rapidly as <span class="math inline">\(\hat{\theta}_j\)</span> becomes strongly confounded with <span class="math inline">\(\hat{\mu}\)</span>, pulling the marginal DER back down.</p>
+<p>In the typical meta-analytic regime (<span class="math inline">\(B \approx 0.7\)</span>–<span class="math inline">\(0.9\)</span>, <span class="math inline">\(J \approx 20\)</span>–<span class="math inline">\(100\)</span>), many datasets will have <span class="math inline">\(B\)</span> near <span class="math inline">\(B^*\)</span>, meaning the marginal DER is near its maximum. This is precisely the regime where the CCC correction has the largest impact on forest plot intervals.</p>
+</section>
+</section>
+<section id="sec-empirical-gap" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="sec-empirical-gap"><span class="header-section-number">8.4</span> Empirical Conservation Gap</h2>
+<section id="v1-reference-values" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="v1-reference-values"><span class="header-section-number">8.4.1</span> V1 Reference Values</h3>
+<p>The V1 draft applied the DER framework to the <span class="citation" data-cites="TannerSmithLipsey2015">Tanner-Smith and Lipsey (<a href="#ref-TannerSmithLipsey2015" role="doc-biblioref">2015</a>)</span> data (<span class="math inline">\(J = 117\)</span> studies, <span class="math inline">\(N = 1{,}198\)</span> effect sizes, <span class="math inline">\(\bar{n} = 10.2\)</span>). The key empirical values were:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 58%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Quantity</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\hat{\mu}\)</span></td>
+<td style="text-align: center;">0.1526</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\hat{\sigma}_\theta\)</span></td>
+<td style="text-align: center;">0.2029</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\mathrm{DER}_\mu\)</span></td>
+<td style="text-align: center;">1.0148</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mean <span class="math inline">\(\mathrm{DER}_\theta^{\mathrm{cond}}\)</span></td>
+<td style="text-align: center;">5.0917</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LHS: <span class="math inline">\(\mathrm{DER}_\mu + \overline{\mathrm{DER}_\theta^{\mathrm{cond}}}\)</span></td>
+<td style="text-align: center;">6.1065</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RHS: <span class="math inline">\(\overline{\mathrm{DEFF}}\)</span></td>
+<td style="text-align: center;">5.6200</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gap: <span class="math inline">\((\mathrm{LHS} - \mathrm{RHS})/\mathrm{RHS}\)</span></td>
+<td style="text-align: center;">+8.7%</td>
+</tr>
+</tbody>
+</table>
+<p>The LHS <em>exceeds</em> the RHS by 8.7%, apparently violating the conservation law. Understanding this gap is essential for validating the theoretical framework.</p>
+</section>
+<section id="critical-correction-jensens-inequality-not-finite-cluster-effects" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="critical-correction-jensens-inequality-not-finite-cluster-effects"><span class="header-section-number">8.4.2</span> Critical Correction: Jensen’s Inequality, Not Finite-Cluster Effects</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>V1 Error.</strong> The V1 draft attributed the <span class="math inline">\(\sim 9\%\)</span> conservation gap to “the <span class="math inline">\(O(1/J)\)</span> finite-cluster correction from <span class="math inline">\(\kappa_j(J)\)</span>.” This attribution was <strong>incorrect</strong>.</p>
+<p><strong>Correct Explanation.</strong> The gap arises from Jensen’s inequality applied to the unbalanced study sizes, and the Jensen effect <em>dominates</em> the finite-cluster deficit, producing a net positive gap.</p>
+</div>
+</div>
+<p>The conservation law <span class="math inline">\(\mathrm{DER}_\mu + \mathrm{DER}_\theta^{\mathrm{cond}} = \mathrm{DEFF}\)</span> holds exactly only in the <strong>balanced</strong> case (<span class="math inline">\(n_j = n\)</span> for all <span class="math inline">\(j\)</span>). In the unbalanced TSL15 data, we must compare:</p>
+<ul>
+<li><strong>LHS</strong>: <span class="math inline">\(\mathrm{DER}_\mu + \frac{1}{J}\sum_{j=1}^{J} \mathrm{DER}_{\theta_j}^{\mathrm{cond}} = \mathrm{DER}_\mu + \frac{1}{J}\sum_{j=1}^{J} B_j \cdot \mathrm{DEFF}_j\)</span>.</li>
+<li><strong>RHS</strong>: <span class="math inline">\(\frac{1}{J}\sum_{j=1}^{J} \mathrm{DEFF}_j = \overline{\mathrm{DEFF}}\)</span>.</li>
+</ul>
+<p>The gap is: <span class="math display">\[
+\text{Gap} = \frac{1}{J}\sum_{j=1}^{J} B_j \cdot \mathrm{DEFF}_j - \overline{B} \cdot \overline{\mathrm{DEFF}},
+\]</span> where the first term is <span class="math inline">\(\overline{B \cdot \mathrm{DEFF}}\)</span> (the average of the product) and the second is <span class="math inline">\(\overline{B} \cdot \overline{\mathrm{DEFF}}\)</span> (the product of the averages). By the covariance identity: <span id="eq-jensen-gap"><span class="math display">\[
+\overline{B \cdot \mathrm{DEFF}} - \overline{B} \cdot \overline{\mathrm{DEFF}} = \widehat{\mathrm{Cov}}(B_j, \mathrm{DEFF}_j).
+\tag{8.4}\]</span></span></p>
+</section>
+<section id="why-the-covariance-is-positive" class="level3" data-number="8.4.3">
+<h3 data-number="8.4.3" class="anchored" data-anchor-id="why-the-covariance-is-positive"><span class="header-section-number">8.4.3</span> Why the Covariance Is Positive</h3>
+<p>Both <span class="math inline">\(B_j\)</span> and <span class="math inline">\(\mathrm{DEFF}_j\)</span> are increasing functions of <span class="math inline">\(n_j\)</span>:</p>
+<ul>
+<li><span class="math inline">\(B_j = \sigma^2_\theta / (\sigma^2_\theta + \bar{s}_j^2/n_j)\)</span> increases with <span class="math inline">\(n_j\)</span> because <span class="math inline">\(\bar{s}_j^2/n_j\)</span> decreases.</li>
+<li><span class="math inline">\(\mathrm{DEFF}_j = 1 + (n_j - 1)\rho_{\mathrm{true}}\)</span> increases linearly with <span class="math inline">\(n_j\)</span>.</li>
+</ul>
+<p>This gap is strictly positive when cluster sizes <span class="math inline">\(n_j\)</span> vary across studies. In the degenerate case where all <span class="math inline">\(n_j\)</span> are equal <em>and</em> all <span class="math inline">\(\bar{s}_j^2\)</span> are equal, <span class="math inline">\(B_j\)</span> and <span class="math inline">\(\mathrm{DEFF}_j\)</span> are constant across <span class="math inline">\(j\)</span> and the covariance vanishes; but such perfect balance rarely obtains in practice. When <span class="math inline">\(\bar{s}_j^2\)</span> also varies across studies, it contributes an additional source of co-variation between <span class="math inline">\(B_j\)</span> and <span class="math inline">\(\mathrm{DEFF}_j\)</span>.</p>
+<p>Since both are monotone increasing in the same variable <span class="math inline">\(n_j\)</span>, their empirical covariance across studies is positive (by Chebyshev’s sum inequality or, equivalently, by the FKG inequality for monotone functions of a common random variable). Therefore: <span id="eq-jensen-strict"><span class="math display">\[
+\mathbb{E}[B_j \cdot \mathrm{DEFF}_j] &gt; \mathbb{E}[B_j] \cdot \mathbb{E}[\mathrm{DEFF}_j],
+\tag{8.5}\]</span></span> and the LHS exceeds the RHS.</p>
+<p><a href="#fig-jensen-gap" class="quarto-xref">Figure&nbsp;<span>8.3</span></a> illustrates this mechanism with a stylized unbalanced example modeled on the TSL15 data. Because both <span class="math inline">\(B_j\)</span> and <span class="math inline">\(\mathrm{DEFF}_j\)</span> are increasing functions of the study size <span class="math inline">\(n_j\)</span>, studies with many effect sizes contribute disproportionately to the product <span class="math inline">\(B_j \cdot \mathrm{DEFF}_j\)</span>, generating the positive Jensen lift that explains the apparent conservation-law discrepancy.</p>
+<div id="fig-jensen-gap" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-jensen-gap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/matlab/fig09_jensen_gap_unbalanced.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jensen-gap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.3: Stylized TSL15-like unbalanced study-size example. Because both <span class="math inline">\(B_j\)</span> and <span class="math inline">\(\mathrm{DEFF}_j\)</span> increase with study size, their empirical covariance is positive, so <span class="math inline">\(\overline{B_j\mathrm{DEFF}_j} &gt; \overline{B_j}\,\overline{\mathrm{DEFF}_j}\)</span>. The gap is the Jensen lift that explains the apparent conservation-law discrepancy in unbalanced data.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="numerical-verification" class="level3" data-number="8.4.4">
+<h3 data-number="8.4.4" class="anchored" data-anchor-id="numerical-verification"><span class="header-section-number">8.4.4</span> Numerical Verification</h3>
+<p>Using the TSL15 reference values:</p>
+<ol type="1">
+<li><strong>Product of averages</strong>: <span class="math inline">\(\overline{B} \cdot \overline{\mathrm{DEFF}} = 0.81 \times 5.62 = 4.552\)</span>.</li>
+<li><strong>Average of products</strong> (empirical mean conditional DER): <span class="math inline">\(\overline{B_j \cdot \mathrm{DEFF}_j} = 5.092\)</span>.</li>
+<li><strong>Jensen lift</strong>: <span class="math inline">\(5.092 - 4.552 = +0.540\)</span>, or <span class="math inline">\(+11.9\%\)</span> of <span class="math inline">\(\overline{B} \cdot \overline{\mathrm{DEFF}}\)</span>.</li>
+</ol>
+<p>The finite-<span class="math inline">\(J\)</span> marginal deficit is approximately <span class="math inline">\(-3.5\%\)</span> (from <a href="#sec-marginal-deficit" class="quarto-xref"><span>Section 8.2</span></a>). The net effect is: <span class="math display">\[
++11.9\% \;(\text{Jensen lift}) - 3.5\% \;(\text{finite-}J\text{ deficit}) = +8.4\% \;\approx\; +8.7\% \;(\text{observed gap}).
+\]</span></p>
+<p>This heuristic decomposition approximately accounts for the empirical conservation gap. The two terms (Jensen lift <span class="math inline">\(+12\%\)</span> and finite-<span class="math inline">\(J\)</span> deficit <span class="math inline">\(-3.5\%\)</span>) are computed from different conditioning structures — the Jensen lift is a conditional (design-based) quantity arising from the covariance identity <a href="#eq-jensen-gap" class="quarto-xref">Equation&nbsp;<span>8.4</span></a>, while the finite-<span class="math inline">\(J\)</span> deficit is a marginal quantity from the coupling factor <span class="math inline">\(\kappa(J)\)</span> — and should not be treated as an exact additive decomposition. Nonetheless, the heuristic sum <span class="math inline">\((+11.9\% - 3.5\% \approx +8.4\%)\)</span> closely matches the observed <span class="math inline">\(+8.7\%\)</span> gap, providing strong evidence that the two identified mechanisms (Jensen’s inequality and finite-cluster coupling) jointly explain the empirical conservation gap.</p>
+<p><strong>Lesson.</strong> The conservation law is an exact identity for the balanced case. In unbalanced data, Jensen’s inequality from the positive covariance between <span class="math inline">\(B_j\)</span> and <span class="math inline">\(\mathrm{DEFF}_j\)</span> creates a systematic positive bias in the LHS. This is a mathematical property of the unbalanced design, not a failure of the DER framework. Analysts working with unbalanced meta-analytic data should expect the study-average conditional DER to <em>exceed</em> <span class="math inline">\(\overline{B} \cdot \overline{\mathrm{DEFF}}\)</span>.</p>
+</section>
+</section>
+<section id="sec-conservation-practice" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="sec-conservation-practice"><span class="header-section-number">8.5</span> Implications for Meta-Analytic Practice</h2>
+<p>Four practical implications follow from the conservation law and its extensions.</p>
+<p><strong>First, the conservation law predicts the typical meta-analytic regime.</strong> In meta-analyses of dependent effect sizes, the shrinkage factor is typically substantial (<span class="math inline">\(B \approx 0.7\)</span>–<span class="math inline">\(0.9\)</span>), and the design effect is moderate to large (<span class="math inline">\(\mathrm{DEFF} \approx 2\)</span>–<span class="math inline">\(6\)</span>). The conservation law then implies <span class="math inline">\(\mathrm{DER}_\mu \approx \mathrm{DEFF}(1 - B) \approx 0.6\)</span>–<span class="math inline">\(1.8\)</span> (near-calibrated for <span class="math inline">\(\mu\)</span>) and <span class="math inline">\(\mathrm{DER}_\theta^{\mathrm{cond}} \approx B \cdot \mathrm{DEFF} \approx 1.4\)</span>–<span class="math inline">\(5.4\)</span> (severely under-dispersed for <span class="math inline">\(\theta_j\)</span>). The forest plot intervals are the primary casualty.</p>
+<p><strong>Second, the marginal deficit is typically small.</strong> For <span class="math inline">\(J \geq 20\)</span>, the deficit fraction <span class="math inline">\(B/[J(1-B) + B]\)</span> is at most a few percent, so the conservation law is a good approximation even for marginal DERs.</p>
+<p><strong>Third, Jensen’s inequality means the conservation gap increases with study-size variability.</strong> In meta-analyses with highly variable <span class="math inline">\(n_j\)</span> (common when combining small pilot studies with large RCTs), the positive covariance between <span class="math inline">\(B_j\)</span> and <span class="math inline">\(\mathrm{DEFF}_j\)</span> will be larger, and the average conditional DER will exceed <span class="math inline">\(\overline{B} \cdot \overline{\mathrm{DEFF}}\)</span> by a larger margin. Analysts should not be alarmed by conservation “violations” in unbalanced data.</p>
+<p><strong>Fourth, the non-monotonicity of marginal DER in <span class="math inline">\(B\)</span> means that moderate heterogeneity produces the largest marginal DER.</strong> Datasets near the peak <span class="math inline">\(B^*\)</span> have the strongest case for CCC correction of forest plot intervals, while both very homogeneous (<span class="math inline">\(B \to 0\)</span>) and very heterogeneous (<span class="math inline">\(B \to 1\)</span>) datasets have smaller marginal DERs (for different reasons: the former because <span class="math inline">\(B\)</span> is small, the latter because <span class="math inline">\(\kappa(J)\)</span> collapses).</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-TannerSmithLipsey2015" class="csl-entry" role="listitem">
+Tanner-Smith, Emily E., and Mark W. Lipsey. 2015. <span>“Brief Alcohol Interventions for Adolescents and Young Adults: A Systematic Review and Meta-Analysis.”</span> <em>Journal of Substance Abuse Treatment</em> 51: 1–18. <a href="https://doi.org/10.1016/j.jsat.2014.09.001">https://doi.org/10.1016/j.jsat.2014.09.001</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ch07-der-framework.html" class="pagination-link" aria-label="DER Framework and Transfer Theorem">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DER Framework and Transfer Theorem</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ch09-boundary.html" class="pagination-link" aria-label="Boundary Cases and Edge Analysis">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Boundary Cases and Edge Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/joonho112/bayesian-meta-survey-equivalence/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Exactness Conditions – Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ch04-isomorphism.html" rel="next">
+<link href="./ch02-models.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ch01-notation.html">Part I: Foundations</a></li><li class="breadcrumb-item"><a href="./ch03-exactness.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exactness Conditions</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/joonho112/bayesian-meta-survey-equivalence" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part I: Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch01-notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Notation and Conventions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch02-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Model Definitions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch03-exactness.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exactness Conditions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Core Equivalence Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch04-isomorphism.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Theorem 1: Likelihood Isomorphism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch05-sandwich.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Theorem 2: Sandwich Equivalence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch06-posterior-ccc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Corollaries 1–2: Posterior and CCC Equivalence</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Design Effect Ratios</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch07-der-framework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DER Framework and Transfer Theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch08-conservation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conservation Law</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch09-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Boundary Cases and Edge Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Extensions and Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch10-extensions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">E4-Relaxed CE and CHE Extensions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch11-regularity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Regularity Conditions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch12-interpretation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Interpretive Issues and Practical Implications</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part V: Discussion and Conclusions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch13-discussion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Discussion and Conclusions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-revision-history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Revision History</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-exactness-overview" id="toc-sec-exactness-overview" class="nav-link active" data-scroll-target="#sec-exactness-overview"><span class="header-section-number">3.1</span> Overview: The Five Conditions</a></li>
+  <li><a href="#sec-e1" id="toc-sec-e1" class="nav-link" data-scroll-target="#sec-e1"><span class="header-section-number">3.2</span> (E1) Compound Symmetry</a>
+  <ul class="collapse">
+  <li><a href="#mathematical-role" id="toc-mathematical-role" class="nav-link" data-scroll-target="#mathematical-role"><span class="header-section-number">3.2.1</span> Mathematical Role</a></li>
+  <li><a href="#strength-of-the-condition" id="toc-strength-of-the-condition" class="nav-link" data-scroll-target="#strength-of-the-condition"><span class="header-section-number">3.2.2</span> Strength of the Condition</a></li>
+  <li><a href="#violation-behavior" id="toc-violation-behavior" class="nav-link" data-scroll-target="#violation-behavior"><span class="header-section-number">3.2.3</span> Violation Behavior</a></li>
+  </ul></li>
+  <li><a href="#sec-e2" id="toc-sec-e2" class="nav-link" data-scroll-target="#sec-e2"><span class="header-section-number">3.3</span> (E2) Known, Common Within-Cluster Variances</a>
+  <ul class="collapse">
+  <li><a href="#mathematical-role-1" id="toc-mathematical-role-1" class="nav-link" data-scroll-target="#mathematical-role-1"><span class="header-section-number">3.3.1</span> Mathematical Role</a></li>
+  <li><a href="#violation-behavior-1" id="toc-violation-behavior-1" class="nav-link" data-scroll-target="#violation-behavior-1"><span class="header-section-number">3.3.2</span> Violation Behavior</a></li>
+  </ul></li>
+  <li><a href="#sec-e3" id="toc-sec-e3" class="nav-link" data-scroll-target="#sec-e3"><span class="header-section-number">3.4</span> (E3) Unit Weights</a>
+  <ul class="collapse">
+  <li><a href="#mathematical-role-2" id="toc-mathematical-role-2" class="nav-link" data-scroll-target="#mathematical-role-2"><span class="header-section-number">3.4.1</span> Mathematical Role</a></li>
+  <li><a href="#when-e3-holds" id="toc-when-e3-holds" class="nav-link" data-scroll-target="#when-e3-holds"><span class="header-section-number">3.4.2</span> When (E3) Holds</a></li>
+  <li><a href="#violation-behavior-2" id="toc-violation-behavior-2" class="nav-link" data-scroll-target="#violation-behavior-2"><span class="header-section-number">3.4.3</span> Violation Behavior</a></li>
+  </ul></li>
+  <li><a href="#sec-e4" id="toc-sec-e4" class="nav-link" data-scroll-target="#sec-e4"><span class="header-section-number">3.5</span> (E4) DER Simplification Condition</a>
+  <ul class="collapse">
+  <li><a href="#when-e4-is-required" id="toc-when-e4-is-required" class="nav-link" data-scroll-target="#when-e4-is-required"><span class="header-section-number">3.5.1</span> When (E4) IS Required</a></li>
+  <li><a href="#violation-behavior-3" id="toc-violation-behavior-3" class="nav-link" data-scroll-target="#violation-behavior-3"><span class="header-section-number">3.5.2</span> Violation Behavior</a></li>
+  <li><a href="#summary-of-e4-necessity" id="toc-summary-of-e4-necessity" class="nav-link" data-scroll-target="#summary-of-e4-necessity"><span class="header-section-number">3.5.3</span> Summary of (E4) Necessity</a></li>
+  </ul></li>
+  <li><a href="#sec-e5" id="toc-sec-e5" class="nav-link" data-scroll-target="#sec-e5"><span class="header-section-number">3.6</span> (E5) Normal Level 1 Errors</a>
+  <ul class="collapse">
+  <li><a href="#mathematical-role-3" id="toc-mathematical-role-3" class="nav-link" data-scroll-target="#mathematical-role-3"><span class="header-section-number">3.6.1</span> Mathematical Role</a></li>
+  <li><a href="#near-redundancy" id="toc-near-redundancy" class="nav-link" data-scroll-target="#near-redundancy"><span class="header-section-number">3.6.2</span> Near-Redundancy</a></li>
+  </ul></li>
+  <li><a href="#sec-isomorphism-map" id="toc-sec-isomorphism-map" class="nav-link" data-scroll-target="#sec-isomorphism-map"><span class="header-section-number">3.7</span> The Isomorphism Map <span class="math inline">\(\mathcal{T}\)</span></a>
+  <ul class="collapse">
+  <li><a href="#extended-isomorphism-map-for-che" id="toc-extended-isomorphism-map-for-che" class="nav-link" data-scroll-target="#extended-isomorphism-map-for-che"><span class="header-section-number">3.7.1</span> Extended Isomorphism Map for CHE</a></li>
+  </ul></li>
+  <li><a href="#sec-e2-e3-tradeoff" id="toc-sec-e2-e3-tradeoff" class="nav-link" data-scroll-target="#sec-e2-e3-tradeoff"><span class="header-section-number">3.8</span> The (E2)+(E3) Trade-Off</a>
+  <ul class="collapse">
+  <li><a href="#algebraic-mechanism" id="toc-algebraic-mechanism" class="nav-link" data-scroll-target="#algebraic-mechanism"><span class="header-section-number">3.8.1</span> Algebraic Mechanism</a></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">3.8.2</span> Interpretation</a></li>
+  <li><a href="#formal-statement" id="toc-formal-statement" class="nav-link" data-scroll-target="#formal-statement"><span class="header-section-number">3.8.3</span> Formal Statement</a></li>
+  </ul></li>
+  <li><a href="#sec-condition-necessity" id="toc-sec-condition-necessity" class="nav-link" data-scroll-target="#sec-condition-necessity"><span class="header-section-number">3.9</span> Condition Necessity: Which Conditions for Which Results?</a></li>
+  <li><a href="#sec-regularity-preview" id="toc-sec-regularity-preview" class="nav-link" data-scroll-target="#sec-regularity-preview"><span class="header-section-number">3.10</span> Regularity Conditions (C1)–(C8)</a>
+  <ul class="collapse">
+  <li><a href="#conditions-that-simplify-or-disappear-under-the-ce-model" id="toc-conditions-that-simplify-or-disappear-under-the-ce-model" class="nav-link" data-scroll-target="#conditions-that-simplify-or-disappear-under-the-ce-model"><span class="header-section-number">3.10.1</span> Conditions That Simplify or Disappear Under the CE Model</a></li>
+  </ul></li>
+  <li><a href="#sec-edge-cases-exactness" id="toc-sec-edge-cases-exactness" class="nav-link" data-scroll-target="#sec-edge-cases-exactness"><span class="header-section-number">3.11</span> Implicit Assumptions and Edge Cases</a>
+  <ul class="collapse">
+  <li><a href="#implicit-assumption-1-rho-is-fixed" id="toc-implicit-assumption-1-rho-is-fixed" class="nav-link" data-scroll-target="#implicit-assumption-1-rho-is-fixed"><span class="header-section-number">3.11.1</span> Implicit Assumption 1: <span class="math inline">\(\rho\)</span> Is Fixed</a></li>
+  <li><a href="#implicit-assumption-2-positive-definite-covariances" id="toc-implicit-assumption-2-positive-definite-covariances" class="nav-link" data-scroll-target="#implicit-assumption-2-positive-definite-covariances"><span class="header-section-number">3.11.2</span> Implicit Assumption 2: Positive Definite Covariances</a></li>
+  <li><a href="#implicit-assumption-3-j-1" id="toc-implicit-assumption-3-j-1" class="nav-link" data-scroll-target="#implicit-assumption-3-j-1"><span class="header-section-number">3.11.3</span> Implicit Assumption 3: <span class="math inline">\(J &gt; 1\)</span></a></li>
+  <li><a href="#edge-case-n_j-1-for-all-j" id="toc-edge-case-n_j-1-for-all-j" class="nav-link" data-scroll-target="#edge-case-n_j-1-for-all-j"><span class="header-section-number">3.11.4</span> Edge Case: <span class="math inline">\(n_j = 1\)</span> for All <span class="math inline">\(j\)</span></a></li>
+  <li><a href="#edge-case-mixed-singleton-and-non-singleton-studies" id="toc-edge-case-mixed-singleton-and-non-singleton-studies" class="nav-link" data-scroll-target="#edge-case-mixed-singleton-and-non-singleton-studies"><span class="header-section-number">3.11.5</span> Edge Case: Mixed Singleton and Non-Singleton Studies</a></li>
+  <li><a href="#edge-case-boundary-values-of-sigma2_theta" id="toc-edge-case-boundary-values-of-sigma2_theta" class="nav-link" data-scroll-target="#edge-case-boundary-values-of-sigma2_theta"><span class="header-section-number">3.11.6</span> Edge Case: Boundary Values of <span class="math inline">\(\sigma^2_\theta\)</span></a></li>
+  </ul></li>
+  <li><a href="#sec-exactness-summary" id="toc-sec-exactness-summary" class="nav-link" data-scroll-target="#sec-exactness-summary"><span class="header-section-number">3.12</span> Summary: The Architecture of Exactness</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/joonho112/bayesian-meta-survey-equivalence/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ch01-notation.html">Part I: Foundations</a></li><li class="breadcrumb-item"><a href="./ch03-exactness.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exactness Conditions</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-exactness" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exactness Conditions</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The structural equivalence between Bayesian meta-analysis and Bayesian survey inference is <strong>exact</strong> — not merely approximate — when five exactness conditions hold simultaneously. This chapter defines each condition, discusses its mathematical role, records when and where it is required, and analyzes what happens when it is violated. We also present the isomorphism map <span class="math inline">\(\mathcal{T}\)</span> that transforms one framework into the other, and discuss important interactions between conditions.</p>
+<p>All notation follows the conventions in <a href="ch01-notation.html" class="quarto-xref"><span>Chapter 1</span></a>. The model definitions referenced here are given in <a href="ch02-models.html" class="quarto-xref"><span>Chapter 2</span></a>.</p>
+<section id="sec-exactness-overview" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="sec-exactness-overview"><span class="header-section-number">3.1</span> Overview: The Five Conditions</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The Exactness Conditions at a Glance
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The isomorphism between the CE meta-analytic model and the survey pseudo-likelihood model holds exactly when the following conditions are satisfied:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 15%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Condition</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">One-Sentence Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>(E1)</strong></td>
+<td style="text-align: left;">Compound symmetry</td>
+<td style="text-align: left;">Within-cluster working covariance is compound-symmetric</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>(E2)</strong></td>
+<td style="text-align: left;">Known, common within-cluster variances</td>
+<td style="text-align: left;">Cluster-specific variance identification <span class="math inline">\(\sigma^2_{e,j} = \bar{s}_j^2\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>(E3)</strong></td>
+<td style="text-align: left;">Unit weights</td>
+<td style="text-align: left;">Normalized survey weights <span class="math inline">\(\tilde{w}_{ij} = 1\)</span> for all <span class="math inline">\((i,j)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>(E4)</strong></td>
+<td style="text-align: left;">DER simplification condition</td>
+<td style="text-align: left;">Predictors do not vary within clusters: <span class="math inline">\(\mathbf{x}_{ij} = \mathbf{x}_j\)</span> (needed only for <span class="math inline">\(R_k = B\)</span> in Theorem 3)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>(E5)</strong></td>
+<td style="text-align: left;">Normal Level 1 errors</td>
+<td style="text-align: left;">Both models use the Gaussian distributional family</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Not all conditions are equally necessary.</strong> The core isomorphism (Theorems 1–2, Corollaries 1–2) requires only (E1), (E2), (E3), and (E5). Condition (E4) is needed only for the specific closed-form DER decomposition in Theorem 3. Condition (E5) is near-redundant when both models are specified with the same distributional family.</p>
+</div>
+</div>
+</section>
+<section id="sec-e1" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="sec-e1"><span class="header-section-number">3.2</span> (E1) Compound Symmetry</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Condition (E1): Compound Symmetry
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The within-cluster working covariance takes the compound-symmetric form in both frameworks: <span id="eq-e1"><span class="math display">\[
+\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho) = \sigma_j^2\!\left[(1-\rho)\,\mathbf{I}_{n_j} + \rho\,\mathbf{1}_{n_j}\mathbf{1}_{n_j}^{\intercal}\right]
+\tag{3.1}\]</span></span> for a common working correlation <span class="math inline">\(\rho \in [0,1)\)</span> and cluster-specific scale <span class="math inline">\(\sigma_j^2 &gt; 0\)</span>, where <span class="math inline">\(\sigma_j^2 = \bar{s}_j^2\)</span> in meta-analysis and <span class="math inline">\(\sigma_j^2 = \sigma^2_{e,j}\)</span> in survey inference.</p>
+</div>
+</div>
+<section id="mathematical-role" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="mathematical-role"><span class="header-section-number">3.2.1</span> Mathematical Role</h3>
+<p>Compound symmetry ensures that:</p>
+<ol type="1">
+<li><p><strong>The within-cluster covariance can be parameterized by a single correlation parameter <span class="math inline">\(\rho\)</span>.</strong> This is what makes the sensitivity-analysis approach (varying <span class="math inline">\(\rho\)</span>) tractable.</p></li>
+<li><p><strong>The eigenstructure is simple.</strong> The compound-symmetric matrix has two distinct eigenvalues — <span class="math inline">\((1-\rho)\)</span> with multiplicity <span class="math inline">\(n_j - 1\)</span> and <span class="math inline">\(1 + (n_j - 1)\rho\)</span> with multiplicity 1 — which yields clean closed-form expressions for the inverse, determinant, and quadratic forms (see <a href="ch02-models.html" class="quarto-xref"><span>Chapter 2</span></a>, Definition 2, and <a href="ch02-models.html#fig-cs-eigenspaces" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> for the spectral visualization).</p></li>
+<li><p><strong>The classical scalar DEFF formula becomes available.</strong> Under compound symmetry, the between-cluster eigendirection yields the familiar expression <span class="math inline">\(\mathrm{DEFF}_j = 1 + (n_j - 1)\rho_{\mathrm{true}}\)</span>. This scalar formula is exact for the intercept and study-level covariates. For coefficients identified by within-cluster variation, the relevant meat-to-bread ratio can differ by eigenspace, so the scalar DEFF should be treated as an approximation rather than a universal identity. With more general covariance structures, the within-cluster meat-to-bread ratio becomes a matrix rather than a scalar, and the DER decomposition in Theorem 3 does not reduce to the simple closed form <span class="math inline">\(\mathrm{DER}_{\beta_k} = \mathrm{DEFF} \cdot (1 - R_k)\)</span>.</p></li>
+</ol>
+</section>
+<section id="strength-of-the-condition" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="strength-of-the-condition"><span class="header-section-number">3.2.2</span> Strength of the Condition</h3>
+<p>Condition (E1) is <strong>stronger than needed</strong> for the basic likelihood isomorphism (Theorem 1). The isomorphism holds for any matched known block covariance family, not only compound symmetry. What matters algebraically is that both frameworks use the <strong>same</strong> within-cluster precision matrix at each cluster <span class="math inline">\(j\)</span>, so that the quadratic forms in <span class="math inline">\(\boldsymbol{\phi}\)</span> are identical. Any shared covariance structure — compound symmetry, autoregressive, unstructured — would suffice for Theorems 1–2.</p>
+<p>However, compound symmetry is the <strong>natural</strong> assumption in both literatures:</p>
+<ul>
+<li>In meta-analysis, compound symmetry reflects the assumption that all effect sizes within a study share a common true effect (the CE model), so the pairwise correlations among sampling errors are all equal.</li>
+<li>In survey inference, compound symmetry corresponds to the standard intra-class correlation structure for clustered data.</li>
+</ul>
+<p>Compound symmetry becomes <strong>essential</strong> for Theorem 3 (DER transfer), because the scalar DEFF formula <span class="math inline">\(\mathrm{DEFF}_j = 1 + (n_j - 1)\rho_{\mathrm{true}}\)</span> (see <a href="ch07-der-framework.html#fig-deff-surface" class="quarto-xref">Figure&nbsp;<span>7.1</span></a> for the resulting DEFF surface) and the closed-form DER decomposition both rely on the eigenstructure of the compound-symmetric matrix.</p>
+</section>
+<section id="violation-behavior" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="violation-behavior"><span class="header-section-number">3.2.3</span> Violation Behavior</h3>
+<p>When (E1) is violated (e.g., the true covariance has an autoregressive or unstructured form), the inverse matrices <span class="math inline">\([\boldsymbol{\Sigma}_j^{\mathrm{work}}]^{-1}\)</span> differ between the two frameworks, creating a <span class="math inline">\(\boldsymbol{\phi}\)</span>-dependent difference in the quadratic forms. A counterexample analysis constructed a concrete <span class="math inline">\(J=3\)</span> numerical example where a non-CS covariance produced <span class="math inline">\(\mathbf{1}^{\intercal}\boldsymbol{\Delta}\mathbf{1} = 1.648 \neq 0\)</span> in the precision-matrix difference, breaking exact isomorphism.</p>
+<p>The degradation is <strong>gradual</strong>: for nearly compound-symmetric covariance structures, the isomorphism holds approximately, with the approximation error proportional to the deviation from compound symmetry.</p>
+</section>
+</section>
+<section id="sec-e2" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="sec-e2"><span class="header-section-number">3.3</span> (E2) Known, Common Within-Cluster Variances</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Condition (E2): Known, Common Within-Cluster Variances
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The meta-analytic sampling variances satisfy <span class="math inline">\(s_{ij}^2 = \bar{s}_j^2\)</span> for all <span class="math inline">\(i\)</span> within study <span class="math inline">\(j\)</span>, and the survey within-cluster error variance is identified cluster-by-cluster: <span id="eq-e2"><span class="math display">\[
+\sigma^2_{e,j} = \bar{s}_j^2, \quad j = 1, \ldots, J.
+\tag{3.2}\]</span></span> Both <span class="math inline">\(\bar{s}_j^2\)</span> and <span class="math inline">\(\sigma^2_{e,j}\)</span> are treated as <strong>known</strong> (conditioned upon), not as parameters to be estimated.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Key Correction: Cluster-Specific Identification
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The original formulation used a single global <span class="math inline">\(\sigma^2_e\)</span> identified with a common <span class="math inline">\(\bar{s}^2\)</span>. Internal review identified this as insufficient. When the within-study average sampling variances <span class="math inline">\(\bar{s}_j^2\)</span> vary across studies (which is the typical case in meta-analysis), exact isomorphism demands <strong>cluster-by-cluster</strong> identification: <span class="math display">\[
+\sigma^2_{e,j} = \bar{s}_j^2, \quad \text{for each } j = 1, \ldots, J.
+\]</span></p>
+<p>If a common <span class="math inline">\(\sigma^2_e\)</span> is used on the survey side while <span class="math inline">\(\bar{s}_j^2\)</span> varies across <span class="math inline">\(j\)</span> on the meta-analytic side, then <strong>both</strong> the log-determinant <strong>and</strong> the quadratic form differ in a <span class="math inline">\(\boldsymbol{\phi}\)</span>-dependent way:</p>
+<ul>
+<li>The log-determinant difference is <span class="math inline">\(\frac{1}{2}\sum_j n_j \log(\sigma^2_e / \bar{s}_j^2)\)</span>, which is nonzero but <span class="math inline">\(\boldsymbol{\phi}\)</span>-free.</li>
+<li>The quadratic-form difference is <span class="math inline">\(-\frac{1}{2}\sum_{j}\sum_{i}(\sigma_e^{-2} - \bar{s}_j^{-2})\,r_{ij}^2\)</span>, which <strong>does</strong> depend on <span class="math inline">\(\boldsymbol{\phi}\)</span> through the residuals <span class="math inline">\(r_{ij}\)</span>.</li>
+</ul>
+<p>The second term breaks exact isomorphism. Only when <span class="math inline">\(\sigma^2_e = \bar{s}_j^2\)</span> for each <span class="math inline">\(j\)</span> do both differences vanish (or reduce to a <span class="math inline">\(\boldsymbol{\phi}\)</span>-free constant).</p>
+<p>When <span class="math inline">\(\bar{s}_j^2 = \bar{s}^2\)</span> is genuinely common across all studies, a single <span class="math inline">\(\sigma^2_e = \bar{s}^2\)</span> suffices.</p>
+</div>
+</div>
+<section id="mathematical-role-1" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="mathematical-role-1"><span class="header-section-number">3.3.1</span> Mathematical Role</h3>
+<p>Condition (E2) serves three purposes:</p>
+<ol type="1">
+<li><p><strong>Precision matching.</strong> It ensures that the coefficient multiplying <span class="math inline">\(r_{ij}^2\)</span> in the quadratic form is the same in both frameworks for every observation <span class="math inline">\((i,j)\)</span>. This is the precision-matching condition: <span class="math inline">\(1/\sigma^2_{e,j} = 1/\bar{s}_j^2\)</span>.</p></li>
+<li><p><strong>Within-study homogeneity.</strong> The requirement <span class="math inline">\(s_{ij}^2 = \bar{s}_j^2\)</span> for all <span class="math inline">\(i\)</span> within study <span class="math inline">\(j\)</span> ensures that the averaging step in the CE model does not create a working-model approximation. When individual sampling variances are heterogeneous within a study, the compound-symmetric working covariance <span class="math inline">\(\bar{s}_j^2[(1-\rho)\mathbf{I} + \rho\mathbf{1}\mathbf{1}^{\intercal}]\)</span> is an approximation.</p></li>
+<li><p><strong>Known-variance assumption.</strong> Treating <span class="math inline">\(\bar{s}_j^2\)</span> and <span class="math inline">\(\sigma^2_{e,j}\)</span> as known (conditioned upon) prevents these quantities from entering the parameter vector <span class="math inline">\(\boldsymbol{\phi}\)</span>. If <span class="math inline">\(\sigma^2_{e,j}\)</span> were estimated, the constant <span class="math inline">\(c\)</span> in the isomorphism could inherit dependence on the variance parameters.</p></li>
+</ol>
+</section>
+<section id="violation-behavior-1" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="violation-behavior-1"><span class="header-section-number">3.3.2</span> Violation Behavior</h3>
+<p>When (E2) is violated, the cluster-specific precision coefficients <span class="math inline">\(1/\bar{s}_j^2\)</span> and <span class="math inline">\(1/\sigma^2_{e,j}\)</span> differ, creating a <span class="math inline">\(\boldsymbol{\phi}\)</span>-dependent discrepancy in the quadratic forms. The magnitude of the violation is proportional to the coefficient of variation of <span class="math inline">\(\{1/\bar{s}_j^2\}\)</span> across studies.</p>
+</section>
+</section>
+<section id="sec-e3" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="sec-e3"><span class="header-section-number">3.4</span> (E3) Unit Weights</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Condition (E3): Unit Weights
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The normalized survey weights satisfy: <span id="eq-e3"><span class="math display">\[
+\tilde{w}_{ij} = 1, \quad \text{for all } (i, j).
+\tag{3.3}\]</span></span> In meta-analysis, this condition is satisfied by construction (no design weights appear in the standard meta-analytic likelihood).</p>
+</div>
+</div>
+<section id="mathematical-role-2" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="mathematical-role-2"><span class="header-section-number">3.4.1</span> Mathematical Role</h3>
+<p>Condition (E3) is the <strong>most consequential</strong> of the five exactness conditions, because its violation changes the <strong>estimand</strong>, not merely the precision of estimation.</p>
+<p>When <span class="math inline">\(\tilde{w}_{ij} = 1\)</span>, the survey pseudo-log-likelihood reduces to the standard (unweighted) log-likelihood:</p>
+<p><span class="math display">\[
+\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) = \sum_{j=1}^{J}\sum_{i=1}^{n_j} 1 \cdot \log f(y_{ij} \mid \ldots) = \sum_{j=1}^{J}\sum_{i=1}^{n_j} \log f(y_{ij} \mid \ldots) = \ell_{\mathrm{surv}}(\boldsymbol{\phi}).
+\]</span></p>
+<p>This eliminates the weight-induced distortion of the likelihood surface. With non-unit weights, the pseudo-likelihood tilts toward observations with larger weights, which correspond to observations that are more “representative” of the finite population. This tilt changes the point at which the posterior concentrates, i.e., it changes the estimand from the sample-conditional regression parameter to the finite-population regression parameter.</p>
+</section>
+<section id="when-e3-holds" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="when-e3-holds"><span class="header-section-number">3.4.2</span> When (E3) Holds</h3>
+<ul>
+<li><strong>Meta-analysis</strong>: Always. Standard meta-analytic likelihoods do not incorporate design weights. Each effect size enters the likelihood with implicit unit weight.</li>
+<li><strong>Survey inference</strong>: Under simple random sampling (or self-weighting designs), where all inclusion probabilities are equal: <span class="math inline">\(\pi_{ij} = N/N_{\mathrm{pop}}\)</span> for all <span class="math inline">\((i,j)\)</span>.</li>
+</ul>
+</section>
+<section id="violation-behavior-2" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="violation-behavior-2"><span class="header-section-number">3.4.3</span> Violation Behavior</h3>
+<p>In the independence working model (<span class="math inline">\(\rho = 0\)</span>), violating (E3) changes the pseudo-log-likelihood from the unweighted sum <span class="math inline">\(\sum_j \sum_i \log f(y_{ij} \mid \ldots)\)</span> to the weighted sum <span class="math inline">\(\sum_j \sum_i \tilde{w}_{ij} \log f(y_{ij} \mid \ldots)\)</span>. The survey scores, Hessian, and meat are then weighted versions of the unweighted meta-analytic objects, so exact matching is lost immediately.</p>
+<p>When the working model is correlated (<span class="math inline">\(\rho &gt; 0\)</span>), Chapter 2 shows that the operative Gaussian likelihood is <strong>clusterwise multivariate normal</strong>. In that setting, the simple observation-level decomposition is no longer the literal likelihood representation; non-unit weights must be interpreted through a weighted clusterwise pseudo-likelihood or an equivalent weighted score construction. Either way, once <span class="math inline">\(\tilde{w}_{ij} \neq 1\)</span>, the survey score contributions are no longer the same unweighted cluster scores used by the meta-analytic likelihood.</p>
+<p>Thus violating (E3) is not merely a precision issue — it changes the target estimand and breaks the exact score/Hessian/meat matching needed for Theorems 1–2 and Corollaries 1–2. Counterexample analysis confirmed that non-unit weights create a <span class="math inline">\(\boldsymbol{\phi}\)</span>-dependent discrepancy in the downstream inferential objects.</p>
+</section>
+</section>
+<section id="sec-e4" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="sec-e4"><span class="header-section-number">3.5</span> (E4) DER Simplification Condition</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Condition (E4): DER Simplification Condition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>All predictors are cluster-level: <span class="math inline">\(\mathbf{x}_{ij} = \mathbf{x}_j\)</span> for every <span class="math inline">\(i = 1, \ldots, n_j\)</span> and <span class="math inline">\(j = 1, \ldots, J\)</span>. This is <strong>not</strong> a definitional property of the CE model (which is defined by <span class="math inline">\(\omega^2 = 0\)</span>). Rather, (E4) is needed only for the closed-form DER decomposition <span class="math inline">\(R_k = B\)</span> in Theorem 3. The design matrix <span class="math inline">\(\mathbf{X}_j\)</span> has all rows equal to <span class="math inline">\(\mathbf{x}_j^{\intercal}\)</span> when (E4) holds.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Key Finding: (E4) Is NOT Required for Theorems 1–2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Verification revealed — and independent review confirmed — that condition (E4) is <strong>unnecessary</strong> for the basic isomorphism. The likelihood isomorphism (Theorem 1), sandwich equivalence (Theorem 2), posterior equivalence (Corollary 1), and CCC equivalence (Corollary 2) all hold under (E1), (E2), (E3), and (E5) alone, <strong>regardless</strong> of whether covariates vary within clusters.</p>
+<p><strong>Why (E4) is not needed.</strong> Observation-level covariates <span class="math inline">\(\mathbf{x}_{ij}\)</span> enter the likelihood only through the residual vector: <span class="math display">\[
+\mathbf{r}_j = \mathbf{y}_j - \mathbf{X}_j\boldsymbol{\beta} - \theta_j\mathbf{1}_{n_j}.
+\]</span> The log-determinant term <span class="math inline">\(\log|\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho)|\)</span> does not depend on the mean structure (i.e., it does not depend on <span class="math inline">\(\mathbf{X}_j\)</span> or <span class="math inline">\(\boldsymbol{\beta}\)</span>). The quadratic form <span class="math inline">\(\mathbf{r}_j^{\intercal}[\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho)]^{-1}\mathbf{r}_j\)</span> uses the same residual vector in both frameworks as long as both use the same <span class="math inline">\(\mathbf{X}_j\)</span> — whether that matrix has identical rows (CE) or varying rows (HE). There is no hidden likelihood-level obstruction from observation-level covariates.</p>
+<p><strong>Terminological precision.</strong> Under the broad CE definition used in this book, allowing <span class="math inline">\(\mathbf{x}_{ij}\)</span> to vary within clusters does <strong>not</strong> create a new variance model. It is more precise to say that the isomorphism extends exactly from the CE baseline to the <strong>E4-relaxed CE mean-structure extension</strong> under the same conditions minus (E4).</p>
+</div>
+</div>
+<section id="when-e4-is-required" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="when-e4-is-required"><span class="header-section-number">3.5.1</span> When (E4) IS Required</h3>
+<p>Condition (E4) is needed for the <strong>closed-form DER decomposition</strong> in Theorem 3(a):</p>
+<p><span class="math display">\[
+\mathrm{DER}_{\beta_k} = \mathrm{DEFF} \cdot (1 - R_k).
+\]</span></p>
+<p>Under (E4), all covariates are study-level, so <span class="math inline">\(R_k = B\)</span> for every <span class="math inline">\(k\)</span> (exact under flat <span class="math inline">\(\boldsymbol{\beta}\)</span> prior; asymptotically exact under condition C6 with a weakly informative proper prior). Without (E4), the exact target is the Schur-complement quantity <span class="math inline">\(R_k\)</span> from Definition 7. In balanced orthogonal designs one may summarize the result heuristically as</p>
+<p><span class="math display">\[
+\mathrm{DER}_{\beta_k}^{\mathrm{thm,cond}} \approx \mathrm{DEFF} \cdot (1 - \gamma_k B),
+\]</span> but this should not be treated as a theorem-level identity for general within-cluster covariates.</p>
+</section>
+<section id="violation-behavior-3" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="violation-behavior-3"><span class="header-section-number">3.5.2</span> Violation Behavior</h3>
+<p>Violating (E4) while maintaining (E1)–(E3) and (E5) does <strong>not</strong> break the isomorphism — it only changes the DER decomposition. Counterexample analysis showed that within-cluster covariate variation produces a difference that is quadratic in <span class="math inline">\(\beta_1\)</span>: proportional to <span class="math inline">\(\beta_1^2 \cdot \mathrm{Var}_{\mathrm{within}}(x)\)</span>. However, this difference arises from comparing a CE model to a survey model with observation-level covariates, not from the isomorphism itself.</p>
+</section>
+<section id="summary-of-e4-necessity" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="summary-of-e4-necessity"><span class="header-section-number">3.5.3</span> Summary of (E4) Necessity</h3>
+<div id="tbl-e4-necessity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-e4-necessity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.1: Necessity of (E4) by result.
+</figcaption>
+<div aria-describedby="tbl-e4-necessity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 55%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Result</th>
+<th style="text-align: center;">(E4) Required?</th>
+<th style="text-align: left;">Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Theorem 1 (Likelihood Isomorphism)</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: left;">Log-determinant is mean-structure-free; quadratic form uses same <span class="math inline">\(\mathbf{r}_j\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Theorem 2 (Sandwich Equivalence)</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: left;">Follows from Theorem 1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Corollary 1 (Posterior Equivalence)</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: left;">Follows from Theorem 1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Corollary 2 (CCC Equivalence)</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: left;">Follows from Theorem 2 + Corollary 1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Theorem 3(a) (DER Decomposition: <span class="math inline">\(R_k \approx B\)</span>)</td>
+<td style="text-align: center;"><strong>Yes</strong></td>
+<td style="text-align: left;">Study-level covariates required for <span class="math inline">\(\gamma_k = 1\)</span>; <span class="math inline">\(R_k = B\)</span> exact flat prior</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Theorem 3(b–e) (Other DER results)</td>
+<td style="text-align: center;">Partially</td>
+<td style="text-align: left;">Conservation law form depends on covariate structure</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="sec-e5" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="sec-e5"><span class="header-section-number">3.6</span> (E5) Normal Level 1 Errors</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Condition (E5): Normal Level 1 Errors
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The conditional distribution at Level 1 is Gaussian in both frameworks: <span id="eq-e5"><span class="math display">\[
+y_{ij} \mid \theta_j, \boldsymbol{\beta} \sim \textsf{N}(\mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} + \theta_j,\; \sigma_j^2).
+\tag{3.4}\]</span></span></p>
+</div>
+</div>
+<section id="mathematical-role-3" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="mathematical-role-3"><span class="header-section-number">3.6.1</span> Mathematical Role</h3>
+<p>Condition (E5) ensures that both frameworks use the same kernel in their log-likelihood contributions. When both models use the normal distribution, the log-likelihood takes the specific quadratic-in-<span class="math inline">\(\boldsymbol{\phi}\)</span> form that enables the clean additive-constant separation.</p>
+</section>
+<section id="near-redundancy" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="near-redundancy"><span class="header-section-number">3.6.2</span> Near-Redundancy</h3>
+<p>Verification found that (E5) is <strong>effectively redundant</strong> when both models are stipulated to use the same parametric family. The condition only excludes pathological cross-family comparisons (e.g., a normal meta-analytic model compared to a <span class="math inline">\(t\)</span>-distributed survey model). Since both the CE meta-analytic model and the Bayesian survey model are conventionally specified with Gaussian Level 1 errors, (E5) is automatically satisfied in standard applications.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Recommendation: Downgrade to Convention
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Independent review concurred that (E5) is near-redundant and could be downgraded to a “distributional convention” rather than a formal exactness condition. The isomorphism argument applies to any shared exponential family, not only the normal. Under this broader view, the true mathematical core is: both frameworks need the same cluster partition, the same design matrix, and the same clusterwise log-likelihood kernel up to a parameter-free constant.</p>
+<p>For transparency and completeness, we retain (E5) as a stated condition but note its limited independent bite.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-isomorphism-map" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="sec-isomorphism-map"><span class="header-section-number">3.7</span> The Isomorphism Map <span class="math inline">\(\mathcal{T}\)</span></h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Definition (Isomorphism Map)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The isomorphism map <span class="math inline">\(\mathcal{T}\)</span> sends each mathematical object in the survey framework to its meta-analytic counterpart. The two core identifications are: <span id="eq-iso-map"><span class="math display">\[
+\mathcal{T}: \quad \sigma^2_{e,j} \;\mapsto\; \bar{s}_j^2, \qquad \tilde{w}_{ij} \;\mapsto\; 1.
+\tag{3.5}\]</span></span></p>
+<p>Under <span class="math inline">\(\mathcal{T}\)</span> and conditions (E1)–(E3) (with (E5) as a distributional convention), the survey pseudo-log-likelihood and the meta-analytic log-likelihood differ by a constant: <span class="math display">\[
+\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) = \ell_{\mathrm{meta}}(\boldsymbol{\phi}) + c,
+\]</span> where <span class="math inline">\(c = c(\sigma^2_{e,j}, \{\bar{s}_j^2\}, \{\tilde{w}_{ij}\}, \rho, \{n_j\})\)</span> does not depend on <span class="math inline">\(\boldsymbol{\phi} = (\boldsymbol{\beta}^{\intercal}, \boldsymbol{\theta}^{\intercal})^{\intercal}\)</span>.</p>
+</div>
+</div>
+<p>The isomorphism map acts on the three sources of difference between the two frameworks:</p>
+<div id="tbl-iso-map" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-iso-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.2: Components of the isomorphism map <span class="math inline">\(\mathcal{T}\)</span>.
+</figcaption>
+<div aria-describedby="tbl-iso-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 22%">
+<col style="width: 35%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Difference</th>
+<th style="text-align: left;">Survey Quantity</th>
+<th style="text-align: left;">Meta-Analytic Counterpart</th>
+<th style="text-align: left;">Exactness Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Within-cluster error variance</td>
+<td style="text-align: left;"><span class="math inline">\(\sigma^2_{e,j}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\bar{s}_j^2\)</span></td>
+<td style="text-align: left;">(E2)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Survey weights</td>
+<td style="text-align: left;"><span class="math inline">\(\tilde{w}_{ij}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(1\)</span> (implicit)</td>
+<td style="text-align: left;">(E3)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Covariate level</td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{x}_{ij}\)</span> (observation-level)</td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{x}_j\)</span> (study-level)</td>
+<td style="text-align: left;">(E4) — DER simplification only; not part of core isomorphism</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<section id="extended-isomorphism-map-for-che" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="extended-isomorphism-map-for-che"><span class="header-section-number">3.7.1</span> Extended Isomorphism Map for CHE</h3>
+<p>For the CHE model, the isomorphism map requires a modified (E2):</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Condition (E2’): Modified Variance Identification for CHE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The CHE total within-cluster variance is identified cluster-by-cluster: <span id="eq-e2-prime"><span class="math display">\[
+\sigma^2_{e,\mathrm{total},j} \equiv \bar{s}_j^2 + \omega^2, \quad j = 1, \ldots, J.
+\tag{3.6}\]</span></span></p>
+<p>Under (E2’), the CHE isomorphism map is: <span class="math display">\[
+\mathcal{T}^{\mathrm{CHE}}: \quad \sigma^2_{e,\mathrm{total},j} \;\mapsto\; \bar{s}_j^2 + \omega^2, \qquad \tilde{w}_{ij} \;\mapsto\; 1.
+\]</span></p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-e2-e3-tradeoff" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="sec-e2-e3-tradeoff"><span class="header-section-number">3.8</span> The (E2)+(E3) Trade-Off</h2>
+<p>An important interaction exists between conditions (E2) and (E3). In the <strong>independence working model</strong> (<span class="math inline">\(\rho_{\mathrm{work}}=0\)</span>), violating <strong>both</strong> conditions simultaneously can, under specific circumstances, <strong>restore</strong> the isomorphism through an effective-precision reparameterization.</p>
+<section id="algebraic-mechanism" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="algebraic-mechanism"><span class="header-section-number">3.8.1</span> Algebraic Mechanism</h3>
+<p>Consider the case where the survey uses cluster-constant weights <span class="math inline">\(\tilde{w}_{ij} = w_j\)</span> (violating E3) and a common error variance <span class="math inline">\(\sigma^2_e\)</span> (potentially violating E2 if <span class="math inline">\(\bar{s}_j^2\)</span> varies), <strong>under the independence working model</strong> <span class="math inline">\(\rho_{\mathrm{work}}=0\)</span>. The weighted quadratic term for observation <span class="math inline">\((i,j)\)</span> is:</p>
+<p><span class="math display">\[
+\tilde{w}_{ij}\cdot\frac{(y_{ij} - \mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} - \theta_j)^2}{2\sigma^2_e} = \frac{(y_{ij} - \mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} - \theta_j)^2}{2(\sigma^2_e / w_j)}.
+\]</span></p>
+<p>The <strong>effective precision</strong> at cluster <span class="math inline">\(j\)</span> is <span class="math inline">\(w_j / \sigma^2_e\)</span>. If this matches the meta-analytic precision:</p>
+<p><span id="eq-effective-precision"><span class="math display">\[
+\frac{w_j}{\sigma^2_e} = \frac{1}{\bar{s}_j^2}, \qquad \text{i.e.,} \qquad w_j = \frac{\sigma^2_e}{\bar{s}_j^2},
+\tag{3.7}\]</span></span></p>
+<p>then the quadratic forms are identical, and the remaining log-term discrepancy:</p>
+<p><span class="math display">\[
+\sum_{j=1}^{J}\sum_{i=1}^{n_j} w_j \cdot \left[-\frac{1}{2}\log(2\pi\sigma^2_e)\right] + \sum_{j=1}^{J}\sum_{i=1}^{n_j}\frac{1}{2}\log(2\pi\bar{s}_j^2)
+\]</span></p>
+<p>depends on <span class="math inline">\(\sigma^2_e\)</span>, <span class="math inline">\(\{\bar{s}_j^2\}\)</span>, and <span class="math inline">\(\{w_j\}\)</span> but <strong>not</strong> on <span class="math inline">\(\boldsymbol{\phi}\)</span>. The isomorphism is restored.</p>
+</section>
+<section id="interpretation" class="level3" data-number="3.8.2">
+<h3 data-number="3.8.2" class="anchored" data-anchor-id="interpretation"><span class="header-section-number">3.8.2</span> Interpretation</h3>
+<p>The effective-precision matching in <a href="#eq-effective-precision" class="quarto-xref">Equation&nbsp;<span>3.7</span></a> has a natural interpretation: the survey weights compensate for the variance mismatch. A study with larger <span class="math inline">\(\bar{s}_j^2\)</span> (more noisy) receives a smaller weight <span class="math inline">\(w_j = \sigma^2_e / \bar{s}_j^2\)</span>, which replicates the meta-analytic precision weighting.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Conceptual Caveat: Estimand Change
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While the (E2)+(E3) trade-off restores the <strong>algebraic</strong> isomorphism, the conceptual implications are different from the unit-weight case. Non-unit weights change the <strong>estimand</strong>: the survey pseudo-posterior targets the finite-population parameter weighted by the <span class="math inline">\(w_j\)</span>, not the sample-conditional parameter. The isomorphism holds at the level of the mathematical objects (likelihoods, scores, Hessians), but the inferential target has shifted.</p>
+<p>This trade-off is more likely to be of theoretical interest (illuminating the algebraic structure) than of practical use (analysts rarely choose weights to match meta-analytic precisions).</p>
+</div>
+</div>
+</section>
+<section id="formal-statement" class="level3" data-number="3.8.3">
+<h3 data-number="3.8.3" class="anchored" data-anchor-id="formal-statement"><span class="header-section-number">3.8.3</span> Formal Statement</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Proposition: Effective-Precision Matching under <span class="math inline">\(\rho_{\mathrm{work}}=0\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(\tilde{w}_{ij} = w_j\)</span> be cluster-constant normalized weights, and let <span class="math inline">\(\sigma^2_e\)</span> be a common within-cluster error variance. Under the <strong>independence working model</strong> <span class="math inline">\(\rho_{\mathrm{work}}=0\)</span>, if <span class="math inline">\(w_j / \sigma^2_e = 1 / \bar{s}_j^2\)</span> for all <span class="math inline">\(j = 1, \ldots, J\)</span>, then under (E1) and (E5): <span class="math display">\[
+\ell^{(w)}_{\mathrm{surv}}(\boldsymbol{\phi}) = \ell_{\mathrm{meta}}(\boldsymbol{\phi}) + c',
+\]</span> where <span class="math inline">\(c'\)</span> does not depend on <span class="math inline">\(\boldsymbol{\phi}\)</span>, despite individual violations of (E2) and (E3).</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-condition-necessity" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="sec-condition-necessity"><span class="header-section-number">3.9</span> Condition Necessity: Which Conditions for Which Results?</h2>
+<p>The following table summarizes the precise requirements for each major result in the theory:</p>
+<div id="tbl-condition-necessity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-condition-necessity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.3: Condition necessity by result.
+</figcaption>
+<div aria-describedby="tbl-condition-necessity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Result</th>
+<th style="text-align: center;">(E1)</th>
+<th style="text-align: center;">(E2)</th>
+<th style="text-align: center;">(E3)</th>
+<th style="text-align: center;">(E4)</th>
+<th style="text-align: center;">(E5)</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Theorem 1</strong> (Likelihood Isomorphism)</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;"><strong>Not needed</strong></td>
+<td style="text-align: center;">Convention</td>
+<td style="text-align: left;">Core result; (E4) unnecessary (see <a href="#sec-e4" class="quarto-xref"><span>Section 3.5</span></a>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Theorem 2</strong> (Sandwich Equivalence)</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;"><strong>Not needed</strong></td>
+<td style="text-align: center;">Convention</td>
+<td style="text-align: left;">Follows directly from Theorem 1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Corollary 1</strong> (Posterior Equivalence)</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;"><strong>Not needed</strong></td>
+<td style="text-align: center;">Convention</td>
+<td style="text-align: left;"><span class="math inline">\(e^c\)</span> cancels in Bayes’ formula</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Corollary 2</strong> (CCC Equivalence)</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;"><strong>Not needed</strong></td>
+<td style="text-align: center;">Convention</td>
+<td style="text-align: left;">Follows from Theorem 2 + Corollary 1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Theorem 3(a)</strong> (Fixed-Effect DER: <span class="math inline">\(R_k \approx B\)</span>)</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;"><strong>Required</strong></td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: left;">Study-level covariates needed; <span class="math inline">\(R_k = B\)</span> exact flat prior, <span class="math inline">\(\approx\)</span> under C6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Theorem 3(a)</strong> (HE generalization: <span class="math inline">\(\gamma_k B\)</span>)</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;"><strong>Not needed</strong></td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: left;"><span class="math inline">\(\gamma_k\)</span> replaces the fixed <span class="math inline">\(R_k = B\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Theorem 3(b)</strong> (Random-Effect DER)</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Not needed</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: left;"><span class="math inline">\(B_j \cdot \mathrm{DEFF}_j\)</span> formula</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Theorem 3(c)</strong> (Conservation Law)</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: left;">Balanced case; exact identity</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Theorem 3(d)</strong> (Boundary Behavior)</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: left;">Limit statements</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>(E2)+(E3) trade-off</strong></td>
+<td style="text-align: center;">Required</td>
+<td style="text-align: center;"><strong>Relaxed</strong></td>
+<td style="text-align: center;"><strong>Relaxed</strong></td>
+<td style="text-align: center;"><strong>Not needed</strong></td>
+<td style="text-align: center;">Convention</td>
+<td style="text-align: left;">Effective-precision matching restores isomorphism</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Reading the Table
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Required</strong>: The condition is mathematically necessary; violating it breaks the result.</li>
+<li><strong>Not needed</strong>: The condition is unnecessary; the result holds regardless.</li>
+<li><strong>Convention</strong>: The condition is automatically satisfied when both models use the same distributional family.</li>
+<li><strong>Relaxed</strong>: The condition can be individually violated if compensated by another condition’s relaxation.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="sec-regularity-preview" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="sec-regularity-preview"><span class="header-section-number">3.10</span> Regularity Conditions (C1)–(C8)</h2>
+<p>Beyond the exactness conditions that establish the isomorphism, the DER transfer theorem (Theorem 3) requires regularity conditions for the sandwich variance to be well-defined and consistent. These conditions, labeled (C1)–(C8), map to conditions (A1)–(A5) and (R1)–(R5) in Lee (2026b).</p>
+<div id="tbl-regularity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-regularity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.4: Regularity conditions and their mapping to Lee (2026b).
+</figcaption>
+<div aria-describedby="tbl-regularity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 35%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Condition</th>
+<th style="text-align: left;">Statement</th>
+<th style="text-align: left;">Maps To</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>(C1)</strong></td>
+<td style="text-align: left;">Normal likelihood: <span class="math inline">\(y_{ij} \mid \theta_j, \boldsymbol{\beta} \sim \textsf{N}(\mathbf{x}_{ij}^{\intercal}\boldsymbol{\beta} + \theta_j, v_{ij})\)</span>, <span class="math inline">\(v_{ij} &gt; 0\)</span></td>
+<td style="text-align: left;">Lee (2026b): (A2)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>(C2)</strong></td>
+<td style="text-align: left;">Compound symmetry: <span class="math inline">\(\boldsymbol{\Sigma}_j^{\mathrm{work}}(\rho) = \bar{s}_j^2[(1-\rho)\mathbf{I}_{n_j} + \rho\,\mathbf{1}_{n_j}\mathbf{1}_{n_j}^{\intercal}]\)</span></td>
+<td style="text-align: left;">Lee (2026b): (R4)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>(C3)</strong></td>
+<td style="text-align: left;">Known, common within-study variances: <span class="math inline">\(s_{ij}^2 = \bar{s}_j^2\)</span> for all <span class="math inline">\(i\)</span> within <span class="math inline">\(j\)</span>; <span class="math inline">\(\sigma^2_{e,j}\)</span> known</td>
+<td style="text-align: left;">— (meta-analytic variance identification; no direct analog)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>(C4)</strong></td>
+<td style="text-align: left;">DER simplification condition: <span class="math inline">\(\mathbf{x}_{ij} = \mathbf{x}_j\)</span> (needed only for <span class="math inline">\(R_k = B\)</span>)</td>
+<td style="text-align: left;">Lee (2026b): —</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>(C5)</strong></td>
+<td style="text-align: left;">Proper random-effect prior: <span class="math inline">\(\sigma^2_\theta &gt; 0\)</span>, <span class="math inline">\(p(\sigma^2_\theta)\)</span> continuous on <span class="math inline">\((0, \infty)\)</span></td>
+<td style="text-align: left;">Lee (2026b): (R1)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>(C6)</strong></td>
+<td style="text-align: left;">Prior regularity: <span class="math inline">\(p(\boldsymbol{\beta})\)</span> continuous and positive near <span class="math inline">\(\boldsymbol{\beta}_0\)</span>; <span class="math inline">\(\|\mathbf{H}_{\mathrm{prior}}^{\boldsymbol{\beta}}\| / \|\mathbf{H}\| \to 0\)</span> as <span class="math inline">\(J \to \infty\)</span></td>
+<td style="text-align: left;">Lee (2026b): (A3), (R3)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>(C7)</strong></td>
+<td style="text-align: left;">Identifiability: Schur complement <span class="math inline">\(\mathbf{S}_{\boldsymbol{\beta}} = \mathbf{H}_{\boldsymbol{\beta}\boldsymbol{\beta}} - \mathbf{H}_{\boldsymbol{\beta}\boldsymbol{\theta}}\mathbf{H}_{\boldsymbol{\theta}\boldsymbol{\theta}}^{-1}\mathbf{H}_{\boldsymbol{\theta}\boldsymbol{\beta}} \succ 0\)</span></td>
+<td style="text-align: left;">Lee (2026b): (R5)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>(C8)</strong></td>
+<td style="text-align: left;">Asymptotic regularity (Bernstein–von Mises type): (i) <span class="math inline">\(J^{-1}\mathbf{H} \to \mathcal{I} \succ 0\)</span>; (ii) <span class="math inline">\(J^{-1/2}\sum_j \mathbf{s}_j \overset{d}{\to} \textsf{N}(\mathbf{0}, \boldsymbol{\Sigma}_{\mathrm{score}})\)</span> as <span class="math inline">\(J \to \infty\)</span>, ensuring asymptotic normality of the posterior</td>
+<td style="text-align: left;">Lee (2026b): (A5)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<section id="conditions-that-simplify-or-disappear-under-the-ce-model" class="level3" data-number="3.10.1">
+<h3 data-number="3.10.1" class="anchored" data-anchor-id="conditions-that-simplify-or-disappear-under-the-ce-model"><span class="header-section-number">3.10.1</span> Conditions That Simplify or Disappear Under the CE Model</h3>
+<p>Several conditions from the survey-specific DER theory (Lee, 2026b) simplify or become trivially satisfied under the CE meta-analytic model:</p>
+<div id="tbl-condition-mapping-preview" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-condition-mapping-preview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.5: Mapping of Lee (2026b) conditions to the CE meta-analytic setting.
+</figcaption>
+<div aria-describedby="tbl-condition-mapping-preview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 23%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Lee (2026b) Condition</th>
+<th style="text-align: left;">This Paper</th>
+<th style="text-align: left;">Status Under CE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(A1) Informative sampling</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><strong>Disappears</strong>: no survey weights in meta-analysis</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(A2) Likelihood regularity</td>
+<td style="text-align: left;">(C1), (C8)(i)</td>
+<td style="text-align: left;"><strong>Satisfied</strong>: normal likelihood is <span class="math inline">\(C^\infty\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(A3) Prior support</td>
+<td style="text-align: left;">(C6)</td>
+<td style="text-align: left;"><strong>Transfers</strong> directly</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(A4) Weight boundedness</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><strong>Trivially satisfied</strong>: <span class="math inline">\(\tilde{w}_{ij} = 1\)</span> under (E3)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(A5) Score CLT</td>
+<td style="text-align: left;">(C8)(ii)</td>
+<td style="text-align: left;"><strong>Transfers</strong>: studies are independent</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(R1) Proper RE prior</td>
+<td style="text-align: left;">(C5)</td>
+<td style="text-align: left;"><strong>Transfers</strong> directly</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(R2) Nesting</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><strong>Trivially satisfied</strong>: each effect size belongs to one study</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(R3) Flat <span class="math inline">\(\boldsymbol{\beta}\)</span> prior</td>
+<td style="text-align: left;">(C6)</td>
+<td style="text-align: left;"><strong>Transfers</strong> directly</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(R4) Scalar DEFF within clusters</td>
+<td style="text-align: left;">(C2)</td>
+<td style="text-align: left;"><strong>Guaranteed</strong> by compound symmetry for the intercept and study-level covariates; approximate for within-cluster covariates</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(R5) Schur complement</td>
+<td style="text-align: left;">(C7)</td>
+<td style="text-align: left;"><strong>Transfers</strong> directly</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="sec-edge-cases-exactness" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="sec-edge-cases-exactness"><span class="header-section-number">3.11</span> Implicit Assumptions and Edge Cases</h2>
+<p>Several assumptions are implicit in the theory but not formally stated as exactness conditions. We record them here for completeness.</p>
+<section id="implicit-assumption-1-rho-is-fixed" class="level3" data-number="3.11.1">
+<h3 data-number="3.11.1" class="anchored" data-anchor-id="implicit-assumption-1-rho-is-fixed"><span class="header-section-number">3.11.1</span> Implicit Assumption 1: <span class="math inline">\(\rho\)</span> Is Fixed</h3>
+<p>The working correlation <span class="math inline">\(\rho\)</span> is treated as a <strong>fixed</strong> sensitivity parameter, not as an element of the parameter vector <span class="math inline">\(\boldsymbol{\phi}\)</span>. If <span class="math inline">\(\rho\)</span> were estimated, the constant <span class="math inline">\(c\)</span> in the isomorphism could inherit <span class="math inline">\(\rho\)</span>-dependence (since <span class="math inline">\(c\)</span> depends on <span class="math inline">\(\rho\)</span> through the log-determinant and inverse formulas). This would not break the isomorphism per se (since <span class="math inline">\(\rho\)</span> enters both frameworks symmetrically), but it would require enlarging <span class="math inline">\(\boldsymbol{\phi}\)</span> and tracking the additional terms.</p>
+</section>
+<section id="implicit-assumption-2-positive-definite-covariances" class="level3" data-number="3.11.2">
+<h3 data-number="3.11.2" class="anchored" data-anchor-id="implicit-assumption-2-positive-definite-covariances"><span class="header-section-number">3.11.2</span> Implicit Assumption 2: Positive Definite Covariances</h3>
+<p>The CCC requires <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}} \succ 0\)</span> and <span class="math inline">\(\mathbf{V}_{\mathrm{sand}} \succ 0\)</span> for the Cholesky factorization to exist. This can fail when:</p>
+<ul>
+<li><span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span> rank-deficient: Since <span class="math inline">\(\mathrm{rank}(\mathbf{M}) \leq J\)</span> and <span class="math inline">\(d = p + J &gt; J\)</span> for <span class="math inline">\(p \geq 1\)</span>, the full-joint sandwich matrix is always rank-deficient. This is a structural property, not a boundary case. The principled solution is blockwise CCC (applying Cholesky correction to the <span class="math inline">\(\boldsymbol{\beta}\)</span>-block and <span class="math inline">\(\boldsymbol{\theta}\)</span>-block separately; see <a href="ch06-posterior-ccc.html#sec-ccc-equiv" class="quarto-xref"><span>Section 6.2</span></a>).</li>
+<li>The sandwich is rank-deficient due to extreme collinearity</li>
+<li><span class="math inline">\(\sigma^2_\theta \to 0\)</span>, causing degenerate posterior directions</li>
+</ul>
+</section>
+<section id="implicit-assumption-3-j-1" class="level3" data-number="3.11.3">
+<h3 data-number="3.11.3" class="anchored" data-anchor-id="implicit-assumption-3-j-1"><span class="header-section-number">3.11.3</span> Implicit Assumption 3: <span class="math inline">\(J &gt; 1\)</span></h3>
+<p>When <span class="math inline">\(J = 1\)</span>, the intercept <span class="math inline">\(\mu\)</span> and the sole random effect <span class="math inline">\(\theta_1\)</span> are not separately identifiable. The coupling factor <span class="math inline">\(\kappa_1(1) = 0\)</span>, and both the sandwich and CCC constructions can become singular. The theory assumes <span class="math inline">\(J \geq 2\)</span> (and, for practical reliability of the sandwich, <span class="math inline">\(J \gg p\)</span>).</p>
+</section>
+<section id="edge-case-n_j-1-for-all-j" class="level3" data-number="3.11.4">
+<h3 data-number="3.11.4" class="anchored" data-anchor-id="edge-case-n_j-1-for-all-j"><span class="header-section-number">3.11.4</span> Edge Case: <span class="math inline">\(n_j = 1\)</span> for All <span class="math inline">\(j\)</span></h3>
+<p>When every cluster is a singleton, compound symmetry is vacuous (<span class="math inline">\(\boldsymbol{\Sigma}_j^{\mathrm{work}} = \bar{s}_j^2\)</span>, a scalar), <span class="math inline">\(\mathrm{DEFF}_j = 1\)</span>, and the model reduces to the univariate random-effects meta-analytic model (equivalent to the Fay–Herriot model in survey inference). Conditions (E1) and (E4) are automatically satisfied. The isomorphism holds trivially.</p>
+</section>
+<section id="edge-case-mixed-singleton-and-non-singleton-studies" class="level3" data-number="3.11.5">
+<h3 data-number="3.11.5" class="anchored" data-anchor-id="edge-case-mixed-singleton-and-non-singleton-studies"><span class="header-section-number">3.11.5</span> Edge Case: Mixed Singleton and Non-Singleton Studies</h3>
+<p>When some studies have <span class="math inline">\(n_j = 1\)</span> and others have <span class="math inline">\(n_j &gt; 1\)</span>, the cluster-specific formulas (<span class="math inline">\(B_j\)</span>, <span class="math inline">\(\mathrm{DEFF}_j\)</span>, <span class="math inline">\(\mathrm{DER}_j\)</span>) handle this heterogeneity naturally. What fails is only the balanced closed-form conservation law and the aggregate average identities. This is not a counterexample to the framework; it is a counterexample to overextending the balanced identities to unbalanced settings.</p>
+</section>
+<section id="edge-case-boundary-values-of-sigma2_theta" class="level3" data-number="3.11.6">
+<h3 data-number="3.11.6" class="anchored" data-anchor-id="edge-case-boundary-values-of-sigma2_theta"><span class="header-section-number">3.11.6</span> Edge Case: Boundary Values of <span class="math inline">\(\sigma^2_\theta\)</span></h3>
+<ul>
+<li><strong><span class="math inline">\(\sigma^2_\theta = 0\)</span></strong>: The random effects <span class="math inline">\(\theta_j\)</span> become degenerate (all zero), the shrinkage factor <span class="math inline">\(B_j = 0\)</span>, and the DER for random effects is not well-defined as a ratio of two positive variances.</li>
+<li><strong><span class="math inline">\(\sigma^2_\theta \to \infty\)</span></strong>: <span class="math inline">\(B_j \to 1\)</span> in the limit. This is a proper limit of the prior family, but the prior becomes improper.</li>
+</ul>
+<p>These are limit statements, not literal parameter values. The theory requires <span class="math inline">\(\sigma^2_\theta \in (0, \infty)\)</span> (regularity condition C5).</p>
+</section>
+</section>
+<section id="sec-exactness-summary" class="level2" data-number="3.12">
+<h2 data-number="3.12" class="anchored" data-anchor-id="sec-exactness-summary"><span class="header-section-number">3.12</span> Summary: The Architecture of Exactness</h2>
+<p>The five exactness conditions form a layered architecture:</p>
+<ol type="1">
+<li><p><strong>(E1) Compound symmetry</strong> provides the algebraic structure (eigenvalues, inverse, determinant) that enables closed-form results. It is stronger than needed for basic isomorphism but essential for the DEFF/DER formulas.</p></li>
+<li><p><strong>(E2) Known, common within-cluster variances</strong> is the precision-matching condition that makes the quadratic forms identical. It uses cluster-specific identification <span class="math inline">\(\sigma^2_{e,j} = \bar{s}_j^2\)</span>.</p></li>
+<li><p><strong>(E3) Unit weights</strong> is the estimand-preserving condition. Its violation is the most consequential because it changes what the posterior estimates.</p></li>
+<li><p><strong>(E4) DER simplification condition</strong> is a structural condition needed only for the specific closed-form <span class="math inline">\(R_k = B\)</span> in the DER decomposition, not for the isomorphism itself.</p></li>
+<li><p><strong>(E5) Normal errors</strong> is a distributional convention, effectively redundant when both models use the same family.</p></li>
+</ol>
+<p>The conditions are <strong>sufficient</strong> but not <strong>minimal</strong> for the isomorphism. The true mathematical core is simpler: both frameworks need (i) the same cluster partition, (ii) matched clusterwise precision matrices, and (iii) the same log-likelihood kernel up to a parameter-free constant. Compound symmetry, known variances, and unit weights are the standard assumptions under which these abstract requirements become the concrete conditions (E1)–(E3).</p>
+<p>When any condition is violated, the isomorphism degrades <strong>gracefully</strong> rather than catastrophically. The sandwich variance retains its consistency properties regardless of whether (E1)–(E3) and (E5) hold — it is precisely because both literatures rely on the sandwich for robustness that the structural parallel extends beyond the narrow confines of the exactness conditions.</p>
+<!-- ============================================================
+     END OF CHAPTER 3: EXACTNESS CONDITIONS
+     Contains: (E1)--(E3) and (E5) with full discussion, isomorphism map T,
+     (E2)+(E3) trade-off, condition necessity table,
+     regularity conditions (C1)--(C8), implicit assumptions,
+     edge cases, and summary
+     Key corrections incorporated:
+     - Cluster-specific sigma_{e,j}^2 in (E2)
+     - (E4) not needed for Theorems 1-2
+     - (E5) near-redundancy
+     ============================================================ -->
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ch02-models.html" class="pagination-link" aria-label="Model Definitions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Model Definitions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ch04-isomorphism.html" class="pagination-link" aria-label="Theorem 1: Likelihood Isomorphism">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Theorem 1: Likelihood Isomorphism</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/joonho112/bayesian-meta-survey-equivalence/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>9&nbsp; Boundary Cases and Edge Analysis – Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ch10-extensions.html" rel="next">
+<link href="./ch08-conservation.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ch07-der-framework.html">Part III: Design Effect Ratios</a></li><li class="breadcrumb-item"><a href="./ch09-boundary.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Boundary Cases and Edge Analysis</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/joonho112/bayesian-meta-survey-equivalence" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part I: Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch01-notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Notation and Conventions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch02-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Model Definitions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch03-exactness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exactness Conditions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Core Equivalence Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch04-isomorphism.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Theorem 1: Likelihood Isomorphism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch05-sandwich.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Theorem 2: Sandwich Equivalence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch06-posterior-ccc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Corollaries 1–2: Posterior and CCC Equivalence</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Design Effect Ratios</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch07-der-framework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DER Framework and Transfer Theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch08-conservation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conservation Law</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch09-boundary.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Boundary Cases and Edge Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Extensions and Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch10-extensions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">E4-Relaxed CE and CHE Extensions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch11-regularity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Regularity Conditions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch12-interpretation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Interpretive Issues and Practical Implications</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part V: Discussion and Conclusions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch13-discussion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Discussion and Conclusions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-revision-history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Revision History</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-boundary-theorem" id="toc-sec-boundary-theorem" class="nav-link active" data-scroll-target="#sec-boundary-theorem"><span class="header-section-number">9.1</span> Theorem 3(d): Corrected Boundary Behavior</a></li>
+  <li><a href="#sec-boundary-i-ii" id="toc-sec-boundary-i-ii" class="nav-link" data-scroll-target="#sec-boundary-i-ii"><span class="header-section-number">9.2</span> Proofs of Cases (i) and (ii)</a></li>
+  <li><a href="#sec-boundary-iii" id="toc-sec-boundary-iii" class="nav-link" data-scroll-target="#sec-boundary-iii"><span class="header-section-number">9.3</span> Proof of Case (iii): <span class="math inline">\(\rho_{\mathrm{true}} = 0\)</span></a>
+  <ul class="collapse">
+  <li><a href="#the-error-in-v1" id="toc-the-error-in-v1" class="nav-link" data-scroll-target="#the-error-in-v1"><span class="header-section-number">9.3.1</span> The Error in V1</a></li>
+  <li><a href="#correct-derivation" id="toc-correct-derivation" class="nav-link" data-scroll-target="#correct-derivation"><span class="header-section-number">9.3.2</span> Correct Derivation</a></li>
+  </ul></li>
+  <li><a href="#sec-boundary-iv" id="toc-sec-boundary-iv" class="nav-link" data-scroll-target="#sec-boundary-iv"><span class="header-section-number">9.4</span> Proof of Case (iv): <span class="math inline">\(n_j = 1\)</span> for All <span class="math inline">\(j\)</span></a></li>
+  <li><a href="#sec-der-less-than-one-boundary" id="toc-sec-der-less-than-one-boundary" class="nav-link" data-scroll-target="#sec-der-less-than-one-boundary"><span class="header-section-number">9.5</span> Interpretation of DER <span class="math inline">\(&lt; 1\)</span> When DEFF <span class="math inline">\(= 1\)</span></a>
+  <ul class="collapse">
+  <li><a href="#why-does-v_mathrmsandmumu-sigma_mathrmmcmcmumu-when-the-model-is-correct" id="toc-why-does-v_mathrmsandmumu-sigma_mathrmmcmcmumu-when-the-model-is-correct" class="nav-link" data-scroll-target="#why-does-v_mathrmsandmumu-sigma_mathrmmcmcmumu-when-the-model-is-correct"><span class="header-section-number">9.5.1</span> Why Does <span class="math inline">\(V_{\mathrm{sand},\mu\mu} &lt; \Sigma_{\mathrm{MCMC},\mu\mu}\)</span> When the Model Is Correct?</a></li>
+  <li><a href="#should-practitioners-apply-ccc-when-der_mu-1" id="toc-should-practitioners-apply-ccc-when-der_mu-1" class="nav-link" data-scroll-target="#should-practitioners-apply-ccc-when-der_mu-1"><span class="header-section-number">9.5.2</span> Should Practitioners Apply CCC When DER<span class="math inline">\(_\mu &lt; 1\)</span>?</a></li>
+  </ul></li>
+  <li><a href="#sec-boundary-table" id="toc-sec-boundary-table" class="nav-link" data-scroll-target="#sec-boundary-table"><span class="header-section-number">9.6</span> Comprehensive Boundary Table</a></li>
+  <li><a href="#sec-edge-cases-boundary" id="toc-sec-edge-cases-boundary" class="nav-link" data-scroll-target="#sec-edge-cases-boundary"><span class="header-section-number">9.7</span> Edge Cases and Pathological Configurations</a>
+  <ul class="collapse">
+  <li><a href="#j-1-single-study" id="toc-j-1-single-study" class="nav-link" data-scroll-target="#j-1-single-study"><span class="header-section-number">9.7.1</span> <span class="math inline">\(J = 1\)</span>: Single Study</a></li>
+  <li><a href="#j-2-two-studies" id="toc-j-2-two-studies" class="nav-link" data-scroll-target="#j-2-two-studies"><span class="header-section-number">9.7.2</span> <span class="math inline">\(J = 2\)</span>: Two Studies</a></li>
+  <li><a href="#mixed-n_j-1-and-n_j-1" id="toc-mixed-n_j-1-and-n_j-1" class="nav-link" data-scroll-target="#mixed-n_j-1-and-n_j-1"><span class="header-section-number">9.7.3</span> Mixed <span class="math inline">\(n_j = 1\)</span> and <span class="math inline">\(n_j &gt; 1\)</span></a></li>
+  <li><a href="#sigma2_theta-0-boundary" id="toc-sigma2_theta-0-boundary" class="nav-link" data-scroll-target="#sigma2_theta-0-boundary"><span class="header-section-number">9.7.4</span> <span class="math inline">\(\sigma^2_\theta = 0\)</span> Boundary</a></li>
+  <li><a href="#positive-definiteness-requirements-for-ccc" id="toc-positive-definiteness-requirements-for-ccc" class="nav-link" data-scroll-target="#positive-definiteness-requirements-for-ccc"><span class="header-section-number">9.7.5</span> Positive Definiteness Requirements for CCC</a></li>
+  </ul></li>
+  <li><a href="#sec-correction-summary" id="toc-sec-correction-summary" class="nav-link" data-scroll-target="#sec-correction-summary"><span class="header-section-number">9.8</span> Summary of Corrections</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/joonho112/bayesian-meta-survey-equivalence/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ch07-der-framework.html">Part III: Design Effect Ratios</a></li><li class="breadcrumb-item"><a href="./ch09-boundary.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Boundary Cases and Edge Analysis</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-boundary" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Boundary Cases and Edge Analysis</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Critical Correction.</strong> This chapter contains the most important correction from V1. The V1 boundary analysis for cases (iii) and (iv) of Theorem 3(d) was <strong>incorrect</strong>. The error was identified during internal review. The corrected analysis is presented below.</p>
+</div>
+</div>
+<p>Theorem 3(d) characterizes the behavior of DER formulas at the parameter-space boundaries. The boundary analysis serves two purposes: it validates the DER decomposition by confirming that the formulas reduce to sensible values in limiting regimes, and it identifies cases where the DER framework requires careful interpretation.</p>
+<section id="sec-boundary-theorem" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="sec-boundary-theorem"><span class="header-section-number">9.1</span> Theorem 3(d): Corrected Boundary Behavior</h2>
+<p>We state the corrected version of Theorem 3(d), followed by detailed proofs for each case.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Theorem 3(d) (Boundary Behavior — Corrected V2).</strong> In the balanced intercept-only model (<span class="math inline">\(n_j = n\)</span>, <span class="math inline">\(\bar{s}_j^2 = \bar{s}^2\)</span>):</p>
+<p><strong>(i)</strong> <span class="math inline">\(\sigma^2_\theta \to 0\)</span> (<span class="math inline">\(B \to 0\)</span>): <span class="math inline">\(\;\mathrm{DER}_\mu \to \mathrm{DEFF}\)</span>, <span class="math inline">\(\;\mathrm{DER}_\theta^{\mathrm{cond}} \to 0\)</span>.</p>
+<p><strong>(ii)</strong> <span class="math inline">\(\sigma^2_\theta \to \infty\)</span> (<span class="math inline">\(B \to 1\)</span>): <span class="math inline">\(\;\mathrm{DER}_\mu \to 0\)</span>, <span class="math inline">\(\;\mathrm{DER}_\theta^{\mathrm{cond}} \to \mathrm{DEFF}\)</span>.</p>
+<p><strong>(iii)</strong> <span class="math inline">\(\rho_{\mathrm{true}} = 0\)</span> (<span class="math inline">\(\mathrm{DEFF} = 1\)</span>): <span class="math inline">\(\;\mathrm{DER}_\mu = 1 - B\)</span>, <span class="math inline">\(\;\mathrm{DER}_\theta^{\mathrm{cond}} = B\)</span>.</p>
+<p><strong>(iv)</strong> <span class="math inline">\(n_j = 1\)</span> for all <span class="math inline">\(j\)</span> (<span class="math inline">\(\mathrm{DEFF}_j = 1\)</span>): <span class="math inline">\(\;\mathrm{DER}_\mu = 1 - B\)</span>, <span class="math inline">\(\;\mathrm{DER}_\theta^{\mathrm{cond}} = B\)</span>.</p>
+</div>
+</div>
+<p>Before proceeding to the case-by-case proofs, <a href="#fig-boundary-phase-portrait" class="quarto-xref">Figure&nbsp;<span>9.1</span></a> provides a synoptic view of the corrected DER formulas across the full <span class="math inline">\((B, \mathrm{DEFF})\)</span> parameter plane. The DEFF <span class="math inline">\(= 1\)</span> boundary slice — where the V2 correction is most consequential — is highlighted, showing the linear partition <span class="math inline">\(\mathrm{DER}_\mu = 1 - B\)</span> and <span class="math inline">\(\mathrm{DER}_\theta^{\mathrm{cond}} = B\)</span>.</p>
+<div id="fig-boundary-phase-portrait" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-boundary-phase-portrait-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/matlab/fig10_boundary_phase_portrait.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boundary-phase-portrait-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.1: Phase portrait of the conditional DER formulas over the <span class="math inline">\((B,\mathrm{DEFF})\)</span> plane. The corrected DEFF<span class="math inline">\(=1\)</span> boundary slice gives <span class="math inline">\(\mathrm{DER}_\mu = 1-B\)</span> and <span class="math inline">\(\mathrm{DER}^{\mathrm{cond}}_\theta = B\)</span>, clarifying the corrected boundary formulas derived in Theorem 3(d).
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-boundary-i-ii" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="sec-boundary-i-ii"><span class="header-section-number">9.2</span> Proofs of Cases (i) and (ii)</h2>
+<p>These cases are unchanged from V1 and follow by direct substitution into the DER formulas.</p>
+<p><strong>Case (i): <span class="math inline">\(\sigma^2_\theta \to 0\)</span> (<span class="math inline">\(B \to 0\)</span>).</strong></p>
+<p>As <span class="math inline">\(\sigma^2_\theta \to 0\)</span>, the shrinkage factor <span class="math inline">\(B = \sigma^2_\theta/(\sigma^2_\theta + \bar{s}^2/n) \to 0\)</span>. The DER formulas give: <span class="math display">\[\begin{align}
+\mathrm{DER}_\mu &amp;= \mathrm{DEFF}(1 - B) \to \mathrm{DEFF}(1 - 0) = \mathrm{DEFF}, \\
+\mathrm{DER}_\theta^{\mathrm{cond}} &amp;= B \cdot \mathrm{DEFF} \to 0 \cdot \mathrm{DEFF} = 0.
+\end{align}\]</span></p>
+<p><strong>Interpretation.</strong> When between-study heterogeneity vanishes, the random-effect variance collapses and the study-specific effects lose their separate degrees of freedom. The limit <span class="math inline">\(\mathrm{DER}_\theta^{\mathrm{cond}} \to 0\)</span> does <strong>not</strong> mean that each <span class="math inline">\(\theta_j\)</span> is estimated with arbitrarily high precision from within-study data; rather, it reflects the fact that the vanishing <span class="math inline">\(\sigma^2_\theta\)</span> shrinks the <span class="math inline">\(\theta_j\)</span> block into a degenerate prior-supported limit. The overall mean then absorbs the full design effect, so this is the regime where ignoring within-study correlation has the greatest impact on the posterior for <span class="math inline">\(\mu\)</span>.</p>
+<p><strong>Case (ii): <span class="math inline">\(\sigma^2_\theta \to \infty\)</span> (<span class="math inline">\(B \to 1\)</span>).</strong></p>
+<p>As <span class="math inline">\(\sigma^2_\theta \to \infty\)</span>, <span class="math inline">\(B \to 1\)</span>, and: <span class="math display">\[\begin{align}
+\mathrm{DER}_\mu &amp;= \mathrm{DEFF}(1 - B) \to \mathrm{DEFF} \cdot 0 = 0, \\
+\mathrm{DER}_\theta^{\mathrm{cond}} &amp;= B \cdot \mathrm{DEFF} \to 1 \cdot \mathrm{DEFF} = \mathrm{DEFF}.
+\end{align}\]</span></p>
+<p><strong>Interpretation.</strong> When heterogeneity is enormous, the random effects dominate. The posterior for <span class="math inline">\(\theta_j\)</span> is determined almost entirely by the within-study data (no pooling toward <span class="math inline">\(\mu\)</span>), and each study-specific effect inherits the full design effect. The overall mean <span class="math inline">\(\mu\)</span> is estimated as a simple average of the <span class="math inline">\(\hat{\theta}_j\)</span> values; because these are (approximately) independent across studies, the design effect on <span class="math inline">\(\mu\)</span> is averaged away, yielding <span class="math inline">\(\mathrm{DER}_\mu \to 0\)</span>. This is the “completely heterogeneous” limiting case.</p>
+</section>
+<section id="sec-boundary-iii" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="sec-boundary-iii"><span class="header-section-number">9.3</span> Proof of Case (iii): <span class="math inline">\(\rho_{\mathrm{true}} = 0\)</span></h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>V1 Error.</strong> The V1 proof stated: “When <span class="math inline">\(\rho_{\mathrm{true}} = 0\)</span>, the working model with <span class="math inline">\(\rho = 0\)</span> is correctly specified, so <span class="math inline">\(\mathbf{M} = \mathbf{H}\)</span>, <span class="math inline">\(\mathbf{V}_{\mathrm{sand}} = \mathbf{H}^{-1}\)</span>, and <span class="math inline">\(\mathrm{DER}_k = 1\)</span> for all <span class="math inline">\(k\)</span>.”</p>
+<p>This argument is <strong>false</strong> because it conflates the <strong>likelihood Hessian</strong> <span class="math inline">\(\mathbf{H}\)</span> with the <strong>posterior Hessian</strong> <span class="math inline">\(\mathbf{H}^{\mathrm{post}}\)</span>.</p>
+</div>
+</div>
+<section id="the-error-in-v1" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="the-error-in-v1"><span class="header-section-number">9.3.1</span> The Error in V1</h3>
+<p>The sandwich variance estimator in the Bayesian context uses the <strong>posterior Hessian</strong> as the bread: <span class="math display">\[
+\mathbf{V}_{\mathrm{sand}} = (\mathbf{H}^{\mathrm{post}})^{-1}\,\mathbf{M}\,(\mathbf{H}^{\mathrm{post}})^{-1},
+\]</span> where <span class="math inline">\(\mathbf{H}^{\mathrm{post}} = \mathbf{H} + \mathbf{H}_{\mathrm{prior}}\)</span> and <span class="math inline">\(\mathbf{H}_{\mathrm{prior}}\)</span> includes the random-effect prior precision <span class="math inline">\(\lambda_j = 1/\sigma^2_\theta\)</span> for each <span class="math inline">\(\theta_j\)</span>.</p>
+<p>When the working model is correctly specified (<span class="math inline">\(\rho_{\mathrm{true}} = 0\)</span> and <span class="math inline">\(\rho_{\mathrm{work}} = 0\)</span>), the meat equals the likelihood Hessian: <span class="math inline">\(\mathbf{M} = \mathbf{H}\)</span>. The V1 argument then claims <span class="math inline">\(\mathbf{V}_{\mathrm{sand}} = \mathbf{H}^{-1}\)</span>, but this is wrong: <span class="math display">\[
+\mathbf{V}_{\mathrm{sand}} = (\mathbf{H}^{\mathrm{post}})^{-1}\,\mathbf{H}\,(\mathbf{H}^{\mathrm{post}})^{-1} \neq (\mathbf{H}^{\mathrm{post}})^{-1},
+\]</span> because <span class="math inline">\(\mathbf{H} \neq \mathbf{H}^{\mathrm{post}}\)</span> whenever <span class="math inline">\(\mathbf{H}_{\mathrm{prior}} \neq \mathbf{0}\)</span>. The prior Hessian for <span class="math inline">\(\theta_j\)</span> is <span class="math inline">\(\lambda_j = 1/\sigma^2_\theta &gt; 0\)</span> under (C5), so <span class="math inline">\(\mathbf{H}_{\mathrm{prior}} \neq \mathbf{0}\)</span> always holds.</p>
+<p>This error is subtle because the statement “the posterior covariance equals the inverse Hessian when the model is correct” is true only when both the bread and the denominator use the same matrix — but in the DER ratio, the numerator uses <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span> (with posterior bread and likelihood meat) while the denominator uses <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span> (the full posterior covariance, which equals <span class="math inline">\((\mathbf{H}^{\mathrm{post}})^{-1}\)</span> at the Gaussian approximation).</p>
+</section>
+<section id="correct-derivation" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="correct-derivation"><span class="header-section-number">9.3.2</span> Correct Derivation</h3>
+<p><strong>Setup.</strong> Consider the balanced intercept-only model with <span class="math inline">\(\rho_{\mathrm{true}} = 0\)</span>, so <span class="math inline">\(\mathrm{DEFF} = 1\)</span>. The working model also uses <span class="math inline">\(\rho_{\mathrm{work}} = 0\)</span> (correctly specified).</p>
+<p><strong>Posterior Hessian.</strong> The negative Hessian of the posterior log-density (likelihood + prior) has the block structure: <span class="math display">\[
+\mathbf{H}^{\mathrm{post}} = \begin{pmatrix} \mathbf{H}^{\mathrm{post}}_{\mu\mu} &amp; \mathbf{H}^{\mathrm{post}}_{\mu\boldsymbol{\theta}} \\ \mathbf{H}^{\mathrm{post}}_{\boldsymbol{\theta}\mu} &amp; \mathbf{H}^{\mathrm{post}}_{\boldsymbol{\theta}\boldsymbol{\theta}} \end{pmatrix},
+\]</span> where, under the balanced intercept-only CE model with <span class="math inline">\(\rho = 0\)</span>:</p>
+<ul>
+<li><span class="math inline">\(H^{\mathrm{post}}_{\mu\mu} = n/\bar{s}^2 \cdot J + h^{\mathrm{prior}}_\mu\)</span> (likelihood contribution from all <span class="math inline">\(J\)</span> studies + prior on <span class="math inline">\(\mu\)</span>).</li>
+<li><span class="math inline">\([H^{\mathrm{post}}_{\boldsymbol{\theta}\boldsymbol{\theta}}]_{jj} = n/\bar{s}^2 + 1/\sigma^2_\theta\)</span> (likelihood + random-effect prior for <span class="math inline">\(\theta_j\)</span>).</li>
+<li><span class="math inline">\([H^{\mathrm{post}}_{\mu\boldsymbol{\theta}}]_j = n/\bar{s}^2\)</span> (cross-term between <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\theta_j\)</span>).</li>
+</ul>
+<p><strong>Posterior variance of <span class="math inline">\(\mu\)</span>.</strong> By the Schur complement formula, the marginal posterior precision of <span class="math inline">\(\mu\)</span> is: <span class="math display">\[
+[\boldsymbol{\Sigma}_{\mathrm{MCMC}}^{-1}]_{\mu\mu} = H^{\mathrm{post}}_{\mu\mu} - \sum_{j=1}^{J} \frac{(n/\bar{s}^2)^2}{n/\bar{s}^2 + 1/\sigma^2_\theta}.
+\]</span></p>
+<p>With flat prior on <span class="math inline">\(\mu\)</span> (<span class="math inline">\(h^{\mathrm{prior}}_\mu = 0\)</span>), and writing <span class="math inline">\(\alpha = n/\bar{s}^2\)</span> and <span class="math inline">\(\lambda = 1/\sigma^2_\theta\)</span>: <span class="math display">\[\begin{align}
+[\boldsymbol{\Sigma}_{\mathrm{MCMC}}^{-1}]_{\mu\mu} &amp;= J\alpha - J \cdot \frac{\alpha^2}{\alpha + \lambda} = J\alpha\left(1 - \frac{\alpha}{\alpha + \lambda}\right) = J\alpha \cdot \frac{\lambda}{\alpha + \lambda}.
+\end{align}\]</span></p>
+<p>Therefore: <span id="eq-mcmc-mu-deff1"><span class="math display">\[
+[\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{\mu\mu} = \frac{\alpha + \lambda}{J\alpha\lambda} = \frac{1}{J}\left(\frac{1}{\lambda} + \frac{1}{\alpha}\right) = \frac{\sigma^2_\theta + \bar{s}^2/n}{J}.
+\tag{9.1}\]</span></span></p>
+<p><strong>Sandwich variance of <span class="math inline">\(\mu\)</span>.</strong> The meat uses likelihood-only scores. With <span class="math inline">\(\rho_{\mathrm{true}} = 0\)</span> and <span class="math inline">\(\rho_{\mathrm{work}} = 0\)</span>, <span class="math inline">\(\mathbf{M} = \mathbf{H}\)</span> (correctly specified). After applying the posterior bread inversion and extracting the <span class="math inline">\((\mu, \mu)\)</span> element through the Schur complement of <span class="math inline">\((\mathbf{H}^{\mathrm{post}})^{-1} \mathbf{H} (\mathbf{H}^{\mathrm{post}})^{-1}\)</span>, the sandwich variance for <span class="math inline">\(\mu\)</span> is: <span id="eq-sand-mu-deff1"><span class="math display">\[
+[V_{\mathrm{sand}}]_{\mu\mu} = \frac{\bar{s}^2}{nJ}.
+\tag{9.2}\]</span></span></p>
+<p>This can be understood intuitively: the sandwich captures only the within-cluster variability (<span class="math inline">\(\bar{s}^2/n\)</span> per study, averaged over <span class="math inline">\(J\)</span> studies), because the meat <span class="math inline">\(\mathbf{M}\)</span> uses likelihood-only scores that are computed conditional on <span class="math inline">\(\theta_j\)</span>. The between-study variance <span class="math inline">\(\sigma^2_\theta/J\)</span> enters the posterior through the prior on <span class="math inline">\(\theta_j\)</span> but is invisible to the score-based meat.</p>
+<p><strong>DER for <span class="math inline">\(\mu\)</span>.</strong> <span id="eq-der-mu-deff1"><span class="math display">\[
+\mathrm{DER}_\mu = \frac{[V_{\mathrm{sand}}]_{\mu\mu}}{[\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{\mu\mu}} = \frac{\bar{s}^2/(nJ)}{(\sigma^2_\theta + \bar{s}^2/n)/J} = \frac{\bar{s}^2/n}{\sigma^2_\theta + \bar{s}^2/n} = 1 - B.
+\tag{9.3}\]</span></span></p>
+<p><strong>Verification with Theorem 3(a).</strong> Substituting <span class="math inline">\(\mathrm{DEFF} = 1\)</span> into the general formula: <span class="math inline">\(\mathrm{DER}_\mu = \mathrm{DEFF}(1 - B) = 1 \cdot (1 - B) = 1 - B\)</span>. The corrected boundary value is consistent with the general DER decomposition formula. <span class="math inline">\(\quad\checkmark\)</span></p>
+<p><strong>DER for <span class="math inline">\(\theta_j\)</span>.</strong></p>
+<p>By the same Schur complement analysis (or directly from the general formula): <span id="eq-der-theta-deff1"><span class="math display">\[
+\mathrm{DER}_\theta^{\mathrm{cond}} = B \cdot \mathrm{DEFF} = B \cdot 1 = B.
+\tag{9.4}\]</span></span></p>
+<p><strong>Conservation check.</strong> <span class="math inline">\(\mathrm{DER}_\mu + \mathrm{DER}_\theta^{\mathrm{cond}} = (1 - B) + B = 1 = \mathrm{DEFF}\)</span>. <span class="math inline">\(\quad\checkmark\)</span></p>
+<p><strong>Numerical example.</strong> With <span class="math inline">\(B = 0.81\)</span> (as in the TSL15 data): <span class="math inline">\(\mathrm{DER}_\mu = 0.19\)</span>, <span class="math inline">\(\mathrm{DER}_\theta^{\mathrm{cond}} = 0.81\)</span>. These are emphatically <em>not</em> equal to 1.</p>
+<p>The boundary values <span class="math inline">\(\mathrm{DER}_\mu = 1 - B\)</span> and <span class="math inline">\(\mathrm{DER}_\theta^{\mathrm{cond}} = B\)</span> reflect the same conditional-vs-marginal asymmetry analyzed in detail in <a href="ch12-interpretation.html" class="quarto-xref"><span>Chapter 12</span></a>: the sandwich captures only the within-study design effect (here trivially 1), while the posterior variance includes the between-study component <span class="math inline">\(\sigma_\theta^2/J\)</span>. The numerical consequences of this asymmetry — including the CCC decision logic and the five-variant DER comparison — are developed in <a href="ch12-interpretation.html#sec-conditional-marginal" class="quarto-xref"><span>Section 12.1</span></a> and <a href="ch12-interpretation.html#sec-numerical-example" class="quarto-xref"><span>Section 12.3</span></a>.</p>
+</section>
+</section>
+<section id="sec-boundary-iv" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="sec-boundary-iv"><span class="header-section-number">9.4</span> Proof of Case (iv): <span class="math inline">\(n_j = 1\)</span> for All <span class="math inline">\(j\)</span></h2>
+<p>When <span class="math inline">\(n_j = 1\)</span> for all <span class="math inline">\(j\)</span>, each study contributes a single effect size. The <span class="math inline">\(1 \times 1\)</span> within-study covariance makes compound symmetry vacuous, and <span class="math inline">\(\mathrm{DEFF}_j = 1 + (1 - 1)\rho_{\mathrm{true}} = 1\)</span>.</p>
+<p>The argument is identical to case (iii): with <span class="math inline">\(\mathrm{DEFF} = 1\)</span>, the DER formulas give <span class="math inline">\(\mathrm{DER}_\mu = 1 - B\)</span> and <span class="math inline">\(\mathrm{DER}_\theta^{\mathrm{cond}} = B\)</span>, <strong>not</strong> <span class="math inline">\(\mathrm{DER}_k = 1\)</span> for all <span class="math inline">\(k\)</span>.</p>
+<p><strong>Interpretation.</strong> This is the univariate meta-analysis case. Even though there is no within-study dependence (each study has only one effect size), the DER is not uniformly equal to one. The sandwich still differs from the posterior covariance because the prior on <span class="math inline">\(\theta_j\)</span> contributes to <span class="math inline">\(\mathbf{H}^{\mathrm{post}}\)</span> but not to <span class="math inline">\(\mathbf{M}\)</span>. The shrinkage factor <span class="math inline">\(B\)</span> governs how the (trivial) DEFF budget of 1 is split between <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\theta_j\)</span>.</p>
+</section>
+<section id="sec-der-less-than-one-boundary" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="sec-der-less-than-one-boundary"><span class="header-section-number">9.5</span> Interpretation of DER <span class="math inline">\(&lt; 1\)</span> When DEFF <span class="math inline">\(= 1\)</span></h2>
+<p>The corrected boundary analysis reveals a phenomenon that requires careful interpretation: when the working model is correctly specified (<span class="math inline">\(\mathrm{DEFF} = 1\)</span>), the DER for the overall mean satisfies <span class="math inline">\(\mathrm{DER}_\mu = 1 - B &lt; 1\)</span>. This means the sandwich variance for <span class="math inline">\(\mu\)</span> is <em>smaller</em> than the posterior variance, and the CCC would <em>shrink</em> the posterior credible interval for <span class="math inline">\(\mu\)</span>.</p>
+<p>This raises two questions:</p>
+<section id="why-does-v_mathrmsandmumu-sigma_mathrmmcmcmumu-when-the-model-is-correct" class="level3" data-number="9.5.1">
+<h3 data-number="9.5.1" class="anchored" data-anchor-id="why-does-v_mathrmsandmumu-sigma_mathrmmcmcmumu-when-the-model-is-correct"><span class="header-section-number">9.5.1</span> Why Does <span class="math inline">\(V_{\mathrm{sand},\mu\mu} &lt; \Sigma_{\mathrm{MCMC},\mu\mu}\)</span> When the Model Is Correct?</h3>
+<p>The explanation lies in the asymmetric treatment of the between-study variance component:</p>
+<ul>
+<li><p><strong><span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC},\mu\mu}\)</span></strong> reflects the full marginal posterior variance of <span class="math inline">\(\mu\)</span>, which includes contributions from both the within-study sampling noise (<span class="math inline">\(\bar{s}^2/n\)</span> per study) and the between-study heterogeneity (<span class="math inline">\(\sigma^2_\theta\)</span>). In the balanced case: <span class="math inline">\(\Sigma_{\mathrm{MCMC},\mu\mu} = (\sigma^2_\theta + \bar{s}^2/n)/J\)</span>.</p></li>
+<li><p><strong><span class="math inline">\(V_{\mathrm{sand},\mu\mu}\)</span></strong> is constructed from likelihood-only scores, which are computed conditional on <span class="math inline">\(\theta_j\)</span>. The score <span class="math inline">\(\partial \ell_j / \partial \mu\)</span> captures only the within-study residual variation, not the between-study variation. The between-study variance <span class="math inline">\(\sigma^2_\theta\)</span> enters the model through the prior <span class="math inline">\(\theta_j \sim N(0, \sigma^2_\theta)\)</span>, which is part of the <em>model</em>, not the <em>design</em>. The sandwich, by construction, corrects for design misspecification in the likelihood, not for model assumptions in the prior. Therefore: <span class="math inline">\(V_{\mathrm{sand},\mu\mu} = \bar{s}^2/(nJ)\)</span>, which is strictly less than <span class="math inline">\(\Sigma_{\mathrm{MCMC},\mu\mu}\)</span> whenever <span class="math inline">\(\sigma^2_\theta &gt; 0\)</span>.</p></li>
+</ul>
+<p>In summary: the sandwich captures only the <strong>conditional</strong> (given <span class="math inline">\(\boldsymbol{\theta}\)</span>) design effect on <span class="math inline">\(\mu\)</span>. The between-cluster variance <span class="math inline">\(\sigma^2_\theta/J\)</span> is part of the <em>model</em>, not the <em>design</em>, and is correctly captured by <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span> but invisible to <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span>.</p>
+</section>
+<section id="should-practitioners-apply-ccc-when-der_mu-1" class="level3" data-number="9.5.2">
+<h3 data-number="9.5.2" class="anchored" data-anchor-id="should-practitioners-apply-ccc-when-der_mu-1"><span class="header-section-number">9.5.2</span> Should Practitioners Apply CCC When DER<span class="math inline">\(_\mu &lt; 1\)</span>?</h3>
+<p><strong>No.</strong> When <span class="math inline">\(\mathrm{DER}_\mu &lt; 1\)</span> and the working model is believed to be correctly specified (or nearly so), applying the CCC would shrink the posterior credible interval for <span class="math inline">\(\mu\)</span> below its correct width. The CCC is designed to correct for <em>under-dispersed</em> posteriors (DER <span class="math inline">\(&gt; 1\)</span>); applying it when DER <span class="math inline">\(&lt; 1\)</span> would create <em>over-correction</em>.</p>
+<p>The practical recommendation is:</p>
+<ol type="1">
+<li><strong>Report both DER<span class="math inline">\(_\mu\)</span> and DER<span class="math inline">\(_\theta^{\mathrm{cond}}\)</span></strong>, even when DER<span class="math inline">\(_\mu &lt; 1\)</span>.</li>
+<li><strong>Apply CCC only to parameters with DER <span class="math inline">\(&gt; 1\)</span>.</strong> In the typical meta-analytic regime, this means applying CCC to the study-specific effects <span class="math inline">\(\theta_j\)</span> (where DER<span class="math inline">\(_\theta^{\mathrm{cond}} = B \cdot \mathrm{DEFF} &gt; 1\)</span> for moderate DEFF), but not to <span class="math inline">\(\mu\)</span> when DER<span class="math inline">\(_\mu &lt; 1\)</span>.</li>
+<li><strong>Interpret DER<span class="math inline">\(_\mu &lt; 1\)</span> as diagnostic information</strong>, not as a call for correction. It signals that the shrinkage more than compensates for the conditional design effect on <span class="math inline">\(\mu\)</span> — i.e., the between-study variance component in <span class="math inline">\(\Sigma_{\mathrm{MCMC},\mu\mu}\)</span> exceeds the (small or zero) within-study design-effect component.</li>
+<li><strong>Do not confuse DER<span class="math inline">\(_\mu \approx 1\)</span> with correct frequentist coverage.</strong> DER<span class="math inline">\(_\mu = 1\)</span> means the conditional design effect is exactly offset by shrinkage, not that the posterior credible interval for <span class="math inline">\(\mu\)</span> has correct frequentist coverage. The frequentist coverage depends on additional factors (prior calibration, finite-sample corrections) beyond the scope of the DER diagnostic.</li>
+</ol>
+</section>
+</section>
+<section id="sec-boundary-table" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="sec-boundary-table"><span class="header-section-number">9.6</span> Comprehensive Boundary Table</h2>
+<p>The following table summarizes all boundary cases with correct values:</p>
+<div id="tbl-boundary" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-boundary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.1: <strong>Comprehensive boundary table for DER values.</strong> All entries assume the balanced intercept-only model. The “Sum” column verifies the conservation law.
+</figcaption>
+<div aria-describedby="tbl-boundary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 13%">
+<col style="width: 35%">
+<col style="width: 5%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Case</th>
+<th style="text-align: center;"><span class="math inline">\(\sigma^2_\theta\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\rho_{\mathrm{true}}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(n_j\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(B\)</span></th>
+<th style="text-align: center;">DEFF</th>
+<th style="text-align: center;">DER<span class="math inline">\(_\mu\)</span></th>
+<th style="text-align: center;">DER<span class="math inline">\(_\theta^{\mathrm{cond}}\)</span></th>
+<th style="text-align: center;">Sum</th>
+<th style="text-align: left;">Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(i) Vanishing heterogeneity</td>
+<td style="text-align: center;"><span class="math inline">\(\to 0\)</span></td>
+<td style="text-align: center;">any</td>
+<td style="text-align: center;">any</td>
+<td style="text-align: center;"><span class="math inline">\(\to 0\)</span></td>
+<td style="text-align: center;">DEFF</td>
+<td style="text-align: center;">DEFF</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">DEFF</td>
+<td style="text-align: left;">Full design effect on <span class="math inline">\(\mu\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(ii) Infinite heterogeneity</td>
+<td style="text-align: center;"><span class="math inline">\(\to \infty\)</span></td>
+<td style="text-align: center;">any</td>
+<td style="text-align: center;">any</td>
+<td style="text-align: center;"><span class="math inline">\(\to 1\)</span></td>
+<td style="text-align: center;">DEFF</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">DEFF</td>
+<td style="text-align: center;">DEFF</td>
+<td style="text-align: left;">Full design effect on <span class="math inline">\(\theta_j\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(iii) No within-study correlation</td>
+<td style="text-align: center;">any</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">any</td>
+<td style="text-align: center;"><span class="math inline">\(B\)</span></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(1-B\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(B\)</span></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><strong>Corrected V2</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(iv) Univariate meta-analysis</td>
+<td style="text-align: center;">any</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(B\)</span></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(1-B\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(B\)</span></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><strong>Corrected V2</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Typical meta-analytic</td>
+<td style="text-align: center;"><span class="math inline">\(&gt;0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(&gt;0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(&gt;1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((0,1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(&gt;1\)</span></td>
+<td style="text-align: center;">DEFF<span class="math inline">\((1-B)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(B\cdot\)</span>DEFF</td>
+<td style="text-align: center;">DEFF</td>
+<td style="text-align: left;">General formula</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Large <span class="math inline">\(B\)</span> (weak pooling) + large DEFF</td>
+<td style="text-align: center;">large</td>
+<td style="text-align: center;">0.8</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;"><span class="math inline">\(\approx 0.9\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\approx 8.2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\approx 0.8\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\approx 7.4\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\approx 8.2\)</span></td>
+<td style="text-align: left;">Near-calibrated <span class="math inline">\(\mu\)</span>; severe <span class="math inline">\(\theta_j\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Equal partition</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">DEFF</td>
+<td style="text-align: center;">DEFF/2</td>
+<td style="text-align: center;">DEFF/2</td>
+<td style="text-align: center;">DEFF</td>
+<td style="text-align: left;">Even budget split</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="sec-edge-cases-boundary" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="sec-edge-cases-boundary"><span class="header-section-number">9.7</span> Edge Cases and Pathological Configurations</h2>
+<p>Beyond the four standard boundary cases, several edge configurations deserve attention.</p>
+<section id="j-1-single-study" class="level3" data-number="9.7.1">
+<h3 data-number="9.7.1" class="anchored" data-anchor-id="j-1-single-study"><span class="header-section-number">9.7.1</span> <span class="math inline">\(J = 1\)</span>: Single Study</h3>
+<p>When <span class="math inline">\(J = 1\)</span>, the model has a single random effect <span class="math inline">\(\theta_1\)</span>, and <span class="math inline">\(\mu\)</span> is identified only through its relationship with <span class="math inline">\(\theta_1\)</span> via the prior <span class="math inline">\(\theta_1 \sim N(0, \sigma^2_\theta)\)</span>. The overall mean and the study-specific effect are confounded:</p>
+<ul>
+<li>The likelihood depends on <span class="math inline">\(\mu + \theta_1\)</span>, not on <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\theta_1\)</span> separately.</li>
+<li>The posterior for <span class="math inline">\(\mu\)</span> is determined entirely by the prior on <span class="math inline">\(\theta_1\)</span>.</li>
+<li>The sandwich <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span> has rank at most 1 (one cluster), so it cannot estimate a <span class="math inline">\((p + 1) \times (p + 1)\)</span> covariance matrix.</li>
+</ul>
+<p><strong>Verdict:</strong> DER is undefined for <span class="math inline">\(J = 1\)</span>. The meta-analysis requires <span class="math inline">\(J \geq 2\)</span> at minimum, and the DER framework requires <span class="math inline">\(J \gg p\)</span> for sandwich consistency.</p>
+</section>
+<section id="j-2-two-studies" class="level3" data-number="9.7.2">
+<h3 data-number="9.7.2" class="anchored" data-anchor-id="j-2-two-studies"><span class="header-section-number">9.7.2</span> <span class="math inline">\(J = 2\)</span>: Two Studies</h3>
+<p>With <span class="math inline">\(J = 2\)</span> clusters, the meat <span class="math inline">\(\mathbf{M} = \sum_{j=1}^{2} \mathbf{s}_j \mathbf{s}_j^{\intercal}\)</span> has rank at most 2. For the intercept-only model (<span class="math inline">\(p = 1\)</span>), this provides one degree of freedom for the sandwich, but no degrees of freedom for bias correction (CR2 or HC2 adjustments require <span class="math inline">\(J &gt; p + 1\)</span>). The sandwich estimate is extremely noisy and unreliable.</p>
+<p><strong>Verdict:</strong> DER can be computed for <span class="math inline">\(J = 2\)</span> but should not be trusted. A minimum of <span class="math inline">\(J \geq 10\)</span> (and preferably <span class="math inline">\(J \geq 30\)</span>) is recommended for reliable DER diagnostics.</p>
+</section>
+<section id="mixed-n_j-1-and-n_j-1" class="level3" data-number="9.7.3">
+<h3 data-number="9.7.3" class="anchored" data-anchor-id="mixed-n_j-1-and-n_j-1"><span class="header-section-number">9.7.3</span> Mixed <span class="math inline">\(n_j = 1\)</span> and <span class="math inline">\(n_j &gt; 1\)</span></h3>
+<p>When some studies contribute a single effect size and others contribute multiple effect sizes, the DER framework handles this naturally through the study-specific formulas:</p>
+<ul>
+<li>For studies with <span class="math inline">\(n_j = 1\)</span>: <span class="math inline">\(\mathrm{DEFF}_j = 1\)</span>, so <span class="math inline">\(\mathrm{DER}_j^{\mathrm{cond}} = B_j \cdot 1 = B_j\)</span>.</li>
+<li>For studies with <span class="math inline">\(n_j &gt; 1\)</span>: <span class="math inline">\(\mathrm{DEFF}_j = 1 + (n_j - 1)\rho_{\mathrm{true}} &gt; 1\)</span>, so <span class="math inline">\(\mathrm{DER}_j^{\mathrm{cond}} = B_j \cdot \mathrm{DEFF}_j &gt; B_j\)</span>.</li>
+</ul>
+<p>The overall mean DER <span class="math inline">\(\mathrm{DER}_\mu\)</span> is a weighted function of all study sizes and is well-defined as long as <span class="math inline">\(J \geq 2\)</span>. The conservation law holds study-by-study in the balanced case and approximately in the unbalanced case (with Jensen corrections as described in <a href="ch08-conservation.html#sec-empirical-gap" class="quarto-xref"><span>Section 8.4</span></a>).</p>
+</section>
+<section id="sigma2_theta-0-boundary" class="level3" data-number="9.7.4">
+<h3 data-number="9.7.4" class="anchored" data-anchor-id="sigma2_theta-0-boundary"><span class="header-section-number">9.7.4</span> <span class="math inline">\(\sigma^2_\theta = 0\)</span> Boundary</h3>
+<p>Regularity condition (C5) requires <span class="math inline">\(\sigma^2_\theta &gt; 0\)</span> for the DER decomposition. At the boundary <span class="math inline">\(\sigma^2_\theta = 0\)</span>:</p>
+<ul>
+<li>The shrinkage factor <span class="math inline">\(B_j = 0\)</span> for all <span class="math inline">\(j\)</span>.</li>
+<li>The random effects are identically zero: <span class="math inline">\(\theta_j = 0\)</span> a.s.</li>
+<li>The DER for <span class="math inline">\(\theta_j\)</span> is undefined (division by zero in the posterior variance).</li>
+<li>The DER for <span class="math inline">\(\mu\)</span> is well-defined: <span class="math inline">\(\mathrm{DER}_\mu = \mathrm{DEFF}\)</span>.</li>
+</ul>
+<p><strong>The isomorphism (Theorems 1–2) still holds</strong> at <span class="math inline">\(\sigma^2_\theta = 0\)</span>, since the likelihood-level equivalence does not depend on the random-effect prior. But the DER decomposition breaks down because <span class="math inline">\(B_j = 0\)</span> forces <span class="math inline">\(\mathrm{DER}_j^{\mathrm{cond}} = 0\)</span>, and the conditional posterior variance of <span class="math inline">\(\theta_j\)</span> is not well-defined in the standard sense.</p>
+<p><strong>Verdict:</strong> Exclude <span class="math inline">\(\sigma^2_\theta = 0\)</span> from DER analysis as required by (C5). In practice, posterior samples with <span class="math inline">\(\sigma^2_\theta\)</span> near zero should be handled by conditioning on <span class="math inline">\(\sigma^2_\theta &gt; \epsilon\)</span> for a small threshold <span class="math inline">\(\epsilon &gt; 0\)</span>.</p>
+</section>
+<section id="positive-definiteness-requirements-for-ccc" class="level3" data-number="9.7.5">
+<h3 data-number="9.7.5" class="anchored" data-anchor-id="positive-definiteness-requirements-for-ccc"><span class="header-section-number">9.7.5</span> Positive Definiteness Requirements for CCC</h3>
+<p>The Cholesky correction <span class="math inline">\(\boldsymbol{\phi}^{*(s)} = \hat{\boldsymbol{\phi}} + \mathbf{L}_2 \mathbf{L}_1^{-1}(\boldsymbol{\phi}^{(s)} - \hat{\boldsymbol{\phi}})\)</span> requires both <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span> and <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span> to be positive definite. Two boundary cases can violate this:</p>
+<ol type="1">
+<li><p><strong><span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span> near-singular.</strong> This occurs when MCMC chains are poorly mixed or the number of draws <span class="math inline">\(S\)</span> is small relative to the dimension <span class="math inline">\(d\)</span>. Remedy: increase the number of draws or apply regularization.</p></li>
+<li><p><strong><span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span> structurally rank-deficient.</strong> For the full joint parameter vector, <span class="math inline">\(\mathrm{rank}(\mathbf{M}) \leq J &lt; d = p + J\)</span> always holds when <span class="math inline">\(p \geq 1\)</span>. The full-joint sandwich matrix is therefore <strong>never</strong> positive definite — this is structural, not a boundary case. The principled solution is blockwise CCC: applying the Cholesky correction separately to the <span class="math inline">\(\boldsymbol{\beta}\)</span>-block (which is PD when <span class="math inline">\(J \geq p\)</span> and scores span <span class="math inline">\(\mathbb{R}^p\)</span>) and the <span class="math inline">\(\boldsymbol{\theta}\)</span>-block.</p>
+<p><strong>Proper-prior condition for the <span class="math inline">\(\boldsymbol{\theta}\)</span>-block.</strong> The <span class="math inline">\(\boldsymbol{\theta}\)</span>-block of <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}\)</span> is PD if and only if the <span class="math inline">\(\boldsymbol{\beta}\)</span> prior is proper (<span class="math inline">\(\mathbf{H}_{\mathrm{prior}}^{\boldsymbol{\beta}} \succ 0\)</span>, i.e., <span class="math inline">\(h_\mu &gt; 0\)</span>). Under flat <span class="math inline">\(\boldsymbol{\beta}\)</span> priors (<span class="math inline">\(h_\mu = 0\)</span>), the null vector of the meat <span class="math inline">\((1, -\mathbf{1}_J^{\intercal})^{\intercal}\)</span> maps through <span class="math inline">\(\mathbf{H}^{\mathrm{post}}\)</span> to the pure-<span class="math inline">\(\boldsymbol{\theta}\)</span> vector <span class="math inline">\((0, -\lambda\mathbf{1}_J^{\intercal})^{\intercal}\)</span>, making <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\theta}, \boldsymbol{\theta}]\)</span> singular (rank <span class="math inline">\(J-1\)</span>). With proper priors (<span class="math inline">\(h_\mu &gt; 0\)</span>), the mapped null vector <span class="math inline">\((h_\mu, -\lambda\mathbf{1}_J^{\intercal})^{\intercal}\)</span> has a nonzero <span class="math inline">\(\mu\)</span>-component, so no pure-<span class="math inline">\(\boldsymbol{\theta}\)</span> vector lies in <span class="math inline">\(\ker(\mathbf{V}_{\mathrm{sand}})\)</span>, ensuring <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}[\boldsymbol{\theta}, \boldsymbol{\theta}] \succ 0\)</span>. When flat priors are used, the <strong>studywise DER correction</strong> (element-wise <span class="math inline">\(\mathrm{DER}_j^{\mathrm{cond}} = B_j \cdot \mathrm{DEFF}_j\)</span>) is the alternative. See <a href="ch06-posterior-ccc.html#sec-ccc-equiv" class="quarto-xref"><span>Section 6.2</span></a> for the full proof.</p></li>
+</ol>
+<p>Blockwise CCC is not merely more robust; it is the <strong>only</strong> principled approach for the full parameterization <span class="math inline">\(\boldsymbol{\phi} = (\boldsymbol{\beta}^{\intercal}, \boldsymbol{\theta}^{\intercal})^{\intercal}\)</span>, since the full-joint sandwich is structurally rank-deficient. See <a href="ch06-posterior-ccc.html#sec-ccc-equiv" class="quarto-xref"><span>Section 6.2</span></a> for the reformulated Corollary 2.</p>
+</section>
+</section>
+<section id="sec-correction-summary" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="sec-correction-summary"><span class="header-section-number">9.8</span> Summary of Corrections</h2>
+<div id="tbl-corrections" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-corrections-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.2: <strong>Summary of corrections in the boundary analysis.</strong>
+</figcaption>
+<div aria-describedby="tbl-corrections-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 20%">
+<col style="width: 31%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Item</th>
+<th style="text-align: left;">Original Claim</th>
+<th style="text-align: left;">Correction</th>
+<th style="text-align: left;">Source of Error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Thm 3(d)(iii)</td>
+<td style="text-align: left;">DER<span class="math inline">\(_k = 1\)</span> for all <span class="math inline">\(k\)</span> when <span class="math inline">\(\rho_{\mathrm{true}} = 0\)</span></td>
+<td style="text-align: left;">DER<span class="math inline">\(_\mu = 1-B\)</span>, DER<span class="math inline">\(_\theta^{\mathrm{cond}} = B\)</span></td>
+<td style="text-align: left;">Conflation of <span class="math inline">\(\mathbf{H}\)</span> (likelihood) with <span class="math inline">\(\mathbf{H}^{\mathrm{post}}\)</span> (posterior)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Thm 3(d)(iv)</td>
+<td style="text-align: left;">DER<span class="math inline">\(_k = 1\)</span> for all <span class="math inline">\(k\)</span> when <span class="math inline">\(n_j = 1\)</span></td>
+<td style="text-align: left;">DER<span class="math inline">\(_\mu = 1-B\)</span>, DER<span class="math inline">\(_\theta^{\mathrm{cond}} = B\)</span></td>
+<td style="text-align: left;">Same error as (iii)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Conservation gap</td>
+<td style="text-align: left;">Attributed to finite-<span class="math inline">\(J\)</span> correction <span class="math inline">\(\kappa(J)\)</span></td>
+<td style="text-align: left;">Jensen’s inequality from <span class="math inline">\(\mathrm{Cov}(B_j, \mathrm{DEFF}_j) &gt; 0\)</span></td>
+<td style="text-align: left;">Sign error: Jensen lift (+12%) dominates finite-<span class="math inline">\(J\)</span> deficit (<span class="math inline">\(-3.5\)</span>%)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The fundamental source of the Theorem 3(d) error was the informal claim “if the model is correctly specified, the sandwich equals the posterior covariance.” In a frequentist setting (where the sandwich uses the MLE Hessian <span class="math inline">\(\mathbf{H}\)</span> as bread), this is indeed true: <span class="math inline">\(\mathbf{V}_{\mathrm{sand}} = \mathbf{H}^{-1} \mathbf{H} \mathbf{H}^{-1} = \mathbf{H}^{-1}\)</span>, which equals the MLE covariance. But in a Bayesian setting, the bread is <span class="math inline">\(\mathbf{H}^{\mathrm{post}} = \mathbf{H} + \mathbf{H}_{\mathrm{prior}}\)</span>, so <span class="math inline">\(\mathbf{V}_{\mathrm{sand}} = (\mathbf{H}^{\mathrm{post}})^{-1} \mathbf{H} (\mathbf{H}^{\mathrm{post}})^{-1} \neq (\mathbf{H}^{\mathrm{post}})^{-1}\)</span> unless <span class="math inline">\(\mathbf{H}_{\mathrm{prior}} = \mathbf{0}\)</span>. The hierarchical random-effect prior ensures <span class="math inline">\(\mathbf{H}_{\mathrm{prior}} \neq \mathbf{0}\)</span>, making the Bayesian case fundamentally different from the frequentist case.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ch08-conservation.html" class="pagination-link" aria-label="Conservation Law">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conservation Law</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ch10-extensions.html" class="pagination-link" aria-label="E4-Relaxed CE and CHE Extensions">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">E4-Relaxed CE and CHE Extensions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/joonho112/bayesian-meta-survey-equivalence/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

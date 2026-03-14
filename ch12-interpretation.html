@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>12&nbsp; Interpretive Issues and Practical Implications – Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ch13-discussion.html" rel="next">
+<link href="./ch11-regularity.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ch10-extensions.html">Part IV: Extensions and Interpretation</a></li><li class="breadcrumb-item"><a href="./ch12-interpretation.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Interpretive Issues and Practical Implications</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Structural Equivalence of Bayesian Meta-Analysis and Bayesian Survey Inference</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/joonho112/bayesian-meta-survey-equivalence" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part I: Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch01-notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Notation and Conventions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch02-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Model Definitions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch03-exactness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exactness Conditions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Core Equivalence Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch04-isomorphism.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Theorem 1: Likelihood Isomorphism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch05-sandwich.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Theorem 2: Sandwich Equivalence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch06-posterior-ccc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Corollaries 1–2: Posterior and CCC Equivalence</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Design Effect Ratios</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch07-der-framework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">DER Framework and Transfer Theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch08-conservation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conservation Law</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch09-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Boundary Cases and Edge Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Extensions and Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch10-extensions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">E4-Relaxed CE and CHE Extensions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch11-regularity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Regularity Conditions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch12-interpretation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Interpretive Issues and Practical Implications</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part V: Discussion and Conclusions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch13-discussion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Discussion and Conclusions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-revision-history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Revision History</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-conditional-marginal" id="toc-sec-conditional-marginal" class="nav-link active" data-scroll-target="#sec-conditional-marginal"><span class="header-section-number">12.1</span> Conditional vs.&nbsp;Marginal DER Interpretation</a>
+  <ul class="collapse">
+  <li><a href="#the-structural-insight" id="toc-the-structural-insight" class="nav-link" data-scroll-target="#the-structural-insight"><span class="header-section-number">12.1.1</span> The structural insight</a></li>
+  <li><a href="#sec-formal-analysis" id="toc-sec-formal-analysis" class="nav-link" data-scroll-target="#sec-formal-analysis"><span class="header-section-number">12.1.2</span> Formal analysis: balanced intercept-only model</a></li>
+  <li><a href="#sec-two-perspectives" id="toc-sec-two-perspectives" class="nav-link" data-scroll-target="#sec-two-perspectives"><span class="header-section-number">12.1.3</span> Two inferential perspectives</a></li>
+  </ul></li>
+  <li><a href="#sec-der-less-than-one" id="toc-sec-der-less-than-one" class="nav-link" data-scroll-target="#sec-der-less-than-one"><span class="header-section-number">12.2</span> When DER<span class="math inline">\(_\mu\)</span> &lt; 1</a>
+  <ul class="collapse">
+  <li><a href="#the-mechanism" id="toc-the-mechanism" class="nav-link" data-scroll-target="#the-mechanism"><span class="header-section-number">12.2.1</span> The mechanism</a></li>
+  <li><a href="#consequences-for-ccc" id="toc-consequences-for-ccc" class="nav-link" data-scroll-target="#consequences-for-ccc"><span class="header-section-number">12.2.2</span> Consequences for CCC</a></li>
+  <li><a href="#the-boundary-pathology" id="toc-the-boundary-pathology" class="nav-link" data-scroll-target="#the-boundary-pathology"><span class="header-section-number">12.2.3</span> The boundary pathology</a></li>
+  </ul></li>
+  <li><a href="#sec-numerical-example" id="toc-sec-numerical-example" class="nav-link" data-scroll-target="#sec-numerical-example"><span class="header-section-number">12.3</span> Numerical Example: TSL15 Data</a>
+  <ul class="collapse">
+  <li><a href="#data-characteristics" id="toc-data-characteristics" class="nav-link" data-scroll-target="#data-characteristics"><span class="header-section-number">12.3.1</span> Data characteristics</a></li>
+  <li><a href="#key-diagnostic-quantities" id="toc-key-diagnostic-quantities" class="nav-link" data-scroll-target="#key-diagnostic-quantities"><span class="header-section-number">12.3.2</span> Key diagnostic quantities</a></li>
+  <li><a href="#der-analysis" id="toc-der-analysis" class="nav-link" data-scroll-target="#der-analysis"><span class="header-section-number">12.3.3</span> DER analysis</a></li>
+  <li><a href="#summary-five-der-variants-for-mu-and-the-true-marginal-ratio" id="toc-summary-five-der-variants-for-mu-and-the-true-marginal-ratio" class="nav-link" data-scroll-target="#summary-five-der-variants-for-mu-and-the-true-marginal-ratio"><span class="header-section-number">12.3.4</span> Summary: five DER variants for <span class="math inline">\(\mu\)</span> and the true marginal ratio</a></li>
+  <li><a href="#sec-v2-empirical-confirmation" id="toc-sec-v2-empirical-confirmation" class="nav-link" data-scroll-target="#sec-v2-empirical-confirmation"><span class="header-section-number">12.3.5</span> Empirical Confirmation</a></li>
+  </ul></li>
+  <li><a href="#sec-marginal-sandwich-contribution" id="toc-sec-marginal-sandwich-contribution" class="nav-link" data-scroll-target="#sec-marginal-sandwich-contribution"><span class="header-section-number">12.4</span> The Bayesian Marginal Sandwich as a Methodological Contribution</a></li>
+  <li><a href="#sec-recommendations" id="toc-sec-recommendations" class="nav-link" data-scroll-target="#sec-recommendations"><span class="header-section-number">12.5</span> Recommendations for Practice</a>
+  <ul class="collapse">
+  <li><a href="#sec-rec1" id="toc-sec-rec1" class="nav-link" data-scroll-target="#sec-rec1"><span class="header-section-number">12.5.1</span> Recommendation 1: Always report DER alongside meta-analytic output</a></li>
+  <li><a href="#sec-rec2" id="toc-sec-rec2" class="nav-link" data-scroll-target="#sec-rec2"><span class="header-section-number">12.5.2</span> Recommendation 2: Interpret the DER taxonomy correctly</a></li>
+  <li><a href="#sec-rec3" id="toc-sec-rec3" class="nav-link" data-scroll-target="#sec-rec3"><span class="header-section-number">12.5.3</span> Recommendation 3: Widen forest plot intervals when DER<span class="math inline">\(_\theta &gt; 1\)</span></a></li>
+  <li><a href="#sec-rec4" id="toc-sec-rec4" class="nav-link" data-scroll-target="#sec-rec4"><span class="header-section-number">12.5.4</span> Recommendation 4: Use <span class="math inline">\(N_{\mathrm{eff}}\)</span> as an interpretive aid</a></li>
+  <li><a href="#sec-rec5" id="toc-sec-rec5" class="nav-link" data-scroll-target="#sec-rec5"><span class="header-section-number">12.5.5</span> Recommendation 5: CCC decision logic for <span class="math inline">\(\boldsymbol{\beta}\)</span> via the DER taxonomy</a></li>
+  <li><a href="#sec-rec6" id="toc-sec-rec6" class="nav-link" data-scroll-target="#sec-rec6"><span class="header-section-number">12.5.6</span> Recommendation 6: The DER tier classification (T0–T4)</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/joonho112/bayesian-meta-survey-equivalence/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ch10-extensions.html">Part IV: Extensions and Interpretation</a></li><li class="breadcrumb-item"><a href="./ch12-interpretation.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Interpretive Issues and Practical Implications</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-interpretation" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Interpretive Issues and Practical Implications</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This chapter addresses the most subtle conceptual issue arising from the DER framework: the distinction between the <strong>conditional</strong> (design-based) and <strong>marginal</strong> (model-based frequentist) interpretation of the Design Effect Ratio. The discussion was motivated by the observation that claiming “DER<span class="math inline">\(_\mu \approx 1\)</span> implies calibration” can be misleading without careful qualification. We provide a formal analysis, a numerical illustration with the TSL15 data, and practical recommendations for applied meta-analysts.</p>
+<p>The chapter proceeds in three parts. <a href="#sec-conditional-marginal" class="quarto-xref"><span>Section 12.1</span></a> establishes the conditional-vs-marginal distinction through structural analysis, a closed-form derivation in the balanced model, and a five-variant DER comparison using the TSL15 data. <a href="#sec-der-less-than-one" class="quarto-xref"><span>Section 12.2</span></a> examines the consequences when hierarchical shrinkage over-compensates for the design effect, including the boundary pathology at DEFF <span class="math inline">\(= 1\)</span>. <a href="#sec-recommendations" class="quarto-xref"><span>Section 12.5</span></a> translates these findings into six practical recommendations for applied meta-analysts.</p>
+<section id="sec-conditional-marginal" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="sec-conditional-marginal"><span class="header-section-number">12.1</span> Conditional vs.&nbsp;Marginal DER Interpretation</h2>
+<section id="the-structural-insight" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="the-structural-insight"><span class="header-section-number">12.1.1</span> The structural insight</h3>
+<p>The sandwich variance estimator <span class="math inline">\(\mathbf{V}_{\mathrm{sand}} = \mathbf{H}^{-1}\mathbf{M}\mathbf{H}^{-1}\)</span> (or its posterior variant <span class="math inline">\((\mathbf{H}^{\mathrm{post}})^{-1}\mathbf{M}(\mathbf{H}^{\mathrm{post}})^{-1}\)</span>) uses <strong>likelihood-only scores</strong> in the meat: <span id="eq-meat-conditional"><span class="math display">\[
+\mathbf{M} = \sum_{j=1}^{J} \mathbf{s}_j(\hat{\boldsymbol{\phi}})\,\mathbf{s}_j(\hat{\boldsymbol{\phi}})^{\intercal}, \quad \text{where} \quad \mathbf{s}_j = \nabla_{\boldsymbol{\phi}}\,\ell_j(\mathbf{y}_j \mid \theta_j, \boldsymbol{\beta}, \ldots).
+\tag{12.1}\]</span></span></p>
+<p>These scores are computed <strong>conditional on the realized random effects <span class="math inline">\(\theta_j\)</span></strong>. They capture the variability due to Level 1 sampling — the randomness of <span class="math inline">\(\mathbf{y}_j\)</span> given <span class="math inline">\(\theta_j\)</span> — but they do <strong>not</strong> capture the variability due to the Level 2 random-effects distribution <span class="math inline">\(\theta_j \sim \textsf{N}(0, \sigma_\theta^2)\)</span>.</p>
+<p>The between-study variance component <span class="math inline">\(\sigma_\theta^2\)</span> enters the analysis through the <strong>prior</strong> on <span class="math inline">\(\theta_j\)</span>, which affects the bread <span class="math inline">\(\mathbf{H}^{\mathrm{post}} = \mathbf{H} + \mathbf{H}_{\mathrm{prior}}\)</span> (via the prior Hessian <span class="math inline">\(\lambda = 1/\sigma_\theta^2\)</span> on each <span class="math inline">\(\theta_j\)</span>) and the MCMC posterior covariance <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span>. But it does <strong>not</strong> enter the meat <span class="math inline">\(\mathbf{M}\)</span>.</p>
+<p>This asymmetry — the bread includes the random-effects structure while the meat does not — is the fundamental reason why the DER captures only the <strong>conditional</strong> design effect, not the total variance inflation.</p>
+<p>Before formalizing this distinction, the intuition can be stated simply. The sandwich estimator corrects for misspecification of the within-study working correlation — a <em>design</em> feature. But in a hierarchical model, the posterior uncertainty for the overall mean <span class="math inline">\(\mu\)</span> also reflects the between-study heterogeneity <span class="math inline">\(\sigma_\theta^2\)</span> — a <em>model</em> feature. The DER therefore compares a design-corrected quantity (the sandwich) against a model-based quantity (the posterior variance), and these need not agree even when the working model is correctly specified. The formal analysis below makes this precise.</p>
+</section>
+<section id="sec-formal-analysis" class="level3" data-number="12.1.2">
+<h3 data-number="12.1.2" class="anchored" data-anchor-id="sec-formal-analysis"><span class="header-section-number">12.1.2</span> Formal analysis: balanced intercept-only model</h3>
+<p>Consider the balanced intercept-only CE model (<span class="math inline">\(p = 1\)</span>, <span class="math inline">\(n_j = n\)</span>, <span class="math inline">\(\bar{s}_j^2 = \bar{s}^2\)</span>) with approximately flat prior on <span class="math inline">\(\mu\)</span>. The parameter vector is <span class="math inline">\(\boldsymbol{\phi} = (\mu, \theta_1, \ldots, \theta_J)^{\intercal}\)</span>.</p>
+<p><strong>True frequentist variance of <span class="math inline">\(\hat{\mu}\)</span>.</strong> The posterior mean of <span class="math inline">\(\mu\)</span> (which, under flat prior, equals <span class="math inline">\(\bar{y}_{..}\)</span>) has true frequentist variance <span id="eq-var-true"><span class="math display">\[
+\mathrm{Var}_{\mathrm{true}}(\hat{\mu}) = \frac{\sigma_\theta^2}{J} + \frac{\mathrm{DEFF} \cdot \bar{s}^2}{nJ},
+\tag{12.2}\]</span></span> where the first term is the between-study variance component (from <span class="math inline">\(\theta_j \sim \textsf{N}(0, \sigma_\theta^2)\)</span>, the grand mean of <span class="math inline">\(J\)</span> random draws) and the second term is the within-study sampling variance inflated by the design effect. This formula follows from: <span class="math display">\[
+\hat{\mu} = \bar{y}_{..} = \frac{1}{J}\sum_{j=1}^{J} \bar{y}_j, \quad \mathrm{Var}(\bar{y}_j) = \sigma_\theta^2 + \frac{\mathrm{DEFF} \cdot \bar{s}^2}{n},
+\]</span> with studies independent.</p>
+<p><strong>Sandwich variance.</strong> The sandwich estimator for the <span class="math inline">\(\mu\)</span>-component is <span id="eq-v-sand-mu"><span class="math display">\[
+V_{\mathrm{sand},\mu\mu} = \frac{\mathrm{DEFF} \cdot \bar{s}^2}{nJ}.
+\tag{12.3}\]</span></span></p>
+<p>This captures only the within-study design effect, not the between-study variance <span class="math inline">\(\sigma_\theta^2/J\)</span>. The sandwich “sees” the design effect through the meat (empirical score covariance), but it does not “see” the <span class="math inline">\(\sigma_\theta^2\)</span> component because that component enters only through the prior/random-effects structure.</p>
+<p><strong>MCMC posterior variance.</strong> Under the hierarchical normal model, the marginal posterior variance of <span class="math inline">\(\mu\)</span> is <span id="eq-sigma-mcmc-mu"><span class="math display">\[
+\Sigma_{\mathrm{MCMC},\mu\mu} = \frac{\sigma_\theta^2 + \bar{s}^2/n}{J} = \frac{1}{J}\!\left(\sigma_\theta^2 + \frac{\bar{s}^2}{n}\right).
+\tag{12.4}\]</span></span></p>
+<p>This reflects the model-based posterior uncertainty, which treats the between-study variance as a model assumption (the “correct” amount of uncertainty due to the random-effects distribution).</p>
+<p><strong>Design Effect Ratio.</strong> Taking the ratio: <span id="eq-der-mu-derivation"><span class="math display">\[
+\mathrm{DER}_\mu = \frac{V_{\mathrm{sand},\mu\mu}}{\Sigma_{\mathrm{MCMC},\mu\mu}} = \frac{\mathrm{DEFF} \cdot \bar{s}^2/(nJ)}{(\sigma_\theta^2 + \bar{s}^2/n)/J} = \frac{\mathrm{DEFF} \cdot \bar{s}^2/n}{\sigma_\theta^2 + \bar{s}^2/n} = \mathrm{DEFF} \cdot (1 - B),
+\tag{12.5}\]</span></span> where <span class="math inline">\(B = \sigma_\theta^2/(\sigma_\theta^2 + \bar{s}^2/n)\)</span> is the <strong>retention weight on the study-specific estimate</strong> (historically called the shrinkage factor). This confirms Theorem 3(a) from first principles.</p>
+<p><strong>“True” total variance ratio.</strong> From the marginal frequentist perspective, the total variance inflation relative to the model-based posterior variance is: <span id="eq-total-ratio"><span class="math display">\[
+\frac{\mathrm{Var}_{\mathrm{true}}(\hat{\mu})}{\Sigma_{\mathrm{MCMC},\mu\mu}} = \frac{\sigma_\theta^2/J + \mathrm{DEFF} \cdot \bar{s}^2/(nJ)}{(\sigma_\theta^2 + \bar{s}^2/n)/J} = B + \mathrm{DEFF}(1 - B).
+\tag{12.6}\]</span></span></p>
+<p>This is <strong>not</strong> equal to DER<span class="math inline">\(_\mu^{\mathrm{cond}}\)</span>. The difference is: <span id="eq-ratio-gap"><span class="math display">\[
+B + \mathrm{DEFF}(1-B) - \mathrm{DEFF}(1-B) = B,
+\tag{12.7}\]</span></span> i.e., the total variance ratio exceeds the conditional DER by exactly <span class="math inline">\(B\)</span>. When <span class="math inline">\(B\)</span> is large (high retention / weak pooling toward the grand mean), this gap is substantial.</p>
+<p><strong>Marginal DER and the total variance ratio.</strong> The Bayesian marginal DER (Definition 5b(iii), <a href="ch07-der-framework.html#sec-def-der-taxonomy" class="quarto-xref"><span>Section 7.1.2.1</span></a>) occupies an intermediate position. Its numerator is the marginal sandwich variance <span class="math inline">\(V_{\mathrm{sand},\mu\mu}^{\mathrm{marg}}\)</span>, which captures the full between-study residual variation but through the sandwich mechanism (not the true DGP). In the balanced model with correctly specified marginal model and weakly informative prior: <span id="eq-v-sand-marg-approx"><span class="math display">\[
+V_{\mathrm{sand},\mu\mu}^{\mathrm{marg}} \approx \frac{1}{J^2}\sum_{j=1}^{J} r_j^2 / v^2 \cdot v^2 = \frac{1}{J^2}\sum_{j=1}^{J} r_j^2.
+\tag{12.8}\]</span></span> Under the true model, <span class="math inline">\(\mathbb{E}[r_j^2] = \sigma_\theta^2 + \mathrm{DEFF} \cdot \bar{s}^2/n\)</span> (the true marginal variance of <span class="math inline">\(\bar{y}_j\)</span> around <span class="math inline">\(\mu\)</span>). Therefore: <span class="math display">\[
+\mathbb{E}[V_{\mathrm{sand},\mu\mu}^{\mathrm{marg}}] \approx \frac{\sigma_\theta^2 + \mathrm{DEFF} \cdot \bar{s}^2/n}{J} = \mathrm{Var}_{\mathrm{true}}(\hat{\mu}).
+\]</span> This shows that the Bayesian marginal sandwich is an asymptotically unbiased estimator of the true marginal variance of <span class="math inline">\(\hat{\mu}\)</span> — unlike the conditional sandwich, which captures only the within-study component. The marginal DER therefore satisfies: <span id="eq-der-marg-converges"><span class="math display">\[
+\mathrm{DER}_\mu^{\mathrm{marg}} = \frac{V_{\mathrm{sand},\mu\mu}^{\mathrm{marg}}}{\Sigma_{\mathrm{MCMC},\mu\mu}} \;\xrightarrow{p}\; \frac{\mathrm{Var}_{\mathrm{true}}(\hat{\mu})}{\Sigma_{\mathrm{MCMC},\mu\mu}} = B + \mathrm{DEFF}(1-B),
+\tag{12.9}\]</span></span> in probability as <span class="math inline">\(J \to \infty\)</span> under the true model. This is the total variance ratio from <a href="#eq-total-ratio" class="quarto-xref">Equation&nbsp;<span>12.6</span></a>. Since <span class="math display">\[
+B + \mathrm{DEFF}(1-B) = 1 + (\mathrm{DEFF}-1)(1-B),
+\]</span> it exceeds 1 whenever <span class="math inline">\(\mathrm{DEFF} &gt; 1\)</span> and <span class="math inline">\(B &lt; 1\)</span> (strictly), and equals 1 when <span class="math inline">\(\mathrm{DEFF}=1\)</span>. In typical meta-analytic settings with positive within-study dependence and nondegenerate pooling, the large-sample marginal DER therefore points toward CCC widening for the <span class="math inline">\(\boldsymbol{\beta}\)</span>-block.</p>
+</section>
+<section id="sec-two-perspectives" class="level3" data-number="12.1.3">
+<h3 data-number="12.1.3" class="anchored" data-anchor-id="sec-two-perspectives"><span class="header-section-number">12.1.3</span> Two inferential perspectives</h3>
+<p>The discrepancy between <a href="#eq-der-mu-derivation" class="quarto-xref">Equation&nbsp;<span>12.5</span></a> and <a href="#eq-total-ratio" class="quarto-xref">Equation&nbsp;<span>12.6</span></a> reflects two legitimate but distinct inferential frameworks:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Perspective 1: Design-Based <span class="citation" data-cites="WilliamsSavitsky2021">(<a href="#ref-WilliamsSavitsky2021" role="doc-biblioref">Williams and Savitsky 2021</a>)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The sandwich corrects for <strong>within-cluster design effects</strong> — specifically, the misspecification of the within-study working correlation (<span class="math inline">\(\rho_{\mathrm{work}} \neq \rho_{\mathrm{true}}\)</span>). The between-study variance component <span class="math inline">\(\sigma_\theta^2\)</span> is part of the <strong>model</strong>, not the <strong>design</strong>. The posterior already captures <span class="math inline">\(\sigma_\theta^2\)</span> through the hierarchical structure, and the sandwich should not “double-correct” for it.</p>
+<p>Under this perspective:</p>
+<ul>
+<li>DER<span class="math inline">\(_\mu = \mathrm{DEFF}(1-B)\)</span> is the correct diagnostic for design-based miscalibration.</li>
+<li>DER<span class="math inline">\(_\mu \approx 1\)</span> means the conditional design effect is nearly compensated by hierarchical shrinkage.</li>
+<li>The CCC correction with DER<span class="math inline">\(_\mu\)</span> targets the design-based variance and is appropriate.</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Perspective 2: Model-Based Frequentist
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The posterior mean <span class="math inline">\(\hat{\mu}\)</span> is a point estimator whose total frequentist variance includes <strong>both</strong> the random-effects component and the within-study design effect. From this perspective, the sandwich under-estimates the total variance by ignoring the <span class="math inline">\(\sigma_\theta^2/J\)</span> component. The total variance inflation is <span class="math inline">\(B + \mathrm{DEFF}(1-B)\)</span>, which can be substantially larger than 1 even when DER<span class="math inline">\(_\mu \approx 1\)</span>.</p>
+<p>Under this perspective:</p>
+<ul>
+<li>DER<span class="math inline">\(_\mu \approx 1\)</span> is potentially misleading as a calibration diagnostic.</li>
+<li>The total miscalibration ratio is <span class="math inline">\(B + \mathrm{DEFF}(1-B)\)</span>.</li>
+<li>The CCC correction based on DER<span class="math inline">\(_\mu\)</span> may yield credible intervals that are too narrow from a frequentist coverage standpoint.</li>
+</ul>
+</div>
+</div>
+<p><strong>Our position.</strong> Both perspectives are mathematically valid. The design-based perspective aligns with the Williams–Savitsky (2021) framework that underpins the CCC methodology, and with the broader robust variance estimation tradition in which the sandwich corrects for working-model misspecification while treating the random-effects structure as given. The model-based frequentist perspective highlights a genuine limitation of the joint sandwich for hierarchical models. The appropriate interpretation depends on the analyst’s inferential goals:</p>
+<ul>
+<li>If the goal is to assess <strong>working-correlation misspecification</strong> (as in sensitivity analysis over <span class="math inline">\(\rho\)</span>): the DER is the right diagnostic.</li>
+<li>If the goal is to assess <strong>total frequentist coverage</strong> of credible intervals for <span class="math inline">\(\mu\)</span>: the DER alone is insufficient.</li>
+</ul>
+<p>The practical takeaway from these two perspectives is clear: the DER is a <em>design-based</em> diagnostic, not a <em>total calibration</em> measure. When reporting DER<span class="math inline">\(_\mu \approx 1\)</span>, the analyst communicates that the within-study design effect is well-handled by the hierarchical model, not that the posterior credible interval for <span class="math inline">\(\mu\)</span> achieves nominal frequentist coverage. The Bayesian marginal sandwich (Definition 3a) provides a middle ground by capturing the full between-study variation while remaining within the Bayesian pipeline.</p>
+</section>
+</section>
+<section id="sec-der-less-than-one" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="sec-der-less-than-one"><span class="header-section-number">12.2</span> When DER<span class="math inline">\(_\mu\)</span> &lt; 1</h2>
+<section id="the-mechanism" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="the-mechanism"><span class="header-section-number">12.2.1</span> The mechanism</h3>
+<p>DER<span class="math inline">\(_\mu &lt; 1\)</span> occurs whenever the shrinkage factor <span class="math inline">\(B\)</span> “over-compensates” for the design effect: <span id="eq-der-less-one-condition"><span class="math display">\[
+\mathrm{DER}_\mu = \mathrm{DEFF}(1-B) &lt; 1 \quad \Longleftrightarrow \quad B &gt; 1 - \frac{1}{\mathrm{DEFF}} = \frac{(\bar{n}-1)\rho_{\mathrm{true}}}{1 + (\bar{n}-1)\rho_{\mathrm{true}}}.
+\tag{12.10}\]</span></span></p>
+<p>This threshold on <span class="math inline">\(B\)</span> is achieved when <span class="math inline">\(\sigma_\theta^2\)</span> is large relative to <span class="math inline">\(\bar{s}^2/n\)</span> — precisely the regime where between-study heterogeneity dominates and the posterior retains substantial weight on each study-specific estimate (equivalently, pooling toward the grand mean is weak).</p>
+</section>
+<section id="consequences-for-ccc" class="level3" data-number="12.2.2">
+<h3 data-number="12.2.2" class="anchored" data-anchor-id="consequences-for-ccc"><span class="header-section-number">12.2.2</span> Consequences for CCC</h3>
+<p>When DER<span class="math inline">\(_\mu &lt; 1\)</span> and the Cholesky Calibration of Credible intervals (CCC) is applied, the corrected posterior for <span class="math inline">\(\mu\)</span> has <strong>smaller</strong> variance than the original: <span class="math display">\[
+V_{\mathrm{sand},\mu\mu} &lt; \Sigma_{\mathrm{MCMC},\mu\mu}.
+\]</span></p>
+<p>The CCC transformation <span class="math inline">\(\boldsymbol{\phi}^{*(s)} = \hat{\boldsymbol{\phi}} + \mathbf{L}_2\mathbf{L}_1^{-1}(\boldsymbol{\phi}^{(s)} - \hat{\boldsymbol{\phi}})\)</span> will <strong>shrink</strong> the posterior credible interval for <span class="math inline">\(\mu\)</span> relative to the uncorrected interval.</p>
+<p>From the design-based perspective, this shrinkage is correct: the posterior for <span class="math inline">\(\mu\)</span> is “over-dispersed” relative to what the sandwich says the design effect warrants, because the posterior includes the <span class="math inline">\(\sigma_\theta^2/J\)</span> component that the sandwich does not target.</p>
+<p>From the model-based frequentist perspective, this shrinkage is potentially problematic: the uncorrected posterior CI already under-covers (because it does not account for the within-study design effect), and the CCC correction makes the CI even narrower.</p>
+</section>
+<section id="the-boundary-pathology" class="level3" data-number="12.2.3">
+<h3 data-number="12.2.3" class="anchored" data-anchor-id="the-boundary-pathology"><span class="header-section-number">12.2.3</span> The boundary pathology</h3>
+<p>The most extreme case occurs when DEFF = 1 (<span class="math inline">\(\rho_{\mathrm{true}} = 0\)</span>, no within-study dependence): <span class="math display">\[
+\mathrm{DER}_\mu = 1 \cdot (1 - B) = 1 - B.
+\]</span></p>
+<p>For the TSL15 data with <span class="math inline">\(B \approx 0.81\)</span>, this would give DER<span class="math inline">\(_\mu \approx 0.19\)</span>. The CCC would shrink the posterior CI for <span class="math inline">\(\mu\)</span> by approximately <span class="math inline">\(\sqrt{0.19} \approx 0.44\)</span>, reducing it to 44% of its original width. This is a dramatic correction applied in a setting where the working model is correctly specified — a counterintuitive outcome that arises because the sandwich “sees” only the (trivial) design effect while ignoring the (large) between-study variance.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Corrected Boundary Cases
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An earlier version of this document incorrectly stated that when DEFF = 1, DER<span class="math inline">\(_\mu = 1\)</span> for all parameters. This was based on the faulty argument that “the working model is correct, so <span class="math inline">\(\mathbf{M} = \mathbf{H}\)</span>, <span class="math inline">\(\mathbf{V}_{\mathrm{sand}} = \mathbf{H}^{-1}\)</span>, and DER<span class="math inline">\(_k = 1\)</span>.”</p>
+<p>The error: this argument conflates the <strong>likelihood Hessian</strong> <span class="math inline">\(\mathbf{H}\)</span> with the <strong>posterior Hessian</strong> <span class="math inline">\(\mathbf{H}^{\mathrm{post}} = \mathbf{H} + \mathbf{H}_{\mathrm{prior}}\)</span>. When DEFF = 1, the meat equals the likelihood bread (<span class="math inline">\(\mathbf{M} = \mathbf{H}\)</span>), but the sandwich uses the <strong>posterior</strong> bread: <span class="math display">\[
+\mathbf{V}_{\mathrm{sand}} = (\mathbf{H}^{\mathrm{post}})^{-1}\mathbf{M}(\mathbf{H}^{\mathrm{post}})^{-1} = (\mathbf{H}^{\mathrm{post}})^{-1}\mathbf{H}(\mathbf{H}^{\mathrm{post}})^{-1} \neq (\mathbf{H}^{\mathrm{post}})^{-1},
+\]</span> because <span class="math inline">\(\mathbf{H} \neq \mathbf{H}^{\mathrm{post}}\)</span> (the prior Hessian for <span class="math inline">\(\theta_j\)</span> contributes <span class="math inline">\(\lambda = 1/\sigma_\theta^2 \neq 0\)</span>).</p>
+<p>The correct boundary behavior, as stated in the updated Theorem 3(d) (<a href="ch09-boundary.html" class="quarto-xref"><span>Chapter 9</span></a>), is:</p>
+<ul>
+<li><ol start="3" type="i">
+<li><span class="math inline">\(\rho_{\mathrm{true}} = 0 \Rightarrow \mathrm{DEFF} = 1\)</span>: DER<span class="math inline">\(_\mu = 1 - B\)</span>, DER<span class="math inline">\(_\theta^{\mathrm{cond}} = B\)</span>.</li>
+</ol></li>
+<li><ol start="4" type="i">
+<li><span class="math inline">\(n_j = 1 \Rightarrow \mathrm{DEFF}_j = 1\)</span>: DER<span class="math inline">\(_\mu = 1 - B\)</span>, DER<span class="math inline">\(_\theta^{\mathrm{cond}} = B\)</span>.</li>
+</ol></li>
+</ul>
+<p>This error was identified during internal review.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-numerical-example" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="sec-numerical-example"><span class="header-section-number">12.3</span> Numerical Example: TSL15 Data</h2>
+<p>We illustrate the conditional-vs-marginal distinction using the <span class="citation" data-cites="TannerSmithLipsey2015">Tanner-Smith and Lipsey (<a href="#ref-TannerSmithLipsey2015" role="doc-biblioref">2015</a>)</span> data, the primary empirical example in this paper. All five DER variants from Definition 5b (<a href="ch07-der-framework.html#sec-def-der-taxonomy" class="quarto-xref"><span>Section 7.1.2.1</span></a>; see also the consolidated variant cross-reference in <a href="ch07-der-framework.html#tbl-der-variant-xref" class="quarto-xref">Table&nbsp;<span>7.1</span></a>) are computed and compared in <a href="#tbl-tsl15-perspectives" class="quarto-xref">Table&nbsp;<span>12.1</span></a> below.</p>
+<section id="data-characteristics" class="level3" data-number="12.3.1">
+<h3 data-number="12.3.1" class="anchored" data-anchor-id="data-characteristics"><span class="header-section-number">12.3.1</span> Data characteristics</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Quantity</th>
+<th style="text-align: left;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Number of studies (<span class="math inline">\(J\)</span>)</td>
+<td style="text-align: left;">117</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total effect sizes (<span class="math inline">\(N\)</span>)</td>
+<td style="text-align: left;">1,198</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Average cluster size (<span class="math inline">\(\bar{n}\)</span>)</td>
+<td style="text-align: left;">10.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Posterior mean of <span class="math inline">\(\mu\)</span> (<span class="math inline">\(\hat{\mu}\)</span>)</td>
+<td style="text-align: left;">0.1526</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Posterior SD of <span class="math inline">\(\sigma_\theta\)</span> (<span class="math inline">\(\hat{\sigma}_\theta\)</span>)</td>
+<td style="text-align: left;">0.2029</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="key-diagnostic-quantities" class="level3" data-number="12.3.2">
+<h3 data-number="12.3.2" class="anchored" data-anchor-id="key-diagnostic-quantities"><span class="header-section-number">12.3.2</span> Key diagnostic quantities</h3>
+<p><strong>Shrinkage factor:</strong> <span id="eq-B-tsl15"><span class="math display">\[
+B = \frac{\hat{\sigma}_\theta^2}{\hat{\sigma}_\theta^2 + \bar{s}^2/\bar{n}} \approx 0.81.
+\tag{12.11}\]</span></span></p>
+<p>This large value of <span class="math inline">\(B\)</span> means the posterior retains substantial weight on each study-specific estimate: the between-study heterogeneity (<span class="math inline">\(\hat{\sigma}_\theta^2 \approx 0.041\)</span>) is large relative to the average within-study sampling variance scaled by cluster size, so pooling toward the grand mean is comparatively weak.</p>
+<p><strong>Design effect:</strong> <span id="eq-deff-tsl15"><span class="math display">\[
+\mathrm{DEFF} \approx 5.62.
+\tag{12.12}\]</span></span></p>
+<p>This substantial design effect indicates that the within-study effect sizes are strongly correlated — each additional effect size within a study contributes much less than a fully independent observation.</p>
+</section>
+<section id="der-analysis" class="level3" data-number="12.3.3">
+<h3 data-number="12.3.3" class="anchored" data-anchor-id="der-analysis"><span class="header-section-number">12.3.3</span> DER analysis</h3>
+<p><strong>Conditional perspective (DER):</strong> <span id="eq-der-mu-tsl15"><span class="math display">\[
+\mathrm{DER}_\mu = \mathrm{DEFF} \cdot (1-B) \approx 5.62 \times 0.19 \approx 1.07.
+\tag{12.13}\]</span></span></p>
+<p>The DER is close to 1, indicating that the conditional design effect on <span class="math inline">\(\mu\)</span> is nearly compensated by hierarchical shrinkage. The posterior credible interval for <span class="math inline">\(\mu\)</span> is approximately correctly calibrated from the design-based perspective.</p>
+<p><strong>Marginal perspective (total variance ratio):</strong> <span id="eq-total-tsl15"><span class="math display">\[
+B + \mathrm{DEFF}(1-B) \approx 0.81 + 5.62 \times 0.19 \approx 0.81 + 1.07 \approx 1.88.
+\tag{12.14}\]</span></span></p>
+<p>From the model-based frequentist perspective, the true variance of <span class="math inline">\(\hat{\mu}\)</span> is approximately 1.88 times the posterior variance. This suggests the uncorrected posterior CI for <span class="math inline">\(\mu\)</span> under-covers by a meaningful amount.</p>
+<p><strong>Study-specific effects:</strong> <span id="eq-der-theta-tsl15"><span class="math display">\[
+\mathrm{Mean\;DER}_\theta^{\mathrm{cond}} \approx 5.10.
+\tag{12.15}\]</span></span></p>
+<p>The study-specific effect posteriors are severely under-dispersed: on average, the sandwich-corrected variance is about 5 times the model-based posterior variance. Forest plot intervals for individual studies are substantially too narrow.</p>
+</section>
+<section id="summary-five-der-variants-for-mu-and-the-true-marginal-ratio" class="level3" data-number="12.3.4">
+<h3 data-number="12.3.4" class="anchored" data-anchor-id="summary-five-der-variants-for-mu-and-the-true-marginal-ratio"><span class="header-section-number">12.3.4</span> Summary: five DER variants for <span class="math inline">\(\mu\)</span> and the true marginal ratio</h3>
+<p>The original three-perspective table conflated two distinct quantities under “Conditional DER”: (a) the theoretical formula <span class="math inline">\(\mathrm{DEFF}(1-B)\)</span> from Theorem 3(a), and (b) the empirical value <span class="math inline">\(0.096\)</span> computed from the full-joint sandwich at the posterior mean. These are different quantities because the theoretical formula assumes balanced designs and uses population DEFF and <span class="math inline">\(B\)</span>, while the empirical value is evaluated at the MAP where residuals <span class="math inline">\(\bar{r}_j \approx 0\)</span>. The corrected table below separates all five DER variants (Definition 5b) and the true marginal ratio.</p>
+<div id="tbl-tsl15-perspectives" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tsl15-perspectives-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.1: Five DER variants and the true marginal ratio for <span class="math inline">\(\mu\)</span> in the TSL15 data (<span class="math inline">\(J=117\)</span>, <span class="math inline">\(N=1{,}198\)</span>).
+</figcaption>
+<div aria-describedby="tbl-tsl15-perspectives-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 26%">
+<col style="width: 16%">
+<col style="width: 23%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">DER Variant</th>
+<th style="text-align: left;">Source/Formula</th>
+<th style="text-align: center;">Value</th>
+<th style="text-align: left;">CCC Decision</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(i-a) Cond.-empirical (<span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{emp,joint}}\)</span>)</td>
+<td style="text-align: left;"><span class="math inline">\([\mathbf{V}_{\mathrm{sand}}^{\mathrm{cond}}]_{\mu\mu} / [\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{\mu\mu}\)</span></td>
+<td style="text-align: center;">0.096</td>
+<td style="text-align: left;">Skip</td>
+<td style="text-align: left;">Full-joint sandwich at MAP; residuals <span class="math inline">\(\bar{r}_j \approx 0\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(i-b) Cond.-theoretical (<span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{thm,cond}}\)</span>)</td>
+<td style="text-align: left;"><span class="math inline">\(\mathrm{DEFF}(1-B) = 5.62 \times 0.19\)</span></td>
+<td style="text-align: center;">1.07</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Theoretical balanced formula; uses population <span class="math inline">\(B\)</span> and DEFF</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(ii) Profile</td>
+<td style="text-align: left;"><span class="math inline">\([\mathbf{V}_{\mathrm{sand}}^{\mathrm{profile}}]_{\mu\mu} / [\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{\mu\mu}\)</span></td>
+<td style="text-align: center;">0.95</td>
+<td style="text-align: left;">Skip</td>
+<td style="text-align: left;">Marginalizes <span class="math inline">\(\boldsymbol{\theta}\)</span>, conditions on <span class="math inline">\(\tau^2\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(iii) Marginal</td>
+<td style="text-align: left;"><span class="math inline">\([\mathbf{V}_{\mathrm{sand}}^{\mathrm{marg}}]_{\mu\mu} / [\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{\mu\mu}\)</span></td>
+<td style="text-align: center;">1.21</td>
+<td style="text-align: left;"><strong>Apply</strong></td>
+<td style="text-align: left;">Full Bayesian marginal; includes <span class="math inline">\(\tau^2\)</span> uncertainty</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(iv) CR2-based</td>
+<td style="text-align: left;"><span class="math inline">\(\mathrm{SE}^2_{\mathrm{CR2}} / \mathrm{Var}_{\mathrm{MCMC}}(\mu)\)</span></td>
+<td style="text-align: center;">0.86</td>
+<td style="text-align: left;">Skip</td>
+<td style="text-align: left;">External validation (3-level model)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">True marginal ratio</td>
+<td style="text-align: left;"><span class="math inline">\(B + \mathrm{DEFF}(1-B)\)</span></td>
+<td style="text-align: center;">1.88</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Model-based frequentist benchmark</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><a href="#fig-tsl15-variant-comparison" class="quarto-xref">Figure&nbsp;<span>12.1</span></a> presents the TSL15 DER quantities from <a href="#tbl-tsl15-perspectives" class="quarto-xref">Table&nbsp;<span>12.1</span></a> in graphical form. The left panel juxtaposes the five DER variants alongside the true marginal ratio, making the order-of-magnitude gap between the empirical conditional value (<span class="math inline">\(0.096\)</span>) and the marginal DER (<span class="math inline">\(1.21\)</span>) immediately visible. The right panel maps the key values onto the T0–T4 tier scale from Lee (2026b), reinforcing why the marginal DER — not the conditional variants — is the relevant CCC decision quantity for <span class="math inline">\(\mu\)</span>.</p>
+<div id="fig-tsl15-variant-comparison" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tsl15-variant-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/matlab/fig13_tsl15_variant_comparison.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tsl15-variant-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.1: Reported TSL15 DER quantities for the overall mean. The left panel compares the five DER variants and the true marginal ratio; the right panel places the key values on the T0–T4 tier scale, emphasizing why the marginal DER is the relevant CCC decision quantity for <span class="math inline">\(\mu\)</span> while the study-level effects remain severely under-dispersed.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Key Distinction: Two “Conditional” DER Values for <span class="math inline">\(\mu\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The theoretical formula <span class="math inline">\(\mathrm{DEFF}(1-B) \approx 1.07\)</span> (row i-b) and the empirical full-joint value <span class="math inline">\(0.096\)</span> (row i-a) differ by an order of magnitude. These are fundamentally different quantities (see also <a href="ch07-der-framework.html#tbl-der-variant-xref" class="quarto-xref">Table&nbsp;<span>7.1</span></a> for the consolidated variant taxonomy):</p>
+</div>
+</div>
+<ul>
+<li><p><strong>Theoretical (Thm 3):</strong> Uses population-level DEFF <span class="math inline">\(= 1 + (\bar{n}-1)\rho_{\mathrm{true}}\)</span> and population-level <span class="math inline">\(B = \sigma^2_\theta/(\sigma^2_\theta + \bar{s}^2/n)\)</span>, plugging in REML estimates. The formula is derived under balanced designs and assumes the meat captures the full within-study design effect.</p></li>
+<li><p><strong>Empirical (full-joint):</strong> Evaluates the actual sandwich matrix <span class="math inline">\((\mathbf{H}^{\mathrm{post}})^{-1}\mathbf{M}(\mathbf{H}^{\mathrm{post}})^{-1}\)</span> at the posterior mean. At the MAP, <span class="math inline">\(\hat{\theta}_j \approx B_j(\bar{y}_j - \hat{\mu})\)</span>, so the conditional residual <span class="math inline">\(\bar{y}_j - \hat{\mu} - \hat{\theta}_j \approx (1-B_j)(\bar{y}_j - \hat{\mu})\)</span>, and the meat <span class="math inline">\([\mathbf{M}]_{\mu\mu} \propto \sum_j (1-B_j)^2 r_j^2 \approx (1-B)^2 \sum_j r_j^2\)</span>. The <span class="math inline">\((1-B)^2\)</span> attenuation of the residuals drives the empirical conditional DER to <span class="math inline">\(\approx (1-B)^2 \cdot \mathrm{DEFF} \cdot [\text{bread ratio}] \approx 0.096\)</span>, which is much smaller than the theoretical <span class="math inline">\(\mathrm{DEFF}(1-B) \approx 1.07\)</span> because of the additional <span class="math inline">\((1-B)\)</span> factor in the meat.</p></li>
+</ul>
+<p>For study-specific effects, all variants agree: <span class="math inline">\(\mathrm{DER}_\theta^{\mathrm{cond}} \approx 5.10\)</span> (severely under-dispersed).</p>
+<p><strong>Note on the conditional DER discrepancy.</strong> The value DER<span class="math inline">\(_\mu \approx 1.07\)</span> was computed using the marginal CR2 in the numerator (which was called “DER<span class="math inline">\(_\mu\)</span>” without qualification). The conditional DER<span class="math inline">\(_\mu^{\mathrm{cond}} \approx 0.096\)</span> is computed from the full-joint sandwich (Definition 3b(i)), which is the theoretically correct conditional quantity. These are fundamentally different quantities: the former value was effectively a marginal DER computed with the CR2 sandwich, while the latter is a true conditional DER from the joint model. The Bayesian marginal DER (<span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{marg}} = 1.21\)</span>) is the correct CCC decision criterion.</p>
+<p><strong>Practical conclusion.</strong> Three perspectives on DER<span class="math inline">\(_\mu\)</span> yield different conclusions for the overall mean:</p>
+<ol type="1">
+<li><p><strong>Empirical conditional DER</strong> (full-joint plug-in): <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{emp,joint}} = 0.096 \ll 1\)</span>. This extreme value reflects the conditional-on-<span class="math inline">\(\hat{\boldsymbol{\theta}}\)</span> interpretation — the posterior mean <span class="math inline">\(\hat{\theta}_j\)</span> absorbs the study-level variation, leaving near-zero conditional residuals. The theoretical formula <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{thm,cond}} = \mathrm{DEFF}(1-B) \approx 1.07\)</span> uses population-level quantities and does not suffer from this attenuation. Neither value is a CCC decision quantity.</p></li>
+<li><p><strong>Bayesian marginal DER</strong>: <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{marg}} = 1.21 &gt; 1\)</span>. The marginal sandwich captures the full between-study variation, and the DER exceeds 1, indicating that the posterior should be <strong>widened</strong> by CCC. This is the primary CCC decision criterion for <span class="math inline">\(\boldsymbol{\beta}\)</span>.</p></li>
+<li><p><strong>True marginal ratio</strong> (model-based frequentist): <span class="math inline">\(B + \mathrm{DEFF}(1-B) \approx 1.88\)</span>. The true variance ratio is even larger, indicating that the marginal sandwich still under-estimates the total variance relative to the true DGP. The 1.88/1.21 gap arises because the sandwich is evaluated at a single posterior point (<span class="math inline">\(\hat{\boldsymbol{\xi}}\)</span>) rather than averaged over the true distribution, and from finite-sample deviations of <span class="math inline">\(\hat{Q}/(Jv)\)</span> from its expectation.</p></li>
+</ol>
+<p>For the study-specific effects <span class="math inline">\(\theta_j\)</span>, all three perspectives agree: the posterior credible intervals are far too narrow (<span class="math inline">\(\mathrm{DER}_\theta^{\mathrm{cond}} \approx 5.1\)</span>), and CCC correction (or equivalently, forest plot interval widening) is warranted.</p>
+</section>
+<section id="sec-v2-empirical-confirmation" class="level3" data-number="12.3.5">
+<h3 data-number="12.3.5" class="anchored" data-anchor-id="sec-v2-empirical-confirmation"><span class="header-section-number">12.3.5</span> Empirical Confirmation</h3>
+<p>The conditional-vs-marginal distinction was confirmed empirically using a custom Stan pipeline and extended with the Bayesian marginal sandwich. Using the TSL15 data with the CE model and (E2)-specification (<span class="math inline">\(\bar{s}_j^2\)</span> as the within-study variance):</p>
+<div id="tbl-v2-verification" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-v2-verification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.2: Empirical verification of sandwich estimators, annotated with sandwich variant taxonomy (Definition 3b).
+</figcaption>
+<div aria-describedby="tbl-v2-verification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 43%">
+<col style="width: 18%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Quantity</th>
+<th style="text-align: center;">Variant (Def. 3b)</th>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\mathrm{SD}_{\mathrm{MCMC}}(\mu)\)</span></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: left;">Posterior SD from MCMC draws</td>
+<td style="text-align: left;">0.0222</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\mathrm{SD}_{\mathrm{sand}}^{\mathrm{cond}}(\mu)\)</span></td>
+<td style="text-align: center;">(i)</td>
+<td style="text-align: left;">Full-joint analytical sandwich <span class="math inline">\(\sqrt{[\mathbf{V}_{\mathrm{sand}}]_{\mu\mu}}\)</span></td>
+<td style="text-align: left;">0.0069</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\mathrm{SD}_{\mathrm{sand}}^{\mathrm{profile}}(\mu)\)</span></td>
+<td style="text-align: center;">(ii)</td>
+<td style="text-align: left;">Profile sandwich (<span class="math inline">\(\tau^2\)</span> fixed)</td>
+<td style="text-align: left;">0.0216</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\mathrm{SD}_{\mathrm{sand}}^{\mathrm{marg}}(\mu)\)</span></td>
+<td style="text-align: center;">(iii)</td>
+<td style="text-align: left;">Bayesian marginal sandwich (<span class="math inline">\(\boldsymbol{\beta}, \tau^2\)</span>)</td>
+<td style="text-align: left;">0.0244</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\mathrm{SE}_{\mathrm{CR2}}(\mu)\)</span></td>
+<td style="text-align: center;">(iv)</td>
+<td style="text-align: left;">Marginal CR2 via <code>clubSandwich</code> (3-level)</td>
+<td style="text-align: left;">0.0206</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{cond}}\)</span></td>
+<td style="text-align: center;">(i)</td>
+<td style="text-align: left;"><span class="math inline">\([\mathbf{V}_{\mathrm{sand}}^{\mathrm{cond}}]_{\mu\mu} / [\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{\mu\mu}\)</span></td>
+<td style="text-align: left;">0.096</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{profile}}\)</span></td>
+<td style="text-align: center;">(ii)</td>
+<td style="text-align: left;"><span class="math inline">\([\mathbf{V}_{\mathrm{sand}}^{\mathrm{profile}}]_{\mu\mu} / [\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{\mu\mu}\)</span></td>
+<td style="text-align: left;">0.95</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{marg}}\)</span></td>
+<td style="text-align: center;">(iii)</td>
+<td style="text-align: left;"><span class="math inline">\([\mathbf{V}_{\mathrm{sand}}^{\mathrm{marg}}]_{\mu\mu} / [\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{\mu\mu}\)</span></td>
+<td style="text-align: left;">1.21</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{CR2}}\)</span></td>
+<td style="text-align: center;">(iv)</td>
+<td style="text-align: left;"><span class="math inline">\(\mathrm{SE}^2_{\mathrm{CR2}} / \mathrm{Var}_{\mathrm{MCMC}}(\mu)\)</span></td>
+<td style="text-align: left;">0.86</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The full-joint conditional sandwich gives <span class="math inline">\(\mathrm{SD}_{\mathrm{sand}}^{\mathrm{cond}}(\mu) = 0.0069\)</span>, approximately one-third of the marginal CR2 value <span class="math inline">\(\mathrm{SE}_{\mathrm{CR2}}(\mu) = 0.0206\)</span>. This 3:1 ratio is precisely what the theory predicts: the full-joint scores <span class="math inline">\(\mathbf{s}_j^{\mu}\)</span> are evaluated at the posterior mean where <span class="math inline">\(\hat{\theta}_j\)</span> has absorbed the study-level variation, so the residuals <span class="math inline">\(\bar{r}_j \approx 0\)</span> and the meat <span class="math inline">\([\mathbf{M}]_{\mu\mu} \approx 0\)</span>.</p>
+<p><strong>Bayesian marginal sandwich resolves the conditional gap.</strong> The Bayesian marginal sandwich <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{marg}}\)</span> (<a href="ch05-sandwich.html#sec-remark-marginal-sandwich" class="quarto-xref"><span>Section 5.4.2</span></a>) analytically integrates out <span class="math inline">\(\boldsymbol{\theta}\)</span> and operates on the <span class="math inline">\((K+1)\)</span>-dimensional parameter <span class="math inline">\((\boldsymbol{\beta}, \tau^2)\)</span>. This yields <span class="math inline">\(\mathrm{SD}_{\mathrm{sand}}^{\mathrm{marg}}(\mu) = 0.0244\)</span> with <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{marg}} = 1.21 &gt; 1\)</span>, indicating that the <span class="math inline">\(\boldsymbol{\beta}\)</span>-block CCC should be <strong>applied</strong> (widening the posterior). The profile sandwich (fixing <span class="math inline">\(\tau^2\)</span>) gives <span class="math inline">\(\mathrm{SD}_{\mathrm{sand}}^{\mathrm{profile}}(\mu) = 0.0216\)</span> with <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{profile}} = 0.95\)</span>, which is within 5.1% of the CR2 value.</p>
+<p>The 18.5% gap between the Bayesian marginal sandwich (<span class="math inline">\(0.0244\)</span>) and CR2 (<span class="math inline">\(0.0206\)</span>) arises because the Stan model is 2-level (only <span class="math inline">\(\tau^2\)</span>), while metafor’s <code>rma.mv()</code> fits a 3-level model with separate <span class="math inline">\(\tau^2\)</span> and <span class="math inline">\(\omega^2\)</span> components. When the profile sandwich conditions on <span class="math inline">\(\tau^2\)</span>, it effectively matches the marginal structure of the 3-level CR2 model, hence the close agreement.</p>
+<p><strong>DER decision change.</strong> This update reverses the earlier conclusion. Previously, using the CR2-based <span class="math inline">\(\mathrm{DER}_\mu = 0.86 &lt; 1\)</span>, the <span class="math inline">\(\boldsymbol{\beta}\)</span>-block CCC was skipped. With the Bayesian marginal sandwich <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{marg}} = 1.21 &gt; 1\)</span>, the CCC is now applied, widening the posterior credible interval for <span class="math inline">\(\mu\)</span>. This is the more defensible approach: the purely Bayesian pipeline captures the misspecification signal that the sandwich-to-posterior ratio exceeds 1 when the random effects are properly marginalized.</p>
+<p><strong>Note on (E2) specification effect.</strong> The custom Stan model uses the exact (E2) specification with <span class="math inline">\(\bar{s}_j^2\)</span> (study-average sampling variance), which is wider than a brms model that uses individual-level <span class="math inline">\(s_{ij}^2\)</span>. This widening causes <span class="math inline">\(\mathrm{SD}_{\mathrm{MCMC}}(\mu) = 0.0222 &gt; \mathrm{SE}_{\mathrm{CR2}}(\mu) = 0.0206\)</span>, yielding <span class="math inline">\(\mathrm{DER}_\mu(\mathrm{CR2}) = 0.86 &lt; 1\)</span>. With the Bayesian marginal sandwich as the primary approach, this CR2-based comparison serves as <strong>external validation</strong> rather than the CCC decision criterion.</p>
+</section>
+</section>
+<section id="sec-marginal-sandwich-contribution" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="sec-marginal-sandwich-contribution"><span class="header-section-number">12.4</span> The Bayesian Marginal Sandwich as a Methodological Contribution</h2>
+<p>The development of the Bayesian marginal sandwich (Definition 3a, <a href="ch05-sandwich.html#sec-remark-marginal-sandwich" class="quarto-xref"><span>Section 5.4.2</span></a>) and the associated sandwich variant taxonomy (Definition 3b, <a href="ch05-sandwich.html#sec-sandwich-taxonomy" class="quarto-xref"><span>Section 5.4.3</span></a>) represents a methodological contribution that resolves a fundamental tension in the Bayesian CCC framework for hierarchical models.</p>
+<p><strong>The problem.</strong> The original Williams–Savitsky (2021) CCC framework was developed for single-level Bayesian survey models where the sandwich naturally targets the marginal variance of the fixed effects. In hierarchical meta-analytic models with study-specific random effects <span class="math inline">\(\boldsymbol{\theta}\)</span>, the full-joint sandwich <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{cond}}\)</span> produces a <span class="math inline">\(\boldsymbol{\beta}\)</span>-block that is <strong>conditional</strong> on <span class="math inline">\(\hat{\boldsymbol{\theta}}\)</span> and near zero — a technically correct but inferentially useless quantity for CCC of the fixed effects. An initial approach relied on the frequentist CR2 estimator from <code>clubSandwich</code> as a surrogate marginal sandwich, creating an awkward dependency on an external frequentist tool within a Bayesian pipeline.</p>
+<p><strong>The resolution.</strong> By analytically integrating out <span class="math inline">\(\boldsymbol{\theta}\)</span> from the CE likelihood before constructing the sandwich, the Bayesian marginal sandwich provides a <span class="math inline">\((K+1)\)</span>-dimensional sandwich for <span class="math inline">\((\boldsymbol{\beta}, \tau^2)\)</span> that:</p>
+<ol type="1">
+<li>captures the full between-study variation in the residuals,</li>
+<li>uses only ingredients from the Bayesian model (marginal scores, marginal Hessian, posterior draws),</li>
+<li>produces a well-defined DER (<span class="math inline">\(\mathrm{DER}_k^{\mathrm{marg}}\)</span>, Definition 5b) that serves as the CCC decision criterion, and</li>
+<li>eliminates the need for external frequentist tools in the CCC pipeline.</li>
+</ol>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Proposition (Sandwich Variance Ordering)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the balanced intercept-only CE model with weakly informative priors, the four sandwich variance estimates for <span class="math inline">\(\mu\)</span> satisfy: <span id="eq-variance-ordering-prop"><span class="math display">\[
+V_{\mathrm{sand},\mu\mu}^{\mathrm{cond}} \;\leq\; V_{\mathrm{sand},\mu\mu}^{\mathrm{profile}} \;\leq\; V_{\mathrm{sand},\mu\mu}^{\mathrm{marg}},
+\tag{12.16}\]</span></span> with <span class="math inline">\(V_{\mathrm{sand},\mu\mu}^{\mathrm{cond}} / V_{\mathrm{sand},\mu\mu}^{\mathrm{marg}} = \mathrm{O}((1-B)^2)\)</span> as <span class="math inline">\(B \to 1\)</span>.</p>
+</div>
+</div>
+<p><em>Proof sketch.</em> (i) The conditional meat uses residuals <span class="math inline">\((1-B)r_j\)</span>, so <span class="math inline">\(M_{\mu\mu}^{\mathrm{cond}} \propto (1-B)^2 \sum_j r_j^2\)</span>. The marginal meat uses full residuals <span class="math inline">\(r_j\)</span>, so <span class="math inline">\(M_{\mu\mu}^{\mathrm{marg}} \propto \sum_j r_j^2\)</span>. The ratio <span class="math inline">\(M_{\mu\mu}^{\mathrm{cond}} / M_{\mu\mu}^{\mathrm{marg}} = (1-B)^2\)</span>. (ii) The bread matrices differ (conditional uses <span class="math inline">\((K+J)\)</span>-dim posterior Hessian, marginal uses <span class="math inline">\((K+1)\)</span>-dim), but the <span class="math inline">\(\mu\mu\)</span> entry of the inverse bread scales as <span class="math inline">\(v/J\)</span> for the marginal and <span class="math inline">\(\bar{s}^2/(nJ)\)</span> for the conditional (ignoring prior terms). The bread ratio is <span class="math inline">\((\bar{s}^2/n)/v = 1 - B\)</span>. Combined: <span class="math inline">\(V^{\mathrm{cond}}/V^{\mathrm{marg}} \sim (1-B)^2 \cdot (1-B)^{-2} \cdot [\text{bread shape}]\)</span>. The exact ratio depends on the cross-block Hessian structure but scales as <span class="math inline">\((1-B)^2\)</span> in the dominant meat term. (iii) The profile-to-marginal gap is due only to the <span class="math inline">\(\tau^2\)</span> uncertainty propagation through the off-diagonal Hessian blocks (see <a href="ch05-sandwich.html#eq-profile-marginal-relation" class="quarto-xref">Equation&nbsp;<span>5.22</span></a>), which is a positive correction. <span class="math inline">\(\square\)</span></p>
+<p><strong>The taxonomy.</strong> The four-variant sandwich taxonomy (Definition 3b) organizes the conditional, profile, marginal, and CR2 sandwiches into a coherent hierarchy ordered by degree of conditioning. Each variant answers a distinct inferential question, and the CCC block-to-variant mapping (<a href="ch06-posterior-ccc.html#tbl-block-variant-map" class="quarto-xref">Table&nbsp;<span>6.1</span></a>) specifies which variant is used for each CCC block. This systematic organization replaces the earlier ad hoc approach with a principled framework.</p>
+<p>The preceding analysis — from the structural insight through the five-variant DER taxonomy and the Bayesian marginal sandwich contribution — establishes the theoretical foundation for principled CCC decisions. The following recommendations translate these findings into a practical workflow that applied meta-analysts can adopt directly.</p>
+</section>
+<section id="sec-recommendations" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="sec-recommendations"><span class="header-section-number">12.5</span> Recommendations for Practice</h2>
+<p>Based on the theoretical analysis and the TSL15 illustration, we offer the following recommendations for practitioners applying the DER/CCC framework to Bayesian meta-analysis with dependent effect sizes.</p>
+<section id="sec-rec1" class="level3" data-number="12.5.1">
+<h3 data-number="12.5.1" class="anchored" data-anchor-id="sec-rec1"><span class="header-section-number">12.5.1</span> Recommendation 1: Always report DER alongside meta-analytic output</h3>
+<p>The DER provides a per-parameter diagnostic for working-model misspecification that is unavailable from standard meta-analytic output. The DER variant taxonomy (Definition 5b, <a href="ch07-der-framework.html#sec-def-der-taxonomy" class="quarto-xref"><span>Section 7.1.2.1</span></a>) identifies four distinct quantities; at minimum, report:</p>
+<ul>
+<li><strong>DER<span class="math inline">\(_\mu^{\mathrm{marg}}\)</span></strong> (variant (iii)): the Bayesian marginal DER for the overall mean. This is the <strong>primary CCC decision criterion</strong> for <span class="math inline">\(\boldsymbol{\beta}\)</span> (see Definition 3a, <a href="ch05-sandwich.html#sec-remark-marginal-sandwich" class="quarto-xref"><span>Section 5.4.2</span></a>).</li>
+<li><strong>DER<span class="math inline">\(_\mu^{\mathrm{cond}}\)</span></strong> (variant (i)): the conditional DER <span class="math inline">\(\mathrm{DEFF}(1-B)\)</span> for the overall mean. This is the <strong>theoretical decomposition diagnostic</strong> from Theorem 3(a) and the conservation law (Theorem 3(c)).</li>
+<li><strong>Mean and range of DER<span class="math inline">\(_\theta^{\mathrm{cond}}\)</span></strong> (variant (i)): the conditional design-effect diagnostic for study-specific effects. This is the only DER variant available for <span class="math inline">\(\boldsymbol{\theta}\)</span>.</li>
+<li><strong>DER<span class="math inline">\(_{\beta_k}^{\mathrm{marg}}\)</span></strong> (variant (iii)): for each meta-regression coefficient (if applicable).</li>
+<li><strong>DER<span class="math inline">\(_\mu^{\mathrm{CR2}}\)</span></strong> (variant (iv), optional): the CR2-based DER as an <strong>external validation</strong> benchmark.</li>
+</ul>
+<p>These diagnostics should be reported alongside standard output (forest plot, posterior summaries, heterogeneity estimates) to give readers a sense of how sensitive the posterior is to the within-study working correlation assumption. The marginal DER is the primary CCC decision criterion for <span class="math inline">\(\boldsymbol{\beta}\)</span>, replacing the CR2-based DER.</p>
+</section>
+<section id="sec-rec2" class="level3" data-number="12.5.2">
+<h3 data-number="12.5.2" class="anchored" data-anchor-id="sec-rec2"><span class="header-section-number">12.5.2</span> Recommendation 2: Interpret the DER taxonomy correctly</h3>
+<p>The conditional DER<span class="math inline">\(_\mu^{\mathrm{cond}} = \mathrm{DEFF}(1-B)\)</span> is a design-based diagnostic that answers: “How much does the within-study design effect inflate (or deflate) the posterior variance of <span class="math inline">\(\mu\)</span>, after accounting for hierarchical shrinkage?” It does <strong>not</strong> serve as a CCC decision criterion. The <strong>marginal DER</strong> <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{marg}}\)</span> from the Bayesian marginal sandwich (Definition 5b(iii)) is the CCC decision quantity.</p>
+<p>The three DER quantities for <span class="math inline">\(\mu\)</span> answer different questions:</p>
+<ul>
+<li><strong><span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{cond}} = \mathrm{DEFF}(1-B)\)</span></strong> (conditional): “What is the within-study design effect on <span class="math inline">\(\mu\)</span> conditional on <span class="math inline">\(\hat{\boldsymbol{\theta}}\)</span>?” Answers the theoretical decomposition question (Theorem 3). Typically <span class="math inline">\(\ll 1\)</span> for <span class="math inline">\(\mu\)</span> when <span class="math inline">\(B\)</span> is large.</li>
+<li><strong><span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{marg}}\)</span></strong> (Bayesian marginal): “Is the posterior for <span class="math inline">\(\mu\)</span> well-calibrated relative to the marginal sandwich?” This is the <strong>CCC decision criterion</strong>. Values <span class="math inline">\(&gt; 1\)</span> trigger CCC widening; values <span class="math inline">\(&lt; 1\)</span> indicate the posterior is already conservative.</li>
+<li><strong><span class="math inline">\(B + \mathrm{DEFF}(1-B)\)</span></strong> (total variance ratio): “Is the posterior for <span class="math inline">\(\mu\)</span> correctly calibrated in the frequentist sense?” Always <span class="math inline">\(\geq \max(\mathrm{DER}_\mu^{\mathrm{marg}}, 1)\)</span> and captures the full model-plus-design inflation.</li>
+</ul>
+<p>Specifically:</p>
+<ul>
+<li><strong><span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{marg}} &gt; 1\)</span></strong>: The posterior for <span class="math inline">\(\mu\)</span> is under-dispersed relative to the marginal sandwich target. Apply CCC to widen.</li>
+<li><strong><span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{marg}} \in [0.9, 1.0]\)</span></strong>: The posterior is approximately calibrated at the marginal level. No CCC needed.</li>
+<li><strong><span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{marg}} &lt; 0.9\)</span></strong>: The posterior is already wider than the marginal sandwich target. Do <strong>not</strong> apply automatic CCC narrowing. See Recommendation 5.</li>
+</ul>
+</section>
+<section id="sec-rec3" class="level3" data-number="12.5.3">
+<h3 data-number="12.5.3" class="anchored" data-anchor-id="sec-rec3"><span class="header-section-number">12.5.3</span> Recommendation 3: Widen forest plot intervals when DER<span class="math inline">\(_\theta &gt; 1\)</span></h3>
+<p>In virtually all meta-analytic applications with dependent effect sizes, DER<span class="math inline">\(_\theta^{\mathrm{cond}} &gt; 1\)</span> — often substantially so (DER<span class="math inline">\(_\theta \approx 5\)</span> in the TSL15 example). This means the model-based posterior credible intervals for study-specific effects <span class="math inline">\(\theta_j\)</span> are too narrow.</p>
+<p><strong>Action.</strong> Apply the CCC correction to the study-specific effect posteriors. The corrected 95% credible interval for <span class="math inline">\(\theta_j\)</span> will be approximately <span class="math inline">\(\sqrt{\mathrm{DER}_j^{\mathrm{cond}}}\)</span> times wider than the uncorrected interval. For the TSL15 data, this means widening by a factor of approximately <span class="math inline">\(\sqrt{5.1} \approx 2.3\)</span>.</p>
+<p><strong>Note on conditional vs.&nbsp;marginal correction.</strong> The factor <span class="math inline">\(\sqrt{\mathrm{DER}_j^{\mathrm{cond}}}\)</span> is the conditional-on-<span class="math inline">\(\boldsymbol{\beta}\)</span> correction. Forest plots typically display <strong>marginal</strong> posterior intervals for <span class="math inline">\(\theta_j\)</span> (integrating over <span class="math inline">\(\boldsymbol{\beta}\)</span>). For large <span class="math inline">\(J\)</span>, the coupling factor <span class="math inline">\(\kappa_j(J) \approx 1\)</span> and the marginal DER is approximately equal to the conditional DER, so the distinction is negligible. For small <span class="math inline">\(J\)</span> (e.g., <span class="math inline">\(J &lt; 30\)</span>), the balanced-design marginal factor should be treated as a <strong>scalar sensitivity adjustment</strong> unless a full marginal random-effect sandwich has been explicitly constructed; see Definition 8 for the coupling factor formula.</p>
+<p><strong>Note on balance assumption.</strong> The closed-form formula <span class="math inline">\(\kappa_j(J) = 1 - [J(1-B_j) + B_j]^{-1}\)</span> stated in Definition 8 is <strong>exact in balanced designs</strong> (<span class="math inline">\(n_j = n\)</span>, <span class="math inline">\(\bar{s}_j^2 = \bar{s}^2\)</span> for all <span class="math inline">\(j\)</span>). In unbalanced designs, the marginal posterior variance of <span class="math inline">\(\theta_j\)</span> depends on the full precision schedule <span class="math inline">\(\{a_h = n_h/\bar{s}_h^2\}_{h=1}^J\)</span>, and <span class="math inline">\(\kappa_j(J)\)</span> is an approximation (see the scope note at Definition 8). For highly unbalanced meta-analyses, the conditional DER <span class="math inline">\(B_j \cdot \mathrm{DEFF}_j\)</span> remains exact and may be the more reliable correction target.</p>
+<p>Forest plots displaying uncorrected credible intervals for study-specific effects will systematically overstate the precision of individual study estimates, potentially leading to misleading visual impressions of heterogeneity and study-level significance.</p>
+</section>
+<section id="sec-rec4" class="level3" data-number="12.5.4">
+<h3 data-number="12.5.4" class="anchored" data-anchor-id="sec-rec4"><span class="header-section-number">12.5.4</span> Recommendation 4: Use <span class="math inline">\(N_{\mathrm{eff}}\)</span> as an interpretive aid</h3>
+<p>The design-effective sample size <span class="math display">\[
+N_{\mathrm{eff}}^{\mathrm{design}}(\beta_k) = \frac{N}{\mathrm{DER}_{\beta_k}}
+\]</span> provides an intuitive summary of the information content in the meta-analytic sample. Report <span class="math inline">\(N_{\mathrm{eff}}\)</span> alongside <span class="math inline">\(N\)</span> to communicate the practical impact of within-study dependence.</p>
+<p>For the TSL15 data, the effective sample size depends on which DER variant is used:</p>
+<div id="tbl-neff-variants" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-neff-variants-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.3: Design-effective sample size under different DER variants for TSL15.
+</figcaption>
+<div aria-describedby="tbl-neff-variants-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 22%">
+<col style="width: 46%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">DER Variant</th>
+<th style="text-align: center;"><span class="math inline">\(\mathrm{DER}_\mu\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(N_{\mathrm{eff}}^{\mathrm{design}}(\mu)\)</span></th>
+<th style="text-align: left;">Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Conditional (i)</td>
+<td style="text-align: center;">0.096</td>
+<td style="text-align: center;">12,479</td>
+<td style="text-align: left;">Spuriously large (<span class="math inline">\(\hat{\theta}_j\)</span> absorbs variation)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Profile (ii)</td>
+<td style="text-align: center;">0.95</td>
+<td style="text-align: center;">1,261</td>
+<td style="text-align: left;">Near-full efficiency (conditions on <span class="math inline">\(\tau^2\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marginal (iii)</td>
+<td style="text-align: center;">1.21</td>
+<td style="text-align: center;">990</td>
+<td style="text-align: left;">Effective sample &lt; nominal <span class="math inline">\(N\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CR2-based (iv)</td>
+<td style="text-align: center;">0.86</td>
+<td style="text-align: center;">1,393</td>
+<td style="text-align: left;">3-level model estimate</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The recommended <span class="math inline">\(N_{\mathrm{eff}}\)</span> uses the <strong>marginal DER</strong>: <span class="math inline">\(N_{\mathrm{eff}}^{\mathrm{design}}(\mu) = 1{,}198/1.21 \approx 990\)</span> effective observations. This is the most conservative (smallest) among the non-conditional variants, reflecting the full uncertainty including <span class="math inline">\(\tau^2\)</span> estimation. For study-specific effects, <span class="math inline">\(N_{\mathrm{eff}}\)</span> is much smaller due to the large <span class="math inline">\(\mathrm{DER}_\theta^{\mathrm{cond}} \approx 5.1\)</span>.</p>
+</section>
+<section id="sec-rec5" class="level3" data-number="12.5.5">
+<h3 data-number="12.5.5" class="anchored" data-anchor-id="sec-rec5"><span class="header-section-number">12.5.5</span> Recommendation 5: CCC decision logic for <span class="math inline">\(\boldsymbol{\beta}\)</span> via the DER taxonomy</h3>
+<p>The CCC decision for <span class="math inline">\(\boldsymbol{\beta}\)</span> depends critically on <strong>which</strong> sandwich variant defines the DER. The DER variant taxonomy (Definition 5b, <a href="ch07-der-framework.html#sec-def-der-taxonomy" class="quarto-xref"><span>Section 7.1.2.1</span></a>) distinguishes four quantities; the following decision logic uses the <strong>Bayesian marginal DER</strong> (<span class="math inline">\(\mathrm{DER}_k^{\mathrm{marg}}\)</span>, variant (iii)) as the primary criterion.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Algorithm: CCC Decision Flowchart for <span class="math inline">\(\boldsymbol{\beta}\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Input:</strong> MCMC draws <span class="math inline">\(\{\boldsymbol{\beta}^{(s)}\}_{s=1}^S\)</span>, posterior covariance <span class="math inline">\(\boldsymbol{\Sigma}_{\mathrm{MCMC}}\)</span>, data <span class="math inline">\(\{(\bar{y}_j, \mathbf{\bar{x}}_j, \bar{s}_j^2, n_j)\}_{j=1}^J\)</span>.</p>
+<p><strong>Output:</strong> Decision (apply CCC / skip CCC) and, if applied, corrected draws <span class="math inline">\(\{\boldsymbol{\beta}^{*(s)}\}\)</span>.</p>
+<p><strong>Step 1.</strong> Compute the Bayesian marginal sandwich <span class="math inline">\(\mathbf{V}_{\mathrm{sand}}^{\mathrm{marg}}\)</span> (Definition 3a, <a href="ch05-sandwich.html#sec-remark-marginal-sandwich" class="quarto-xref"><span>Section 5.4.2</span></a>) <strong>when the coefficient of interest lies in the intercept / study-level-covariate setting covered by the cluster-mean closed form</strong>. For coefficients with substantial within-study-varying covariate structure, use the full multivariate marginal sandwich if available; otherwise use the profile or CR2 variant as the operational benchmark.</p>
+<p><strong>Step 2.</strong> Compute <span class="math inline">\(\mathrm{DER}_k^{\mathrm{marg}} = [\mathbf{V}_{\mathrm{sand}}^{\mathrm{marg}}]_{kk} / [\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{kk}\)</span> for each <span class="math inline">\(\beta_k\)</span>.</p>
+<p><strong>Step 3.</strong> Apply the classification:</p>
+<ul>
+<li><span class="math inline">\(\mathrm{DER}_k^{\mathrm{marg}} &gt; 1\)</span>: Apply CCC to <strong>widen</strong> the posterior. The posterior is under-dispersed relative to the marginal sandwich target.</li>
+<li><span class="math inline">\(\mathrm{DER}_k^{\mathrm{marg}} \in [0.9, 1.0]\)</span>: No CCC needed. The posterior is approximately calibrated.</li>
+<li><span class="math inline">\(\mathrm{DER}_k^{\mathrm{marg}} &lt; 0.9\)</span>: Do <strong>not</strong> apply automatic CCC narrowing. Report the DER as a diagnostic. See below.</li>
+</ul>
+<p><strong>Step 4 (validation).</strong> Compute <span class="math inline">\(\mathrm{DER}_k^{\mathrm{CR2}}\)</span> (variant (iv)) as an external check on the marginal sandwich. If <span class="math inline">\(|\mathrm{DER}_k^{\mathrm{marg}} - \mathrm{DER}_k^{\mathrm{CR2}}| / \mathrm{DER}_k^{\mathrm{CR2}} &gt; 0.25\)</span>, investigate the model-level discrepancy (e.g., 2-level vs.&nbsp;3-level specification).</p>
+</div>
+</div>
+<p><strong>Why the Bayesian marginal DER is the primary criterion.</strong> In the intercept / study-level-covariate setting covered by Definition 3a, the marginal sandwich captures the full between-study variation in the residuals <span class="math inline">\(r_j = \bar{y}_j - \mathbf{\bar{x}}_j^{\intercal}\hat{\boldsymbol{\beta}}\)</span>, including the <span class="math inline">\(\tau^2\)</span> component that the conditional sandwich misses. This makes <span class="math inline">\(\mathrm{DER}_k^{\mathrm{marg}}\)</span> the most informative single diagnostic for whether the posterior is well-calibrated at the marginal level. For the TSL15 data, <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{marg}} = 1.21 &gt; 1\)</span>, and the <span class="math inline">\(\boldsymbol{\beta}\)</span>-block CCC is applied (widening the posterior).</p>
+<p><strong>When marginal DER<span class="math inline">\(_\mu &lt; 1\)</span>.</strong> The CCC correction would <strong>narrow</strong> the posterior credible interval for <span class="math inline">\(\mu\)</span>. This can occur when the (E2) specification already widens the posterior beyond the marginal sandwich target. In this case:</p>
+<ol type="1">
+<li><strong>Report DER<span class="math inline">\(_\mu^{\mathrm{marg}}\)</span> as a diagnostic quantity</strong> — it shows that the posterior is already wider than the marginal sandwich target.</li>
+<li><strong>Do not apply automatic CCC narrowing</strong> to <span class="math inline">\(\mu\)</span> when DER<span class="math inline">\(_\mu^{\mathrm{marg}} &lt; 1\)</span>.</li>
+<li><strong>Report the total variance ratio</strong> <span class="math inline">\(B + \mathrm{DEFF}(1-B)\)</span> as a complementary diagnostic from the model-based frequentist perspective.</li>
+<li><strong>Use the uncorrected posterior interval for <span class="math inline">\(\mu\)</span></strong> as the default when DER<span class="math inline">\(_\mu^{\mathrm{marg}} &lt; 1\)</span>, since narrowing would worsen frequentist coverage.</li>
+</ol>
+<p><strong>Why bracketing fails.</strong> The total model-based frequentist variance ratio is <span class="math inline">\(B + \mathrm{DEFF}(1-B)\)</span>, which can exceed 1 even when <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{marg}} &lt; 1\)</span>. In such cases, both the uncorrected posterior interval and the CCC-corrected interval are <strong>narrower</strong> than the true frequentist interval.</p>
+<p><strong>Role of each DER variant in interpretation.</strong> The following table summarizes which DER variant answers which question:</p>
+<div id="tbl-der-variant-roles" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-der-variant-roles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.4: Role of each DER variant.
+</figcaption>
+<div aria-describedby="tbl-der-variant-roles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 27%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">DER Variant</th>
+<th style="text-align: left;">Notation</th>
+<th style="text-align: left;">Primary Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(i) Conditional</td>
+<td style="text-align: left;"><span class="math inline">\(\mathrm{DER}_k^{\mathrm{thm,cond}}\)</span> (or empirical conditional plug-in, if explicitly stated)</td>
+<td style="text-align: left;">Theorem 3 decomposition; conservation law; <span class="math inline">\(\boldsymbol{\theta}\)</span>-block CCC</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(ii) Profile</td>
+<td style="text-align: left;"><span class="math inline">\(\mathrm{DER}_k^{\mathrm{profile}}\)</span></td>
+<td style="text-align: left;">Approximate match to CR2; conditions on <span class="math inline">\(\tau^2\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(iii) Marginal</td>
+<td style="text-align: left;"><span class="math inline">\(\mathrm{DER}_k^{\mathrm{marg}}\)</span></td>
+<td style="text-align: left;"><strong>Primary CCC decision criterion</strong> for <span class="math inline">\(\boldsymbol{\beta}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(iv) CR2-based</td>
+<td style="text-align: left;"><span class="math inline">\(\mathrm{DER}_k^{\mathrm{CR2}}\)</span></td>
+<td style="text-align: left;">External validation benchmark</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Note on the conditional DER.</strong> Two distinct “conditional DER” values arise for <span class="math inline">\(\mu\)</span> and must not be conflated:</p>
+<ul>
+<li><strong>Empirical plug-in ratio</strong>: <span class="math inline">\([\mathbf{V}_{\mathrm{sand}}^{\mathrm{cond}}]_{\mu\mu}/[\boldsymbol{\Sigma}_{\mathrm{MCMC}}]_{\mu\mu} \approx 0.096\)</span> (TSL15). This is the actual full-joint sandwich ratio at the MAP, where conditional residuals are near zero.</li>
+<li><strong>Theoretical formula</strong>: <span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{thm,cond}} = \mathrm{DEFF}(1-B) \approx 5.62 \times 0.19 \approx 1.07\)</span>. This is the design-based decomposition from Theorem 3(a) using population-level quantities.</li>
+</ul>
+<p>The empirical plug-in value (<span class="math inline">\(0.096\)</span>) is typically far below 1 and should <strong>not</strong> be used for the CCC decision on <span class="math inline">\(\mu\)</span>. The theorem-level conditional value (<span class="math inline">\(1.07\)</span>) is meaningful as the design-based diagnostic and for the conservation law (Theorem 3(c)). The marginal DER (<span class="math inline">\(\mathrm{DER}_\mu^{\mathrm{marg}} = 1.21\)</span>) is the CCC decision criterion in the scope covered by Definition 3a. See <a href="#tbl-tsl15-perspectives" class="quarto-xref">Table&nbsp;<span>12.1</span></a> for the complete five-variant comparison.</p>
+</section>
+<section id="sec-rec6" class="level3" data-number="12.5.6">
+<h3 data-number="12.5.6" class="anchored" data-anchor-id="sec-rec6"><span class="header-section-number">12.5.6</span> Recommendation 6: The DER tier classification (T0–T4)</h3>
+<p>To aid interpretation, we restate the DER classification from <a href="ch07-der-framework.html" class="quarto-xref"><span>Chapter 7</span></a>, with a focus on the overall mean <span class="math inline">\(\mu\)</span>:</p>
+<div id="tbl-der-tiers-mu" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-der-tiers-mu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.5: DER tier classification <span class="citation" data-cites="LeeDER2026">(<a href="#ref-LeeDER2026" role="doc-biblioref">Lee 2026</a>)</span>. T0–T4 thresholds are 0.95/1.05/2.0/4.0; see also <a href="ch07-der-framework.html#tbl-der-tiers" class="quarto-xref">Table&nbsp;<span>7.2</span></a> for the general classification.
+</figcaption>
+<div aria-describedby="tbl-der-tiers-mu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 34%">
+<col style="width: 21%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Tier</th>
+<th style="text-align: center;">DER Range</th>
+<th style="text-align: left;">Label</th>
+<th style="text-align: left;">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">T0</td>
+<td style="text-align: center;"><span class="math inline">\(&lt; 0.95\)</span></td>
+<td style="text-align: left;">Over-dispersed</td>
+<td style="text-align: left;">Posterior wider than design warrants; do not narrow automatically; inspect model</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T1</td>
+<td style="text-align: center;"><span class="math inline">\([0.95, 1.05]\)</span></td>
+<td style="text-align: left;">Calibrated</td>
+<td style="text-align: left;">Working model adequate; no correction needed</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T2</td>
+<td style="text-align: center;"><span class="math inline">\((1.05, 2.0]\)</span></td>
+<td style="text-align: left;">Mild</td>
+<td style="text-align: left;">Report DER; CCC optional</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T3</td>
+<td style="text-align: center;"><span class="math inline">\((2.0, 4.0]\)</span></td>
+<td style="text-align: left;">Moderate</td>
+<td style="text-align: left;">Apply CCC; report both intervals</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T4</td>
+<td style="text-align: center;"><span class="math inline">\(&gt; 4.0\)</span></td>
+<td style="text-align: left;">Severe</td>
+<td style="text-align: left;">CCC essential; consider model respecification</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>For study-specific effects <span class="math inline">\(\theta_j\)</span>, DER values in tiers T3–T4 are common in meta-analysis with dependent effect sizes. The CCC correction should be applied routinely for forest plot intervals.</p>
+<p><strong>Final remark.</strong> The DER/CCC framework does not replace careful model building and sensitivity analysis. Rather, it provides a quantitative diagnostic for a specific form of misspecification (within-study working correlation) that is inherent in all correlated-effects meta-analysis. By reporting DER alongside standard meta-analytic output, practitioners enable readers to assess the sensitivity of conclusions to the assumed dependence structure — a transparency that is currently absent from the meta-analytic reporting literature.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-LeeDER2026" class="csl-entry" role="listitem">
+Lee, J. 2026. <span>“Design Effect Ratios for <span>Bayesian</span> Survey Models: A Diagnostic Framework for Identifying Survey-Sensitive Parameters.”</span> <a href="https://doi.org/10.48550/arXiv.2603.07791">https://doi.org/10.48550/arXiv.2603.07791</a>.
+</div>
+<div id="ref-TannerSmithLipsey2015" class="csl-entry" role="listitem">
+Tanner-Smith, Emily E., and Mark W. Lipsey. 2015. <span>“Brief Alcohol Interventions for Adolescents and Young Adults: A Systematic Review and Meta-Analysis.”</span> <em>Journal of Substance Abuse Treatment</em> 51: 1–18. <a href="https://doi.org/10.1016/j.jsat.2014.09.001">https://doi.org/10.1016/j.jsat.2014.09.001</a>.
+</div>
+<div id="ref-WilliamsSavitsky2021" class="csl-entry" role="listitem">
+Williams, Matthew R., and Terrance D. Savitsky. 2021. <span>“Uncertainty Estimation for Pseudo-<span>B</span>ayesian Inference Under Complex Sampling.”</span> <em>International Statistical Review</em> 89 (1): 72–107. <a href="https://doi.org/10.1111/insr.12376">https://doi.org/10.1111/insr.12376</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ch11-regularity.html" class="pagination-link" aria-label="Regularity Conditions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Regularity Conditions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ch13-discussion.html" class="pagination-link" aria-label="Discussion and Conclusions">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Discussion and Conclusions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/joonho112/bayesian-meta-survey-equivalence/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
