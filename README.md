@@ -4,6 +4,8 @@
 
 JoonHo Lee | March 2026
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19024818.svg)](https://doi.org/10.5281/zenodo.19024818)
+
 ---
 
 **Read the book online:** [joonho112.github.io/bayesian-meta-survey-equivalence](https://joonho112.github.io/bayesian-meta-survey-equivalence/)
@@ -32,8 +34,8 @@ This book proves that Bayesian meta-analysis with dependent effect sizes and Bay
 
 ## Companion Papers
 
-- Lee, J.-H. (2026a). Bayesian hierarchical hurdle beta-binomial model for survey-weighted bounded counts. *JRSS-C* (under review).
-- Lee, J.-H. (2026b). Design effect ratios for Bayesian survey models. *JSSAM* (under review).
+- Lee, J.-H. (2026a). A Bayesian hierarchical hurdle beta-binomial model for survey-weighted bounded counts and its application to childcare enrollment. arXiv preprint. [doi:10.48550/arXiv.2603.02611](https://doi.org/10.48550/arXiv.2603.02611)
+- Lee, J.-H. (2026b). Design effect ratios for Bayesian survey models: A diagnostic framework for identifying survey-sensitive parameters. arXiv preprint. [doi:10.48550/arXiv.2603.07791](https://doi.org/10.48550/arXiv.2603.07791)
 
 ## License
 
@@ -48,6 +50,7 @@ Click the **"Cite this repository"** button on GitHub, or use:
   author    = {Lee, JoonHo},
   title     = {Structural Equivalence of {Bayesian} Meta-Analysis and {Bayesian} Survey Inference: Complete Mathematical Theory},
   year      = {2026},
-  url       = {https://joonho112.github.io/bayesian-meta-survey-equivalence/}
+  doi       = {10.5281/zenodo.19024818},
+  url       = {https://doi.org/10.5281/zenodo.19024818}
 }
 ```
